@@ -1,0 +1,76 @@
+
+COS'E'
+
+Docker è una piattaforma software che permette di creare, testare e distribuire applicazioni rapidamente. Docker impacchetta il software in unità standardizzate, chiamate container, che contengono tutto ciò che l'applicazione necessita per funzionare, inclusi libreria, sistema di gestione dei file, codice, e dipendenze. Questi container sono isolati gli uni dagli altri e dal sistema operativo ospitante, il che garantisce che funzionino uniformemente nonostante le differenze tra ambienti di sviluppo e produzione.
+
+
+
+
+A COSA SERVE ?
+
+Docker semplifica e accelera il tuo workflow, offrendo agli sviluppatori un ambiente di sviluppo standardizzato. Ecco alcuni dei principali usi di Docker:
+
+-Isolamento delle applicazioni: ogni applicazione può essere eseguita nel suo container, isolata dalle altre. Ciò riduce i conflitti tra applicazioni che richiedono versioni diverse dello stesso software. Ogni applicazione ha il suo ambiente isolato e le sue dipendenze . 
+
+-Consistenza e efficienza: Docker garantisce che l'applicazione funzioni allo stesso modo in ogni ambiente, dallo sviluppo alla produzione, eliminando il classico problema "funzionava sul mio computer".
+
+-Portabilità: un container può essere eseguito su qualsiasi sistema che ha Docker installato, rendendo molto più facile spostare applicazioni tra diversi server e ambienti. Bast ca c sta Docker e funziona; nun me ne fott se con ambiente Linux , Ios o cazzi vari da sotto.
+
+-Sviluppo e deployment rapidi: Docker consente di costruire e distribuire rapidamente nuove versioni delle tue applicazioni, facilitando l'integrazione e la consegna continue.
+
+
+CONCETTI IMPORTANTI 
+
+-Immagini Docker: sono modelli di sola lettura usati per creare container. Un'immagine contiene tutto ciò che è necessario per eseguire un'applicazione, come il codice, un runtime, librerie, variabili d'ambiente e file di configurazione.
+
+-Container Docker: sono le istanze in esecuzione delle immagini Docker. Possono essere avviati, fermati, spostati e cancellati. Ogni container è isolato e sicuro.
+
+-Docker Hub: è un servizio di registry che permette di condividere e scaricare immagini Docker. Fornisce anche un'ampia gamma di immagini ufficiali che possono essere usate come base per le proprie applicazioni.
+
+
+IMMAGINE DOCKER
+
++Un immagine Docker non contiene un intero sistema operativo come una macchina virtuale , possiamo dire che contiene un software allegerito per funzionare oltre all'ambiente di esecuzione , librerie , dipendenze e codice per eseguire l'applicazione che ospita.
+
+CONTAINER vs VIRUAL MACHINE
+
+kernel : Il kernel è una componente fondamentale di un sistema operativo con il compito principale di gestire le risorse del sistema, come CPU, memoria e dispositivi di I/O. Agisce come un ponte tra le applicazioni software e l'hardware fisico del computer, permettendo alle applicazioni di eseguire operazioni di alto livello senza dover gestire direttamente l'hardware complesso. 
+Ogni Sistema operativo ha un proprio kernel per funzionare . 
+Quando usaiamo una macchina virtuale , essa ha un proprio sistema operativo con un proprio kernel . Invece con Docker , il container condivide/sfrutta il 
+kernel del sistema operativo che lo ospita e ciò rende la sua esecuzione molto più leggera. Insomma il container sfrutta le funzionalità/kernel del sistema
+operativo su cui è eseguito, quindi Docker viene eseguito sul sistema operativo che lo ospita.
+Allo stesso tempo il container Docker è isolato a livello di processo e filesystem . Inoltre è possibile assegnare ad ogni container una specifica quantità 
+di risorse come CPU e memoria
+
+Quindi riespetto ad una VM , un Container è più comodo e performante anche se è meno isolato , poichè funziona sul SO host e quindi se questo viene infettato , sono cazzi . Una VM è completamente indipendente e ha un proprio kernel anche se cmq bisogna considerare , per la sicurezza , che è 
+dipendente da un Hypervisor ( Un hypervisor, noto anche come monitor di macchine virtuali (VMM), è un software che crea e gestisce macchine virtuali (VM). Funge da livello di astrazione tra l'hardware fisico e i sistemi operativi virtuali.)
+ 
+
+
+
+
+
+
+Una piattaforma fatta per semplificare la creazione,deployment, esecuzione e consegna di applicazioni (quindi tutto il ciclo di vita di un software)
+in container isolati e indipendenti tra loro (quindi in ambienti ipoteticamente diversi) ma in grando di comunicare tra loro se ce ne fosse il caso.
+Questi container contengono l'applicazione e file di configurazione ecc.. ovvero tutto quello che serve per far funzionare la nostra applicazione su qualunque hardware e sistema operativo (per questo si dice che si lavora su un ambiente isolato e "universale").
+Docker , a differenza della macchina virtuale , condivide il kernel del sistema operativo , quindi lavora stesso nel sistema operativo , ma è allo stesso tempo indipendente e isolato da esso.(docker engine è l'ambiente su cui vengono eseguiti e creati i container che gira sul sistema operativo assieme al kernel )
+La macchina virtuale invece è molto più dispendiosa poichè ha un kernel proprio ,un proprio sistema operativo e parte dell'hardware deve essere virtualizzato(separato) e dedicato alla macchina virtuale.
+Le risorse da assegnare ai vari container possono essere gestite(posso decidere quanta ram assegnare ad un container quanta ad un altro ecc..)
+La macchina virtuale è composta dal sistema operativo di base (quello tuo) sul quale è eseguito un hypervisor(il programma che crea e fa girare una o più istanze della macchina virtuale) e l'hardware viene virtualizzato(ovvero si decide di dedicare parte del nostro pc alla macchina virtuale che lo fa proprio (lo virtualizza))
+
+(solitamente DockerClient e DockerServer stanno sulla stessa macchina)
+è possibile avere un Docker scaricato su server e dargli comandi da remoto(con una logica client-server,attraverso il dockerClient) come se fosse in locale
+
+Ci vuole Linux come Host  (è possibile anche farlo girare su Windows o Mc ma viene eseguito su una macchina virtuale Liunx)
+Ci vuole uno storage Driver (una memoria per i container)
+
+Vantaggi virtual machine: 
++possibilità di far girare diversi sistemi operativi
++flessibilità di configurazione poichè possiamo decidere la quantità di risorse hardware da assegnare ad ogni istanza di VM
+Vantaggi Docker:
++ciclo di sviluppo di un applicazione semplificato poichè tutto su container
++portabilità: il container ha quello che serve per girare ovunque ,su un docker engine in qualunque ambiente
++sicurezza data dall'isolamento
++efficienza e leggerezza
+

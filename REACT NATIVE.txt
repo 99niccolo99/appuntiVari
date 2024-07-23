@@ -1,0 +1,95 @@
+
+Per installare REACT NATIVE ed expo(strumento comodo per React Native) --> "npm install -g expo-cli"
+
+Per creare ed inizializzare un progetto REACT NATIVE --> "expo init nomeProgetto" (nomeProgetto sarà il folder dove verrà inserito tutto)
+[una volta che apri il progetto per essere sicuro che tutto sia stato installato puoi scrivere "npm install"]
+
+
+
+
+
+PER UTILIZZARE EXPO 
+
+1)installare expo-cli 
+2)installare eas-cli per il build successivo
+3)"npx create-expo-app my-app"   per creare un applicazione react native pre-configurata per expo
+4) "npx expo start"  per farla partire 
+5) "eas login"   per loggare nel cloud eas per la futura build
+6) "eas build:configure"  per creare il file eas.json per configurare la build 
+7) cercare su expo come configurare eas.json per avere l'apk 
+8) eas build per buildare su cloud . Vai sul tuo profilo expo.dev per vedere come procede la build e se va a buon fine 
+
+
+
+--------------------------------------------------------------------------------------------------
+
++Per passare i dati da sotto a sopra nella gerarchia basta sviluppare il metodo con props in una funzione esterna al return (guarda esempio lista)
+
+
+
+----------------------------------------------------------------------------------------
+
+<View>   ---> equivalente a <div>  
+
+
+
+[NELLE APPLICAZIONI MOBILE IN GENERALE LA SCHERMATA NON è PER NULLA SCROLLABILE MA è FISSA , LA DOBBIAMO RENDERE NOI SCROLLABILE]
+
++ScrollView  --> usato per rendere una zona scrollabile , è consigliato per rendere scrollabile gli elementi in generale ma NON per rendere scrollabili le 
+liste di lunghe dimensioni poichè ScrollView renderizza tutto in una botta il suo contenuto (anche ciò che al momento non è visibile poichè si trova sotto, dove 
+per arrivarci bisogna scrollare) . è meglio per elementi generici poichè è più "elastica" però per le liste dinamiche di grandi dimensioni è meglio FlatList
+Per usare ScrollView basta metterla come padre della lista che possiamo generare con .map
+
++FlatList  --> anche questa componente rende una zona scrollabile ma è particolarmente efficace con le grandi liste poichè non renderizza subito ciò che l'utente 
+non vede , ma lo fa solo quando è visibile . In tal modo alleggerisce la memoria e migliora la velocità , però potrebbe dare problemi con lo scroll di altri elementi
+La creazione della lista con FlatList è più complicata di ScrollView
+In FlatList è necessaria la proprietà  "data={lista}" dove la lista è l'array(quindi la lista) da scorrere poi un'altra proprietà è 
+"renderItem = { (itemData) => { return ( ................... " 
+una funzione che sostanzialmente prende in input "itemData" che rappresenta ogni singolo elemento della lista 
+Infine nella nostra funzione "renderItem" per accedere ad un elemento dobbiamo usare anche la parola "item" --> cosi "itemData.item" per accedere all'elemento 
+della lista . Se gli elementi sono ad esempio oggetti con una proprietà text allora per accedervi "itemData.item.text" 
+Inoltre è sempre buono per ottimizzare implementare come elementi della lista un oggetto che contiene anche una proprietà "key" dove questo 
+è un identificativo univoco per ogni elemento della lista (la generazione del valore la dobbiamo implementare noi) . La proprietà "key" dell'oggetto 
+sarà prelevata in automatico da FlatList
+
++Pressable   -->  per rendere una componente premibile . Pressable deve essere padre della componente da rendere premibile
+
+
++android_ripple = {.... --> attributo per applicare degli effetti estetici (se applicato a Pressable si applica quando premiamo sull'oggetto)
+
+
++ style={(pressed) =>   pressed && style.StileDaTeCreato}         -->   per cambiare lo stato dll'oggetto a cui è applicato quando viene premuto
+
+
++.bind   -->   lo usiamo principalmente per passare parametri ad una funzione legata alla componente padre con props 
+es:            <Pressable onPress={props.onDeleteItem.bind(this, props.id)}/>
+
+nella componente che preleva i props :         <GoalItem        id={.....}   onDeleteItem={......} />       per prelevare anche l'id
+
+in tal caso viene passata la funzione onDeleteItem e id come primo parametro , però si deve anche mettere quel "this" poichè bind serve ad altro. 
+è utilizzato principalmente per legare il valore this di una funzione ad un componente React.
+Ciò significa che quando la funzione viene chiamata all'interno del componente, this si riferirà al componente stesso, invece di riferirsi ad un altro oggetto.
+
+ 
+----------------------------------------------------------
+
+MODAL -->  Modal è un componente che viene utilizzato per creare una finestra modale che appare sopra il contenuto principale dell'applicazione.
+ La finestra modale viene utilizzata per visualizzare informazioni o richiedere input all'utente.
+Il Modal può essere utilizzato per mostrare messaggi di avviso, richiedere la conferma dell'utente prima di effettuare un'azione critica,
+ mostrare informazioni dettagliate su un elemento ecc...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Build Credentials xzXNuWcVRM

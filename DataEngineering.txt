@@ -1,0 +1,720 @@
+***Sicuro chiedono 
+###probabilmente no poichè difficili 
+
+
+
+1)*** [Formati Dati] Qual'è la differenza tra dati strutturati vs non strutturati vs semi-strutturati ? 
+
+2)*** [Formati Dati] Cos'è il Partitioning ? Che vantaggi ti da ? Quali sono i campi migliori su cui applicare il Partitioning ? 
+
+3)*** [Formati Dati] Delta Tables :cosa sono ? Perchè sono una evoluzione dei files parquet ? 
+
+4) [Programmazione] Conosci il linguaggio SQL ?  +ESERCIZIO test conoscenza (SELECT e VISTE)
+
+5) [Programmazione] Conosci il paradigma ad oggetti e funzionale ? 
+
+6) [Database] Cos'è la normalizzazione di un Database? Perchè è importante effettuarla ?
+
+7) [Database] Definizione di PRIMARY_KEY e FOREIGN_KEY e a che serve l'integrità referenziale
+
+8) [Database] Descrivere le differenti tipologie di relazioni tra le strutture dati (1:1 , 1:N, N-N) 
+
+9) [Database] Descrivere la procedura di ETL- ELT e le loro differenze 
+
+10) [Database] Differenza tra SQL e NOSQL. Fai degli esempi . 
+
+11) [Database] Differenza tra processamento batch e streaming 
+
+12) [Database] Mi sapresti descrivere le prorietà ACID di un database ? 
+
+13) [Database] L'acronomi CRUD a cosa fa riferimento ? 
+
+14) [Database] cos'è una DDL e DML? Che differenze ci sono tra le istruzioni DDL e DML ? Fai degli esempi 
+
+15) [Database] Mi sapresti descrivere la differenza tra le informazioni di connessione e quelle di autenticazione verso una sorgente dati ? 
+
+16) [Database] Descrivere le differenti tipologie di JOIN in SQL 
+
+17) [Programmazione] Conosci il meccanismo di git ? 
+
+18) [ARCHITETTURA] Conosci la differenza tra Iaas, Paas, Saas? 
+
+19) [DevOps] Conosci il processo di DevOps ? Che strumenti hai usato ? 
+
+20) [Cloud] spiega il concetto di cloud e i servizi principali di Azure
+
+21) [Cloud] Cosa significa Servless ? (credo sempre relativo ai servizi) 
+
+22) [Programmazione] Quale metodologie di Testing conosci ? Verifichiamo se conosce la differenza tra Unity Test,Integration Test e System Test 
+
+23) [Soft skill]  Conosci Agile ? Waterfall ? 
+
+24) [Inglese] raccontaci una progettualità in inglese + altre domande relative al progetto 
+
+25) [Architettura] Cosa è un Data Lakehouse ? Qual'è la differenza con un Data Lake e un Data Warehouse ?
+
+26) [Architettura] Descrivere i servizi di Data Analytics utilizzati 
+
++guardati un pò in generale i servizi di Azure, in particolar modo quelli per la gestionedei dati/data engineer
+
+27) [Architettura] Descrivere le differenti opzioni di connettività di alcuni servizi Azure 
+
+28) [Programmazione] Che linguaggi di programmazione conosci usati in Spark (Scala, Python, Java, HiveQL) ? +ESERCIZIO test conoscenza
+
+29) [Architettura] Conosce il pircing di Azure (i metodi di pagamento tipo pay as you .....paghi per quello che consumi) 
+
+30) [Database] Mi sapresti descrivere la differenza tra Encryption, Data Masking e RLS ? Quale di queste si può "bypassare" ? 
+
+31) [Database] Cos'è una Costraint ? 
+
+32) [Database] Cos'è un Grant ? 
+
+33) [Architettura] Capacità di design e stima (credo sempre relativo al prezzo) 
+
+34) [Servizi Azure] Utilizzo di ADF (risposta Junior:l'ho usato solo per creare pipeline semplici di ETL)
+
+35) [Servizi Azure] Utilizzo di Synapse (risposta Junior: l'ho usato solo per la parte di Pipeline) 
+
+36) [Hive] Conosci cos'è un Hive Metastore ? 
+
+37)### [Spark] Cosa vuol dire che Spark è lazy ? 
+
+38)### [Spark] Hai mai esaminato una SparkUI ? 
+
+39)### [Spark] Cosa è la Optimize ? 
+
+40)### [Spark] Cosa è la Vacuum? 
+
+41)### [Spark] Qual'è la differenza tra Wide  vs  Narrow trasformations ? 
+
+42)### [Architettura] Conosci il Data Mesh ? 
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+        SCHEMA CREAZIONE DB
+
+1) Creazione modello ER 
+
+2) Creazione del Modello Logico (Schema Relazionale)
+
+Trasformare il modello concettuale in uno schema relazionale.
+
+-Definire tabelle: Converti ogni entità in una tabella.
+-Definire colonne: Aggiungi colonne per ogni attributo dell'entità.
+-Impostare chiavi primarie: Scegli un attributo o un insieme di attributi come chiave primaria per ogni tabella.
+-Definire chiavi esterne: Aggiungi colonne che rappresentano le chiavi esterne per creare le relazioni tra le tabelle.
+
+
+
+3) NORMALIZZAZIONE
+
+La normalizzazione è un processo usato per organizzare i dati in modo da ridurre la ridondanza e migliorare l'integrità dei dati (ovvero ridurre la duplicazione e migliorare la correttezza dei dati )
+Questo processo suddivide le tabelle più grandi in tabelle più piccole e le collega attraverso relazioni ben definite.
+
+
+il processo di normalizzazione si divide in 3 fasi : 
+
+1) Si porta ogni tabella alla "prima forma normale" (1NF) 
+
+Requisiti:
+
+-Ogni colonna deve contenere solo valori atomici (non divisibili)(insomma nella sua "forma base") .
+-Ogni riga deve essere unica.
+
+Esempio:
+Consideriamo una tabella Ordini non normalizzata:
+
+ordine_id	data	prodotti
+1	2024-06-01	Prodotto1, Prodotto2
+2	2024-06-02	Prodotto3
+
+
+Per portarla in 1NF, dobbiamo scomporre i valori non atomici:
+
+ordine_id	data	prodotto
+1	2024-06-01	Prodotto1
+1	2024-06-01	Prodotto2
+2	2024-06-02	Prodotto3
+
+
+2) Adesso abbiamo la prima forma normale , dobbiamo portarla alla "seconda forma normale" (2NF) 
+
+Requisiti:
+
+-Deve essere in 1NF.
+-Ogni colonna non chiave deve dipendere interamente dalla chiave primaria.
+
+Passaggio:
+
+Rimuovere le dipendenze parziali spostando gli attributi che non dipendono interamente dalla chiave primaria in tabelle separate.
+
+
+3) Adesso la passiamo alla terza forma normale (3NF) 
+
+Requisiti:
+
+Deve essere in 2NF.
+Ogni colonna non chiave deve dipendere solo dalla chiave primaria (nessuna dipendenza transitiva).
+
+Passaggio:
+
+Eliminare le dipendenze transitive creando nuove tabelle per gli attributi che dipendono da altri attributi non chiave.
+
+
+
+4) Creazione DB
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+ 1)*** [Formati Dati] Qual'è la differenza tra dati strutturati vs non strutturati vs semi-strutturati ? 
+
+
+DATI STRUTTURATI 
+
+sono dati organizzati secondo uno schema rigido e facilmente interpretabile da un computer. 
+es. tabelle database relazionale 
+
+caratteristiche : 
+-schema rigido e predefinito 
+-facile fare query , anche complesse 
+
+
+
+DATI NON STRUTTURATI 
+
+I dati non strutturati non seguono uno schema o una struttura predefinita. Sono dati grezzi (quindi sono memorizzati nel loro formato nativo senza una pre-lavorazione)  che possono essere memorizzati in vari formati come testi, immagini, video, audio, email, documenti ecc. L'analisi e l'elaborazione di questi dati richiede tecniche più complesse rispetto ai dati strutturati.
+
+caratteristiche:
+-Nessuno schema fisso o predefinito
+-Richiede tecniche avanzate di analisi (es. NLP per testo, analisi delle immagini, ecc.)
+-Memorizzato in formati non tabellari (es. file system, database NoSQL)
+
+
+DATI SEMI-STRUTTURATI 
+
+I dati semi-strutturati hanno una struttura che non è così rigida come quella dei dati strutturati, ma contengono marcature o etichette che separano elementi e impongono un certo ordine. Questo tipo di dati può essere memorizzato in formati come JSON, XML o YAML, che sono flessibili ma ancora organizzati.
+
+caratteristiche:
+-Schema flessibile e modificabile
+-Utilizzo di tag o marcature per definire strutture
+-Facilità di trasporto e integrazione
+-I dati semi-strutturati sono spesso usati come formato di interscambio, facilitando l'integrazione tra sistemi diversi (es. JSON per API RESTful).
+
+
+DIFFERENZA STRUTTURATI E NON
+
+
+I dati strutturati sono altamente specifici e vengono archiviati in un formato predefinito, in cui i dati non strutturati sono un conglomerato di molti tipi diversi di dati archiviati nei loro formati nativi. Ciò significa che i dati strutturati sfruttano lo schema in scrittura e i dati non strutturati utilizzano lo schema in lettura.
+
+I dati strutturati vengono comunemente archiviati nei data warehouse e i dati non strutturati vengono archiviati nei data lake. Entrambi hanno un potenziale di utilizzo del cloud, ma i dati strutturati consentono meno spazio di archiviazione e i dati non strutturati richiedono di più.
+
+L’ultima differenza potrebbe potenzialmente avere il maggiore impatto. I dati strutturati possono essere utilizzati dall’utente aziendale medio, ma i dati non strutturati richiedono competenze di data science per ottenere un’accurata business intelligence.(PIù DIFFICILI DA MANEGGIARE) 
+
+
+----------------------------------------------------------------------------------------------
+
+2)*** [Formati Dati] Cos'è il Partitioning ? Che vantaggi ti da ? Quali sono i campi migliori su cui applicare il Partitioning ? 
+
+
+
+Il partizionamento del database (chiamato anche partizionamento dei dati ) si riferisce alla suddivisione dei dati nel database di un'applicazione in più parti separate o partizioni . È quindi possibile archiviare, accedere e gestire separatamente queste partizioni.
+Il partizionamento dei dati può contribuire a rendere la tua applicazione più scalabile e performante, ma può anche introdurre complessità e sfide significative.
+
+Se vogliamo fare un esempio con un database relazionale, con il partitioning andiamo a dividere una grande tabella in 2 o più tabelle più piccole.
+Ogni partizione è memorizzata e gestita separatamente, ma collettivamente esse rappresentano l'intera tabella.
+
+VANTAGGI: 
+
+-Scalabilità : possiamo posizionare le varie partizioni in più server fisici separati, migliorando le prestazioni (sclabilità Orizzontale) 
+
+-Disponibilità : può migliorare la disponibilità perché l'esecuzione di un database su un singolo componente hardware significa che il database presenta un singolo punto di errore. Se il server del database non funziona, l'intero database e, per estensione, la tua applicazione, saranno offline.
+Al contrario, la distribuzione dei dati su più partizioni consente di archiviare ciascuna partizione su un server separato. Gli stessi dati possono anche essere replicati su più server, consentendo all'intero database di rimanere disponibile per la tua applicazione (e i suoi utenti) anche se un server va offline.
+
+-Prestazioni : Il partizionamento dei dati può migliorare le prestazioni in vari modi diversi a seconda di come si sceglie di distribuire e configurare le partizioni. Un modo comune in cui il partizionamento migliora le prestazioni è riducendo i conflitti, in altre parole distribuendo il carico delle richieste degli utenti su più server in modo che a nessun singolo componente hardware venga chiesto di fare troppe cose contemporaneamente.
+Oppure un altro esempio: potresti scegliere di partizionare i tuoi dati in diverse regioni geografiche in base alla posizione dell'utente in modo che i dati a cui gli utenti accedono più frequentemente si trovino vicino a loro. Ciò ridurrebbe la quantità di latenza riscontrata durante l'utilizzo dell'applicazione.
+
+
++Campi Migliori su cui Applicare il Partitioning
+
+-Data e Ora:
+Partizionamento Temporale: Ideale per tabelle che crescono continuamente nel tempo, come log di eventi, dati di transazioni o cronologie. Le partizioni possono essere create per intervalli di tempo specifici (giornalieri, mensili, annuali).
+
+-Geografia:
+Partizionamento Geografico: Utile per dati che sono distribuiti geograficamente, come vendite regionali o dati demografici. Le partizioni possono essere basate su regioni, stati o paesi.
+
+-Intervalli di Valori:
+Partizionamento per Intervalli di Valori: Quando i dati possono essere suddivisi logicamente in intervalli di valori, come range di prezzi, età o livelli di punteggio.
+
+
+TIPI DI PARTITIONING(ci riferiamo principalmente ai db relazionali e quindi composti da tabelle) : 
+
+-Partizionamento verticale:
+La tabella viene divisa in base alle colonne. Il motivo è che i dati delle diverse partizioni sono usati in modo diverso e quindi ha senso archiviarli 
+su macchine diverse. 
+
+-Partizionamento orizzontale: 
+Stessa tabella divisa in base alle righe. Scelto per migliorare prestazion e scalabilità
+
+-Sharding : 
+Lo sharding è un tipo di partizionamento orizzontale in cui ogni gruppo di righe (ogni partizione) risiede su un singolo nodo o server e si comporta come un database indipendente dalle altre partizioni. Questa tecnica è scelta per migliorare le prestazioni e la scalabilità del sistema, permettendo di gestire grandi volumi di dati distribuendo il carico di lavoro su più nodi.
+-------------------------------------------------------------------------------------------------------------------
+
+INDICI (database relazionali) 
+
+
++Un indice in un database è una struttura che migliora la velocità delle operazioni di ricerca nei dati. Pensalo come un indice di un libro: invece di sfogliare ogni pagina per trovare un argomento specifico, puoi consultare l'indice alla fine del libro per trovare rapidamente il numero di pagina.
+
+L'indice va applicano ad una colonna.
+Come scegliere la colonna da indicizzare : 
+-Scegli le colonne utilizzate frequentemente nelle condizioni WHERE delle query.
+-Se unisci spesso tabelle sulla base di una colonna (JOIN) , indicizzare questa colonna può migliorare le prestazioni
+-Se ordini frequentemente i risultati basati su una colonna (ORDER BY) 
+
+Esistono 3 modi per creare un indice :
+- PRIMARY KEY -> la chiave primaria ha automaticamente un indice
+- UNIQUE -> se a una colonna viene applicato "UNIQUE", in tale colonna non ci possono essere ripetizioni e viene inoltre applicato un indice 
+- es: 
+        CREATE INDEX idx_data_ordine ON ordini(data_ordine);   --> Creazione di un indice sulla colonna 'data_ordine' della tabella 'ordini'
+
+
+Svantaggi degli Indici:
+-Spazio: Gli indici richiedono spazio aggiuntivo nel database.
+-Manutenzione: Gli indici devono essere aggiornati quando i dati nella tabella cambiano (inserimenti, aggiornamenti, cancellazioni), il che può rallentare queste operazioni.
+
+
+
+-------------------------------------------------------------------------------------------------------------
+
+FILE CSV 
+
+Un file CSV (Comma-Separated Values) è un formato di file di testo (quindi come JSON, posso memorizzare tantissimi tipi come interi , oggetti, array , immagini ecc. ma vengono memorizzati come testo; infatti ad es. un immagine ha bisogno della codifica per essere memorizzata come JSON) semplice utilizzato per memorizzare dati tabulari, come un foglio di calcolo o una tabella di database. Ogni linea del file rappresenta una singola riga della tabella, e i valori all'interno di una riga sono separati da virgole .
+
+Per recuperare un elemento dobbiamo tener conto di righe e colonne e recuperare l'elemento considerando l'indice di riga e colonna 
++In un file CSV, se vuoi accedere soltanto alla colonna Età per tutte le righe, il sistema deve leggere l’intero file, riga per riga, per estrarre l’informazione relativa.
+
+es organizzazione file persone.cvs:
+
+
+Nome,Cognome,Età
+Mario,Rossi,30
+Luisa,Bianchi,25
+Giovanni,Verdi,40
+
+-------------------------------------------------------------------------------------
+
+3)*** [Formati Dati] Delta Tables :cosa sono ? Perchè sono una evoluzione dei files parquet ? 
+
+
+FILE PARQUET :
+
+
+È un formato di archiviazione ottimizzato per lavorare e memorizzare dati complessi e voluminosi. 
+Sono particolarmente utilizzati nell'ambito del big data e delle applicazioni analitiche perché ottimizzano sia lo spazio di archiviazione che le prestazioni delle query.
+A differenza del CSV - che memorizza i dati per riga - Parquet organizza i dati per colonne.
+Essendo organizzato per colonne, si può accedere direttamente, e anche esclusivamente, alla colonna Età, senza dover leggere anche le altre colonne. In un file csv dovevi leggere anche prima Nome e Cognome e poi solo dopo Età
+
+es persone.parquet:
+
+ID: 1,2,...
+Nome: Mario Rossi,Laura Bianchi,...
+Età: 30,25,...
+E-mail: mario.rossi@email.com,laura.bianchi@email.com,...
+
+
++Compressione Efficiente:
+La memorizzazione columnar consente una compressione dei dati più efficace. Dato che i valori di una colonna tendono ad essere simili, è possibile applicare algoritmi di compressione specifici per ogni colonna, riducendo significativamente lo spazio di archiviazione.
+
++Accesso Rapido ai Dati:
+Poiché i dati sono organizzati per colonna, è possibile leggere solo le colonne necessarie per una query, senza dover scansionare l'intera tabella. Questo riduce il volume di dati da leggere e velocizza le operazioni di query.
+
++IMPORANTE: I file Parquet non supportano le transazioni ACID (Atomicità, Coerenza, Isolamento, Durabilità) nativamente, il che può rendere complicata la gestione delle operazioni di scrittura concorrente.
+
+
+
++Quando Usare Parquet vs. Tabelle SQL
+
+Usa i file Parquet quando:
+
+Hai bisogno di memorizzare grandi volumi di dati che verranno principalmente letti e analizzati, piuttosto che frequentemente aggiornati.
+Stai lavorando in un ecosistema di big data come Hadoop o Spark.
+Vuoi ottimizzare le prestazioni delle query analitiche che accedono a poche colonne specifiche di un grande dataset.
+
+Usa le tabelle di un database SQL quando:
+
+Hai bisogno di supporto per transazioni ACID e operazioni di scrittura concorrente.
+Devi gestire relazioni complesse tra dati e vincoli di integrità referenziale.
+Hai bisogno di strumenti potenti per la manipolazione e la gestione dei dati tramite SQL.
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+5) [Programmazione] Conosci il paradigma ad oggetti e funzionale ? 
+
+Il paradigma di programmazione funzionale è un modello di programmazione che tratta il calcolo come la valutazione di funzioni matematiche ed evita lo stato e i dati mutabili.
+
+-Le funzioni sono trattate come cittadini di prima classe. Possono essere assegnate a variabili, passate come argomenti e restituite da altre funzioni.
+
+-Le variabili sono immutabili. Una volta assegnato un valore a una variabile, questo non può essere cambiato.
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+7) [Database] Definizione di PRIMARY_KEY e FOREIGN_KEY e a che serve l'integrità referenziale
+
+
+
+L'integrità referenziale garantisce che i riferimenti tra le tabelle del database siano validi. Ciò significa che ogni valore di chiave esterna deve corrispondere a un valore di chiave primaria esistente nella tabella a cui fa riferimento.
+
+Previene l'inserimento di dati orfani (record che fanno riferimento a chiavi inesistenti) e assicura che i dati rimangano consistenti attraverso operazioni inserimento ,di aggiornamento e cancellazione.
+
+
+
+Quando interviene?
+
+Inserimento: Quando si inserisce un nuovo record che contiene una chiave esterna, il database verifica che il valore della chiave esista nella tabella di riferimento.
+Aggiornamento: Se si aggiorna una chiave primaria, il database assicura che tutte le chiavi esterne che fanno riferimento a quella chiave siano aggiornate o gestite adeguatamente.
+Cancellazione: Quando si elimina un record con una chiave primaria, il database può intervenire in vari modi per gestire i record che fanno riferimento a quella chiave (con azioni come CASCADE, SET NULL, o RESTRICT).
+
+
+Quando si definiscono chiavi esterne in un database relazionale, è possibile configurare azioni specifiche che il database deve eseguire quando una riga referenziata viene aggiornata o eliminata. 
+
+es:
+
+CREATE TABLE Figlio (
+    figlio_id INT PRIMARY KEY,
+    nome VARCHAR(100),
+    padre_id INT,
+    FOREIGN KEY (padre_id) REFERENCES Padre(padre_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+
+
+tipi:
+
+-ON DELETE CASCADE: Quando una riga referenziata viene eliminata, tutte le righe che la referenziano vengono eliminate automaticamente.
+
+-ON UPDATE CASCADE: Quando il valore della chiave primaria di una riga referenziata viene aggiornato, i valori delle chiavi esterne nelle righe che la referenziano vengono aggiornati automaticamente.
+
+-ON DELETE SET NULL: Quando una riga referenziata viene eliminata, i valori delle chiavi esterne nelle righe che la referenziano vengono impostati a NULL.
+-ON UPDATE SET NULL:
+
+-ON DELETE RESTRICT: Impedisce l'eliminazione di una riga se ci sono righe che la referenziano. Genera un errore.
+-ON UPDATE RESTRICT: Impedisce l'aggiornamento del valore della chiave primaria di una riga se ci sono righe che la referenziano. Genera un errore.
+------------------------------------------------------------------------------------------------------------------------------------
+
+8) [Database] Descrivere le differenti tipologie di relazioni tra le strutture dati (1:1 , 1:N, N-N) 
+
+
+1:1 (Uno a Uno)
+
+Ogni record in una tabella corrisponde a uno e solo uno record in un'altra tabella.
+
+
+Es:
+Persona e Passaporto: Ogni persona ha un solo passaporto, e ogni passaporto è assegnato a una sola persona.
+
+La chiave esterna può essere inserita in una delle due tabelle.
+
+
+
+1 : N (Uno a Molti)
+
+In una relazione uno a molti, un record in una tabella può essere collegato a uno o più record in un'altra tabella
+
+Es:
+Cliente e Ordini: Un cliente può avere più ordini, ma ogni ordine appartiene a un solo cliente.
+
+La chiave esterna è inserita nella tabella che rappresenta il lato "molti". In questo caso, la tabella Ordini avrà una chiave esterna cliente_id che fa riferimento alla chiave primaria della tabella Cliente.
+
+
+
+ N : N  (Molti a Molti)
+
+Le chiavi esterne sono inserite in una tabella di collegamento (o tabella di associazione) che rappresenta la relazione tra le due tabelle principali.
+
+Es:
+Studenti e Corsi: Uno studente può iscriversi a molti corsi, e un corso può avere molti studenti iscritti.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+9) 9) [Database] Descrivere la procedura di ETL- ELT e le loro differenze 
+
+
+Le procedure ETL (Extract, Transform, Load) e ELT (Extract, Load, Transform) sono metodologie fondamentali nella gestione dei dati e nell'ingegneria dei dati.
+
+ETL è l'acronimo di Extract, Transform, Load (Estrazione, Trasformazione, Caricamento). È un processo utilizzato per integrare e trasformare i dati provenienti da diverse fonti, preparandoli per l'analisi o per essere caricati in un data warehouse.
+Una procedura ETL è particolarmente utile in molte situazioni, specialmente quando è necessario integrare dati da fonti eterogenee per ottenere una visione unificata e coerente.
+
+
+ETL (Extract, Transform, Load)
+
+1)Extract (Estrazione):
+
+La fase di estrazione implica il prelievo dei dati da diverse fonti di dati, come database relazionali, file flat, sistemi CRM, ERP, file di log, ecc. Questa fase può coinvolgere query SQL, API, scraping web e altri metodi di raccolta dei dati.
+
+2)Transform (Trasformazione):
+
+Durante la trasformazione, i dati estratti vengono puliti, trasformati e arricchiti. Questo può includere operazioni di filtraggio, aggregazione, ordinamento, deduplicazione, standardizzazione dei formati, applicazione di regole aziendali e altro. L'obiettivo è rendere i dati coerenti e utili per l'analisi e la reportistica.
+
+3)Load (Caricamento):
+
+Nella fase di caricamento, i dati trasformati vengono caricati in un data warehouse o un altro sistema di destinazione per l'analisi. 
+
+
+ELT (Extract, Load, Transform) è lo stesso ma con le fasi di Load e Trasform invertite 
+
+1)Extract (Estrazione):
+
+Come nell'ETL, i dati vengono estratti da diverse fonti.
+
+2)Load (Caricamento):
+
+Diversamente dall'ETL, nella metodologia ELT i dati vengono caricati direttamente nel sistema di destinazione senza una trasformazione preliminare. Questo sistema di destinazione è solitamente un data lake che ha capacità di elaborazione elevate.
+
+3)Transform (Trasformazione):
+
+Dopo il caricamento, i dati vengono trasformati all'interno del sistema di destinazione utilizzando le risorse del data lake. Questo approccio sfrutta la scalabilità e la potenza di elaborazione del sistema di destinazione per eseguire le trasformazioni necessarie.
+
+
+
+
+
+
+Quando utilizzare ETL
+
+
+-Requisiti di trasformazione complessi:
+
+Se le trasformazioni dei dati sono molto complesse e richiedono logiche intricate, è spesso preferibile eseguirle in una fase intermedia per evitare di sovraccaricare il data warehouse.
+
+-Dati sensibili:
+
+Quando i dati devono essere puliti e trasformati prima di essere caricati in un data warehouse per motivi di sicurezza o conformità, l'ETL può essere più sicuro.
+
+
+
+Quando utilizzare ELT
+
+
+Data warehousing moderno:
+
+Se l'organizzazione utilizza moderni data warehouse (come Google BigQuery, Amazon Redshift, o Snowflake) o data lake che supportano grandi capacità di calcolo, l'ELT può sfruttare queste capacità per eseguire trasformazioni direttamente nel sistema di destinazione.
+
+-Grande volume di dati:
+
+Quando si gestiscono grandi volumi di dati, l'ELT è spesso preferito perché permette di caricare rapidamente i dati grezzi e di trasformarli in seguito, utilizzando la scalabilità del data warehouse.
+
+-Analisi in tempo reale:
+
+In situazioni in cui è necessario avere dati freschi e aggiornati per l'analisi in tempo reale, l'ELT può essere più efficiente. I dati possono essere caricati rapidamente e trasformati dinamicamente.
+
+-Semplicità delle trasformazioni:
+
+Se le trasformazioni richieste sono relativamente semplici e possono essere gestite dal data warehouse senza problemi di prestazioni, l'ELT può essere una scelta migliore.
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+10) [Database] Differenza tra SQL e NOSQL. Fai degli esempi . 
+
+
+Caratteristica :	Database Relazionali :  	     Database Non Relazionali
+
+  Struttura	      Tabelle con righe e colonne	   Documenti, grafi, colonne, chiavi-valore
+   Schema	               Schema-based	             Schema-less o schema-flessibile
+  Linguaggio	                     SQL	                Linguaggi specifici (es. JSON)
+   Consistenza	                     ACID	                       BASE
+   Scalabilità	                   Verticale	                    Orizzontale
+  Flessibilità	                    Limitata	                      Elevata
+    Esempi	          MySQL, PostgreSQL, Oracle	         MongoDB, Cassandra, Redis, Neo4j
+   Vantaggi	     Coerenza e transazioni ACID sicure	       Scalabilità e gestione di dati non strutturati
+  Svantaggi	   Scalabilità limitata e schema rigido	      Transazioni complesse e consistenza eventuale
+
+
+
+Utilizzi : 
+
+Database Relazionali:
+Ideali per applicazioni che richiedono transazioni sicure e relazioni complesse tra i dati, come sistemi di gestione finanziaria, CRM, e-commerce.
+
+Database NON Relazionali:
+Adatti per applicazioni che necessitano di scalabilità orizzontale e flessibilità nella gestione dei dati, come social media, big data analytics, e applicazioni IoT.
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------
+
+12) [Database] Mi sapresti descrivere le prorietà ACID di un database ? 
+
+
+TRANSAZIONE: 
+Una transazione in informatica, e in particolare nei sistemi di gestione di basi di dati (DBMS), è un'unità di lavoro che esegue una serie di operazioni come un singolo, indivisibile blocco di lavoro. Queste operazioni possono includere letture e scritture di dati nel database.
+
+ACID:
+
+-Atomicità: 
+La proprietà di atomicità garantisce che tutte le operazioni all'interno di una transazione siano completate con successo o, in caso di fallimento, nessuna operazione venga applicata. In altre parole, una transazione è un'unità indivisibile di lavoro che deve essere "tutto o niente".
+
+-Consistenza:
+La proprietà di consistenza garantisce che una transazione porti il database da uno stato valido a un altro stato valido. Dopo una transazione, tutte le regole di integrità dei dati devono essere rispettate e i dati devono rimanere consistenti.
+
+-Isolamento:
+La proprietà di isolamento garantisce che le transazioni concorrenti vengano eseguite come se fossero sequenziali. Ogni transazione deve essere eseguita in isolamento, senza interferire con altre transazioni in corso. Questo impedisce che le transazioni possano vedere dati intermedi generati da altre transazioni.
+
+-Durabilità:
+La proprietà di durabilità garantisce che una volta che una transazione è stata confermata (commit), i suoi effetti saranno permanenti e non andranno persi, anche in caso di guasto del sistema. I cambiamenti apportati dalla transazione vengono memorizzati in modo permanente nel database.
+
+
+Esempio di Proprietà ACID in Azione
+
+Immagina un sistema di e-commerce che gestisce ordini:
+
+Atomicità: Se un cliente effettua un ordine, la transazione include il pagamento e l'aggiornamento dell'inventario. Se uno dei due passaggi fallisce, l'intera transazione viene annullata.
+
+Consistenza: Dopo l'ordine, il numero di prodotti disponibili deve riflettere correttamente la nuova quantità disponibile dopo la vendita. Non devono esserci stati intermedi in cui il numero di prodotti disponibili è negativo.
+
+Isolamento: Se due clienti stanno effettuando ordini contemporaneamente, ciascuna transazione deve essere eseguita come se fosse l'unica operazione in corso. Quindi anche se gli ordini sono stati fatti in contemporanea , ne verrà esguito prima uno e poi l'altro 
+
+Durabilità: Una volta che un ordine è stato confermato, l'informazione deve essere salvata in modo permanente nel database, anche se il sistema si blocca subito dopo la conferma.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+18) [ARCHITETTURA] Conosci la differenza tra Iaas, Paas, Saas? 
+
+Questi tre modelli rappresentano diverse tipologie di servizi cloud cui differenza è il grado di responsabilità assegnato al cliente e al cloud 
+
+
+
+IaaS (Infrastructure as a Service)
+ 
+IaaS fornisce ai clienti un'infrastruttura IT virtualizzata attraverso Internet. Gli utenti possono noleggiare risorse come server virtuali, storage e rete senza dover acquistare e gestire l'infrastruttura fisica e le possono configurare a dovere .
+
+Servizi Offerti:
+
+Computing: Macchine virtuali, istanze server, bilanciamento del carico.
+Storage: Archiviazione su disco, archiviazione di backup.
+Rete: Firewall, VPN, indirizzi IP.
+
+Esempi:
+
+Amazon Web Services (AWS) EC2
+Microsoft Azure Virtual Machines
+Google Cloud Compute Engine
+
+
+PaaS (Platform as a Service)
+
+PaaS offre una piattaforma completa che include sia l'infrastruttura che gli strumenti di sviluppo necessari per creare, testare e distribuire applicazioni. Gli sviluppatori possono concentrarsi sulla scrittura del codice senza preoccuparsi della gestione dell'infrastruttura quindi devono configurare poco e niente .
+
+Servizi Offerti:
+
+Ambienti di Sviluppo: Framework di sviluppo, linguaggi di programmazione, strumenti di test.
+Database: Database relazionali e non relazionali gestiti.
+Middleware: Server applicativi, servizi di integrazione.
+
+Esempi:
+
+Google App Engine
+Microsoft Azure App Services
+
+
+SaaS (Software as a Service)
+
+SaaS fornisce applicazioni software complete accessibili via Internet. Gli utenti possono utilizzare le applicazioni senza preoccuparsi della manutenzione o della gestione dell'infrastruttura sottostante.
+
+Servizi Offerti:
+
+Applicazioni Business: CRM, ERP, HRM.
+Software per la Produttività: Email, calendari, strumenti di collaborazione.
+Strumenti di Comunicazione: Videoconferenze, messaggistica istantanea.
+
+Esempi:
+
+Google Workspace: Suite di applicazioni per la produttività (Gmail, Google Docs, Google Drive).
+Microsoft Office 365: Suite di strumenti di produttività basati sul cloud (Word, Excel, PowerPoint).
+Salesforce: Piattaforma di gestione delle relazioni con i clienti (CRM) basata sul cloud.
+
+
+
+Differenze tra IaaS, PaaS e SaaS
+Controllo:
+
+IaaS: Offre il massimo controllo sull'infrastruttura IT, ideale per aziende che desiderano personalizzare e gestire direttamente le proprie risorse.
+PaaS: Fornisce un livello di controllo intermedio, concentrandosi più sulla gestione delle applicazioni e meno sull'infrastruttura.
+SaaS: Offre il minimo controllo, fornendo applicazioni pronte all'uso senza necessità di gestione dell'infrastruttura o delle piattaforme.
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+25) [Architettura] Cosa è un Data Lakehouse ? Qual'è la differenza con un Data Lake e un Data Warehouse ?
+
+
+DATA LAKE
+
+Un Data Lake è un sistema di archiviazione che consente di conservare una quantità enorme di dati, sia strutturati che non strutturati, in formato grezzo. A differenza di un data warehouse, che richiede la trasformazione e strutturazione dei dati prima del caricamento, un data lake accoglie i dati così come sono, senza necessità di schemi predefiniti.
+
+Caratteristiche:
+
+-Scalabilità: Può crescere facilmente in termini di capacità di archiviazione per accogliere petabyte di dati.
+-Versatilità: Supporta vari tipi di dati, inclusi dati strutturati (tabelle relazionali), semi-strutturati (file JSON, XML), non strutturati (documenti di testo, video, immagini), e qualsiasi tipo di dato i formato grezzo. 
+-Economicità: Spesso è più economico rispetto a un data warehouse per l'archiviazione a lungo termine, specialmente per grandi volumi di dati.
+
+Strumenti usati con i DataLake:
+-Hadoop     -Amazon S3     -Azure Data Lake Storage     -Apache Spark 
+
+
+
+
+DATA WAREHOUSE 
+
+Un Data Warehouse è un sistema di gestione dei dati progettato specificamente per supportare il processo di reporting e analisi. È un deposito centralizzato dove vengono raccolti, integrati(quindi i dati vengono lavorati prima di essere inseriti) e conservati i dati provenienti da diverse fonti operative di un'organizzazione, con l'obiettivo di studiarle e analizzarle. 
+
+Caratteristiche : 
+
+-Architettura di Schema:
+
+Strutturazione e Normalizzazione: I dati sono altamente strutturati e normalizzati per garantire coerenza, ridondanza minima e integrità.
+
+-Integrazione dei Dati:
+
+ETL (Extract, Transform, Load): I dati vengono estratti dalle fonti operative, trasformati per pulizia, aggregazione e formattazione, e infine caricati nel data warehouse.
+Consolidamento: Integra dati da fonti diverse (ERP, CRM, sistemi di vendita, ecc.) in un unico repository coerente.
+
+-Ottimizzazione per Query e Reporting:
+
+Performance Elevata: Ottimizzato per eseguire query complesse e operazioni di aggregazione su grandi volumi di dati in modo rapido ed efficiente.
+Indice e Partizionamento: Utilizza tecniche di indicizzazione e partizionamento per migliorare la velocità delle query.
+
+-Storico dei Dati:
+
+Dati Storici: Conserva dati storici per analisi temporali e trend, spesso mantenendo versioni precedenti dei dati per riferimenti futuri.
+
+-Strumenti di Analisi e Business Intelligence:
+
+Supporto per BI Tools: Compatibile con strumenti di business intelligence (BI) e visualizzazione dei dati come Tableau, Power BI, e Qlik.
+
+
+
+es:
+-Reporting e Analisi: Fornisce una base solida per la creazione di report, dashboard e analisi dettagliate che supportano il processo decisionale strategico e operativo.
+-Analisi Temporali: Supporta l'analisi dei trend nel tempo, permettendo alle aziende di fare previsioni basate sui dati storici.
+-Vista Unica: Fornisce una visione unificata dei dati aziendali provenienti da diverse fonti, eliminando silos informativi e migliorando l'accessibilità dei dati.
+
+
+es Data Warehouse: 
+
+-Amazon Redshift      -Google BigQuery      -Microsoft Azure Synapse Analytics    -Snowflake
+ 
+----------------------------------------------------------------------------------------------------------------------
+
+       HADOOP 

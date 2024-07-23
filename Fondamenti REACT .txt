@@ -1,0 +1,30 @@
+Pensa allo stato come all'insieme minimo di dati modificabili che la tua app deve ricordare. 
+ Il principio più importante per strutturare lo stato è mantenerlo ASCIUTTO (Non ripeterti). Individua la rappresentazione minima assoluta dello stato di cui ha bisogno la tua applicazione e calcola tutto il resto su richiesta. Ad esempio, se stai creando una lista della spesa, puoi archiviare gli elementi come un array in state. Se vuoi visualizzare anche il numero di elementi nell'elenco, non memorizzare il numero di elementi come un altro valore di stato: leggi invece la lunghezza dell'array.
+
+
+
+
+Cosa Accade Quando Modifichi una Variabile Senza useState
+Modifica della Variabile: Se modifichi una variabile comune all'interno del corpo di un componente funzionale senza utilizzare useState, useReducer, o simili, la modifica alla variabile sarà visibile solo fino al prossimo ri-rendering del componente.
+Ri-rendering: Il componente non rileverà questa modifica come un cambiamento di stato. Quindi, il componente non si ri-renderizzerà in risposta a questa modifica.
+Reset della Variabile: Al prossimo ri-rendering del componente (che potrebbe essere innescato da cambiamenti in altri stati o props), il corpo della funzione del componente sarà eseguito nuovamente. Ciò significa che tutte le variabili locali saranno reinizializzate ai loro valori originali come definiti nella funzione del componente.
+
+
+
+
+
+
+
+
+io :      
+
+ti faccio un'altra domanda . Se ho due variabili di cui voglio mantenere il valore uso useState , giusto ? Se entrambe le variabili vengono modificate , prima viene modificata la variabile x e poi y , la variabile x a quel punto verrà reinizializzata o manterrà il suo valore modificato ? 
+
+
+gpt :
+
+la modifica di x rimane poichè il suo valore è mantenuto tra i render da useState.
+
+USESTATE è COME UNA SCATOLA DIFENSIVA CHE PROTEGGE LA VARIABILE A CUI è ASSOCIATA DAL RIRENDER. 
+SAPPIAMO CHE IL RIRENDER CAUSA IL RESET DEI VALORI ASSOCIATE ALLE VARIABILI ....TUTTE LE VARIABILI CHE USANO USESTATE SONO IMMUNI E VENGONO MODIFICATE SOLO SE USIAMO IL LORO VALORE SET (O SE IL BROWSER VIENE CHIUSO E QUINDI LA COMPONENTE ELIMINATA DAL DOM) . 
+L'USO DI SETnomevariabile CAUSA L'EFFETTIVA MODIFICA E POI IL RIRENDER 

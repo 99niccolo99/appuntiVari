@@ -1,0 +1,497 @@
+
+
+COMPILAZIONE 
+
+La compilazione è un processo che traduce il codice sorgente in un linguaggio di basso livello, chiamato linguaggio target, (come il linguaggio macchina) che può 
+essere eseguito direttamente dal computer o eventualmente interpretato (bytecode di Java (Java è un ibrido)) . Il codice sorgente viene quindi
+compilato in un file eseguibile che può essere eseguito sul computer senza dover passare attraverso il processo di traduzione ogni volta 
+che il programma viene eseguito. Questo significa che la compilazione può richiedere del tempo, ma una volta che il programma è stato compilato, 
+l'esecuzione del programma sarà molto veloce.
+
+
+INTERPRETAZIONE 
+
+L'interpretazione, d'altra parte, è un processo in cui il codice sorgente viene eseguito direttamente da un interprete, che è un programma che legge 
+il codice sorgente e lo esegue linea per linea. L'interprete traduce ogni riga di codice sorgente in istruzioni eseguibili sul computer mentre il
+ programma viene eseguito. Ciò significa che l'interprete deve tradurre il codice sorgente ogni volta che il programma viene eseguito, il che può rendere
+ l'esecuzione del programma più lenta rispetto alla compilazione. Tuttavia, l'interpretazione offre anche un maggiore grado di flessibilità e interattività,
+poiché il programma può essere modificato e testato rapidamente senza dover passare attraverso il processo di compilazione ogni volta.
+
+
+JAVA (ibrido) 
+
+Java è un linguaggio di programmazione ibrido che utilizza sia la compilazione che l'interpretazione. In particolare, il codice Java viene prima compilato
+ in bytecode, un linguaggio di basso livello che può essere eseguito dalla Java Virtual Machine (JVM), e poi interpretato dalla JVM che lo traduce e passa
+al computer per essere eseguito. 
+Ciò significa che Java è un linguaggio di programmazione che combina le prestazioni della compilazione con la flessibilità dell'interpretazione. 
+La compilazione in bytecode consente di ottenere una maggiore efficienza di esecuzione rispetto all'interpretazione diretta del codice sorgente, 
+poiché il bytecode può essere eseguito più rapidamente dalla JVM. Tuttavia, l'interpretazione del bytecode da parte della JVM consente anche di 
+avere un maggior grado di flessibilità e portabilità rispetto alla compilazione diretta in codice nativo, poiché il bytecode è un formato 
+di file standard che può essere eseguito su qualsiasi sistema operativo in cui è presente una JVM.
+
+
+JUST-IN-TIME-COMPILER
+
+Un Just-In-Time (JIT) compiler è una caratteristica di molte macchine virtuali moderne come la JVM (Java VIrtual Machine) . 
+La JVM è un JIT. Tecnicamente è un interprete , poichè traduce un istruzione da bytecode in codice eseguibile e poi lo esegue , prima di passare al prossimo rigo da tradurre ed eseguire. 
+Però , in alcuni momenti fa anche da "compilatore" . Poichè , nei momenti di stallo , ad esempio quando durante l'esecuzione (interpretazione) del programma si aspetta che l'utente inserisca un tasto, 
+per risparmiare quel tempo perso la JVM va a tradurre interi blocchi di codice futuri (che avrebbe tradotto dopo) in codice eseguibile , cosi rendendo più veloce l'esecuzione del codice dopo dato che 
+non deve essere tradotto ma solo eseguito . 
+( Quindi si tratta di una sorta di mix tra compilatore e interprete . Un'interprete intelligente se vogliamo ) 
+
+
+
++) in REALTA' il fatto che un linguaggio sia Interpretato o Compilato NON è una caratteristica precisa di un linguaggio ; posso benissimo avere un 
+interprete e un compilatore per il medesimo linguaggio. Quindi se dico per es. che un linguaggio è compilato voglio dire che è stato creato ed è 
+predisposto alla compilazione (è meglio se compilato) NON sto dicendo che può compilato e basta . 
+
+-------------------------------------------------------------------------------------------------------------
+
+
+RICORDA : in questo corso stiamo studiando la struttura generica di un compilatore, ma bisogna tener conto del fatto che ogni compilatore ha le sue 
+varie personalizzazioni .
+
+
+PRE-ELABORAZIONE (PREPROCESSORE) 
+
+Prima del processo di compilazione , il codice sorgente viene traformato dal preprocessore in codice C "puro". 
+In questa fase vengono principalmente fatte 2 cose :
+1) vengono eliminati i commenti dal codice 
+2) vengono eliminati gli #include poichè vengono caricati nel codice le librerie a cui gli #include si riferiscono. (ovviamente non verranno caricati 
+tutti tutti i file delle librerie ma solo quelli delle funzioni utilizzate nel codice. Per es. se nel codice uso solo la printf , verrà inserito nel 
+codice sorgente solo la funzione relativa alla printf e le sue dipendenze . Il compilatore cerca quindi di ottimizzare questo processo)
+
+Quello che ne esce fuori è codice C puro, poichè #include e commenti non fanno parte del vero e proprio codice C.
+
+
+
+
+
+
+STATEMENT : modo per intendere una singola istruzione 
+
+es:
+
+Statement di assegnazione: Cambiano il valore di una variabile esistente. Ad esempio, x = x + 1 è uno statement di assegnazione. 
+L'INTERO RIGO é UNO STATEMENT
+
+Statement di ritorno: Questi sono usati per indicare il valore che una funzione dovrebbe restituire al chiamante. 
+Ad esempio, return x è uno statement di ritorno.
+------------------------------------------------------------------------------------------------------------
+
+
+ANALISI LESSICALE 
+
+è la prima fase della compilazione . 
+In parole povere vengono analizzate le singole parole e viene controllato se queste fanno parte o meno del "vocabolario" del linguaggi. Quindi se appartengono al linguaggio
+
+L'analizzatore lessicale ha una visione che si limita alla singola parola; esso non vede l'intero rigo nel complesso ma si limita alla singola parola. 
+
+LESSEMA : è composto da uno o più caratteri che corrispondono ad una singola entità logica. 
+
+es:      printf("Hello"); 
+
+   printf (1)      (   (2)      "Hello"   (3)         )  (4)       ;  (5) 
+
+In tal caso abbiamo 5 lessemi , 5 entità logiche differenti e indipendenti . 
+
+Ogni lessema verrà trasformato in un token . 
+TOKEN : un token è un identificativo del singolo lessema (quindi serve per rappresentare il tipo lessema) .
+Con il token facciamo corrispondere lo specifico lessema alla sua specifica entità logica. 
+(ogni token rappresenta un pezzo indivisibile di codice, come una parola chiave, un identificatore, un operatore, un separatore, o un valore letterale.)
+
+Quindi il lessema viene sostituito dal token rappresentativo dell'entità logica(tokenizzazione) . 
+Nell'es. avremo come risultato uno stream di token contenente 5 token . 
+Il risultato dell'analisi lessicale sarà uno stram di token . 
+
+
+I possibili ERRORI segnalati da un'analisi lessicale : 
+
+1) Caratteri o Simboli Non Riconosciuti: Questo tipo di errore si verifica quando l'analizzatore lessicale incontra un carattere o un simbolo 
+che non riconosce o che non si aspetta nel contesto dato. ( non fa parte del suo vocabolario) 
+2)Identificatori Malformati: Gli identificatori (come i nomi delle variabili o delle funzioni) devono seguire determinate regole.
+3)Prole chiave malformate : scriviamo iff al posto di if
+
+
+
+
++) spesso non è consentito incominciare il nome di un identificatore con un numero .
+(in generale è un errore sintattico , ma dipendentemente dalle regole del linguaggio, può essere anche lessicale)  
+L'analizzatore lessicale, o scanner, lavora secondo un insieme di regole prestabilite che determinano come le stringhe di caratteri debbano essere 
+separate e identificate come token. In molti linguaggi di programmazione, le regole stabiliscono che un identificatore deve iniziare con una lettera
+ o un carattere di sottolineatura (_). Questa regola aiuta a semplificare l'analisi del codice, evitando ambiguità.
+
+Prendiamo l'esempio "2a". Se un linguaggio permettesse gli identificatori di iniziare con numeri, ci sarebbero situazioni in cui sarebbe difficile 
+distinguere tra un numero e un identificatore. Ad esempio, la stringa "2a" potrebbe essere interpretata come l'identificatore "2a" o come il numero "2" 
+seguito dall'identificatore "a".
+
+Potresti pensare che, poiché "2a" non è separato da spazi, dovrebbe essere tokenizzato come un singolo identificatore. Tuttavia, ci sono molte situazioni
+ in cui numeri e identificatori possono essere accostati senza spazi. Ad esempio, in un'espressione come "2*a", non c'è uno spazio tra il numero e 
+l'identificatore, ma sono comunque token separati.
+
+Per evitare queste ambiguità e semplificare l'analisi lessicale, la maggior parte dei linguaggi di programmazione richiede che gli identificatori 
+inizino con una lettera o un carattere di sottolineatura. Questo rende molto più facile per l'analizzatore lessicale distinguere tra numeri e identificatori.
+
++) durante l'analisi lessicale non facciamo altro che guardare la singola parola .......se essa rispetta dei pattern .....allora la categoriazziamo (num per numero , id per identificatore....)
+
+---------------------------------------------------------------------------------------
+
+
+ANALISI SINTATTICA 
+
+è la fase di analisi successiva a quella lessicale . 
+IN tale fase l'analizzatore sintattico ha una visione dell'intera frase/istruzione/riga (a differenza del lessicale che vede solo la singola "parola"),
+nel senso che prende come input la sequenza di token prodotta dall'analizzatore lessicale e li organizza in una struttura 
+ad albero che rappresenta la sintassi del programma.
+Questa struttura ad albero riflette la grammatica del linguaggio di programmazione e indica come i token si combinano per formare istruzioni significative.
+L'analisi sintattica controlla quindi se la sequenza di token rispetta le regole grammaticali del linguaggio.
+In parole povere controlla se le regole grammaticali del linguaggio sono rispettate.
+
+Possibili errori in C segnalate dall'analizzatore sintattico :
+
+1) Parentesi non corrispondenti: Se apri una parentesi ma non la chiudi, l'analizzatore sintattico segnalerà un errore.
+2) Punti e virgola mancanti
+3) Uso improprio di parole chiave: Se usi una parola chiave di un linguaggio di programmazione in un contesto in cui non è consentita
+4)Strutture di controllo formattate in modo errato: Le istruzioni condizionali (come if, else, switch, ecc.) e i loop (come for, while, ecc.) devono
+ seguire una certa sintassi. Se non lo fanno, l'analizzatore sintattico segnalerà un errore.
+
+
+L'analisi Sintattica da come risultato un AST
+Un Albero di Sintassi Astratto (AST, Abstract Syntax Tree) è una rappresentazione dell'organizzazione sintattica del codice sorgente.
+
+es:    3 + 4 * 5
+
+Durante l'analisi lessicale, questa espressione sarebbe scomposta nei seguenti 5 token: 3, +, 4, *, 5
+
+Nella fase di analisi sintattica, questi token vengono organizzati in un albero seguendo le REGOLE della grammatica del linguaggio di programmazione.
+
+ ( RICORDA : ogni fase di un compilatore è caratterizzato da REGOLE personali su come trattare il codice . L'analizzatore lessicale ha delle sue personali 
+regole imposte da chi ha programmato il compilatore , lo stesso per analisi sintattica , semantica ecc...... ) 
+
+Nella fase di analisi sintattica, questi token vengono organizzati in un albero seguendo le regole della grammatica del linguaggio di programmazione. 
+La struttura dell'albero è determinata dalle regole imposte dall'analizzatore sintattico e quindi dalle regole grammaticali del linguaggio. 
+
+
+    +
+    / \
+   3   *
+      / \
+     4   5
+
+Questo AST fornisce quindi una struttura che può essere facilmente analizzata e manipolata nelle fasi successive del processo di compilazione.
+
++) Solitamente , quando l'albero è terminato , quello che andiamo a perdere del codice è il cosiddetto "zucchero sintattico" , ovvero punteggiatura e 
+parentesi. 
++) Ricorda che anche per quanto riguarda la strutturazione dell'albero, non esiste un modo corretto e uno sbagliato poichè ess oè determinato dallo sviluppatore. 
+Dato che lo sviluppatore decide il modo in CUI VA LETTO E INTERPRETATO l'albero , decide quindi anche il modo in cui è strutturato . 
+
+
+Bisogna anche tener conto del fatto che durante queste analisi , gli analizzatori si servono di una repository/memoria in cui vanno ad immagazzinare 
+delle informazioni di cui si vanno a servire. Questa tabella è chiamata SYMBOL TABLE. 
+
+SYMBOL TABLE:
+La Symbol Table è una struttura dati utilizzata durante l'analisi e la compilazione di un programma. Mentre il compilatore analizza il codice sorgente,
+inserisce le informazioni rilevanti su vari simboli trovati nel codice in questa tabella. Un simbolo può essere il nome di una variabile,
+una funzione, una classe e così via.
+
+
+La symbol table contiene tutto ciò che è inventato dal programmatore , ad es. il nome di una variabile, NON ci vado a mettere ad es. una keyword come IF che 
+invece appartiene al linguaggio. 
+
++)La symbol table contiene SOLO stringhe (è una tabella dei simboli/stringhe) ; guardo un token num(numero) e voglio sapere di più .....allora vado nella tabella 
+dei simboli e vedo il suo valore 
+
+Per ogni simbolo, la tabella dei simboli può mantenere vari tipi di informazioni, tra cui:
+
+1)Il nome del simbolo
+2)Il tipo del simbolo (ad esempio, int, float, char, etc. per le variabili; il tipo di ritorno per le funzioni)
+3)Lo scope del simbolo (ad esempio, se è globale o locale)
+4)La posizione di memoria del simbolo, se è stata assegnata
+5)Altre informazioni come la dimensione di un tipo di dato, i parametri di una funzione, ecc.
+
+La tabella dei simboli viene utilizzata in varie fasi del processo di compilazione, non solo nell'analisi sintattica (fase in cui incomiciamo a riempire 
+la tabella poichè ad esempio l'analizzatore sintattico fa corrispondere una variabile al suo tipo) , ma anche nell'analisi semantica,
+nell'ottimizzazione del codice e nella generazione del codice. Ad esempio, può essere utilizzata per controllare se una variabile è stata 
+dichiarata prima di essere utilizzata, o per controllare se l'uso di una variabile rispetta il suo tipo . 
+
+
++oltre all'albero prima dichiarato , viene creato in questa fase anche un albero dei tipi di cui poi l'analizzatore semantico si servirà
+-----------------------------------------------------------------------------------------
+
+ANALISI SEMANTICA  (dopo quella lessicale e sintattica) 
+
+Se l'analisi lessicale è come controllare se le parole in una frase fanno parte del vocabolario di una lingua e l'analisi sintattica è come verificare 
+se la frase segue le regole di grammatica, allora l'analisi semantica è come controllare se la frase ha un senso nel contesto in cui viene usata.
+L'analisi semantica in un compilatore non si limita a verificare che il codice sorgente sia scritto in modo corretto; verifica anche che il codice
+"abbia senso" rispetto alle regole del linguaggio di programmazione. Tu puoi scrivere una cosa grammaticalmente corretta ma che non ha senso e che è 
+sbagliata LOGICAMENTE   (il codice non parte)  (può anche essere definita come ANALISI LOGICA).
+
+(oltre a quello appena detto, un differente utilizzo del termine ERRORE LOGICO si può usare per riferirsi a un codice che compila e quindi funziona 
+ma che non fa quello che vogliamo )
+
+
+Tipi di ERRORI SEMANTICI in C : 
+
++) PRINCIPALMENTE , in questo corso , durante questa analisi controlliamo i tipi e il fatto che siano rispettati questi tipi assegnati
+
+1)Violazioni del controllo dei tipi: ad esempio, tentare di sommare un numero intero e una stringa, o assegnare un valore di un tipo non compatibile 
+a una variabile (come assegnare una stringa a una variabile di tipo intero).
+
+2)Variabili non dichiarate: se si tenta di utilizzare una variabile che non è stata precedentemente dichiarata.
+
+3)Violazioni del flusso di controllo: per esempio, se in una funzione che dovrebbe restituire un valore,
+ci sono casi in cui effettivamente non restituisce nulla
+
+4)Violazioni di coerenza: se una funzione è dichiarata per restituire un certo tipo di valore ma effettivamente restituisce un valore di un tipo diverso.
+
+5)Violazioni delle regole di ambito (scope): ad esempio, tentare di accedere a una variabile che è stata dichiarata in un ambito diverso da
+ quello corrente (come una variabile locale dichiarata all'interno di una funzione).
+
+6)Parametri di funzione errati: se si chiama una funzione con il numero sbagliato di parametri, o parametri del tipo sbagliato.
+
+
+RICORDA: l'analizzatore SEMANTICO per controllare alcune di queste cose, come 1) e 2) ha bisogno di controllare l'albero restituito dall'analizzatore 
+sintattico e allo stesso tempo di fare riferimento/controllare la SYMBOL TABLE per controllare i valori e le loro caratteristiche . 
+(La symbol table funge quindi come memoria dell'analizzatore semantico e anche per recuperare informazioni; ad es. per sapere il tipo di una 
+variabile per vedere se è stata usata in modo coerente la deve vedere dalla symbol table) 
+
+
+---------------------------------------------------------------------------
+
+OTTIMIZZAZIONI E TRASFORAMZIONI IN CODICE INTERMEDIO
+
+dopo le varie analisi il codice subisce varie ottimizzazioni e trasformazioni in codici intermedi prima di arrivare al codice target (macchina o cmq 
+il risultato della compilazione)
+
+
+
+IMPORTANTE: 
+- Le fasi di ANALISI (lessicale,sintattica,semantica) fanno parte della FASE DI FRONT-END (quella principalmente affrontata nel corso) in cui , 
+in poche parole , viene CONTROLATA LA CORRETTEZZA del codice . (oltre a ciò in alcuni linguaggi fa parte del FRONT-END anche la creazione di un codice 
+intermedio oltre alle analisi)
+Il front-end DIPENDE/si basa DAL LINGUAGGIO. 
+Quando diciamo che il front-end di un compilatore "dipende" dal linguaggio, intendiamo che il front-end deve essere specificamente progettato 
+per comprendere e analizzare quel linguaggio di programmazione particolare. 
+
+
+
+
+-Le fasi di OTTIMIZZAZIONE e relativa GENERAZIONE DI CODICE INTERMEDIO (un codice viene ottimizzato e ne esce fuori un codice intermedio più efficiente) 
+fanno invece parte della FASE DI BACK-END 
+Il back-end DIPENDE/si basa SUL TIPO DI MACCHINA . 
+D'altra parte, quando diciamo che il back-end di un compilatore "dipende" dalla macchina, intendiamo che il back-end deve essere specificamente 
+progettato per generare codice macchina che può essere eseguito su una particolare piattaforma hardware (o sistema operativo).
+Diverse piattaforme hanno diverse istruzioni di codice macchina, quindi il back-end deve essere in grado di tradurre la rappresentazione 
+intermedia del codice prodotta dal front-end in codice macchina che può essere eseguito su quella piattaforma.
+
+IMPORTANTE PER CAPIRE:
+IN GENERALE possiamo dire quindi che se vogliamo creare tanti compilatori per tanti linguaggi diversi sulla STESSA MACCHINA , allora possiamo usare
+sempre lo stesso back-end e creare tanti front-end quanti sono i vari linguaggi.  
+
+
+
+
+RICORDA : tutte ste analisi del compilatore le fa anche l'interprete , cambia solo il modo in cui le fa . 
+Un interprete, analizza il codice e poi magari ne crea anche una forma intermedia più efficent prima di eseguirlo ; la differenza sta nel fatto che 
+analizza e poi esegue il codice riga per riga , non separa completamente questi due processi come fa il compilatore. 
+
++)  in alcuni compilatori , alcune fasi di ottimizzazione potrebbero far parte del FRONT-END . Il FRONT-END termina sempre cacciando un codice intermedio e il BACK-END comincia sempre accogliendo un 
+codice intermedio 
+
+
+---------------------------------------------------------------------------------------------------------------------------
+
+CODICE INTERMEDIO : è un codice non direttamente eseguibile (che solitamente esce fuori dopo fasi di analisi o ottimizzazione) 
+
+FASI LOGICHE : a livello di implementazione non c'è una distinzione ben precisa, posso implementarle come voglio . Potrei fare anche un unico grande programmone con tutte le analisi e ottimizzazioni. 
+Oppure un unica grande fase che fa tutte le analisi , e poi il resto .
+
+
+COMPILATORE AD 1 PASSO : prende codice e restituisce direttamente codice macchina (senza forme intermedie) 
+COMPILATORE A 2 PASSI : prende il codice e restituisce codice intermedio , poi lo riprende e restituisce il codice macchina (passa per 1 forma intermedia) 
+COMPILATORE A 3 PASSI : (passa per 2 forme intermedie).......
+................................
+.................
+
+
+
++) Immaginiamo di averer 2 linguaggi diversi A e B e due macchine diverse 1 e 2 . 
+Creiamo la parte Front-end per A e poi diversa per B . Adesso, se abbiamo un codice intermedio Standard (uguale sia per A che per B) possiamo fare la parte di ottimizzazione uguale per entrambi . 
+Da ciò ne esce un altro codice intermedio (es. bytecode) e poi possiamo fare le diverse parti back-end per le macchine 1 e 2 ; ma la parte di ottimizzazione del codice è la stessa. 
+Ad es. sia Java che Kotlin dopo la compilazione danno bytecode ; allora possiamo creare un programma multilinguaggio in cui partiamo da una parte in Java e una in Kotlin e poi dopo la compilazione 
+i 2 si "fondono" in un unico bytecode. 
+
+
+----------------------------------------------------------------------------------------------------------------------
+
+
+                  PARLIAMO DI LINGUAGGI 
+
+
+CICLO DI VITA DI UN LINGUAGGIO DI PROGRAMMAZIONE : parte dalla DEFINIZIONE del linguaggio e finisce quando viene eseguito il programma costruito partendo 
+dal linguaggio) 
+
+Il ciclo di vita di un LINGUAGGIO DI PROGRAMMAZIONE COMPILATO si può riassumere in 3 fasi 
+
+1) DEFINIZIONE del linguaggio 
+
+2) IMPLEMENTAZIONE del linguaggio
+
+3) USO del linguaggio   a. Scrittura del programma usando il linguaggio  b. Compilazione/traduzione del programma     c.  esecuzione programma
+
+
+
+Se vogliamo essere più precisi : (NOTA: Ogni fase ha un suo "protagonista) 
+
+1) il linguaggio è definito dal PROGRAMMATORE DEL LINGUAGGIO   
+2) viene sviluppato un compilatore/interprete per quel linguaggio dal PROGRAMMATORE DEL COMPILATORE/INTERPRETE (o anche lo stesso del linguaggio) 
+3) il linguaggio viene usato dallo SVILUPPATORE UTENTE per scrivere un programma 
+4) il codice scritto nel nostro linguaggio viene COMPILATO dal nostro COMPILATORE
+5) il programma eseguibile viene eseguito dal SISTEMA OPERATIVO
+
+
+
+
+
+   FASE DI DEFINIZIONE DI UN LINGUAGGIO 
+
+La prima cosa da fare quando voglio creare un mio linguaggio compilato è la definizione del linguaggio . 
+Con essa si intende definire le regole base del linguaggio come il suo lessico (le parole ammesse) ovvero il suo vocabolario , le 
+regole sintattiche (la grammatica) e le regole semantiche .
+Questa fase include ovviamente una serie di minuziose operazioni . 
+Ad es. una delle operazioni sta nela scelta delle parole chiave : se ad es. voglio implementare il linguaggio "napoletano" posso dire che 
+l'operazione "if" , nel mio linguaggio corrisponde alla parole chiave "invec" . 
+Un altro ese. è che devi definire il modo in cui una funzione viene definita o invocata nel tuo linguaggio . 
+
+QUINDI in questa fase stai dicendo "il mio linguaggio ha tutte ste regole , è fatto cosi" 
+
+
+
+
+   FASE DI IMPLEMENTAZIONE DI UN LINGUAGGIO 
+
+In tale fase andiamo a costruire il compilatore per il linguaggio che abbiamo definito in precedenza. 
+Andiamo a decidere il modo in cui viene fatta l'analisi lessicale , sintattica e semantica e la generazione del codice intermedio .
+Quindi andiamo a definire tutte quelle cose che vengono fatte dal compilatore basandoci sulle regole definite prima . 
+
+QUINDI andiamo a decidere come il compilatore deve agire e a creare "un insegnate esperto del linguaggio che controlla tutto sia in regola"
+Il compilatore "realizza" le regole descritte dal linguaggio 
+
+RICORDA: 
+(ovviamente in tale fase andiamo a definire anche come il codice intermedio deve essere generato , sta fase non si riduce al far rispettare le 
+regole del linguaggio, ma anche a far "quadrare i conti" nelle regole logiche definite dal linguaggio ) 
+PIU' un linguaggio è reso semplice per il programmatore utente , PIU' lavoro deve essere fatto dal compilatore (e quindi anche da chi lo ha progettato) 
+
+es. un linguaggio debolmente tipizzato è più facile per il programmatore utente , ma è più difficile da gestire per il compilatore (e quindi da chi ha 
+progettato il compilatore) 
+
+
+
+             IMPORTANTE:
+
+Un'altra delle cose che viene fatta durante la DEFINIZIONE del linguaggio è decidere il paradigma su cui il linguaggio sarà orientato.
+
+Spieghiamo meglio:
+Un linguaggio che supporta le 3 operazioni fondamentali : 
+1) ASSEGNAZIONE (es. assegnare un valore ad una variabile ( quindi avere una memoria disponibile))
+2) OPERATORE CONDIZIONALE IF 
+3) OPERATORE PER CICLI (WHILE) 
+
+Un linguaggio che supporta queste 3 operazioni fondamentali è chiamato TURING-COMPLETE o anche GENERAL PURPOSE, poichè tramite la combinazione 
+di queste 3 operazioni è in grado di risolvere qualsiasi tipo di problema informatico . 
+Ad es. C e Java sono tra questi . Tutti i linguaggi GENERAL PURPOSE (come C e Java) sono EQUIVALENTI dal punto di vista della risoluzione dei problemi , 
+risolvono gli stessi problemi, MA lo fanno in modo diverso . 
+
+Ad es. Java è orientato agli oggetti e per noi è facile creare una classe in Java (che è predisposto a fare cio') . Ma noi possiamo creare il concetto di classe 
+anche usando C ; è molto complicato poichè C non è predisposto a fare ciò dato che segue un diverso paradigma, MA E' POSSIBILE FARLO . 
+
+Questo per dire che un linguaggio è orientato verso un certo paradigma quando la sua struttura del linguaggio ti rende semplice seguire la logica di quel paradigma.
+E ciò va deciso durante la DEFINIZIONE del linguaggio . 
+
+es. Durante la definizione del linguaggio Java i creatore hanno deciso che Java ti deve rendere semplice la creazione di oggetti , allora hanno messo regole lessicali, sintattiche 
+e soprattutto semantiche che rendessero facile ciò . Per questo Java è orientato agli oggetti. 
+
+
+
+
+
++) per quanto riguarda la scelta della gestione della memoria; come ad es. la scelta di quanta memoria debba essere allocata per un certo tipo di dato ;
+Questa è una scelta che viene principalmente presa in fase di IMPLEMENTAZIONE . 
+
+(Nella fase di definizione, decidi le caratteristiche generali dei tipi di dati. Per esempio, potresti stabilire che il tuo linguaggio avrà tipi di dati interi, a virgola mobile, booleani, 
+stringhe, ecc., e potresti anche decidere approssimativamente quanto spazio dovrebbero occupare questi tipi di dati. 
+Per esempio, potresti decidere che un intero dovrebbe essere un numero a 32 bit, o che una stringa dovrebbe essere una sequenza di caratteri Unicode.
+
+Tuttavia, l'allocazione effettiva dello spazio per questi tipi di dati avviene durante la fase di implementazione, quando scrivi il codice del compilatore o dell'interprete.
+Ad esempio, quando il compilatore o l'interprete incontra una dichiarazione di variabile nel codice sorgente, deve allocare lo spazio appropriato per quella variabile nella memoria.
+
+Inoltre, il sistema operativo e l'hardware del computer influenzeranno anche l'allocazione di memoria.  )
+
+Quindi in generale durante la fase di IMPLEMENTAZIONE vengono gestite quanto e dove allocare le risorse , l'esecuzione di una funzione ecc....
+
+
+
+
+
+
+              EARLY BINDING (caratteristica molto presente nei linguaggi compilati - a TEMPO DI COMPILAZIONE)       LATE BINDING (caratteristica molto presente nei linguaggi interpretati - a TEMPO DI ESECUZIONE)
+
+*puoi anche leggere dopo sti 4 righi qui sotto*
+(per "riferimento" intendiamo in generale dove si trova il valore in memoria. Ad es. risolvere il riferimento di una variabile sarebbe determinare la posizione di una var x in memoria e ricavarne 
+il valore se è un tipo primitivo oppure "trovare" la parte di memoria puntata da x se punta ad un tipo complesso. Questo può valere anche ad es. con il nome di una funzione se faccio 
+"int result = add(x, y);" devo andare a vedere dove si trova il codice della funzione add , ovvero risolvere il riferimento della funzione add.
+Nel contesto dell'early e late binding, "risolvere un riferimento" significa determinare quale valore o variabile specifica viene indicata da un dato riferimento nel codice. )
+
+
+
+Il "binding" si riferisce al processo di associazione di un nome (come il nome di una variabile o di una funzione) a un oggetto specifico, come un blocco di memoria, un tipo o un oggetto.
+
+L'early binding (legame precoce) , noto anche come binding statico, si verifica al momento della compilazione. In questo caso, il compilatore determina l'oggetto a cui il nome si riferisce al momento
+della compilazione. Un esempio di early binding è l'associazione di variabili a tipi di dati specifici in linguaggi di programmazione fortemente tipizzati .
+L'early binding tende ad essere più efficiente in termini di tempo di esecuzione perché tutte le decisioni vengono prese al momento della compilazione, riducendo il lavoro che deve essere fatto 
+durante l'esecuzione. Tuttavia, è meno flessibile perché una volta che il binding è stato fatto, non può essere cambiato durante l'esecuzione. Mentre ad es. in un linguaggio debolmente tipizzato come 
+JavaSCript posso assegnare un intero ad una var x e poi in seguito assegnare ad x stesso una stringa . 
+
+Il late binding (legame tardivo), noto anche come binding dinamico, si verifica al momento dell'esecuzione. In questo caso, l'oggetto o il tipo a cui il nome si riferisce è determinato 
+durante l'esecuzione del programma. Un esempio di late binding è l'invocazione di metodi in linguaggi di programmazione orientati agli oggetti come Python o Java, dove il metodo specifico
+che viene chiamato può dipendere dal tipo di oggetto specifico al momento dell'esecuzione. Oppure anche l'es dei tipi fatto poco fa con JavaSCript. 
+Il late binding è più flessibile perché permette di prendere decisioni dinamiche basate sullo stato del programma al momento dell'esecuzione. Tuttavia, tende ad essere meno efficiente 
+in termini di tempo di esecuzione perché richiede un lavoro aggiuntivo per determinare l'oggetto appropriato durante l'esecuzione.
+
+
+
++) Non è una regola assoluta che il late binding è usato solo nei ling. interpretati e early solo nei compilati. (ci sono anche i just-in-time-compiler ad es. ) 
+Bisogna solo ricordare che "Early binding" e "late binding" sono termini che si riferiscono a quando un programma risolve riferimenti, come le chiamate a funzioni o l'accesso alle variabili e il tipo associato,
+ e ciò si verifica generalmente in due momenti: al momento della compilazione (early binding) o al momento dell'esecuzione (late binding).
+
++)Ricorda, tuttavia, che molti linguaggi di programmazione moderni utilizzano una combinazione di early e late binding, a seconda delle esigenze specifiche e dei trade-off tra flessibilità e prestazioni.
+ Ad esempio, in Java, l'overriding dei metodi nelle sottoclassi è risolto a runtime (late binding), mentre i metodi statici, final e private sono risolti a tempo di compilazione (early binding).
+Java usa l'early binding e anche il late binding (per il polimorfismo ad es. ) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+

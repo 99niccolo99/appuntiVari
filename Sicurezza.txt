@@ -1,0 +1,166 @@
+
+
+        CROSS-SITE SCRIPTING ( abbreviato XSS ) 
+
+Il Cross-Site Scripting (spesso abbreviato come XSS) è un tipo di vulnerabilità di sicurezza che si verifica nelle applicazioni web. 
+Permette a un attaccante di iniettare codice script (tipicamente JavaScript) all'interno di pagine web visualizzate da altri utenti. 
+Un attacco XSS può essere utilizzato per rubare informazioni, manipolare il comportamento del sito o eseguire azioni a nome di utenti ignari.
+
+Ci sono tre tipi principali di XSS:
+
+RICORDA: verifica sempre i dati in input e non usare gli input dell'utente direttamente nel codice
+
+
+1) XSS riflesso (o non persistente):
+
+L'XSS riflesso è un tipo di attacco in cui un malintenzionato convince una vittima a cliccare su un link contenente codice malevolo.
+Questo link contiene l'URL del sito vulerabile e inoltre anche uno script (codice JavaScript+Hmtl eventualmente )(anche detto playload XSS) . 
+Lo script può essere inviato come valore di un parametro nell'url , nei cookie , richieste post ecc....
+Il fatto importante sta che quando la vittima invia questa richiesta al sito , il server gli manda la risposta eseguendo anche lo script e quindi potrebbe mandare all'utente cose come un form che chiede la carta 
+di credito (generato dallo script malevolo). Il bello è che lo script può aggiungere questo form o integrarlo nella pagina web , quindi l'utente probabilmente crederà che questo form è stato generato dalla 
+pagina web stessa e che quindi appartiene al sit oche sta visitando . 
+
+Il sito web risulta vulnerabile poichè permette all'ataccante di eseguire quello script e "rifletterlo" all'utente . 
+ 
+
+2) XSS persistente :
+
+L'XSS persistente, anche noto come XSS memorizzato, si verifica quando un attaccante inietta un codice malevolo in una pagina web, e questo codice viene salvato sul server (ad esempio, in un database).
+ Quando altri utenti visitano quella pagina, il codice viene caricato ed eseguito nei loro browser come parte del contenuto legittimo del sito.
+
+Esempio: Un attaccante potrebbe postare un commento malevolo in un forum. Ogni volta che un utente visita la pagina del commento, il codice JavaScript malevolo viene eseguito nel suo browser.
+
+
+
+3) XSS basato su DOM :
+
+l'XSS basato sul DOM si verifica interamente nel browser, sfruttando le manipolazioni insicure del Document Object Model (DOM).
+L'XSS basato sul DOM avviene quando un'applicazione web scrive dati non sanificati nel DOM, e successivamente legge questi dati dal DOM e li esegue come codice.
+ L'attacco non necessita di una richiesta al server con il payload malevolo; invece, l'attaccante sfrutta il codice JavaScript del sito che elabora gli input in modo insicuro.
+
+Esempio
+Immagina una pagina web che prenda un parametro dall'URL e lo utilizzi per visualizzare un messaggio di benvenuto:
+
+var name = document.location.hash.substring(1);
+document.getElementById('welcome').innerHTML = 'Benvenuto, ' + name + '!';
+
+Se un attaccante modifica l'URL per includere codice JavaScript (ad es. #<script>alert('XSS');</script>), il codice verrà eseguito quando la pagina viene caricata, 
+poiché viene scritto direttamente nel DOM senza sanificazione.
+
+
+
+    IN PIU'
+
+
++Per esempio, considera il seguente codice JavaScript:
+
+
+var userComment = getUserComment(); // Immagina che questa funzione prenda un commento da un utente.
+document.getElementById('comments').innerHTML = "<div>" + userComment + "</div>";
+
+
+Se userComment contiene codice JavaScript malevolo e lo inserisci direttamente come parte dell'HTML usando innerHTML, quel codice verrà eseguito. 
+Questo è un esempio di come la creazione dinamica di HTML attraverso la concatenazione di stringhe possa introdurre vulnerabilità XSS.
+
+Per evitare questo, è preferibile utilizzare metodi che trattino l'input come puro testo, senza interpretarlo come codice. Ad esempio, in JavaScript, puoi fare qualcosa del genere:
+
+
+var userComment = getUserComment();
+var commentDiv = document.createElement('div');
+commentDiv.textContent = userComment;
+document.getElementById('comments').appendChild(commentDiv);
+
+
+In questo modo, anche se userComment contiene codice JavaScript, non verrà eseguito, poiché viene trattato come testo e non come HTML o JavaScript.
+
+
+------
+
+
++considerando che un utente può malipolare come vuole il codice HTML+JavaSCript sul browser , il malintenzionato non può modificare lo stesso la pagina in altri modi ? 
+
+Hai ragione nel notare che un utente (o un malintenzionato) può liberamente modificare il codice HTML e JavaScript di una pagina nel proprio browser utilizzando strumenti come l'ispettore degli elementi
+ o la console del browser. Tuttavia, ci sono alcune considerazioni importanti:
+
+Modifiche locali: Le modifiche fatte da un utente al codice sorgente di una pagina nel proprio browser sono locali e non influenzano altri utenti
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+                     SQL INJECTION 
+
+Il malintenzionato usa dei mezzi per eseguire query SQL sul tuo database per manipolare o ottenere dati . 
+Questi mezzi possono essere : Campi del Form - Parametri dell'URL - Cookies - Headers HTTP - eventuali Web Service di cui ti servi (API) che non controllano i dati in input 
+
+Sostanzialmente la risoluzione di questa problema sta principalmente di controllare i dati inseriti dall'utente e quindi controllare non siano query che può eseguire 
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+                                         
+                                    CROSS-SITE REQUEST FORGERY (CSRF)
+
+
+Il Cross-Site Request Forgery (CSRF o XSRF) è un tipo di attacco informatico che induce una vittima a eseguire azioni non volute su un'applicazione web in cui è autenticata. 
+Al contrario di altri attacchi come il Cross-Site Scripting (XSS), in cui l'attaccante mira a eseguire script nel browser della vittima, il CSRF sfrutta la fiducia che un sito ha nel browser dell'utente.
+
+Ecco come funziona un attacco CSRF:
+
+1)Autenticazione: Una vittima si autentica su un'applicazione web, ad esempio un social network o una piattaforma bancaria. Una volta autenticata, il sito rilascia un cookie di sessione al browser dell'utente.
+
+2)Inganno: L'attaccante convince la vittima a visitare un sito controllato dall'attaccante o a cliccare su un link malevolo. Questo può avvenire tramite phishing, email malevoli, messaggi o attraverso un
+ sito web compromesso.
+
+3)Richiesta Forgiata: Il sito malevolo o il link inviano una richiesta all'applicazione web in cui la vittima è autenticata, sfruttando il fatto che il browser includerà automaticamente
+ il cookie di sessione nella richiesta. Se l'applicazione non verifica se la richiesta proviene da una fonte fidata, eseguirà l'azione richiesta.
+
+Per esempio, se la vittima è autenticata in un sito bancario, l'attaccante potrebbe forgiare una richiesta per trasferire denaro ad un proprio account,
+ e se la vittima clicca su un link malevolo mentre è ancora autenticata, il trasferimento potrebbe avvenire senza che ella se ne renda conto.
+
+
+
+SOLUZIONE :
+
+Io , creatore del sito , faccio in modo di inviare un token univoco appartenente a quell'utente direttamente nel DOM della risposta . 
+In tal modo , quando l'utente usa quella risposta per inviare un'altra richiesta , il token univoco sarà inviata con essa . Dato che questo token è memorizzato nel DOM della risposta precedente , 
+se l'utente invia la risposta usando un sito fasullo , questa richiesta non viene accettata poichè sprovvista di token. 
+
+Questo token viene usato quindi per essere sicuri che la richiesta sia stata fatta dalla pagina autentica e non da una pagina creata dal malintenzionato . 
+
+
+es:
+
+Scenario: Immagina di avere un'applicazione di banking online che permette agli utenti di trasferire denaro tra vari conti.
+
+1) Accesso:
+L'utente "Alice" si collega al suo account bancario online. Una volta autenticata, oltre ai cookie di sessione, il server genera un token anti-CSRF univoco per Alice e lo salva associato alla sua sessione.
+
+2) Interazione con l'Interfaccia:
+Quando Alice va sulla pagina per effettuare un trasferimento di denaro, l'applicazione web include il token anti-CSRF in un campo nascosto all'interno del modulo di trasferimento.
+ Potrebbe apparire così in HTML:
+
+<form action="/transferMoney" method="post">
+    <input type="number" name="amount" placeholder="Quantità">
+    <input type="text" name="receiverAccount" placeholder="Numero conto destinatario">
+    <input type="hidden" name="csrfToken" value="abc1234567890">
+    <input type="submit" value="Trasferisci">
+</form>
+
+NOTA: il token è leggibile se ispezioniamo la pagina 
+
+
+3) Invio della Richiesta:
+Quando Alice decide di trasferire una certa quantità di denaro a un altro conto, compila il modulo e lo invia. La richiesta POST inviata al server include tutti i dati del modulo, incluso il token anti-CSRF.
+
+4) Verifica sul Lato Server:
+Quando il server riceve la richiesta di trasferimento, prima di effettuare qualsiasi operazione, verifica che il token anti-CSRF inviato nella richiesta corrisponda al token associato
+ alla sessione di Alice. Se corrisponde, il server sa che la richiesta è legittima e la processa. Se non corrisponde o manca, la richiesta viene rifiutata.
+
+5) Attacco CSRF:
+Un attaccante vuole ingannare Alice per farla trasferire denaro sul suo conto senza che ella lo sappia. L'attaccante potrebbe inviare a Alice un link malevolo o una pagina web
+ che tenta di inviare una richiesta POST al sito di banking di Alice. Ma poiché l'attaccante non ha accesso al token anti-CSRF di Alice, non può includerlo nella richiesta forgiata. 
+Pertanto, quando la richiesta arriva al server del bank, viene rifiutata a causa della mancanza o dell'errata corrispondenza del token.
+
+
+-----------------------------------------------------------------------------------------------------------
+

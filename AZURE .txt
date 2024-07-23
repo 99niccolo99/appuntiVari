@@ -1,0 +1,704 @@
+1)SHARED RESPONSABILITY:
+Shared responsability is the concept that , you have certain responsabilities as a 
+customer and Azure have the owns. 
+There are different hosting options and cloud subscriptions that the customer can 
+choose , and the responsabilities depens from this choice.
+For ex: with the cloud most basic level , which is to get a window server or a
+Linux server, the management of hardware is an Azure responsability but; once you
+have installed a particular operating system , you are responsible for ensuring 
+that the patches are applied. 
+
+2)PUBLIC CLOUD, PRIVATE CLOUD , HYBRID CLOUD 
+There are 3 kinds of cloud : 
+-Public cloud: Azure is the own of the network , hardware and infrastructure ecc..
+...and everyone with a credit card can rent one of these services
+-Private Cloud : big companies or banks ecc that wants to use some cloud services 
+(for ex: they take big hardwares with annual contracts ecc or they can use their
+ personal hardware and using only some cloud services like only the network)
+-Hybrid Cloud : is a mix between private and public ( Microsoft is really strong
+about this kind of cloud respect to Google and Amazon)
+
+3) COSTS: 
+Servers ,databases ecc.. are managed from Azure greater than you can ,this because
+Azure can buys his resources in large scale and manages its with an advantageous
+architectural system and in places where the overheating of the components isn't
+a problem. So , sure you will spend less renting a cloud service than buy and 
+manage yourself.
+
+Investment: OPEX(operating exspense-spesa operativa) is the cost to manage and 
+to feed(alimentare) a system or a product. 
+CAPEX(Capital expenditure) is the cost buy/develop the product or system.
+(for ex: the moneys payed to buy a photocopier is Capex ,while the costs to buy 
+paper , toner a for maintenance are Opex.)
+With Cloud there is only Opex , not Capex(there aren't big costs of investment) 
+
+4)BENEFITS:
+-Availability: Cloud services are always active the 99,99% of the time ,with that 
+0,01% for rare unexpected events that can cause a fall. Every giant informatic 
+companie has suffered at least one.
+
+-Scalability: if you need more resources you can have it, you only have to pay 
+more. (ex: You have not to buy a lot of memory if you don't need it , you can buy 
+less memory and if you need more you can have it immediately paying more)
+
+-Reliability: If you won't have all the services that Azure has promised to you
+or you are not satisfied, you'll be refunded.
++When you do a backup , your data copies are stored in more regions ,so there are
+more copies in more areas and youre data are safe.
+Backups are doing periodicallyi and automatically, you can configure it.
++Chaos Studio is a strument. You can fake some kinds of errors on your applications
+; network errors,database errors ecc... so you can test your application about 
+these errors .
+
+-Global Coverage: There are a lot of available regions in which you can rent
+resources, and this big availability is a giant advantage.
+You can for ex. execute your application on a server in United States and
+in United Kingdom ,so if the server in United States fall, there are still 
+active the servers on United Kingdom and vice versa.
+In addition for ex. if you have customers only in Italy you can choose a region 
+near Italy to execute your server , so the latency will be lower and the 
+performance will be grater. 
+
+-Predictability: Azure keeps track , so you can see if you are interested,
+about all the updates that will be applied and how , 
+and how some failures are solved .
+In addition if some areas the services will be unavailable for works,
+you will know this first.
+
+-Security: there are a lot of security services that you can apply on your
+application like Azure Firewall,a system against DOoS attacks and Security 
+Artificial Intelligents ecc....we will talk about these later .
+Security is a foreground service for Azure.
+
+-Governance: there are a lot of goverment rules for every regions that you have to
+respect when you rent resources from a specific region. For ex. in Europe there
+are the GPDR, a set of rules that tell you for ex. how you have to store the 
+customers data or how and when you have to call the autority when data were
+stolen (sono stati rubati). 
+So you can also create additional governance rules for your application ,that you 
+or your customers have to respect.  
+
+-Monitoring : there are a lot of tools that you can use to control the correct 
+functioning of your application , the costs the security ecc..
+About your application, you can create events that automatically alert your
+customers when something happens
+
+5)Cloud Service Types  (Iaas , Paas , Servless , Saas) 
+
+Imagine a pyramid :                     --
+                                     --Saas--
+                                   ----Serv----
+                                 ------Paas------
+                               --------Iaas--------
+
+
+lower you are and more responsability you (customer of Azure) will have ,
+instead,
+higher you are more the service that you use is "already done" and complete
+
+-Saas (Software as a Service) : we don't need big knowlegment to use this kind of 
+service, Azure offer you a Software to use; you are not interested about when and 
+how this Software is execute and with which hardware , CPU , memory ecc.....
+Azure will manage this. 
+You only have to use this Software. (for ex: Dropbox , you can do a backup or you 
+can take a photo simply using Dropbox platform) 
+Your responsability are much low in this case 
+
+-Paas (Platform as a Service) : dedicated in particular to developers. 
+(for ex:
+You'll only install the operative system and develop your application on the 
+Virtual Machine that Azure offer to you . Azure manage the hardware , you need 
+only to choose the subscription with particular performance.
+You don't know the type of CPU , the type of RAM  ecc... they manage this , you 
+will have the performance requested and stop , how they do this isn't a your 
+problem, not a your responsability. You want only an environment where develop 
+and execute your application, your responsability is only to choose the right 
+subscription for you.
+
+-Iaas (Infrastructure as a Service) :  Azure offer you a virtual hardware. You 
+can manage this hardware (you can request more CPU or more Memory or a stronger 
+graphics card ecc....), through a special Azure interface. Also the management
+of the hardware , is a your responsability in this case.
+(ovviamente se vuoi per es. più memoria non vai tu personalmente ad aggiungere
+ più memoria hardware ,lo fa il tizio che fatica alla Microsoft)   
+
+-Servless: is between Paas and Saas 
+In Paas your responsability is only to choose the right subscription for you.
+In Servless you will not do this , you develop your program and give it to 
+Azure , they will choose the greatest plane for you and you will pay only what 
+you will consume.(scaleranno le risorse in base a quello che ti serve)
+ (you have not to manage your program , you only develop it 
+and give him to Azure, then Azure will do the rest) 
+
+6) Regions , Region Pairs , Sovereign Region 
+
+Azure has its servers in more than 60 regions around the world. These regions are
+organized in couple ;the couples are more near possible because this give 
+advantages about latency ; for ex. for backups will be used the couple of a region
+to store the copy , so the latency during the backup will be minimum; or if a
+region fall ,  there will be the couple region to replace it.
+(ex. regions couple : centre Canada+est Canada, nord Europe+centre Europe)
+
+You can't have access to all the 60+ regions , there are particular regions 
+called Sovereign Regions in which,for government or other reasons, you need
+permits to have acces.For ex. in United States there is a region for the 
+Department of Defense and you have to be a government member to have access ;
+or the Cina is an other Sovereign Region , you need a cotract with a Cina company
+to have acces ; then Germany was a Sovereign Region but no more becuase now 
+in Europe the data are managed at the same time.
+
+7)Availability Zones 
+
+In some regions(not all) can be more availability zones, meaning more separate 
+buildings with servers and resources ; so if for ex. you have 3 servers in a
+region , and in a building with a server fall the eletricity , you still have 
+other 2 active servers in separate buildings. 
+So the availability zones are indipendent among them.
+You can choose between more availability zones , if don't do this , Azure will
+do this for you.
+
+8) Resources groups 
+
+The different resources can be divided by you in more logical groups also if these 
+resources are in physical different regions.
+You can divide these resources fo management groups or for common government 
+rules or for the same subscription . Yes because you can choose a subscription 
+for every single resource or a group.
+
+9)Azure Compute services 
+
+Compute service is ,in general, the ability to run code in the cloud.
+Services like virtual machines,virtual machine scale set, App services(or AppWeb),
+Containers , Kubernetes.
+
+-Virtual machine: you can copy your personal computer and execute this machine 
+like virtual machine in the cloud. You need to choose an operative system offered
+by Azure, they offer some Windows versions and some Linux distribution. 
+So it's like you've a physical machine and you can choose the hardware
+configuration (how much RAM , Memory , CPU  ecc......)
+-Virtual machine scale set(VMSS) : in a specific moment , when the traffic grow, 
+you may need more virtual machine instances , so this grow of the virtual 
+machine instances will happen automatically. This is VMSS. You can configure 
+when and how much your virtual machine instances needs to grow or to reduce;
+you don't pay for VMSS , you pay only for virtual machine instances.
+YOU CAN MANAGE A GROUP OF VM AS ONE UNIT
+-App services: in few words , you can give your finished application to Azure 
+, and Azure will public your application on Azure platform. You don't know 
+how this application is executed (with which hardware) , Azure only promise you 
+certain performance . 
+-Containers: is an easier way to ditribute your application. You can tranform 
+your code in an image , this image ,contains your application and his 
+configuration, and an other person can immediately execute your application in a 
+different environment or operative system , simply giving this image to him. 
+-Kubernetes: is an other conteiners service but is more used to a company level, 
+also because it requests a cluster of machines.
+
+10)Network services
+
+We will talk about virtual network, virtual subnetwork, VPN gateway,ExpressRoute.
+
+-When you connect 2 virtual machines or you do a reserch on web with a virtual 
+machine you are using the Microsoft network (his cable/cords , his satellites , 
+his submarine cable ecc...). Obviously now they aren't connecting cords now to 
+allow you to use Internet (they only configure this),the cords are already
+connected hahah, for this is called virtual network. 
+-You can create your personal virtual subnetwork, and configure your 
+security settings , so you can divide youre virtual network in an isolated 
+security zone. 
+-VPN(virtual private network): you can connect 2 virtual network together , so
+it will be like an unique network.(you can for ex. you are in your home with your
+laptop and through VPN you can connect your laptop to your office network ;so 
+your laptop is connected to your home network and your office network , like 
+these 2 networks were like an unique network) 
+-ExpressRoute: when you use the normal network , this is a public network , also
+if the data are encrypted the other person connected can see these data.
+ExpressRoute is a private network , here the data are encrypted and isn't public
+so the people can't see these data(for ex: your company can use a personal 
+ExpressRoute to send data)
+
+11) Azure storage 
+
+There are a lot of way to storage data offered by Azure.
+BLOB: you can have an Account Storage ,this is the cheapest way to storage data.
+You can storage your data in a data lake(is a big big storage formed also by peta
+and petabyte) in some blocks called BLOB(is a file). 
+FAILOVER: when a BLOB storage in a particular region fall , and you can't use 
+this region , you can use another region to do your backup , without attend that 
+the region wake up; this "ability" is called FAILOVER.
+
++Container(BLOB)(archivi) and File Storage : memorizza dati,solitamente in gran 
+quantità, e il costo è molto ridotto per quanto riguarda i giga , ma è maggiore 
+quando devi leggere o scrivere dati , quindi è una conservazione più a lungo
+termine.Quando devi accedere ad un file lo devi prima "scongelare", servirà
+circa un ora per ciò.Puoi anche aumentare le prestazioni di velocità ma ti
+costerà .La posizione del tuo archivio (nel mondo) avrà prezzi diversi in base 
+alla località.Puoi applicare delle ridondanze ,ovvero replicare i tuoi file in
+più regioni (di base Microsoft applica una ridondanza base dove i tuoi file sono
+in 3 regioni , puoi aumentarla pagando)
++Disk Storage: pensati per memorie in macchine virtuali poichè lettura/scrittura
+random veloci ,non paghi per accessi o per giga ma fai dei pagamenti mensili 
+(periodici)
+-DATABASE. diversi tipi:
++CosmosDB: per applicazioni che richiedono dati veloci (come giochi online) , db 
+con query velocissime ,fatto per mandare pochi dati in pochi millisecondi.
+Non c'è sql . Supporta molte API open source e protocolli.Facile da 
+replicare(global).
+Aggiornameti veloci.
+I dati possono essere memorizzati in molti modi (multimodale)
++Azure SQL Database : completamente gestito da Azure (tu dai solo il codice).
+Facile da replicare. DB relazionale. Facilmente scalabile. Facile migrare in
+macchina virtuale , SQLserver ecc
++Azure database for PosthreSQL : database più grandi e complicati che richiedono
+più risorse(cluster ecc) per essere gestiti.
++SQL Managed Instance: Molto compatibile con SQL Server. Gestito da Azure.
+Aggiornato sempre.
+-Azure Marketplace: ci sono vari sevizi e gruppi di servizi che vengono forniti
+e tu puoi scegliere il migliore per te.
+Cose che non stanno nel set predefinito di Azure
+
+12) Security
+
+-Azure Active Directory(also called Azure AD or A18) is an Identity as a Service ;
+is a tool that you can apply on your application on a server, and his goal is to 
+control the identity of a person (usually with password and Id, or it can control 
+the identity of an hardware , an application ecc...) in a secure way .
+So when a customer want to do the acces , the request with pass and Id don't go 
+directly to the server(between the server and client there is the Azure Active 
+Directory server) , the request is passed to A18 that control the identity , and 
+if the identity is confirmed , A18 will send a token firmed with an ecrypted firm
+to the client . At the end the client will send this token to the server , and the 
+server will trust this firmed token . 
+You can have this service for a little cost , so in this way you don't need to 
+develop an identity control for your application.
+
+Azure AD advantages : +there are a lot of functions that you can use(it depends 
+from the Azure AD subscription for which you are paying).For ex: you can control
+a lot of data like the access, or you can configure the authorization , who is 
+administrator who is a premium customer ecc... +If you have more applications,
+you can configure an unique Azure AD for all applications, so if you want you can
+control the summary data of your application(always data about access ecc....)
+and have a centralized control of your customers.+If for ex: a customer want to 
+change his password , Azure AD will manage this , you haven't implement this.
++Your Customers can have the same password and Id for all your application 
+managed by Azure AD , they haven't to write pass and Id everytime they want to
+change application , with an unique access they can have access to all your 
+application(if they are managed all with Azure AD) (Remember: the identity control
+don't reguard only person but also devices and applications)
+
+-Differents between Authorization and Authentication 
+Authentication:when you have to dimostrate that you are who you say you are
+Authorization: usually in an application not everyone have permits to do
+everything ,it depends from authorization the you have(usually are 
+not registered customer, registered customer , administrator)
+
+-Azure AD conditional access
+Is a function of Azure AD. If for ex: an administrator (so a relevant person ,need
+to do many attention to the person that have much authorization) want to access to
+his account from an other country....is a suspicious behaviour....why this worker 
+isn't in your office ...or in his country....could by an hacker.
+.So for this reason or other suspicious reason like an administrator that want to 
+access by a device never used , or an administrator that want to access after too 
+many time , or an administrator that mistakes the password too times ecc.....
+So Azure AD will ask him to send a code from is telephone or an other kind of 
+additional identification test.
+(i said always administrator because is a relevant person but you can configure 
+all....the kind of person and the kind of suspicious acts)
+
+-Multi-Factor Authentication 
+Is a second demonstration of your identity in addition to the password and Id 
+verification.Usually done with a mail sent to your email , or a code to your 
+telephone or with an authenticator app.
+An other type of second authentication is the biometrical authentication using 
+face or the fingerprint but is for application more important like for ex. your
+bank account.
+
+-Passwordless authentication(different from Multi-Factor Authentication )
+For more security, you can add on your application , in addition to password and 
+Id authentication , the multifactor auth. or Passwordless authentication.
+Confirming a user’s identity without the use of a password.The reason it works is
+that your identity doesn’t have to be verified by a knowledge factor like a 
+password. You can prove your identity by presenting a part of your body
+(a biometric factor) or an access code or link you received on a device or
+app that you own (a possessive factor) instead; methods that have been tested 
+and implemented in a variety of ways. 
+As you can imagine, passwordless authentication is popular among employees
+ because they no longer have to memorize long, complicated passwords. Instead, 
+they log into software using something they can’t forget, like their fingerprint 
+or phone. Passwordless authentication also makes things easier on IT. 
+They don’t need to store passwords, send password reset reminders, or monitor
+possible security incidents due to password breaches(dovuti a violazioni di password).
+
+-Role based access control (RBAC)
+Is the control of the authorization given to a specific roles.
+When an administrator for ex. need to do a special action , he needs to a special
+authorization based on attestation (is a kind of RBAC), in few works to be 
+authorized he needs to have a special token (you need the ticket to enter to the 
+concert)
+
+-Zero-Trust model of security (is a concept)
+Imagine that your pc is your home , when you close your home , you close with a
+the principal doors that separate you from outside , but inside the house is all
+open, you have access to all rooms and drawers(cassetti) without other keys. 
+Return to our pc....is an house with a close principal door ( our firewall), but 
+when we are inside , we can fuck all the application and data ....we need to avoid
+this ...we need to add new levels of security....new levels means that we need to
+add new levels of authorization when an user (that we always should see like an 
+hacker, we need to see him always with suspicious eyes) ask to do other things.
+For ex: an authorization to do an important thing has a limited time 
+
+-Defense in Depth 
+Is a concept that said to add security level for all levels(level of access and 
+identity, Data level , network level , ecc...). So you need to add many kinds of 
+security level when a customer wants to access to the network , an other when he 
+wants to access to the data ecc..... in this sense is a defense in depth.
+Is a concept of security in general , not only for authentication or authorization
+, for ex: network level, to avoid DDos attacks you can configure an Api so that ,
+it can limit the number of request in a period of time .
+There are many kind of security products in Azure , at least (almeno) 5 for every 
+level.
+
+-Microsoft defender for cloud (is a general service)
+Is where you can manage the general security of your servers, networks , database
+ecc.... you will pay for this services for month(approximately 15$ for server) ,
+not for performance.Here you can manage your security in general , you can access
+on a summary dashboard with the summary statistics of your security , advices to
+improve it, the protected informations ecc......
+
+13) Cost managemet
+
+-Metrics: There are a lot metrics for which you can pay. You can pay for
+performance,for months, for hours , for number of backups, for number of regions ,
+or for what you use (this is called Consumption Model).
+The price depends obviously by the metric, by the region , by the availability 
+zone.
+
+-Reservation/Booking : you can book a resource and pay for it in advance
+(in anticipo), so you'll pay less for this resource.Is a way to save money.
+An other way to save money is to use the license of your business contract with 
+Microsoft instead of buying a license from Azure.
+
+-Azure Pricing Calculator: is a free tool offered by Azure with which you can do a
+general estimate(stima) of how much you will spend using Azure resources.For ex: you
+will insert in this tool what resources you need , in which region , with which 
+metric, the  bandwidth(so the trasmission speed equivalent to the amount of
+ transmissible information) ecc... with all this information , the Azure Pricing 
+Calculator will give you an estimate of how much you'll spend.
+
+IMPORTANT(for the difference with Total Cost of Ownership Calculator):
+here we calculate the price to "buy" resources in a certain region,with a certain 
+bandwidth ecc.... ;we don't calculate the costs to manitain these resources, that 
+obviously depends from how long time we want to maintain these resource. We do this
+kind of calculation with Total Cost of Ownership Calculator.
+Are two different type of price , you have to sum these to have a complete estimate
+of how much you will spend.
+
+-Total Cost of Ownership Calculator: with this tool we can calculate an estimate of 
+the price that depends from the maintainment of the resources (for ex: the 
+alimentation of our servers, the number of backups, how long time the servers have
+to be active ecc.....) and how long time these resources will need you. 
+
+-Azure Cost Management: is a platform with a lot of tools with which you can 
+manage and analyze your expenses(spese).Graphs of cost analysis ,recommendations to 
+save money, your historical invoices, then you can set up a budget and when for
+ex: in a particular period the expenses overcome(superare) the budget , Azure will
+send you a notification.You have also forecast(previsioni) functions of the costs
+ecc......
+
+-Resource tags : you can apply one or more tags on a resource. A tag is a couple 
+(resource, "value chosen by you") , you can use tags like metadata(information to
+give to an informatic resource like name of the creator , who pay for this resource
+, who use this resource ecc...); these tags can be used to oreder and categorize
+the resource for ex: if you are in a big company and you want to use the Azure 
+Pricing Calculator only on resources of a specific departement....you have tags 
+to understand to which department a resource belongs to.
+  
+14)Azure Governance and Compliance(conformità/rispetto)
+With governance we intend the technically rules and the respect of these. For ex:
+we have a server and this server has to do one daily backup...a rule like this.
+With Compliance we intend to controlling that these rules are respected. There is a 
+thing called Compliance Control Modality that is an automatic control of the rules 
+for ex: Azure will send you(administrator) which servers don't do a daily backup;so
+is a reporting server; Azure don't fall these servers ,Azure only notifies you that 
+that server is not compliant (conforme).
+
+-Azuer Blueprint : remember , you can have more resources, you can have different 
+subscription for different resources and you can categorize these resources. 
+With Blueprint you can apply policy(politiche)(rules of compliance) to a group of
+resources or to a particular subscription.You can do this by applying rules to a
+code level , so the staff(dipendenti) will be force to respect these rules (for ex:
+when a staff membre create a server, he has to configure a daily backup , or he
+can't create it) or you can configure a Compliance Control Modality (see up).
+You can apply a lot of policy like the istance type of VM or which regions yes and
+no ecc.....
+
+-Azure Policy Resource Locks(blocchi delle risorse): in few words you can configure
+locks to resources .For ex: you can create a VM and configure it only for read ,so
+other person can only operate on it but can modify it or delete it. 
+Only you (administrator) can decide who can delete this locks or configure other
+locks. 
+
+-Service Trust Portal : remember that we said that when you for ex: create a server
+in a special region , you need to respect the policy of this particular region 
+(for ex: GDPR policy for data, FEDRAMP for authorization)
+Service Trust Portal is simply a central database of all these documents , 
+categorized  for position and for objective.(nel senso che se tu devi fa na cosa
+in particolare vai a vede quello , che te ne fotte del resto)
+So this is an Azure service that help you to respect policy and to by updated.
+
+15) Tools for management and distribution of Azure resources
+
+-Azure Portal: is the Azure platform on web with which you can manage your 
+resource , control if they are all active , the performance , you can change 
+configuration ecc....
+If you have a large number of resources , you can also use scripting languages to
+manage youre resources instead of Azure Portal. Azure scipting language supported 
+are PowerShell e CLIA Ally (called also Bash) ,and you can use it on Command line/
+Prompt. The advantage is that the script are already write you have only to 
+execute it with a simply command ; so you can create a script for long and 
+frequently operations for ex: create a VM and configure it in a particular way....
+, to do this you will write only one time a script for this and then every time
+you need to create and configure in that particular way the VM, you can do this 
+quickly only with a command .
++If you get the Azure SDK you can write programs to interact with Azure. 
+
+-Azure Arc Air Sea(Azure ARC): is a service that allow you to manage your 
+resources that are indipendent from Azure (for ex: you can manage with this 
+dashboard a server in your Amazon Cloud).You can manage these resources not in 
+Azure but like they were in Azure.
+This service is still in progress.
+
+-ARM (Azure Resource Manager): there is between the primary way to manage your 
+resources (SDK, Prompt , Azure Portal) and your resources. 
+When you create a resource, it becomes an ARM model , so you can manage the 
+resource with this other software.The configuration data that pass between ARM 
+and cloud that has to satisfied the request are in JSON(a JavaScript format to 
+storage and manage data) and if you want you can obtain these data to modify or
+directly modify these data on JSON. (*****latest 5 lines)
+
+16) Azure Monitoring Tools
+
+-Azure Advisor: is a tool that give you advices about costs, security,
+and in general how optimizing resources management (for ex: if a server is 
+powerful compared to its use , Azure advice you to decrease the power to save
+costs) (or for ex: security advice, Azure realizes that RDP port is open , so he
+advice you to close it )
+
+-Adzure Service Health: is a tool with which you can control resources
+(GENERAL resources and service offered by Azure,not your personal resources)in a 
+map , so you can see in particular the region in which are. You can control if 
+these regions are active, or if these regions have problems(if that happens
+Azure will notify you or Azure will notify you if there will be works that 
+will make a region unavailable) and you can see the kind of problems ,you can 
+see the historical problems of these regions and the problems faced(affrontati)
+the days before , and how Azure resolved or how will resolve these.
+
+-Azure Diagnostic Setting : is a centralized dashboard with all your resources.
+Here there are a lot of information and statistics about these , you can 
+configure the statistics type that you're more interested or you can configure
+notification when something happens (for ex: i can set a notification where my
+server rachs 1000 requests) i can also configure automatic functions when
+something happens.The resource o group of resource set of statistics is called
+diagnostic, and i can give a name to each diagnostics.
++Exist a special kind of Azure archivation account that takes the log data by 
+certain resources, are special kind of data to do an analysis
+
+-Azure Monitoring: is a dashboard in which there are statistics and data about 
+performance of your resouces. Here you can do query if you want a particular data
+,you have to use a certain kind of query language called Key q I Costeau;obviously 
+(si chiama cosi, non ho sbagliato a scrivere) there is a set of preimposted query.
+
+-Workbooks : you can create workbooks for resoures, are file with predefined 
+template that you can fill(riempire) these with data and statistics about the 
+particular resource. So you can create personalized comment about your resorce,
+using your metrics.
+--------------------------------------------------------------
+
++In Azure when you deploy a VM the following components gets deployed along(con se) :
+
+NIC
+Network Security Group
+Public IP
+Disk
+
+A NIC is a component which holds the Public IP and the private IP of the VM.
+
++A network interface enables an Azure Virtual Machine to communicate with
+ internet, Azure, and on-premises resources(risorse proprie/locali). When
+creating a virtual machine using the Azure portal, the portal creates one
+network interface with default settings for you. You may instead choose 
+to create network interfaces with custom settings and add one or more
+network interfaces to a virtual machine when you create it.
+
++A Network Interface (NIC) is an interconnection between a Virtual Machine and
+ the underlying virtual network. An Azure Virtual Machine (VM) has one or 
+more network interfaces (NIC) attached to it. Any NIC can have one or more
+ static or dynamic public and private IP addresses assigned to it.
+
+---------------------------------------------------------------------------------
+DOMANDE E RISPOSTE 
+
+
+-What benefit does Availability Sets provide when it comes to
+ virtual machines in Azure?
+Physically and logically separates virtual machines so that if one goes down ,
+the others do not go down.
+Availability Sets allow you to tell Azure which virtual machines are identical,
+ so that Azure will keep them apart(separate) physically inside the datacenter.
+ This helps when there are either expected or unexpected downtime(caduta temporanea)
+,by increasing the chances that one issue does not affect all VMs in a 
+single Availability Set.
+(quindi se ci sono problemi ad una macchina , abbiamo la copia indipendente funzionante)
+
+-Single Sign-On : the ability to log with an existing userid and password in many
+applications , and not have to create/memorize a new one 
+
+-Why is Azure App Services considered Platform as a Service??
+You give Azure the code and the configuration , and you have no access to the 
+underlying hardware 
+
+-True or false: Azure charges for bandwidth used <b>inbound</b> to Azure?? 
+FALSE.   Ingress bandwidth is free. You pay for egress (outbound)
+(La larghezza di banda di ingresso è gratuita. Si paga per l'uscita (in uscita))
+
+-How many availability zones are there in each region (for regions that have them)?
+        3.
+
+-What type of documents does the Microsoft Service Trust Portal provide ? 
+A list of standards that Microsoft follows ,pen test results,security assessments(valutazioni)
+,white papers,faqs,and other documents that can be used to show Microsoft's 
+compliance efforts(impegno al rispetto delle regole)
+
+-What is a public endpoint ? and private ?
+A public endpoint is effectively a URL that you can use to access data and
+applications from outside a virtual network. This includes the public Internet.
+Applications inside Azure can also access this using the public endpoint.
+ Of course, there is often additional security on the application or data 
+to prevent malicious use of this endpoint.
+The public endpoint can be enabled, restricted to certain networks or disabled.
+A private endpoint is a network interaface that uses an IP address .
+With this interface you can connect to the network in secure way and privately.
+With private endpoint you bring the service to the virtual network.
+
+-True or False: An Azure Storage Account can have both a public endpoint 
+and a private endpoint at the same time???
+TRUE.   The public endpoint can be enabled, restricted to certain networks or
+ disabled. Multiple private endpoints can be created. There is no restriction 
+preventing you from having both a public endpoint accessible from the Internet
+and one or more private endpoints as well
+
+-True or false: Azure Active Directory is a network gateway that load balances
+ user logins using a CDN (Content Delivery Network) ??
+FALSE . No, Azure Active Directory is an enterprise identity service that 
+provides single sign-on and multi-factor authentication.
+
+-Which of the following is the best approach when you need to copy large amount
+of files between two Azure Storage accounts?
+AzCopy allows you to copy files between two Azure Storage accounts without having
+ to download the files to your local machine. The other options are slower,
+ and more expensive.
+
+-Which of the following elements is considered part of the <b>network</b> layer 
+of network security?
+Separate servers into distinct subnets by role 
+
+-What feature of a system makes it elastic?
+The ability of it to add and reduce capacity based on actual demand 
+
+-Which of the following Azure Resources are required in order 
+to have a virtual machine?
+STORAGE ACCOUNT [SI]
+NETWORK INTERFACE CARD (NIC) [SI]
+VIRTUAL NETWORK [SI]
+PUBLIC IP ADDRESS [NO]
+
+-What is the fastest connection type between your on-premesis network 
+and Microsoft Azure, if money was not a concern?
+  Express Route 
+
+-What Azure resource allows you to evenly split traffic coming in 
+and direct it to several identical virtual machines to do the work and 
+respond to the request?
+Load Balancer or Application Gateway
+
+-What affect does using a "read only" resource lock
+ on a Azure Storage Account have?
+Resource Locks only affect your ability to make changes to a resource
+ within Azure but do not affect the resource itself. For instance, a
+ resource lock on a virtual machine still allows the VM to operate but
+ will prevent someone from restarting a VM. Similarly, a resource lock 
+on a storage account only affects the Azure properties of the account
+(quindi nel senso che alcune cose che puoi fare con quella risorsa sono bloccate
+ma cmq la risorsa continua a funzionare correttamente.
+
+-What Azure tool gives you the ability to manage multiple
+ subscriptions into nested hierarchies?
+Management Groups 
+
+-What benefit does Azure Scalesets provide when it comes to virtual 
+machines in Azure?
+Scalesets are groups of virtual machines, managed as a single unit.
+ You can set rules for scaling up or scaling down.
+
+-True or False: Under the Infrastructure as a Service model, Azure is
+ responsible for managing the physical host, physical network,
+ and physical datacenter. (nota quel FHYSICAL)
+ TRUE 
+
+-.Which feature within Azure alerts you to service issues that happen
+ in Azure itself, not specifically related to your own resources?
+Azure Service Health 
+
+-Which Azure AD licenses are made available through Azure?
+Azure Active Directory provides the following licenses: 
+Azure Active Directory Free, Office 365, Premium P1, and Premium P2
+
+-Which Azure Service gives you access to your own personalized Windows 10 or 11
+ desktop machine in the cloud, so that you can access your work files and 
+applications whereever you go from any device?
+ Azure Virtual Desktop 
+
+-Which of the following elements is considered part of the <b>perimeter</b>
+ layer of security?
+Use a firewall 
+
+-Which of the following are factors in Total Cost of Ownership?
+The total cost of running a server includes not only the cost of the machine
+ (hardware), and the software, but also the costs of hosting that machine
+ including electricity, real estate(possesso), Internet, and salaries of
+the employees needed to manage the machine
+
+-What are the two features that Azure AD provides? Choose two.
+Logic Apps [NO]
+Application management [ SI ]
+Azure DDoS Protection [NO]
+Logs Analytics [NO]
+Authentication [ SI ]
+Functions [NO]
+
+-Which storage redundancy option is the cheapest?
+LRS (Locally Redundant Storage)
+
+-True of false: Azure Powershell scripts and Command Line Interface (CLI) 
+scripts are entirely compatible with each other?
+FALSE 
+
+-Which of the following scenarios would Azure Policy be a recommended 
+method for enforcement?
+
+-Which of the following scenarios would Azure Policy be a recommended method
+ for enforcement?
+Azure Policy can add restrictions on storage account SKUs, virtual machine 
+instance types, and rules relating to tagging of resources and groups.
+(ricorda: le limitazioni sono imposte sulle risorse , non sulle persone)
+(Allow only one specific roles of users to have access to a resource group è 
+SBAGLIATO) 
+(Prevent certain Azure Virtual Machine instance types from being udes in 
+a resource group è CORRETTA) 
+
+-True or false: Azure Cloud Shell allows access to the CLI(Command line di Azure)
+and Powershell consoles in the Azure Portal
+TRUE 
+
+-What is the benefit of economies of scale?
+the more you buy of something , the cheaper it is for you
+( più si acquista di qualcosa , il più economico è per voi )

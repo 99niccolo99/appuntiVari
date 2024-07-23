@@ -1,0 +1,1050 @@
+ spiegami come si passano i dati e la possibilità di usare i metodi da "sopra" a "sotto" e viceversa in una gerarchia di componenti React-native 
+
+
+In React Native e React, la comunicazione dei dati e l'uso dei metodi tra i componenti "sopra" (padre) e "sotto" (figlio) e viceversa avviene principalmente attraverso due meccanismi: "props" e "callback".
+
+Props:
+Le "props" (proprietà) sono usate per passare dati o funzioni da un componente padre a un componente figlio. Le props sono immutabili, il che significa che un componente figlio non può modificare i valori delle prop ricevute dal padre.
+Esempio:
+
+
+
+// Componente Padre
+function Parent() {
+  const data = 'Ciao!';
+  return <Child dataFromParent={data} />;
+}
+
+// Componente Figlio
+function Child(props) {
+  return <Text>{props.dataFromParent}</Text>;
+}
+
+
+Callback:
+Per passare i dati o utilizzare metodi dal componente figlio al componente padre, si utilizzano le funzioni di callback. Il componente padre passa una funzione al componente figlio tramite le props, e il componente figlio può chiamare questa funzione per inviare dati al componente padre.
+Esempio:
+
+
+// Componente Padre
+function Parent() {
+  const handleDataFromChild = (data) => {
+    console.log('Dati ricevuti dal componente figlio:', data);
+  };
+
+  return <Child sendDataToParent={handleDataFromChild} />;
+}
+
+// Componente Figlio
+function Child(props) {
+  const data = 'Ciao!';
+  return <Button title="Invia dati al padre" onPress={() => props.sendDataToParent(data)} />;
+}
+
+
+In questo esempio, il componente Parent passa la funzione handleDataFromChild al componente Child tramite la prop sendDataToParent. Il componente Child chiama questa funzione quando l'utente preme il pulsante, inviando i dati al componente Parent.
+
+Questi meccanismi ti permettono di gestire la comunicazione tra i componenti in una gerarchia di componenti React Native. Per situazioni più complesse o per gestire lo stato dell'applicazione a livello globale, potresti prendere in considerazione l'utilizzo di soluzioni come Redux o il Context API di React.
+
+
+
+
+
+
+
+
+
+
+
+
+Sì, puoi passare sia dati sia la possibilità di usare i metodi di un componente padre o figlio tramite le props.
+
+Ecco un esempio in cui passiamo dati e metodi tra un componente padre e un componente figlio:
+
+
+// Componente Padre
+function Parent() {
+  const [parentData, setParentData] = useState('Dati del padre');
+
+  const parentMethod = () => {
+    console.log('Metodo del padre eseguito');
+  };
+
+  const handleDataFromChild = (data) => {
+    console.log('Dati ricevuti dal componente figlio:', data);
+    setParentData(data);
+  };
+
+  return (
+    <Child
+      dataFromParent={parentData}
+      parentMethod={parentMethod}
+      sendDataToParent={handleDataFromChild}
+    />
+  );
+}
+
+
+
+// Componente Figlio
+function Child(props) {
+  const [childData, setChildData] = useState('Dati del figlio');
+
+  const childMethod = () => {
+    console.log('Metodo del figlio eseguito');
+    props.parentMethod();
+  };
+
+  return (
+    <View>
+      <Text>{props.dataFromParent}</Text>
+      <Button title="Esegui metodo del padre" onPress={childMethod} />
+      <Button title="Invia dati al padre" onPress={() => props.sendDataToParent(childData)} />
+    </View>
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------
+
+
+
+
+
+                     SINGLE PAGE APPLICATION (SPA) 
+
+Se il tuo sito è creato con React utilizzando l'approccio tradizionale di Single Page Application (SPA), allora quando il browser accede alla home del tuo sito, di solito carica 
+l'intera applicazione. Tuttavia, ci sono tecniche e strumenti per ottimizzare questo comportamento e caricare solo le parti necessarie dell'applicazione, 
+una pratica nota come "code splitting" o suddivisione del codice.
+
+Ecco una panoramica deidue approcci:
+
+1) Caricamento dell'intera applicazione (SPA tradizionale):
+
+Quando un utente visita la home o qualsiasi altra pagina del sito, il browser carica e esegue un unico bundle JavaScript che contiene l'intera applicazione. (quindi l'applicazione viene 
+caricata nel browser per intero in un unica botta) 
+Una volta che il bundle è stato caricato ed eseguito, la navigazione tra le diverse pagine o componenti dell'applicazione è molto veloce, poiché tutto avviene lato client e non sono
+necessarie ulteriori richieste al server per caricare nuove pagine.
+Tuttavia, l'inconveniente è che il bundle iniziale potrebbe essere grande e richiedere più tempo per essere scaricato, specialmente se l'applicazione è complessa.
+
+
+2) Code Splitting (suddivisione del codice):
+
+è possibile suddividere il codice dell'applicazione in più "chunks" (blocchi) che possono essere caricati dinamicamente.
+Sostanzialmente l'approccio è lo stesso , cambia solo che vengono inviati "grandi blocchi" più piccoli e non l'intera applicazione .
+
+---------------------------------------------------------------------------------------------
+
+
+DOM e HTML : 
+
+Il DOM (Document Object Model) è una struttura dove i vari elementi HTML sono rappresentati sotto forma di oggetti che sono nodi facenti parte di un albero (ogni tag HTML è un nodo) 
+e con cui possiamo interagire.Infatti esso è creato proprio per permettere agli sviluppatori di manipolare il contenuto HTML della pagina . 
+Quando carichiamo la pagina web sul browser , dall'HTML viene generato il DOM che rappresenta ciò che stiamo visualizzando/interagendo sulla pagina web . 
+ Funziona come un ponte tra il documento HTML (o XML) e il linguaggio di scripting, organizzando tutti gli elementi della pagina in una struttura ad albero di "nodi", dove ogni nodo rappresenta una parte differente del documento (come elementi, testi, attributi, ecc.).
+
+Il codice sorgente rappresenta tutta la pagina web (tutto l'HTML e il bordello) 
+Invece quando usiamo il DevOps del browser stiamo visualizzando il DOM , che è quello che stiamo visualizzando e che possiamo modificare dinamicamente .
+Se con JavaScript eliminiamo dinamicamente un bottone , esso verrà rimosso dal DOM.
+
+(Con il DOM, è possibile aggiornare i contenuti di una pagina senza dover ricaricare l'intera pagina. Questo è fondamentale per lo sviluppo di applicazioni web moderne, come le Single Page Applications (SPA), che richiedono un'esperienza utente fluida e reattiva.) 
+
+------------------------------------------------------------------------------------
+
+REACT 
+
+Si basa sulla logica di COMPONENTI. Ogni piccola o grande parte dell'interfaccia utente è composta da una o più componenti indipendenti, ed ognuna di esse 
+è atta a svolgere un determinato obiettivo; le relazioni e collaborazioni tra le varie componenti costituisce l'intera interfaccia grafica.
+Questo favorisce la riusabilità del codice e la divisione delle preoccupazioni .(anche per a fase di test e debug) è buona norma dividere le componenti ,
+quindi i diversi file , anche se di piccole dimensioni .
+
+Useremo JavaScript+HTML+Css    (poco Css)
+La potenza di JavaScript è data dal fatto che agisce sul browser e quindi possibile modificare gli elementi del DOM HTML senza dover obbligatoriamente 
+interpellare il server ; JavaScript è un linguaggio imperativo , vuol dire che scriviamo azione dopo azione quello che dobbiamo fare.
+Con React andiamo a porci su uno strato superiore rendendo lo sviluppo del codice più semplice e veloce poichè implementato in modo dichiarativo , ovvero 
+descrivendo nel codice gli obbiettivi da raggiungere e le condizioni in cui si deve mostrare in un certo modo.
+
+-npx create-react-app ....(nome del progetto)
+
+-  npm start +nomeProgetto+   
+-   ^C 
+- npm install ( su terminale Visual Studio progetto) per riavviare il server e aggiornare le dipendenze del package.json
+
+----------------------------
+
+INIZIO SVILUPPO :
+
+
+index.js nel src : 
+Nell'index (il nostro punto di partenza) andiamo ad importare react-dom che sarebbe una della principali librerie di React . E con essa , nell'index, andremo a
+creare il DOM nel nostro front end . Quindi questo è il root del nostro DOM .
+Nel package public ci sta index.html , che è in sostanza l'unico file che viene visualizzato sul browser (in html) , esso viene formato da React in seguito 
+all'implementazione della nostra interfaccia ; quindi contiene il contenuto dinamico che l'utente visualizza
+
+-root.render(<App />)    --> serve a rendirizzare App nell'index (root è un istanza della root del DOM creato) (quello tra parentesi è JSX) 
+
+Il file App.js contiene del JavaScript , e dentro esso HTML ......un pò strano ; infatti si tratta di JSX
+
+-App sarà un file particolarmente importante poichè sarà la nostra rootComponent; infatti quello che dobbiamo fare è andare a costruire un albero di componenti ;
+ognuno nidificato in altri 
+
+
+
+
+
+      VIRTUAL DOM 
+
+Nel momento in cui una pagina web è eseguita , React , oltre al DOM , conserva il Virtual DOM , ovvero una copia leggera (ovvero molto meno costosa da mantenere e modificare
+del DOM reale) del DOM reale . (Il Virtual DOM non è mostrato all'utente.) 
+Quando avviene un evento per cui l'interfaccia deve essere modificiata , come ad esempio l'utente che preme un bottone per aprire un form. 
+Il DOM reale non viene modificato direttamente . React crea un nuovo DOM Virtuale con le modifiche già imposte (in tal caso quindi nel nuovo DOM Virtuale 
+è già mostrato il form) e questo nuovo DOM Virtuale viene paragonato al vecchio DOM Virtuale . Questo paragone viene fatto poichè si cerca il modo più 
+efficiente di modificare il primo DOM Virtuale e farlo diventare il secondo . 
+Dopo che la soluzione migliore per fare i cambiamenti è stata trovata , questa soluzione viene applicata al DOM reale . 
+Poichè modificare il DOM reale è molto più pesante a livello di prestazioni , il trovare il miglior modo per farlo influisce molto sulle prestazioni.  
+
+
+----------------------------
+JSX
+
+JSX, che sta per JavaScript XML, è una estensione sintattica di JavaScript utilizzata prevalentemente con React per descrivere l'interfaccia utente. Pensalo come un mix tra HTML e JavaScript, che ti permette di scrivere elementi dell’interfaccia utente in modo espressivo e leggibile direttamente all'interno del codice JavaScript.
+
+React è formato semplicemente da librerie che traducono il codice JSX , codice molto intuitivo e comodo per lo sviluppatore , in codice leggibile ed usabile 
+dal browser . Se andiamo ad ispezionare il file sorgente dal browser notiamo un casino (non lo stesso codice che avevamo sviluppato noi in Visual Studio) , 
+questo perchè viene svolto , da React, un lavoro di traduzione dietro le quinte.Ma alla fine sullo schermo sono semplici elementi HTML , il codice viene 
+lavorato a runtime ma sempre HTML ne esce.
+
++La denominazione "JavaScript XML" o JSX si riferisce al fatto che la sintassi di JSX è molto simile a quella dell'XML piuttosto che a quella dell'HTML puro
+
+
+
+(in più) 
+
+Perché Utilizzare JSX?
+Leggibilità: JSX rende il tuo codice più facile da leggere e capire, specialmente quando stai lavorando con l'UI all'interno del codice JavaScript.
+Espressività: Con JSX, puoi utilizzare la potenza di JavaScript per costruire dinamicamente il tuo HTML. Questo include l'uso di espressioni JavaScript, come {name} per inserire il nome utente in un elemento, direttamente all'interno del markup.
+Performance: JSX viene trasformato in JavaScript puro al momento della compilazione, ottimizzando così le prestazioni dell'applicazione.
+Utilità: Integra direttamente con React per creare elementi del DOM virtuale, che React poi gestisce per aggiornare il DOM reale in modo efficiente.
+
+--------------------------------------------------------
+
+COMPONENTI 
+
+Una componente alla fine è solo una FUNZIONE JavaSCript ; che ritorna solitamente codice html . 
+Dobbiamo sfruttare le componenti per costruire man mano il nostro albero di Componenti ; (ogni componente va in una più grande e cosi via) 
+Creiamo ad es. la componente ExpenseItem con function e restituiamo il suo contenuto in html. 
+Dopodichè facciamo export e nel file App facciamo import per importarla e la usiamo nel codice aprendo e chiudendo degli apici con il nome della componente 
+dentro ( <ExpenseItem></ExpenseItem>),e lo mettiamo nel posto desiderato,in questo modo React ci permette di compiere una semplice e pulita nidificazione del codice. 
+
++IMPORTANTE : una componente NON può avere più di un elemento radice (si solito fatto con <div> ) ; ovvero deve ritornare un UNICO elemento . In esso possono 
+essere annidati altri elementi , però la funzione si deve chiudere con questo unico elemento che racchiude il tutto 
+
+
+-All'interno di codice Html , tra gli apici di un elemento , possiamo inserire tra parentesi graffe del codice JavaScript , questo ci da la possibilità ad es. 
+di prendere valori variabili e stamparli come valori html .
+-------------------------------------------------------------------------
+LISTA SEMPLICE A CAZZO
+
+Se voglio stampare una lista particolare di dati (guarda codice) 
+
+Il componente ExpenseItem sviluppato non prenderà come parametri vari parametri ma UNO SOLO che li ingloba tutti , si chiama props (per convenzione) 
+Esso rappresenta gli eventuali possono essere 100 o 0 parametri che ExposeItem riceve e va a trattare 
+In esso mettiamo ad esempio per riferirci al titolo preso come parametro 
+
+       <h2> {props.title} </h2> 
+
+con esso vado a porre un riferimento nella mia lista collegato al parametro , in sta componente ci sono solo i collegamenti , non i dati 
+
+POI in App, dove vado ad utilizzare la componente ExponseItem e ricevo i dati :
+
+    <ExpenseItem title={expense[0].title}>   </ExpenseItem>            stampo il dato titolo in input (il primo elemento dell'array expense)
+
+(quel primo title poteva anche essere chiamato in modo diverso ma è meglio chiamarlo con lo stesso nome se no è un cazzo di casino) 
+dove expense è un array di oggetti contenente una var di tipo stringa uguale ad un certo valore (ovviamente una per ogni elemento dell'array)
+
+Questo concetto è molto IMPORTANTE poichè NOTA che si ripete e ripete ogni volta anche più volte se abbiamo una componente nidificata in una componente 
+ancora nidificata ecc.......    (guarda codice) 
+
+
++Creo la classe Card, che sostanzialmente rappresenta l'aspetto dei contenitori della lista, e lo isoliamo. Cosi possiamo gestire separatamente il 
+codice dello stile di questi e renderlo facilmente modificabile, ed avere un contenitore che contiene la nostra lista 
+
+
++IMPORTANTE:  in generale se creiamo un componenete , in esso non possiamo ritornare un altro componente e dentro i suoi apici un altro componente. Questa cosa 
+non si può fare, questo annidamento customizzato .
+NON FUNZIONA poichè i componenti customizzati accettano dentro di essi ( a parte il codice html) solo componenti che tu gli dici di accettare . 
+Quindi per far accettare "figli" dobbiamo definire, dentro sta classe componente che contiene l'altra componente annidata, {props.children} 
+insomma diciamo che accetterà figli presi come parametri 
+
+---------------------------------------------------------------------------
+EVENTI 
+
+Per aggiungere per es. un Listener ad un bottone ; React ci permette di aggiungere un Listener attraverso la parola onClick direttamente ALL'INTERNO del nostro 
+codice HTML (cosa ovviamente non fattibile normalmente ma React ci permette di mischiare in particolari modi JavaSCript e HTML) . 
+Questo onClick lo poniamo = ad una anonima che possiamo definire stesso li' dentro ; oppure MEGLIO per mantenere il codice più pulito ; prima del return seguito 
+dall'html definiamo la funzione che associamo al nostro onCLick , ad es.     const clickHandler = () => { console.log("Clicked!!")}   
+sta funzione non riceve un cazzo e non fa altro che stampare nel log ogni volta che viene attivata .
+
+La associamo in sto modo al nostro bottone :          <button onClick={clickHandler} > Button1 </button>
+quindi ogni volta che premiamo il bottone verrà attivata la funzione clickHandler 
+
+NOTA IMPORTANTE : abbiamo onClick con clickHandler e basta, NON clickHandler()  ; non dobbiamo aggiungere le parentesi con gli eventuali parametri della funzione.
+Se facciamo ciò allora la funzione verrà eseguita quando il codice viene eseguito , quindi subito al caricamento della pagina; poichè in questo modo clickHandler() 
+viene trattato come una funzione indipendente che vogliamo eseguire nel codice e non ad una funzione strettamente collegata al'onClick del bottone .
+
+-----------------------------------------------
+
+Le componenti sono ,da React , effettivamente considerate come delle funzioni , che React esegue quando renderizziamo una pagina 
+IMPORTANTE sapere che React esegue tutte queste funzioni nidificate (componenti) UNA SOLA volta e basta . Se una funzione nel mentre cambia React non se ne fotte 
+, la pagina è stata già renderizzata e le funzioni eseguite una volta e bast . La funzione ad es. collegata ad onClick viene certamente eseguita, è JavaScript , ma 
+React non se ne fotte di rendirizzare tutto e quindi mostrare i cambiamenti su schermo , non rieseguirà la componente. 
+
+Per dire a React di rendirizzare/rieseguire una certa componente dobbiamo fare un CAMBIAMENTO DI STATO . 
+Se modifichiamo una normale variabile che deve apparire modificata su schermo React non se ne fotte ; dobbiamo rendere questa variabile SPECIALE e dire a React che 
+ogni volta che essa viene modificata sta componente deve essere rieseguita . 
+Importiamo una funzione specifica della libreria React (guarda codice) 
+Usiamo sulla funzione da modificare il metodo useState ; lo usiamo all'interno della funzione principale , all'inizio (guarda codice) . 
+Ad es. vogliamo rendere speciale il valore title dato dal props ;(quindi avuto come parametro)
+ 
+                                  const [title , setTitle] = useState(props.title);
+
+Facciamo sta cosa dell'array per comodità.  useState prende in input la variabile da rendere SPECIALE e restituisce in output un array ; 
+nel primo elemento dell'array(il primo restituito da useState) ci starà il valore effettivo di quel props.title  ( che poi andremo a modificare) 
+nel secondo elemento dell'array (il secondo restituito da useState) ci starà un metodo che permette di cambiare il valore di quella variabile props.title
+Mettiamo tutto in un array dove il primo elemento sarà title (nome scelto da noi) ovvero il valore della variabile che man mano volendo modifichiamo 
+e il secondo sarà il metodo che usiamo se vogliamo modificare sta variabile , e che , dato che la var è adesso SPECIALE , dirà a React di rendirizzare tutto e quindi 
+rieseguire la componente , cosi lo schermo sarà aggiornato con il nuovo valore 
+
+quindi usiamo per es    <h2>{title}</h2>   se vogliamo mostrare il valore della variabile speciale 
+e        setTitle("aaa")     se vogliamo modificare il valore di title in "aaa" e reindirizzare la pag per mostrare il risultato 
+
+NOTA: la componente quindi la funzione viene completamente rieseguita, quindi viene rieseguito pure    const [title , setTitle] = useState(props.title);  però in tal
+caso la var title sarà aggiornata con il nuovo valore che gli abbiamo assegnato. React è cosi intelligente da capire che l'assegnazione al preciso valore iniziale 
+props.title viene eseguito solo ed esclusivamente la prima volta che sta funzione viene eseguita.
+
+NOTA: utilizziamo const per sicurezza per "difendere" sto importante array , e possiamo usare const anche se modifichiamo title poichè non andiamo mai a modificare
+title in questo modo title="aaa" , ma lo facciamo in maniera indiretta usando setTitle("aaa") ; in questo modo non andiamo a violare il vincolo di const.
+
+NOTA: questa cosa ti permette di controllare meglio il rendering e di applicarlo alle sole componenti che vuoi effettivamente modificare e rendirizzare 
++Questi metodi speciali come useState , che cominciano quasi tutti con use , sono chiamati React HOOK . 
+
+
+NOTA: la modifica non viene fatta immediatamente
+                                     
+
++NOTA: ogni istanza di componente ha le sue variabili , stati e funzioni che possono essere diverse da istanza ad istanza
+
++setTimeout() 
+
+------------------------------------------------------------------------
+
+
+                    PROPS
+
+Cosa sono i "props" ? 
+
+ChatGPT
+I "props" (abbreviazione di "properties") in React rappresentano i dati che un componente riceve come input da un componente genitore.
+ Essi permettono di passare informazioni da un componente all'altro e sono fondamentali per la riutilizzabilità e la composizione dei componenti in React.
+
+Ecco alcune caratteristiche chiave dei "props" in React:
+
+Immutabilità: Una volta che un componente riceve i "props", non può modificarli direttamente. Questo aiuta a mantenere un flusso di dati unidirezionale 
+e rende l'applicazione più prevedibile. Se un componente ha bisogno di modificare i dati che riceve come "props", dovrebbe invece utilizzare lo "state"
+ (stato) interno.
+
+Personalizzazione: I "props" permettono di personalizzare il comportamento e l'aspetto di un componente senza doverlo modificare direttamente. 
+Ad esempio, un componente "Button" potrebbe avere un "prop" chiamato "color" che determina il colore del pulsante.
+
+Passaggio di Funzioni: Oltre ai dati, attraverso i "props" è anche possibile passare funzioni. Questo è spesso utilizzato per comunicare 
+gli eventi da un componente figlio a un componente genitore.
+
+Riutilizzabilità: Poiché i componenti possono essere configurati attraverso i "props", è possibile riutilizzare lo stesso componente in diverse 
+parti dell'applicazione con comportamenti o aspetti diversi.
+
+Children Prop: Un "prop" speciale in React è children. Questo "prop" rappresenta qualsiasi elemento figlio passato all'interno di un componente.
+ Ad esempio, in <Componente>Testo</Componente>, il "prop" children del "Componente" sarebbe il testo "Testo".
+
+Un esempio semplice di utilizzo dei "props" potrebbe essere:
+
+
+function Benvenuto(props) {
+  return <h1>Ciao, {props.nome}!</h1>;
+}
+
+function App() {
+  return <Benvenuto nome="Alessia" />;
+}
+
+
+Nell'esempio, il componente Benvenuto riceve un "prop" chiamato nome e lo utilizza per visualizzare un messaggio di benvenuto. 
+Il componente App invoca Benvenuto e gli passa un "prop" nome con valore "Alessia".
+
+
+--------------------------------------------------------------------------------------------------
+
+se un "props" o "state" cambia , viene rendirizzata la componente corrente in cui è presente il "props" o "state" e tutte le sue sottocomponenti ? 
+ChatGPT
+Sì, quando un props o state di un componente cambia, il componente stesso viene ri-renderizzato. E poiché il metodo render di un componente
+ può dipendere sia dai suoi props che dal suo state, ogni volta che viene chiamato il metodo render, esso potrebbe produrre un output diverso
+ per le sottocomponenti in base ai nuovi props o state. Di conseguenza, React di default ri-renderizzerà anche tutte le sottocomponenti.
+
+CHIARIMENTO : 
+con "un props cambia" intendiamo che un componente figlio vede il suo dato props. che viene modificato , allora sto componente figlio si rendirizza . 
+Però , la modifica del props. nel figlio avviene perchè il padre ha modificato il dato props che ha passato al figlio tramite metodi come useState, 
+quindi la modifica del props e quindi il rendirizzamento sono avvenuti pur sempre per un uso indiretto di metodi come useState 
+
+
+Tuttavia, c'è un'importante eccezione a questa regola generale: l'implementazione del metodo shouldComponentUpdate. Questo metodo permette di
+ controllare il processo di ri-renderizzazione:
+
+Se shouldComponentUpdate ritorna false, il componente e tutte le sue sottocomponenti non verranno ri-renderizzate, anche se i props o lo state
+ sono cambiati.
+
+Se ritorna true, la renderizzazione avverrà normalmente.
+
+Questa funzionalità può essere particolarmente utile per ottimizzare le prestazioni in situazioni in cui la re-renderizzazione è costosa e non
+ sempre necessaria.
+
+Inoltre, nelle versioni più recenti di React, è possibile utilizzare React.PureComponent al posto di React.Component. PureComponent implementa
+ un controllo superficiale dei props e dello state nel suo metodo shouldComponentUpdate, rendendo automatico il processo di decisione se 
+ri-renderizzare o meno.
+
+Con l'introduzione degli Hooks, il Hook useMemo e React.memo possono essere utilizzati per ottenere un comportamento simile con componenti funzionali,
+ evitando ri-renderizzazioni inutili quando i props non cambiano in modo significativo.
+
+In sintesi, mentre il cambiamento di props o state innesca di default la ri-renderizzazione di un componente e delle sue sottocomponenti, 
+ci sono strumenti e tecniche in React che permettono di ottimizzare e controllare questo comportamento.
+
+
+
+
+----------------------------------------------------------------------------------------
+FORM 
+
+Costruiamo vari campi di un form in html in una componente , compreso il bottone di invio. 
+Vogliamo gestire i dati inseriti dall'utente ad esempio qundo compila il campo title . 
+Allora aggiungiamo uno speciale listener al miniform (guarda codice)  <input type="text"  onChange={titleChangeHandler} > 
+onChange è un listener speciale che può essere legato a vari tipi di form(non solo text) e viene invocato ogni volta che l'utente preme qualcosa in quel form ; quindi 
+ogni volta che l'utente digita qualcosa in quel form viene eseguita la funzione titleChangeHandler creata da noi .
++IMPORTANTE sapere che la funzione da noi costruita titleChangeHandler prende in input , di default , un oggetto event (lo prende poichè è collegata a quel onChange) 
+Possiamo scrivere tra i parametri di titleChangeHandler per essere precisi. Quell'event rappresenta l'evento dell'onChange che interviene ogni volta che premiamo 
+un tasto sul form . Questo event contiene un sacco di attriubuti , tra cui per esempio """event.target.value""" ovvero il valore inserito da noi nel form .NOTA che 
+sto event , ed il suo valore , cambia ogni volta che nel form premiamo un qualcosa.
++NOTA useState('') è all'inizio occupato dalla stringa vuota poichè giustamente quando apriamo la pagina il form ancora da compilare è vuoto 
+
++IMPORTANTE : onChange legge solamente STRINGHE . cioè gli puoi dare in pasto anche per es. un numero o una data ma poi lui in event ti restituisce una stringa 
+
+
+
+Se vogliamo gestire più form .....allora dobbiamo avere più stati .   Ci sono 2 approcci :
+1) possiamo usare più useState e quindi avere più stati nello stesso cmomponente gestiti indipendentemente l'uno dall'altro 
+
+2) possiamo usare un unico useState e fargli gestire più dati , ma dovremmo implementarlo in modo diverso :
+Questa volta useState non riceve solo '' quindi un unica stringa vuota ma ne deve gestire tante quanti sono gli elementi da gestire , quindi riceve un OGGETTO 
+es:  vogliamo dare 3 tipi di dati dei form ad use state 
+Allora useState riceve un oggetto composto da 3 campi 
+
+           const[userInput, setUserInput] = useState({
+             enteredTitle: '',
+             enteredAmount: '',
+             enteredDate: '',
+               }); 
+
+facciamo sempre il fatto di mettere nell'array prima il cnotenuto e poi la funzione che ci permette di modificare il tutto 
+NOTA IMPORTANTE : adesso ,però , ogni volta che vogliamo usare setUserInput per modificare solo un unico campo del form dobbiamo tener conto del fatto che l'elemento 
+da modificare viene modificato , ma gli altri 2 non modificati non rimangono allerta belli sistemati , pretendono anche loro di essere ricompilati , allora è compito 
+nostro , ricompilarli con i loro vecchi valori . 
+Per fare ciò in modo più veloce usiamo l'operatore Spread , quello con i 3 punti seguito dal contenitore di dati da ricopiare nel nuovo: 
+
+                const titleChangeHandler = (event) => {
+                  setUserInput({
+                    ...userInput,
+                    enteredTitle: event.target.value,     })
+                       };
+
+A sto punto il contenuto di userInput , a parte quel enteredTitle che va modificato , rimane lo stesso (i valori vengono ricopiati nel contenitore)
+Per evitare errori mettiamo tutto ciò in una funzione anonima ...quindi st'ultimo pezzo di codice diventerà
+
+                const titleChangeHandler = (event) => {
+                   setUserInput( (prevState) => {
+                      return {  ...prevState, 
+                                enteredTitle: event.target.value };
+                         });   
+
+ dove quel prevState sono gli stati precedenti riscritti a parte quello che viene modificato 
+
+
+
+
+
+
+Procediamo con l'approccio di avere i vari dati indipendenti (il primo) 
+Per fare in modo che sti vari dati siano parte di un solo "oggetto form" , li abbiamo racchiusi tra apici <form></form>  ed abbiamo aggiunto un bottone di tipo 
+submit che si occupa di inviare il tutto . 
+Aggiungiamo adesso un metodo associato proprio a questo bottone. Negli apici form : <form onSubmit = {submitHandler}>   dove submitHandler è il metodo creato 
+da noi . 
+In sto metodo , che prende in input il classico event , come prima cosa dobbiamo scrivere il comando event.preventDefault()  per evitare un comportamento di default 
+del browser che al premere del bottone ricarica l'intera pagina del browser .  
+Dopo , in questa funzione non facciamo altro che creare un oggetto composto dai vari valori inseriti dall'utente ; valori che ovviamente hanno la nomenclatura di 
+quei famosi dati indipendenti che abbiamo gestito poco fa.(quelli che vengono aggiornati in continuazione con useState) 
+
+Con l'utilizzo degli stati abbiamo la cosiddetta associazione a due vie , ovvero oltre a ricevere dati quando l'utente digita sul form , possiamo , a runtime , 
+inviare anche noi dati sui campi del form volendo .
+Sfruttiamo l'associazione a due vie per pulire i campi di input dopo che abbiamo premuto il bottone invia. 
+Usiamo , negli apici dei vari campi input , l'attributo value= che permette di inizializzare il valore del campo input e mettiamo quel value uguale a {.....}  
+il nome del valore (quello nell'array usando useState); E , nel funzione che abbiamo implementato per l'onSubmit , dopo che preleviamo i dati inseriti dall'utente , 
+andiamo ad inizializzare i valori dei vari dati (sempre quelli col nome memorizzati negli array con useState) con la stringa vuota '' attraverso l'uso dei 
+vari set.
+
++Quindi possiamo usare l'associazione a due vie (two binding association) non solo per ricevere dati dai form ma anche per modificarli e gestirli a runtime
+
+
+
+ADESSO 
+ricordiamo che il nostro form è un componente annidato in un componente padre che è annidato in un altro componente padre . Dobbiamo ,portare i dati dal figlio form 
+al nonno App, passando per il componente che sta di mezzo RICORDA: i dati si passano componente per componente , nessuno può essere saltato .
+(guarda codice ) 
+Per passare i dati da ExpenseForm a NewExpense nel tag ExpenseForm che sta in NewExpense mettiamo un attributo con un nome scelto da noi (di solito comincia con on) 
+onSaveExpenseData lo poniamo uguale a {...} metodo creato da noi .
+Ricordiamoci , prima di tutto , di inserire nel metodo implementato in ExpenseForm (quello in cui quando premiamo il bottone) prop.onSaveExpenseData(enteredData) 
+dove quel metodo è lo stesso dell'attributo nel tag NewExpense e enteredData è l'oggetto contenente i dati inseriti dall'utente (costruito in ExpenseForm) 
+Mo implementiamo la funzione strattamente collegata a onSaveExpense in NewExpense 
+
+const saveExpenseDataHandler = (enteredExpenseData) => {
+    const expenseData = {
+      ...enteredExpenseData,
+      id: Math.random().toString()
+    };
+    props.onAddExpense(expenseData);
+  };
+
+in questo esempio aggiungiamo ai dati immessi dall'utente anche l'id e poi semplicemente facciamo la stessa cosa che abbiamo fatto in ExpenseForm , 
+(props.onAddExpense(expenseData));     ovvero andiamo a passare l'oggetto contente tutti sti dati (queli immessi dall'utente + id) al padre che farà praticamente 
+la stessa cosa che abbiamo descritto fino a mo co sto figlio , per utilizzare i dati.
+
+
+
+
+SOLLEVAMENTO DI STATO : è quel processo in cui vogliamo passare dei dati da una componente al fratello e allora li passiamo (quindi passiamo lo stato) al padre, che 
+passa a sua volta all'altro figlio sto stato attraverso il props. (ovviamente poi sto figlio lo può passare al suo figlio ecc) 
+es: una componente è il form , vuole passare i dati al fratello che è la componente che visualizza le spese , ed il padre dei 2 è l'intera interfaccia .Quindi esso 
+fa da ponte tra la componente che genera dati e quella che ne necessita
+------------------------------------------------------------------------
+
+Componenti Statefull : quelli che si occupano della gestione di stati , quindi di gestire gli eventuali cambiamenti di stati
+
+Componenti Stateless : quelli che si occupano di prendere i dati dal padre o figlioe semplicemente mostrarli oppure di fare qualche piccola operazione logica ,
+ ma cmq non gestiscono alcun cambiamento di stato 
+
+
+--------------------------------------------------------------------
+LISTA 
+
+Per creare una lista dinamica.
+usiamo il metodo predefinito map(      esso si usa su un array cui elementi saranno iterati uno ad uno , ed andiamo a definire una funzione che agisce su questi 
+elementi su cui iteriamo. Infatti map restituisce un altro array , cui elementi sono gli stessi elementi che ha preso in input , però dopo che sono passati sotto 
+la funzione che abbiamo implementato . 
+es: 
+
+{ props.items.map( (expense) => (                                            (la funzione anonima prende come parametro expense , 
+ <ExpenseItem                                                                    le parentesi attorno ad expense potevano essere evitate dato che è unico parametro) 
+    title={expense.title}
+    amount={expense.amount}
+    date={expense.date} 
+     /> 
+    ))}                                                                RICORDA : map restituisce un nuovo array 
+
+
+props.item è l'array che contiene gli oggetti ExpenseItem pieni di dati 
+expense è una variabile usata come puttana ; ovvero la usiamo come riferimento dell'elemento dell'array che stiamo analizzando in quel momento durante l'iterazione;
+in sto caso quindi rappresenta i vari dati che iteriamo man mano 
+e che quindi usiamo per prelevare e costruire il nostro nuovo array di elementi <ExpenseItem> 
+
+NOTA : Quando creiamo un array , dato che in sto caso con map andiamo a restituire un array , 
+i vari elementi dell'array sono rappresentati da React semplicemente come se li scrivessimo uno sopra l'altro; quindi sono mostrati cosi sullo schermo 
+
+
+KEY 
+Quando aggiorniamo una lista ad es aggiungendo un elemento , di default React aggiunge l'elemento in basso alla lista , spostando tutti gli elementi al di sopra uno 
+ad uno e aggiornandoli/riscrivendoli . Questo è un approccio inefficiente e può causare bug. Questo capita poichè React vede gli elementi di sta lista come 
+tutti uguali , non li distingue . Per questo dobbiamo dare un identificativo ad ognuno di essi . 
+Possiamo aggiungere ad es a ExpenseItem  <ExpenseItem key= {expense.id} >  l'attributo key può essere associato a qualsiasi tipo di componente ( è di default in React)
+e possiamo associargli qualsiasi valore primitivo ; in questo caso gli abbiamo associato per comodità l'id dell'acquisto.
+----------------------------------------------------------------
+
+CONDIZIONI E FILTRI
+
+***********NOTA JAVASCRIPT : 
+== usato per vedere se due valori sono uguali 
+
+=== per vedere se due valori sono uguali AND se sono dello stesso tipo .
+
+es:       console.log(1 == '1');
+          // true
+          console.log(1 === '1');
+          // false
+
+
+************ALTRA NOTA JAVASCRIPT 
+espressione ternaria -->               <condizione> ? <istruzione1>(se condizione soddisfatta) : <istruzione2> (se non soddisfatta)
+
+
+************ALTRA NOTA JAVASCRIPT     IMPORTANTE 
+{filteredExpenses.lenght === 0 && <p> aaaa </p>
+
+possiamo sfruttare sta cosa se vogliamo ad esempio decidere quando mostrare un form e quando renderlo invisibile alternandolo con un bottone 
+in sto caso quel && non ha la funzione di AND , MA quest'ultima espressione significa che se soddisfatta la condizione (quella prima dei &&) allora viene 
+restituito <p> aaaa </>   (è un esempio a cazzo ovviamente)   (quello che sta dopo &&)
+In sto modo possiamo fare più condizioni tipo if else
+
+
+************ALTRA NOTA JAVASCRIPT     IMPORTANTE 
+possiamo fare for ed usare una variabile da sfruttare per percorrere/iterare un array (questo si fa prima del return (non si può usare for nel return ))
+es: 
+        for( const expense of prop.expenses) { .....
+in sto caso uso la var expense per percorrere l'array prop.expenses 
+
+
+************ALTRA NOTA JAVASCRIPT     IMPORTANTE 
+Semplice modo per convertire da Stringa a numero (forse intero , da rivedere )        +amount      (grazie a quel + adesso la stringa amount è un numero) 
+
+
+
+
++ Metodo filter . Esso prende in input un array che itera e restituisce un array con gli stessi elementi di quello ricevuto , meno quelli filtrati dalla condizione 
+data dalla funzione che prende il metodo filter come parametro 
+es: 
+          const filteredExpenses = props.item.filter( expense => {                         (la funzione anonima prende come parametro expense , 
+             return expense.date.getYear()toString() === filteredYear; });          le parentesi attorno ad expense potevano essere evitate dato che è unico parametro) 
+
+expense viene utilizzato come variabile di appoggio rappresentante i vari valori dell'array 
+In sto caso filtriamo tutti gli oggetti che nel campo date NON hanno l'anno uguale a filteredYear
+ENTRANO(vengono restituiti dal filtro) SOLO I VALORI CHE DANNO TRUE 
+
+
+
+
+
+*********+NOTA IMPORTANTE : dopo il return , quindi nel codice HTML (JSX) , non possiamo utilizzare tra le graffe (quindi dove usiamo JavaScript) FOR ed IF 
+MA possiamo usarli normalmente prima del return 
+La miglior cosa è sviluppare la maggior parte della logica condizionale prima del return ed usare una variabile per memorizzare i risultati voluti che poi mostriamo.
+è un approccio più pulito dell'utilizzare condizioni ternarie ecc direttamente dopo il return nell'html . 
+
+----------------------------------------------------------------------------------
+
+JSX (limiti e soluzioni) 
+
+RICORDA: il return può restituire solo e unicamente un elemento , quell'elemento potrà anche avere vari figli , nipoti ecc ....l'importante è che venga restituito 
+un unico elemento . Questo problema si risolve con un semplice <div> HTML che funge da unico padre radice di tutti i cazzo di elementi che ci vogliamo appizzare 
+dentro . Un'altra soluzione sarebbe quella di usare un array , quindi parentesi quadrate , al posto del div , ma questa soluzione è sconveniente e poco pratica. 
+
+
+
+FRAMMENTI
+- Un altro "problema" a cui dobbiamo stare attenti è l'uso dei <div> annidati ; ovvero un div dentro un div con un div entro ecc.... Poichè usiamo un div come radice
+per ogni componente, dato che una componente contiene spesso più componenti , questo è inevitabile 
+Un programma del genere funzionerebbe ma non è una buona pratica poichè diminuisce le prestazioni della nostra applicazione dato che in questo modo aggiungiamo 
+inutilmente più elementi HTML che comunque devono essere rendirizzati , aumentare il numero di renderizzazioni non è mai una buona pratica . Pensa che ad ogni 
+singolo cambiamento e renderizzazzione di una componente devono essere rendirizzati tutti sti elementi HTML in più , questo appesantisce l'applicazione.
+Risolviamo usando un componente Wrapper di default di React , al posto del <div> , usiamo <React.Fragment> ..... </React.Fragment> . Questo si pone come semplice 
+contenitore; un componente che non fa altro che prendere e restituire i componenti che prende come figli . 
+****I frammenti ti consentono di raggruppare una lista di figli senza aggiungere nodi extra al DOM. 
+Adesso mentre il div comparè nel codice da Rendirizzare (poichè è HTML) e appesantisce React, il React.Fragment non appare affatto e non ha bisogno di essere 
+rendirizzato .
+Il componente Wrapper (React.Fragment) è semplicemente una componente che restituisce props.children , ovvero il contenuto che gli viene passato dal padre, è 
+letteralmente un contenitore trasparente . Il div non lo è. 
+ 
+-------------------------------------------------------------------------------
+
+PORTALI 
+
+Quando vogliamo mostrare messaggi di avviso qualsiasi ad esempio che escono quando si sbaglia a compilare un form , sappiamo bene che dobbiamo mettere la condizione 
+nella componente principale. Questa condizione farà in modo che il ModalError (la componente messaggio di errore che) nidificato in sta componente principale venga
+renderizzato; questo ModalError sarà del DOM HTML e quindi sarà figlio della root , nella posizione vicino a sta componente che gli abbiamo assegnato. 
+Ciò può portare ad errori 
+Quando usiamo un modale all'interno di un particolare elemento (un componente genitore), l'altezza e la larghezza del modale verranno ereditate dal componente in
+ cui risiede il modale. Quindi c'è la possibilità che il modale venga ritagliato e non venga mostrato correttamente nell'applicazione.
+
+Portal è un modo di prima classe per rendere i componenti figlio in un nodo DOM al di fuori della gerarchia DOM principale definita dalla gerarchia dell'albero 
+dei componenti.
+Usando i portali , quando il ModalError deve apparire non viene incluso nel DOM principale dove tecnicamente sta messo (nel Componente citato all'inizio) 
+però è come se fosse cosi . Questo rende ModalError come un componente con caratteristiche completamente indipendenti ma che allo stesso tempo nidifichiamo 
+nella nostra componente principale e che gestiamo con essa. Quindi è come se ci fosse un puntatore a sto ModalError che si trova fuori al DOM principale . 
+
+L'implementazione del Portale avviene dentro a ModalError , per le classi che lo usano è la stessa cosa 
+(guarda codice) 
+RICORDA: quando si utilizzano i portali, è necessario definire un elemento DOM HTML come punto di montaggio del componente del portale, sta procedura si deve 
+fare nell'index.html 
+
+
+altra spiegazione riassuntiva: React Portal è utile quando dobbiamo rendere i componenti figlio al di fuori della normale gerarchia DOM senza interrompere 
+il comportamento predefinito della propagazione dell'evento attraverso la gerarchia dell'albero dei componenti React. Ciò è utile durante il rendering di
+ componenti come modali, suggerimenti, messaggi popup e molto altro ancora.
+
+-------------------------------
+
+REFERENCE 
+
+Il ref è un React Hook che, in poche parole, permette di accedere agli elementi del DOM e di lavorare con loro.
+Gli elementi del DOM sappiamo bene sono sostanzialmente tutti i tag dell'albero HTML che andiamo a costruire ; con i ref possiamo ad es. prendere i valori inseriti 
+dall'utente in un form una volta che ha premuto il bottone invia. Questo è un approccio simile a useState ma più leggero in questo caso dato che leggiamo 
+i dati che l'utente ha immesso NON ogni volta che digita qualcosa (quindi è una soluzione migliori in questo caso amche dal punto di vista del rendering) .
+Dobbiamo aggiungere l'attributo ref al tag HTML a cui vogliamo associare il ref (possiamo associare un ref a qualsiasi elemento HTML) , e cosi potremmo accedere 
+a tutti gli attributi di quell'elemento HTML , non solo a value. 
+Solitamente non bisogna mai modificare gli attributi del DOM con questa pratica , questo è un lavoro che fa già e deve fare React sotto al cofano .
+
+es. con nomeUtente preso da form 
+(guarda nell'applicazione niccolo-app in AppUser.js
+
+
+COMPONENTI CONTROLLATE E NON 
+
+Le componenti controllate sono sostanzialmente quelle controllate e gestite da React . Non controllate quelle che manipoliamo senza l'uso diretto di React. 
+
+------------------------------------------------
+
+DATABASE    ( HTTP GET Request) 
+
+Ovviamente con React NON ci colleghiamo direttamente al DB ma prima ad un server che gestisce il backend la sicurezza ed il resto della logica che 
+,a sua volta , si collega al DB e ci manda tutti i dati .
+
+Fetch API : Api integrate nel browser che ci permettono di fare richieste http e di ricevere le risposte 
+
+Creiamo la funzione che gestisce richieste e risposte http. Usiamo in essa il metodo fetch() che come primo argomento prende l'indirizzo al quale fare la richiesta 
+e come secondo argomento può prendere un elemento aggiuntivo con cui possiamo specificare alcune cose come la tipologia di richiesta http (post/get , get di default) 
+Poi per decidere come agire , usiamo un .then subito nel fetch , e in esso implementiamo quello che vogliamo fare con la risposta . (guarda codice ) Con response 
+possiamo accedere a tutti i campi e attributi della risposta come ad es. l'header . NOTA: il metodo then serve poichè la richiesta http è asincrona , e ci 
+potrebbe volere un pò per l'arrivo della risposta  ; quindi , per evitare di eseguire funzioni senza l'arrivo effettivo della risposta , then agiusce solo quando 
+la risposta è arrivata.   NOTA :  in seguito a then possiamo aggiungere .catch per gestire eventuali eccezioni
+NOTA : quando un metodo ci resituisce un oggetto PROMISE vuol dire che ci restituisce eventualmente un oggetto in modo asincrono , ci promette che ce lo restituirà
+
+l'API Fetch restituisce i dati in formato JSON , allora saremo interessati (vantaggio : oggetti JSON sono facili da tradurre in oggetti JavaScript) 
+NOTA : l'oggetto response può usare .json() per trasformare oggetti JSON in JavaScipt 
+Mettiamo adesso un altro then che per la trasformazione in dati JavaScript che riceverà in input ( quel data come parametro , guarda codice) 
+
+ADESSO 
+
+nel metodo per gestire i dati facciamo data.results , dove results è un campo JSON dei dati che stiamo andando a prendere, quindi è un nome specifico di un campo 
+JSON che ci è stato restituito 
+NOTA : quando prendiamo i dati dal JSON dobbiamo mettere i nomi dei campi JSON 
+Usiamo la gestione degli stati e aggiorniamo lo stato con i nostri film presi dal JSON 
+(guarda codice) 
+
+NOTA : quando abbiamo a che fare con gli oggetti Promise , che dobbiamo aspettare , è necessario usare then per aspettare la risposta e spesso si vanno a creare 
+delle catene di then . Questo va bene . 
+Un altro metodo che fa sostanzialmente la stessa cosa di then , ma più snello , è usare all'inizio della funzione la parola chiave ASYNC e poi , vicino ad 
+ogni operazione che vogliamo aspetti la risposta (come fa fare then) mettiamo la parola chiave await , che svolge alla fine lo stesso lavoro di then ma a livello 
+di codice è un pò più snello e leggibile ( es:   const data = await response.json() ) 
+
+
+BARRA CARICAMENTO 
+
+Quando richiediamo dei dati e aspettiamo vogliamo che venga mostrata una barra di caricamento o ad es. una semplice scritta loading....  questo si fa semplicemente 
+con il React Hook useState gestendo una var booleana che è impostata inizialmente a false . Poi quando mandiamo la richiesta e viene eseguita la funzione per mandare
+la richiesta la mettiamo a true, questo scatenerà il render del messaggio di caricamento che eseguiamo con uno shortcut per la condizione ( {isLoading && <p> Loading..</p>)
+Quando viene gestita la risposta , quindi alla fine della funzione poco fa citata rimettiamo la var a false e agiamo di conseguenza nel rendering .
+
+
+GESTIONE ERRORI HTTP 
+
+Quando viene mandato come risposta uno stato di errore ( 400 errore server ,500 errore client) certe API li gestiscono in modo automatico e certe non lo fanno affatto. 
+Qui ad es. se ci sta un errore e non lo gestiamo noi , quando il cliente cerca un film la pagina si blocca con la scritta Loading.... (barra di caricamento) 
+Gestiamo gli errori usando sempre il ReactHook useState ed un booleano che chiamiamo error . Usiamo try in cui mettiamo tutto il blocco di codice da controllare 
+(quello della funzione che manda la richiesta , e catch per mandare il messaggio di errore ) Poi gestiamo il mostrare l'errore nel rendering con dei blocchi 
+di condizione .
+NOTA IMPORTATANTE (try catch) : Nel try va il blocco di codice da controllare , controllare nel senso che se esce fuori un errore in quel blocco di codice il try 
+ferma tutto e da il controllo direttamente al catch , che esegue il suo corpo . Tutto ciò che sta dopo il catch viene eseguito. 
+
+NOTA: puoi gestire i blocchi di condizione sia con gli shortcut nel return . Sia usando una variabile let e usare gli if elese subito prima del return (metodo più 
+pulito in caso di condizioni numerose) 
+
+------------------------------------------------
+
+------------------------------------------------
+
+
+                    CONTEXT ( CONTESTI )
+
+I contesti servono sostanzialmente per rendere dei dati accessibili e modificabili "globalmente" da tutte le componenti, senza la necessità di passare il dato per i vari strati dell'albero attraverso il props.
+Ad es. se creo un contesto posso far leggere un dato al padre e poi direttamente al suo pro-nipote senza bisogno di passaggi gerarchici (senza passare per il figlio e il nipote) , il pro-nipote se lo prende direttamente 
+da una scatola al centro dell'applicazione . Questa scatola globale contiene i vari contesti . 
+
+Quando voglio creare dei dati di una certa categoria creo un loro contesto , in una componente indipendente. 
+es. creo il contesto con un valore booleano per vedere se l'utente che ha loggato è admin o no . 
+
+
+
+const AdminOrNotContext = createContext(null);                  --> abbiamo creato il Context               
+
+export function AdminOrNotProvider({children}){               --> creiamo il Provider
+
+    const [adminOrNot,setAdminOrNot] = useState(false);
+
+    const updateAdminOrNot = (res) => {
+        setAdminOrNot(res);
+    }
+
+
+    return (
+    <AdminOrNotContext.Provider value= {{adminOrNot, updateAdminOrNot}}>               
+    {children}                                                                                --> NOTA il {children}
+    </AdminOrNotContext.Provider>
+    )
+}
+
+
+export default AdminOrNotContext;
+
+
+
+POI IN UN ALTRA COMPONENTE -------------->     const {adminOrNot, updateAdminOrNot} = useContext(AdminOrNotContext);
+
+
+
+
+-Il Provider serve per creare inizializzare e fornire i dati del Contesto e per creare un "ambito" in cui consumarli.
+usando useContext , la componente in cui lo abbiamo usato diventa automaticamente figlio del Provider e possiamo accedere ai suoi valori ( admin e updateAdminOrNot ) (ATTENZIONE ALL'ORDINE E AI NOMI CHE SONO IMPORTANTI) 
+In tal modo adminOrNot attuale , in questa componente , sarà quella del Context e lo stesso vale per il metodo updateAdminOrNot che possiamo usare in questa componente per cambiare la costante adminOrNot nel Context.
+
+NOTA: qquando facciamo       const {adminOrNot, updateAdminOrNot} = useContext(AdminOrNotContext);
+Stiamo dicendo che la componente su cui stiamo facendo useContext è figlia del Provider e quindi "anche del Context" a cui possiamo accedere.
+Per far accedere altre componenti al Context ci basta quindi usare useContext e far diventare la componente FIGLIO del context 
+
++Il Provider è quindi come un "Ponte" che ti permette di essere "figlio" al Context e di accedervi . 
+
+NOTA****** : abbiamo detto che una componente che usa useContext è come se fosse figlia del contesto . Quindi se un dato nel contesto viene cambiato 
+tramite useState , allora la componente figlia del contesto viene rerendirizzata . 
+Questo comportamento enfatizza l'importanza di considerare le prestazioni e l'ottimizzazione quando si lavora con contesti, specialmente per applicazioni di grandi dimensioni o con strutture complesse. Ad esempio, l'aggiornamento frequente di un contesto con molti consumatori può portare a un impatto sulle prestazioni a causa del re-rendering.
+Per evitare re-rendering non necessari, è possibile ottimizzare i componenti consumatori con React.memo o utilizzare tecniche di memoizzazione per i valori passati al contesto
+
+
+
+-----------------------------------------------------------------------
+
+
+                       REACT HOOKS 
+
+I React Hooks sono una funzionalità introdotta in React nella versione 16.8. Essi permettono di utilizzare lo stato e altre funzionalità di React
+ senza scrivere una classe, rendendo più semplice l'utilizzo delle funzionalità di React nelle funzioni component.
+
+Prima dell'introduzione dei Hooks, per utilizzare lo stato o il ciclo di vita di un componente in React, era necessario utilizzare componenti 
+basati su classi. I Hooks offrono un modo per "agganciare" nelle funzionalità interne di React da componenti funzionali.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+*****NON è un HOOK    il REACT Memo     (per PERFORMANCE)
+
+Viene utilizzata per prevenire il rerender del componente se le props passate ad esso non sono cambiate tra i render. È particolarmente utile quando si ha un componente che riceve props complesse o si effettuano calcoli pesanti i cui risultati non cambiano ad ogni render.
+Insomma se si usa ad esempio useState e quindi c'è il rerender , ma nella componente figlia i props non sono cambiati , quella componente figlia non verrà
+rerendirizzata se affiancata dal memo
+
+es: 
+
+import React, { memo } from 'react';
+
+const MyComponent = memo(function MyComponent(props) {
+  // Il tuo componente qui
+});
+
+
+React memorizza il props nell'heap e poi , dopo il rerender , React fa un confronto "superficiale" (non fa grandi calcoli) del vecchio e nuovo props . Se 
+vede che il props non è cambiato , utilizza quello memorizzato
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+****REACT HOOK useMemo (per PERFORMANCE)
+
+Leghiamo una funzione pesante che calcola un valore a delle dipendenze . Al primo render la funzione pesante viene eseguita e il valore risultate restituito , inoltre il secondo parametro di useMemo è un array di dipendenze . Durante ogni rerender , la funzione pesante non viene ricalcolata e 
+quindi il risultato è stato memorizzato ed è sempre lo stesso ; la funzione pesante viene ricalcolata solo se al prossimo render , una delle variabili 
+nell'array di dipendenze è stato modificato . Quindi si effettua il calcolo solo se alcune dipendenze cambiano 
+
+
++(con riferimento ad useCallback) la funzione usata in useMemo non verrà rieseguita al rerender se le sue dipendenze non cambiano , ma la funzione (il corpo della funzione) viene ricreata quando c'è un rerender 
+
+es:
+
+const expensiveValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+
+In questo esempio, computeExpensiveValue(a, b) viene chiamato solo quando a o b cambiano.
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+****REACT HOOK  useEffect
+
+in useEffect implementiamo una funzione che viene eseguita in determinati momenti :  
+
+es1 :          tale codice viene eseguito ogni volta DOPO che la pagina è stata completamente rendirizzata 
+
+ useEffect(() => {
+  // Codice che viene eseguito dopo ogni renderizzazione
+  document.title = `Hai cliccato ${count} volte`;
+});
+
+
+es2:    la funzione viene eseguita una singola volta dopo che la pagina è stata completamente renderizzata 
+
+useEffect(() => {
+  // Codice che viene eseguito una sola volta
+  fetchData();
+}, []); // L'array di dipendenze vuoto indica che l'effetto non dipende da alcun valore e quindi non deve essere ri-eseguito
+
+
+
+es3:    ogni volta che  id viene modificato la funzione viene eseguita    
+         NOTA : se id (nell'esempio corrente) viene modificato senza usare useState ma viene modificato semplicemente senza causare un render , allora
+         la funzione in useEffect non parte. Parte invece se id viene modificato tramite useState o se fosse stato props.id e id viene modificato dal 
+         componente padre che passa id tramite props  (quindi indirettamente sempre attraverso useState) 
+
+useEffect(() => {
+  // Codice che viene eseguito solo se `id` cambia
+  fetchData(id);
+}, [id]); // L'effetto viene ri-eseguito solo quando `id` cambia
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+******REACT HOOK useRef     (punto 2 per PERFORMANCE)
+
+Ci sono 2 casi in cui può essere usato (il secondo è il più importante) 
+
+1) può essere usato per manipolare direttamente elementi HTML del DOM. 
+ in molti casi non è considerata una buona pratica gestire gli elementi del DOM direttamente in React tramite riferimenti (refs), specialmente se esiste un approccio "React way" per ottenere lo stesso risultato. 
+
+Quando Evitare: Modifica di elementi DOM per riflettere nuovi stati
+
+Casi Accettabili :
+-Gestione del Focus: Ad esempio, impostare il focus su un input quando un componente viene visualizzato
+-Itegrazione con Librerie Esterni: Che richiedono accesso diretto agli elementi del DOM.
+Animazioni: Utilizzare le API del DOM per animazioni complesse che non sono gestibili in modo pratico tramite lo stato o le props di React.
+Misure del DOM: Calcolare le dimensioni o la posizione di un elemento per logica di layout o per risposte visive che non possono essere ottenute tramite CSS.
+
+
+
+2) può essere usato per dire che una variabile sarà immune dai render . Insomma quando ci sta un rerender la variabile avrà sempre lo stesso valore 
+e non sarà reinizializazata . 
+Il ciclo di vita di tale variabile : essa viene creata quando viene creato il componente (aggiunto al DOM ) , rimane li ad ogni rerender , e muore quando 
+la componente viene distrutta e quindi eliminata da DOM 
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+REACT HOOK  useCallback 
+
+Una componente è fatta di funzioni e valori e , al rerender , vengono ricreati sia i valori sia le funzioni (il corpo delle funzioni è ricreato) . 
+Se abbiamo funzioni particolarmente corpose e che vogliamo conservare , possiamo usare useCallback per proteggere una funzione dai rerender. Quindi la funzione non viene ricreata al rerender , a meno che uno dei valori delle sue dipendenze non cambia tramite l'uso di useState
+
+Sappiamo che in React è possibile passare una FUNZIONE da un componente padre al figlio . Possiamo usare React.Memo per fare in modo che quando il padre è rirenderizzato , il figlio viene rirenderizzato solo se i suoi props vengono modificati . Sappiamo che i props possono essere sia valori che funzioni . 
+Dato che al rirender le funzioni contenute nel padre vengono anche loro RICREATE , ciò causerà un rirender nel figlio se gli è stata passata una funzione tramite props. 
+
+
+
+es: 
+
+
+import React, { useCallback, useState } from 'react';
+
+
+//COMPONENTE FIGLIO
+
+const Button = React.memo(({ onClick }) => {
+  console.log('Button render');
+  return <button onClick={onClick}>Cliccami</button>;
+});
+
+
+//COMPONENTE PADRE
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  const handleClick = useCallback(() => {
+    // Usa il setter funzionale per accedere all'ultimo stato
+    setCount(currentCount => currentCount + 1);
+  }, []); // Nessuna dipendenza, la funzione non viene ricreata ad ogni render
+
+  return (
+    <div>
+      <p>Conteggio: {count}</p>
+      <Button onClick={handleClick} />
+    </div>
+  );
+}
+
+
+
++DIPENDENZE 
+
+1) "[]" la funzione è creata solo e unicamente al primo render 
+2) "[x]" la funzione viene ricreata quando x è modificato tramite useState
+3) "" (nulla) se non mettiamo nessuna dipendenza, sarà come se non avessimo usato useCallback, ovvero la funzione viene ricreata ad ogni rerender 
+
+
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+******REACT HOOK useContext (leggi CONTEXT sopra) 
+
+--------------------------------------------------------------------------------------------------
+
+
+   QUESTIONE CONTEXT E SICUREZZA 
+
+
+Niccolò:
+Se ho ad esempio un dato "AdminOrNot" nel Context che permette di vedere all'utente l'interfaccia dedicata all'admin se il valore è true , oppure dell'utente normale in caso contrario.
+ Se un utente NON admin modifica il valore di AdminOrNot ispezionando il codice , sarà in grado di vedere l'interfaccia dedicata all'admin ? 
+
+ChatGPT
+Sì, se il tuo sistema si affida esclusivamente al valore di "AdminOrNot" nel Context lato client per determinare se mostrare o nascondere l'interfaccia dell'admin,
+ e un utente esperto modifica questo valore tramite gli strumenti di sviluppo del browser, allora effettivamente sarà in grado di vedere l'interfaccia dell'admin.
+
+Tuttavia, è importante sottolineare alcune cose:
+
+Frontend vs Backend: Anche se un utente può modificare il valore e vedere l'interfaccia dell'admin, ciò non significa che possa effettivamente eseguire azioni amministrative. 
+L'autorizzazione reale per eseguire azioni (come modificare dati, eliminare account, ecc.) dovrebbe sempre essere gestita e verificata sul lato server. Il server dovrebbe verificare 
+se l'utente ha effettivamente i permessi di amministratore prima di eseguire qualsiasi azione privilegiata.
+
+Buone pratiche: Fare affidamento sullo stato lato client per la sicurezza o l'autorizzazione è una cattiva pratica. Il client è facilmente manipolabile e non può mai essere considerato
+ "sicuro" in questo contesto. Le verifiche di autorizzazione e autenticazione dovrebbero sempre avvenire lato server.
+
+Mitigazione: Se vuoi comunque utilizzare un indicatore lato client per migliorare l'esperienza utente (ad es. mostrare o nascondere interfacce in base ai ruoli), assicurati che qualsiasi
+ azione o dato sensibile sia protetto e verificato lato server. In altre parole, anche se un utente non amministratore riesce a "vedere" l'interfaccia dell'admin, non dovrebbe essere in
+ grado di fare nulla con essa senza le adeguate autorizzazioni.
+
+In sintesi, mentre è possibile per un utente manipolare l'interfaccia lato client, ciò non dovrebbe mai consentirgli di bypassare restrizioni o autorizzazioni reali. La sicurezza vera e
+ propria deve essere sempre implementata e gestita sul backend.
+
+---------------------------------------------------------------

@@ -1,0 +1,609 @@
+    
+
+      FUNZIONE RICORSIVA : 
+
+Una funzione ricorsiva è una funzione che si richiama direttamente o indirettamente. Questo tipo di funzione è utile per risolvere problemi che possono essere suddivisi in sottoproblemi simili, ma più piccoli. 
+La ricorsione permette di risolvere questi sottoproblemi e di combinare i loro risultati per ottenere la soluzione del problema originale.
+
+
+
+
+-----------------------------------------------------------------------------------------------------------
+
+
+                    TIPI DI PARADIGMA DI PROGRAMMAZIONE 
+
+
+- Programmazione PROCEDURALE o IMPERATIVA :
+La programmazione procedurale è un paradigma di programmazione  basato sull'idea di dividere un programma in "procedure", quelle che noi chiamiamo funzioni.
+Queste procedure possono essere chiamate da altre procedure, da se stesse (ricorsione) o possono essere eseguite in sequenza o in certi linguaggi anche parallelamente.
+Il concetto chiave è l'organizzazione del codice in blocchi riutilizzabili e indipendenti.
+
+-Programmazione AD OGGETTI : 
+Si basa sull'idea di rappresentare entità appartenenti al mondo reale , siano esse concrete o astratte , tramite l'utilizzo di costrutti del linguaggio .
+L'entità in questione avrà una propria classe , che ne rappresenta la struttura . E ogni istanza della classe costituisce un oggetto. 
+La classe avrà metodi (che rappresentano i comportamenti dell'entità) e attributi (che rappresentano le caratteristiche dell'entità).
+Questo paradigma inoltre ha 4 caratteristiche fondamentali : Astrazione , Incapsulamento, Ereditarietà e Polimorfismo. 
+Astrazione : (interfacce) nasconde la complessità delle classi mostrandone sono l'essenziale , ovvero cosa fa e NON come lo fa
+POlimorfismo: un entità può assumere più forme
+Ereditarietà: le classi possono ereditare caratteristiche e comportamenti da altre classi 
+Incapsulamento : dati e metodi possono essere racchiusi al sicuro all'interno delle classi 
+
+(+No, Java non usa la crittografia per rendere le variabili private inaccessibili. La limitazione dell'accesso è piuttosto una caratteristica del linguaggio e del compilatore.
+Quando dichiari una variabile come private in Java, stai dando una direttiva al compilatore Java, dicendo "Questa variabile non dovrebbe essere 
+accessibile al di fuori di questa classe". Durante il processo di compilazione, il compilatore assicura che non ci siano tentativi di accedere 
+direttamente a tale variabile da codice al di fuori della classe. Se ci sono tentativi in tal senso, il compilatore genererà un errore di compilazione.
+
+È importante notare che l'incapsulamento in Java (e in altri linguaggi ad alto livello) è principalmente una misura per garantire una buona pratica
+ di programmazione e mantenere l'integrità dell'oggetto. Non è destinato a fornire una sicurezza a prova di manomissione.
+In realtà, attraverso tecniche di riflessione (reflection) in Java, è possibile accedere e modificare campi privati, anche se ciò va contro le
+ linee guida delle buone pratiche. Questo dimostra che il meccanismo private è più una convenzione di progettazione che una misura di sicurezza 
+ crittografica o impenetrabile.  )
+
+
+
+-Programmazione AD EVENTI : 
+
+La programmazione orientata agli eventi (Event-Driven Programming, EDP). È un paradigma di programmazione in cui il flusso del programma è determinato 
+da eventi (quindi non è sequanziale (può esserlo in parte) ma semplicemente quando si verifica un evento parte la funzione ad esso associata) che 
+possono essere ad esempio l'utente che preme un bottone (input dell'utente) , richieste da altri programmi ecc....
+
+Un vantaggio della programmazione orientata agli eventi è che può essere più efficiente in situazioni in cui un programma deve attendere molte 
+fonti di input diverse, poiché il programma può continuare a fare altro mentre aspetta che si verifichi un evento, invece di rimanere bloccato in attesa.
+(ecco perchè gli eventi vengono solitamente gestiti asincronamente) 
+
+
+-Programmazione FUNZIONALE 
+
+Quindi spiegato in modo più semplice . Un linguaggio supporta questo paradigma quando possiamo costruire funzioni che prendono un input
+ e restituiscono dati in output e possiamo invocarle nel programma ? 
+
+
+ChatGPT
+
+Più o meno, ma c'è un po' più di profondità. Molti linguaggi permettono di definire funzioni che prendono input e restituiscono output, 
+compresi quelli procedurali, orientati agli oggetti, ecc. Tuttavia, ciò che distingue veramente la programmazione funzionale sono alcuni
+ principi chiave e restrizioni:
+
+Funzioni Pure: Queste funzioni restituiscono sempre lo stesso output per gli stessi input e non hanno effetti collaterali. Ad esempio, 
+non modificherebbero una variabile al di fuori del loro ambito o eseguirebbero operazioni di I/O.
+
+Immutabilità: Invece di modificare dati esistenti, i programmi funzionali creano nuove versioni dei dati. Questo significa che una volta creato
+ un dato (come un oggetto o un array), non cambierà.
+
+Funzioni come valori: In programmazione funzionale, le funzioni possono essere trattate come qualsiasi altro valore: possono essere assegnate
+ a variabili, passate come argomenti ad altre funzioni o restituite come output.
+
+Quindi, mentre la definizione e l'invocazione di funzioni sono comuni in molti paradigmi di programmazione, è il modo in cui le funzioni sono
+ utilizzate e le restrizioni che seguono che rendono un linguaggio o un approccio "funzionale".
+
+
+------------------------------------------------------------------------------------------------------------------
+
+     STRUTTURE DATI 
+
+
+In programmazione ad oggetti, le strutture dati sono oggetti che memorizzano e organizzano i dati in modo efficiente, fornendo metodi per accedere e manipolare tali dati. Tra le strutture dati più comuni ci sono:
+
+Array: una collezione di elementi di uno stesso tipo, memorizzati in una posizione continua di memoria. Gli elementi dell'array sono accessibili attraverso un indice numerico.
+
+Lista: una collezione ordinata di elementi che possono essere di tipo diverso. Le liste possono essere implementate come una sequenza di nodi collegati tra loro o come una matrice dinamica.
+
+Stack: una struttura dati a pila che gestisce elementi in base al principio LIFO (Last In First Out). Gli elementi sono inseriti e rimossi dalla cima dello stack.
+
+Queue: una struttura dati a coda che gestisce elementi in base al principio FIFO (First In First Out). Gli elementi sono inseriti in fondo alla coda e rimossi dalla testa.
+
+Set: una collezione non ordinata di elementi unici. I set non consentono duplicati e forniscono metodi per l'aggiunta, la rimozione e il controllo di appartenenza di un elemento.
+
+Map: una collezione di coppie chiave-valore, dove ogni elemento è unico in base alla sua chiave. Le mappe forniscono metodi per l'aggiunta, la rimozione e l'accesso ai valori in base alla chiave.
+
+
+
+LIFO sta per "Last In, First Out" e si riferisce al principio secondo cui l'ultimo elemento inserito in una struttura dati è il primo a essere rimosso.
+ In pratica, questo significa che gli elementi vengono aggiunti in cima alla struttura dati (detta "top") e quando si effettua una rimozione, viene rimosso l'ultimo elemento aggiunto
+(usato nello stack con gli algoritmi di ordinamento e ricerca) 
+
+FIFO sta per "First In, First Out" e si riferisce al principio secondo cui il primo elemento inserito in una struttura dati è il primo a essere rimosso.
+ In pratica, questo significa che gli elementi vengono aggiunti alla fine della struttura dati (detta "tail") e quando si effettua una rimozione, 
+viene rimosso il primo elemento aggiunto.
+(usato nelle code , nei programmi dove l'ordine di arrivo è importante tipo la gestione dei processi di un sistema operativo S
+--------------------------------------------------------------------------
+
+
+API 
+
+Un'API (Application Programming Interface) è un insieme di regole che permette a programmi diversi di comunicare tra loro, facilitando lo scambio di dati e funzionalità.
+ Funziona come un ponte che permette a diversi software di comunicare tra loro senza dover condividere il codice sorgente. Un modo semplice per pensare a un'API è come a un menu in un ristorante: il menu fornisce un elenco di piatti che puoi ordinare, insieme a una descrizione di ciascun piatto. Quando fai un ordine, la cucina (il sistema) prepara il piatto e te lo serve (il risultato). In questo senso, non devi sapere come il piatto è stato preparato o quali sono gli ingredienti segreti, devi solo sapere cosa vuoi ordinare. Allo stesso modo, un'API elenca un insieme di operazioni che gli sviluppatori possono utilizzare, insieme alla descrizione di ciò che fanno. Lo sviluppatore non ha bisogno di sapere come un'API esegue internamente i suoi compiti; ha solo bisogno di sapere quali funzioni sono disponibili, come chiamarle e quali risultati aspettarsi.
+
+Le API sono utilizzate in praticamente ogni forma di software moderno, permettendo ad esempio alle applicazioni mobili di comunicare con server per ottenere dati, ai servizi online di interagire tra loro, e ai sistemi software interni di un'organizzazione di scambiarsi informazioni
+
+
+
+SOAP e REST 
+
+SOAP (Simple Object Access Protocol) e REST (Representational State Transfer) sono due protocolli di comunicazione utilizzati
+nelle applicazioni web per la trasmissione di dati.
+
+In realtà l'approccio REST è un insieme di principi architettonici, mentre l'approccio SOAP è un protocollo ufficiale
+
+
+REST : Trattandosi sostanzialmente di linee guida o raccomandazioni, la loro implementazione è lasciata agli sviluppatori.
+REST si basa principalmente sul protocollo HTTP
+In genere, una richiesta di dati inviata a un'API REST avviene tramite il protocollo HTTP. Una volta ricevuta la richiesta, le API progettate
+per REST (chiamate API o servizi web RESTful) possono restituire i messaggi in numerosi formati: HTML, XML, testo semplice e JSON.
+Nell'uso quotidiano, quando si parla di un'API RESTful, si intende un'interfaccia web che aderisce ai principi di REST
+JSON (JavaScript Object Notation) è il formato di messaggistica più adottato, perché, a dispetto del nome, può essere letto da qualsiasi
+linguaggio di programmazione, dagli utenti e dalle macchine, ed è ottimizzato. In questo modo le API RESTful sono più flessibili e configurabili con facilità.
+
+Vincoli architetturali principali di REST : 
+1) Disaccoppiamento client-server
+2) Condizione di stateless :il server non ha memoria delle precedenti richieste del client , tutte le richieste del client sono indipendenti tra loro 
+
+SOAP : Trattandosi di un protocollo, richiede l'integrazione di regole che ne aumentano la complessità e il carico di gestione sul sistema.
+Oltre alle regole, integra anche standard di conformità che lo rendono idoneo agli ambienti enterprise. Gli standard di conformità integrati
+includono sicurezza, atomicità, coerenza, isolamento e durata (ACID), un insieme di proprietà che garantiscono transazioni di database affidabili.
+Una volta ricevuta la richiesta, i messaggi SOAP di ritorno devono essere restituiti come documenti in formato XML.
+
+
+DIFFERENZE
+La principale differenza tra SOAP e REST è la complessità. SOAP è più complesso e richiede più risorse rispetto a REST.
+ Grazie all'integrazione della sicurezza e della conformità delle transazioni, i servizi web SOAP rispondono a molte esigenze
+aziendali, ma risultano anche più complessi. Infine, molte API pubbliche, come l'API di Google Maps, seguono i principi REST.
+In sintesi, SOAP è più adatto per le applicazioni enterprise complesse che richiedono una maggiore sicurezza e integrità dei dati,
+ mentre REST è più leggero e facile da utilizzare per le applicazioni web e mobile che richiedono una comunicazione rapida e scalabile.
+
+
+NOTA:
+ sia REST che SOAP sono due approcci per la creazione di API (Application Programming Interface), ovvero delle interfacce che permettono a
+ diverse applicazioni di comunicare tra loro.
+
+In sintesi, l'implementazione di un'API SOAP richiede l'uso di un'infrastruttura specifica per i servizi web SOAP, mentre l'implementazione di un'API REST
+ è più flessibile e può essere realizzata utilizzando una vasta gamma di tecnologie e framework di sviluppo web.
+
+Le API REST e SOAP non sono "già create" come prodotti o servizi preconfezionati, ma sono interfacce che devono essere sviluppate per consentire 
+alle applicazioni di comunicare tra loro in modo standardizzato e sicuro.
+
+--------------------------------------------------------------------------------------------------
+
+COMPILARE - INTERPRETARE
+
+La compilazione è un processo che traduce il codice sorgente in un linguaggio di basso livello, chiamato linguaggio target, (come il linguaggio macchina) che può 
+essere eseguito direttamente dal computer o eventualmente interpretato (bytecode di Java (Java è un ibrido)) . Il codice sorgente viene quindi
+compilato in un file eseguibile che può essere eseguito sul computer senza dover passare attraverso il processo di traduzione ogni volta 
+che il programma viene eseguito. Questo significa che la compilazione può richiedere del tempo, ma una volta che il programma è stato compilato, 
+l'esecuzione del programma sarà molto veloce.
+
+L'interpretazione, d'altra parte, è un processo in cui il codice sorgente viene eseguito direttamente da un interprete, che è un programma che legge 
+il codice sorgente e lo esegue linea per linea. L'interprete traduce ogni riga di codice sorgente in istruzioni eseguibili sul computer mentre il
+ programma viene eseguito. Ciò significa che l'interprete deve tradurre il codice sorgente ogni volta che il programma viene eseguito, il che può rendere
+ l'esecuzione del programma più lenta rispetto alla compilazione. Tuttavia, l'interpretazione offre anche un maggiore grado di flessibilità e interattività,
+poiché il programma può essere modificato e testato rapidamente senza dover passare attraverso il processo di compilazione ogni volta.
+
+Java è un linguaggio di programmazione ibrido che utilizza sia la compilazione che l'interpretazione. In particolare, il codice Java viene prima compilato
+ in bytecode, un linguaggio di basso livello che può essere eseguito dalla Java Virtual Machine (JVM), e poi interpretato dalla JVM che lo traduce e passa
+al computer per essere eseguito. 
+
+Ciò significa che Java è un linguaggio di programmazione che combina le prestazioni della compilazione con la flessibilità dell'interpretazione. 
+La compilazione in bytecode consente di ottenere una maggiore efficienza di esecuzione rispetto all'interpretazione diretta del codice sorgente, 
+poiché il bytecode può essere eseguito più rapidamente dalla JVM. Tuttavia, l'interpretazione del bytecode da parte della JVM consente anche di 
+avere un maggior grado di flessibilità e portabilità rispetto alla compilazione diretta in codice nativo, poiché il bytecode è un formato 
+di file standard che può essere eseguito su qualsiasi sistema operativo in cui è presente una JVM.
+
+
+
+
+
+
+Sì, quella è una delle differenze principali tra un interprete e un compilatore.
+
+Un interprete legge, traduce ed esegue il codice sorgente istruzione per istruzione, una alla volta. Questo significa che può iniziare a eseguire il codice
+quasi immediatamente, ma può essere più lento in generale perché ogni istruzione deve essere tradotta ogni volta che viene eseguita.
+
+Un compilatore, d'altra parte, legge e traduce l'intero codice sorgente in codice macchina prima che venga eseguito. 
+Questo può richiedere più tempo inizialmente, ma una volta che il codice è stato compilato, può essere eseguito molto rapidamente. 
+Inoltre, perché il codice viene compilato in anticipo, il compilatore può ottimizzare il codice macchina generato per migliorare le prestazioni.
+
+Un'altra differenza importante è che il codice compilato può essere distribuito e eseguito su un'altra macchina senza la necessità del codice sorgente o 
+del compilatore, mentre un programma interpretato richiede generalmente l'interprete (e a volte il codice sorgente) per essere presente sulla macchina 
+su cui viene eseguito.
+-----------------------------
+
+BUILD E DEPLOY 
+
+Il build è il processo di compilazione di un'applicazione software o di un sito web, in cui i file sorgente vengono trasformati in un formato eseguibile o in 
+un codice HTML, CSS e JavaScript. Il build include anche la creazione di file come le risorse, le immagini e i pacchetti di librerie.
+
+Il deploy è il processo di distribuzione di un'applicazione o di un sito web sul web o su un server, in modo che sia accessibile agli utenti. 
+Il deploy consiste nel caricare il codice compilato (buildato) sul server o su un provider di hosting e nella configurazione dei componenti necessari,
+ come i database e le impostazioni del server, per garantire che l'applicazione funzioni correttamente.
+
+In sintesi, il build crea l'applicazione e il deploy la rende disponibile per l'uso. Questi due processi sono fondamentali per lo sviluppo di applicazioni 
+e siti web e devono essere eseguiti con attenzione per garantire che l'applicazione funzioni correttamente e sia sicura
+
+
+
+                                                  Diff BUILD E COMPILAZIONE 
+
+In generale, "build" e "compilazione" sono concetti correlati ma non identici.
+
+La compilazione è il processo di conversione del codice sorgente in codice eseguibile dalla macchina.
+ In altre parole, la compilazione traduce il codice sorgente scritto in un linguaggio di programmazione (ad esempio, Java) 
+in un formato binario (ad esempio, file eseguibile, libreria condivisa, file oggetto) che la macchina può comprendere e eseguire.
+
+La build, d'altra parte, è un processo più ampio che comprende la compilazione ma non si limita a essa. 
+La build include tutte le attività necessarie per creare un prodotto software funzionante a partire dal codice sorgente, come la gestione delle dipendenze,
+ la configurazione del progetto, l'esecuzione dei test, la confezione del software in un pacchetto eseguibile, e così via.
+
+In sintesi, la compilazione è solo una parte del processo di build e consiste nella traduzione del codice sorgente in codice binario eseguibile.
+ La build, invece, comprende la compilazione ma si estende anche alla gestione di tutte le altre attività necessarie per creare un prodotto software funzionante.
+
+
+
+---------------------------------
+
+LINGUAGGI DI SCRIPTING 
+
+Un linguaggio di scripting è un linguaggio di programmazione che è progettato per essere eseguito direttamente da un interprete o un ambiente di runtime,
+ senza la necessità di una fase di compilazione esplicita.
+
+--------------------------------------------------------------------
+
+JSON E OBJECT 
+
+
+JSON (JavaScript Object Notation) è un formato di scambio di dati in formato testuale, leggero e indipendente dal linguaggio di programmazione.
+
+Testuale : il formato testuale significa che i dati sono rappresentati come una stringa di testo con una specifica sintassi. Ciò significa che i dati
+contenuti in un file testuale possono essere aperti e letti da un editor di testo o un qualsiasi altro programma che sia in grado di gestire file di testo.
+Inoltre sono facilmente leggibili e scrivibili dall'uomo.
+
+Leggero: i formati di dati testuali come JSON sono leggeri e occupano meno spazio di quelli binari, perché i dati vengono rappresentati come sequenze di
+caratteri ASCII piuttosto che come sequenze di byte. 
+
+Inidpendente : i dati testuali sono facili da elaborare, in quanto sono facilmente manipolabili da qualsiasi linguaggio di programmazione o ambiente di sviluppo. 
+
+Utilizzo : API web (comunicazione client server)  -  Archiviazione dati (Database NoSQL)  - Configurazione applicazioni (essendo leggero e facilmente 
+leggibile dall'uomo)
+
+es.                    {
+                         "nome": "Mario",                           
+                         "cognome": "Rossi",                               (unica diff di sintassi con gli Object è la chiave scritta tra 
+                         "eta": 35                                            virgolette in JSON )
+                                 }
+
+
+
+OBJECT 
+
+Sono strutture dati che dipendono dal linguaggio usato. 
+In generale sono composte da coppie chiave-valore .
+
+--------------------------------------------------------------------------------------
+
+ASCII  (American Standard Code for Information Interchange)   e   Unicode      
+
+è un sistema di codifica di caratteri ad 8 bit , vuol dire che ogni carattere è rappresentato da numeri interi da 8 bit (quindi per rappresentare un carattere 
+bastava un intero da 8 bit). è un formato che alleggerisce l'archiviazione poichè per ogni tipo di carattere bastano solo 8 bit . 
+Il codice ASCII è stato creato per standardizzare la rappresentazione dei caratteri nella trasmissione di dati su reti di computer.
+
+Unicode è la stessa cosa di ASCII , solo che i caratteri sono di più e sono rappresentati con 16 bit . 
+
+----------------------------------------------------------------------------------------
+
+SERIALIZZAZIONE 
+
+La serializzazione è il processo di conversione di un oggetto o di una struttura dati in un formato serializzato (come JSON ovvero strutturati in un certo modo),
+cioè in una sequenza di byte che può essere trasmessa o salvata su un supporto di memorizzazione. La serializzazione è comunemente utilizzata in informatica
+per salvare i dati in un formato che possa essere facilmente trasferito o elaborato da diverse applicazioni o dispositivi.
+
+
+-----------------------------------------------------------------------------------
+diff   PARAMETRO E ARGOMENTO 
+
+Sono molto correlati . Parametro è il nome effettivo passato alla funzione . L'argomento è il valore effettivo (GUARDA ES)
+
+es.           function greet(name) {
+               console.log(`Hello, ${name}!`);              -->    la funzione greet prende la variabile name come PARAMETRO 
+                }
+
+
+              greet('John');                              --> viene invocata la funzione greet e gli è stato passato l'ARGOMENTO 'John'
+
+-----------------------------------------------------------------------------------------------------------
+
+
+DOM e HTML : 
+
+Il DOM è una struttura dove i vari elementi HTML sono rappresentati sotto forma di oggetti che sono nodi facenti parte di un albero (ogni tag HTML è un nodo) 
+e con cui possiamo interagire.Infatti esso è creato proprio per permettere agli sviluppatori di manipolare il contenuto HTML della pagina . 
+Quando carichiamo la pagina web sul browser , dall'HTML viene generato il DOM che rappresenta ciò che stiamo visualizzando/interagendo sulla pagina web . 
+
+Il codice sorgente rappresenta tutta la pagina web (tutto l'HTML e il bordello) 
+Invece quando usiamo il DevOps del browser stiamo visualizzando il DOM , che è quello che stiamo visualizzando e che possiamo modificare dinamicamente .
+Se con JavaScript eliminiamo dinamicamente un bottone , esso verrà rimosso dal DOM.
+
+
+---------------------------------------------------------------------------------------------------------------
+
+GERARCHIA E SEQUENZIALITA'
+
+Una struttura dati gerarchica organizza i dati in modo che possano essere visualizzati come una serie di livelli o sottoinsiemi nidificati, 
+ognuno dei quali contiene dati correlati. La struttura dati gerarchica è spesso rappresentata come un albero, con un nodo radice che rappresenta
+ il livello più alto della gerarchia e una serie di nodi figli che rappresentano i livelli inferiori.
+
+In una struttura dati lineare, i dati sono organizzati in modo sequenziale, uno dopo l'altro, senza alcuna gerarchia o sottoinsieme nidificato.
+ Un esempio comune di struttura dati lineare è un array o una lista
+
+
+----------------------------------------------------------------------------------------------------------------------------
+
+ 
+          TRANSISTOR IN MEMORIE E PROCESSORI 
+
+
+Un transistor è un dispositivo semiconduttore che può sia trasportare e amplificare segnali elettrici sia funzionare come un interruttore elettronico, ovvero inserire 
+una carica elettrica (1) oppure levarla (0) da un condensatore (dispositivo in grado di contenere la carica elettrica) o altro....
+Un transistor , al giorno d'oggi , è grande anche circa 10 nanometri ma si cercherà di fare meglio. 
+
+
+
+MEMORIE 
+
+Le memorie elettriche contengono celle di memoria in cui sono contenuti uno o più transistor . 
+
+1) DRAM (Dynamic Random Access Memory): Questa è la memoria principale utilizzata come RAM nei computer. Ogni cella di memoria in un modulo DRAM contiene
+ un transistor e un condensatore. Il condensatore mantiene una carica elettrica per rappresentare un bit (0 o 1), mentre il transistor agisce come un 
+interruttore che permette al controllo del circuito di leggere o cambiare lo stato del condensatore.
+
+Inoltre ricordiamo che la DRAM , cosi come la SRAM è una memoria volatile , che perde i dati in mancanza di energia . Questo perchè con il passare del tempo, 
+la carica nel condensatore inizia a dissipersi, motivo per cui la memoria DRAM deve essere "rinfrescata" regolarmente. 
+Durante questo processo di rinfresco, ogni transistor viene brevemente acceso per leggere la carica del condensatore associato e poi la carica viene 
+ripristinata al suo valore originale.
+Quindi per questo le memorie non volatili hanno bisogno di energia continua. 
+
+
+2) SRAM (Static Random Access Memory): Questa è un'altro tipo di RAM (Memoria usata per la CACHE e per i REGISTRI ), ma è molto più veloce e costoso rispetto al DRAM. 
+Ogni cella di memoria SRAM contiene tipicamente sei transistor .
+è più costosa poichè il numero di transistor è maggiore in minor spazio .
+è più veloce poichè , a differenza della DRAM non necessita di "rinfrescare" la carica elettrica contenuta nei condensatori ; dato che la SRAM non usa condensatori 
+per tenere il bit memorizzato ma questo circuito di 6 transistor che sono progettati con un architettura che fa si che mantengano il bit . Quindi c'è un flusso di corrente
+continuo e la SRAM può essere sempre utilizzata , mentre la DRAM ha bisogno di rinfrescamenti durante il quale le celle da rinfrescare diventano temporeaneamente inutilizzabili. 
+
+(MEGLIO: di dati in un piccolo condensatore all'interno di una cella di memoria. Questo condensatore può essere caricato (rappresentando un "1") o 
+scaricato (rappresentando un "0"). Il problema con i condensatori è che essi perdono lentamente la loro carica nel tempo; non riescono a mantenere 
+indefinitamente la carica a causa di piccole perdite.
+
+Quindi, anche se c'è un flusso continuo di energia nella DRAM, questi condensatori devono essere "rinfrescati" regolarmente, cioè ricaricati, per mantenere
+ i dati che contengono. Questo rinfrescamento avviene periodicamente e automaticamente, e richiede cicli del controller di memoria, rendendo la DRAM temporaneamente
+ indisponibile per altre operazioni durante il processo di rinfrescamento.
+
+D'altra parte, la SRAM (Static Random-Access Memory), come quella utilizzata nelle cache, non usa condensatori per immagazzinare dati. Invece, utilizza un
+ circuito di transistor (tipicamente sei per cella) che mantiene staticamente lo stato del bit (cioè è un flip-flop bistabile). Finché c'è alimentazione,
+ la SRAM mantiene il dato, senza bisogno di rinfrescamento. Questo rende la SRAM molto più veloce, ma anche più costosa per bit e occupa più spazio, a causa
+ del numero maggiore di transistor.
+
+
+
+
+3) (accesso casuale anche per la NAND) (praticamente sequenziale è solo l'HDD) 
+Memoria Flash NAND: Questa è la memoria utilizzata negli SSD, pen drive, e schede di memoria. Ogni cella in una memoria NAND contiene un transistor,
+ma con una caratteristica particolare chiamata "porta flottante", che permette al transistor di mantenere una carica elettrica anche quando non c'è potenza.
+Quindi al posto del condensatore ci sta questa , porta flottante nel transistor che gli consente di immagazinare il vit senza perderlo in mancanza di energia.(memoria NON volatile)
+(sono stati poi sviluppate "porte flottanti" in grado di contenere anche più di un bit, quindi ci sta una singola cella che contiene più bit , poichè dotata di una porta flottante "più larga")
+ 
+ 
+
+
+PROCESSORE 
+
+I transistor sono utilizzate nel processore per molte cose . Principalmente citiamo l'ALU , ovvero l'unità di elaborazione che è fatta di combinazioni di circuiti 
+di transistor . E poi per la costruzione delle porte logiche ( AND, OR, NOT, NAND, NOR, XOR....) Queste porte sono costruite usando transistor.
+ Ad esempio, una semplice porta NOT può essere realizzata con un singolo transistor.
+
+Le porte logiche sono usate principalmente per Decodificare le istruzioni, fare operazioni aritmetiche (l'ALU è fatto di porte logiche) , operazioni logiche ; 
+poi anche per l'accesso alla memoria per determinare l'indirizzo , comunicazione con altri elementi come la GPU e altro..... 
+
+
+
+
+PERCHé più TRANSISTOR = Più POTENZA COMPUOTAZIONALE ?? 
+
+Per un gran numero di motivi :
+
+1) Più Core e Unità di Elaborazione in minor spazio
+
+2) Maggiore Densità in Memorie:aumenta la capacità della Cache, Registri, di RAM e SSD 
+
+
+3) Funzionalità Aggiuntive e altre tecniche di ottimizzazione possibili :
+(I transistor aggiuntivi possono essere utilizzati per aggiungere pipeline più profonde (una tecnica per migliorare la velocità di clock eseguendo 
+fasi diverse di istruzioni in parallelo) o per supportare l'out-of-order execution (una tecnica che permette al processore di eseguire le istruzioni
+ non necessariamente nell'ordine in cui appaiono, ma nell'ordine ottimale per le prestazioni).
+
+
+
+------------------------------------------------------------------------------------------------
+
+CODIFICA 
+
+
+La codifica, nel contesto dell'informatica e delle telecomunicazioni, si riferisce al processo di conversione dei dati da una forma sorgente a una forma 
+rappresentativa mediante l'uso di un algoritmo definito. Questo processo è essenziale per la manipolazione, il trasporto o l'archiviazione efficiente 
+delle informazioni.
+
+
+DOMANDA : cerca di spiegarmi  , utilizzando un linguaggio professionale , il concetto che la codifica fa in modo che si possa crare programmi
+ grandi anche evitando di scrivere in linguaggi a basso livello tantissime linee di codice . Questo perchè le tantissime linee di codice scritte
+ in binario "11000111011" sono prima codificate in un linguaggio e poi ricodificate in un altro linguaggio più ad alto livello e cosi via , fino
+ a poter rappresentare quei tantissimi bit con una piccola riga di codice ad alto livello. 
+
+
+
+RISPOSTA: 
+
+La codifica in informatica rappresenta un processo gerarchico e stratificato attraverso il quale le istruzioni binarie di basso livello, innate al funzionamento
+ del hardware, vengono astratte in costrutti di programmazione di livello superiore, più comprensibili e maneggevoli per gli sviluppatori.
+
+Per iniziare, a livello di transistor e circuiti integrati, un computer comprende e opera solamente attraverso segnali elettrici, che noi rappresentiamo 
+come sequenze binarie del tipo "11000111011". Queste sequenze binarie rappresentano le istruzioni di base del computer e vengono definite come linguaggio macchina.
+
+Tuttavia, programmare direttamente in linguaggio macchina sarebbe estremamente laborioso e propenso agli errori, date le migliaia o addirittura milioni 
+di operazioni che un software moderno potrebbe necessitare. Di conseguenza, nasce la necessità di astrazione. Ecco come funziona:
+
+Linguaggio Assembly: È il primo livello di astrazione sopra il linguaggio macchina. Invece di utilizzare numeri binari, il linguaggio Assembly usa mnemonici
+ per rappresentare operazioni e dati. Ad esempio, un'istruzione per sommare due numeri potrebbe apparire come "ADD A, B", piuttosto che una lunga sequenza binaria.
+ Nonostante ciò, l'Assembly rimane strettamente legato all'architettura della macchina sottostante.
+
+Compilatori e Interpreti: Sono strumenti che permettono di tradurre linguaggi di programmazione ad alto livello, come C, Python o Java, in linguaggio 
+macchina o in un bytecode intermedio. Questi linguaggi ad alto livello introducono ulteriori livelli di astrazione, permettendo agli sviluppatori di scrivere
+ istruzioni in modo più descrittivo, come print("Ciao mondo!"), che potrebbe tradursi in molteplici istruzioni Assembly o linguaggio macchina.
+
+Librerie e Frameworks: Rappresentano un ulteriore livello di astrazione. Sono collezioni di codice pre-scritto che gli sviluppatori possono utilizzare per
+ eseguire funzioni complesse senza dover scrivere ogni dettaglio da zero. Ad esempio, una singola funzione di una libreria potrebbe gestire complesse operazioni
+ di grafica o di rete, pur essendo invocata con poche righe di codice dall'utente finale.
+
+Questi livelli di astrazione, forniti dalla codifica, permettono di sviluppare software complessi e potenti, mantenendo al contempo una sintassi comprensibile
+ e gestibile. L'efficienza e la produttività derivanti da questi strati di codifica hanno reso possibile l'esplosione dell'innovazione software che osserviamo
+ nell'era moderna dell'informatica.
+
+
+
+-----------------------------------------------------------------------------------------------------
+
+                      HOSTING 
+
+Il termine "hostare" deriva dall'inglese "to host", che significa "ospitare". Nel contesto IT e web, "hostare" fa riferimento all'atto di fornire spazio su un server o su altri dispositivi 
+informatici per memorizzare dati, applicazioni, siti web o altri contenuti, rendendoli accessibili ad altri utenti o dispositivi, spesso attraverso una rete come Internet.
+
+In generale, quando si dice "hostare", si intende:
+
+Fornire Spazio: Questo potrebbe riferirsi a spazio su un disco rigido, su un server o in un data center.
+
+Rendere Accessibile: Non basta solo fornire spazio. "Hostare" implica anche che ciò che viene ospitato sia reso disponibile o accessibile ad altri.
+ Ad esempio, un sito web ospitato su un server è generalmente accessibile a chiunque abbia una connessione Internet.
+
+Gestione e Manutenzione: L'hosting può anche implicare la gestione e la manutenzione del contenuto o del servizio ospitato. Questo potrebbe includere la gestione della larghezza di banda,
+ la protezione dai cyber attacchi, i backup dei dati e l'assicurarsi che il servizio rimanga attivo e disponibile.
+
+Fornire Risorse: A seconda del tipo di hosting, ciò potrebbe includere risorse come potenza di calcolo (CPU), memoria (RAM), larghezza di banda per la trasmissione dei dati, ecc.
+
+Quindi, in sostanza, "hostare" qualcosa significa fornire le risorse e l'infrastruttura necessarie per ospitare, gestire e rendere accessibile quel particolare contenuto o servizio ad 
+altri utenti o sistemi.
+
+
+
+
+
+
+
+
+
+
+il termine "hosting" può riferirsi a diversi contesti e può includere vari servizi, tra cui l'ospitare dati in un database. Ma andiamo per parti:
+
+Hosting Web: Come discusso, si tratta di servizi che permettono di ospitare siti web in modo che siano accessibili al pubblico su Internet. Questi servizi gestiscono principalmente file 
+come HTML, CSS, JavaScript e immagini.
+
+Hosting di Database: Si riferisce specificamente a servizi che forniscono infrastrutture per ospitare e gestire database. Questi servizi possono offrire database relazionali come MySQL
+, PostgreSQL, SQL Server o database non relazionali come MongoDB, Cassandra, ecc. L'ospitare un database può includere funzionalità come backup automatici, scalabilità, replica,
+ alta disponibilità, ecc.
+
+Hosting di Applicazioni: Si tratta di piattaforme (come Heroku, Google Cloud Platform, AWS Elastic Beanstalk) che forniscono l'infrastruttura e gli strumenti per ospitare, distribuire
+ e gestire applicazioni web o altri software.
+
+Hosting di File: Servizi come Dropbox, Google Drive o Microsoft OneDrive che permettono di ospitare, condividere e sincronizzare file tra dispositivi.
+
+Hosting di Codice Sorgente: Piattaforme come GitHub, GitLab e Bitbucket che ospitano repository di codice sorgente per la gestione e collaborazione di progetti software.
+
+Tutti questi servizi sono variazioni sul concetto generico di "hosting", ma ognuno ha un focus diverso. Quando si parla di "hosting" in un contesto specifico, è importante capire
+ esattamente a quale tipo di servizio ci si riferisce. Ad esempio, se stai cercando un luogo per ospitare un sito web, avrai bisogno di un servizio di hosting web. Se hai bisogno di
+ un luogo per memorizzare e gestire dati, potresti essere interessato a un servizio di hosting di database.
+
+
+
+.--------------------------------------------------------------------------.--------------------------------
+
+
+METODOLOGIA AGILE 
+
+è un approccio allo sviluppo del software che enfatizza la flessibilità , la collaborazione in team e il rispondere rapidamente ai cambiamenti . 
+A differenza degli approcci tradizionali allo sviluppo software, come il modello a cascata (waterfall), che segue un processo sequenziale e predeterminato, Agile adotta un approccio ITERATIVO e INCREMENTALE.
++ Agile è una filosofia. La filosofia Agile è incentrata sul miglioramento incrementale continuo attraverso rilasci piccoli e frequenti. 
+
+CARATTERISTICHE : 
+
+Sviluppo Iterativo e Incrementale: Suddivisione del progetto in piccole parti che possono essere sviluppate e consegnate in iterazioni (solitamente di 2-4 settimane), permettendo di apportare modifiche in base al feedback ricevuto.
+
+Pianificazione adattiva: Aggiustare piani di progetto basati su feedback del cliente e cambiamenti durante il ciclo di sviluppo
+
+Software funzionante più che documentazione esaustiva: Mentre la documentazione ha il suo valore, l'obiettivo principale è consegnare software funzionante che soddisfi i bisogni del cliente.
+
+Il Manifesto Agile evidenzia quattro valori:
+
+1)Gli individui e le interazioni più che i processi e gli strumenti
+2)Il software funzionante più che la documentazione esaustiva
+3)La collaborazione col cliente più che la negoziazione dei contratti
+4)Rispondere al cambiamento più che seguire un piano
+
++quindi Agile si basa su una gestione empirica del processo di sviluppo. Empirica: basata sull'osservazione e sull'esperienza; insomma vrim com van e cos
+e agiamo di conseguenza 
+
+
+
+SCRUM 
+
+Scrum è una specifica "implementazione" della matodologia Agile . (è chiamato "framework Agile" , non pensare al significato di framework che conosci tu,
+non è un software ma sono delle regole da rispettare , ruoli ecc...) 
+Se vogliamo fare un paragone con Java , Agile sarebbe un interfaccia e Scrum una classe che implementa quell'interfaccia. Ovviamente ci sono altri framework
+Agile come Kanban o Extreme Programming (XP) tra i più famosi assieme a Scrum . 
+
+
+-----------------------------------------------------------------------------------------------------
+
+FIRMWARE
+
+Il firmware è un software integrato in un pezzo di hardware. È strettamente legato al funzionamento dell'hardware; per esempio, il firmware in un controller di disco rigido gestisce la comunicazione diretta tra il sistema operativo e il disco rigido stesso. Diversamente da altri tipi di software che possono essere aggiornati o modificati senza restrizioni, il firmware è spesso progettato per essere non modificabile o solo aggiornabile attraverso processi specializzati. Questo software di basso livello è essenziale per l'avvio iniziale dei dispositivi e per fornire le istruzioni di base necessarie affinché il dispositivo comunichi con altri componenti hardware.
+
+Il firmware di un computer è sostanzialmente il BIOS/UEFI , ovvero il programma in assoluto più vicino all'hardware del computer e quindi viene utilizzato per fare operazioni molto a basso livello. Esso si occupa ad esempio all'accensione del pc di controllare il corretto funzionamento/inizializzare le componenti hardware del pc , e di far partire il bootloader per caricare il sistema operativo sulla RAM . 
+
+
+
+-----------------------------------------------------------------------------------------------------
+
+DEBBUGGING 
+
+
+Un debugger è uno strumento che permette di eseguire un programma passo dopo passo, fermandosi in punti specifici, denominati breakpoint, per osservare il comportamento delle variabili, delle strutture dati e del flusso di esecuzione. Questo approccio facilita notevolmente il processo di debug, ovvero la ricerca e la correzione degli errori di programmazione.
+
+-Breakpoint: Il primo passo nell'utilizzo di un debugger è impostare uno o più breakpoint nel codice. Un breakpoint è un segnale che dice al debugger di interrompere l'esecuzione del programma in un punto specifico, permettendo così al programmatore di ispezionare lo stato dell'applicazione.
+
+-Ispezione Variabili: Durante l'esecuzione passo-passo, è possibile ispezionare il valore delle variabili. Questo aiuta a capire se e dove i valori delle variabili divergono dalle aspettative.
+
+-Modifica dei Valori delle Variabili: Molti debugger permettono di modificare i valori delle variabili durante il debug. Questo può essere utile per testare come il programma reagirebbe a diversi input senza dover modificare il codice e riavviare il programma.
+
+-Analisi del Call Stack: Il call stack mostra la sequenza di chiamate a funzione che ha portato al punto corrente dell'esecuzione. Analizzando il call stack, si può capire come si è arrivati a un certo punto di esecuzione e identificare potenziali fonti di errore.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+  

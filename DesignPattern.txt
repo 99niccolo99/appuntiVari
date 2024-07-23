@@ -1,0 +1,2088 @@
+---Creazionali:
+
++ SINGLETON 
+
+Serve ad assicurarsi che una classe abbia solo una singola istanza in tutta l'applicazione e che abbia un punto di accesso globale a questa singola istanza.
+ (viene usato di solito per l'accesso al database in modo che si possa accedere ad esso da una singola "porta" ) 
+Il Singleton è spesso utilizzato quando è necessario avere un unico punto di controllo o coordinamento tra diversi componenti del sistema, 
+come ad esempio la gestione delle risorse, il logging, la configurazione e altre situazioni in cui avere più istanze potrebbe causare problemi di consistenza o prestazioni.
+--------------------------------------------------------
+
++FACTORY METHOD 
+
+Si tratta di definire una classe chiamata solitamente factory in cui centralizziamo la creazione di oggetti che implementano un’interfaccia (in tal caso si intende interfaccia Java)  comune. Consentendo di creare oggetti senza specificare esplicitamente a priori la classe precisa dell’oggetto che verrà istanziato.
+
+Definisce un’interfaccia per la creazione di oggetti, ma lascia che le sottoclassi decidano quale classe istanziare e si riferisce all’oggetto appena creato attraverso un’interfaccia comune. 
+
+-----------------------------------------------------------
+
++ ABSTRACT FACTORY
+
+Fornisce un'interfaccia per creare famiglie di oggetti correlati o dipendenti senza specificare le loro classi concrete.
+
+---------------------------------------------------------------
+                 
++ BUILDER 
+
+Viene utilizzato per semplificare la creazione di oggetti complessi (si intende oggetti con tanti attributi e metodi) soprattutto quando l'oggetto a vari attributi opzionali , separando la loro costruzione della loro rappresentazione , ovvero il modo in cui sono creati dalla loro reale struttura . 
+(Suddivide la costruzione in passaggi chiari e distinti (steps). Ogni metodo del Builder rappresenta un passaggio nella configurazione dell'oggetto.) 
+
+--------------------------------------------------------------
+
++ OBJECT POOL 
+
+All'avvio dell'applicazione o cmq quando serve viene creato un contenitore (pool) in cui vengono creati e conservati un certo numero di oggetti dello stesso tipo, in tal modo quando vogliamo usare un oggetto non dobbiamo andarcelo a creare ogni volta (operazione costosa) poichè è stato già fatto , dobbiamo solo chiedere al pool di restituircelo e quando abbiamo finito glielo ridiamo in modo che possa essere resettato (se serve) e nel caso dato a qualche altro oggetto che se ne vuole servire in futuro . Tutto ciò è molto buono in fatto di prestazioni quando la creazione di un oggetto è costosa e quando il numero di istanze di una classe che dobbiamo usare contemporaneamente è più o meno conosciuto. E' come se avessimo un magazzino con cose che non ci potrebbero servire in futuro; quando ci servono, invece di ordinarle nuove da Amazon e dover pagare e aspettare che arrivino (ci costa tempo e prestazioni) lo andiamo a prendere dal magazzino. 
+
+L'Object Pool è particolarmente utile quando la creazione(e volendo anche dell'inizializzazione) degli oggetti è costosa in termini di tempo e risorse (evitiamo anche di deallocarlo e ricrearlo nel caso serva in seguito) , o quando è necessario limitare il numero di istanze di un oggetto poichè la memoria è limitata. ) 
+
+-----------------------------------------------------------------
+ 
++ PROTOTYPE
+
+Permette di creare nuovi oggetti clonando un prototipo esistente (un'altro oggetto già esistente) (ovvero un modello su cui basarsi), invece di usare l'operatore new per la creazione dell'oggetto.
+Questo design pattern è particolarmente utile quando la creazione/inizializzazione di un oggetto è particolarmente costosa , allora si preferisce creare l'oggetto e poi clonare/copiare quell'oggetto se ne vogliamo creare un'altro , senza ricrearlo da zero (evitando la creazione dispendiosa).
+Quindi è necessario cmq creare un'istanza dell'oggetto con new, poi le prossime istanze che creiamo vengono clonate e quindi la creazione è meno dispendiosa.
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+---Strutturali:
+
+
++ ADAPTER 
+
+
+è un pattern strutturale che permette a due interfacce incompatibili di lavorare insieme, adattando un'interfaccia esistente in un'altra interfaccia
+che un'altra classe può utilizzare (Ciò viene realizzato avvolgendo una delle interfacce con una nuova interfaccia compatibile). L'Adapter viene utilizzato per risolvere problemi di interoperabilità tra classi che altrimenti non sarebbero in grado di comunicare a causa di incompatibilità nelle loro interfacce.
+Questo pattern è particolarmente utile quando si lavora con librerie esterne o con codice legacy.
+In Java può essere implementato in due modi: tramite l'ereditarietà (class adapter) o la composizione (object adapter).
+
+--------------------------------------------------------------------------------------
+
++ BRIDGE 
+
+Il design pattern Bridge è un pattern strutturale che separa l'astrazione da un'implementazione, in modo tale che entrambe possano essere modificate
+indipendentemente l'una dall'altra. Questo pattern è particolarmente utile quando si lavora con classi astratte o interfacce e si desidera evitare che
+ le modifiche ad una di esse influenzino l'altra.
+
+------------------------------------------------------------------------------
+
++ DECORATOR
+
+Consente di aggiungere funzionalità a un oggetto esistente in modo dinamico, quindi senza dover modificare la sua struttura. 
+(buona alternativa all'eredarietà che in effetti estende il comportamento di una superclasse nella sottoclasse ) 
+In pratica, questo pattern consente di decorare un oggetto con altri oggetti che forniscono funzionalità aggiuntive.
+
+-------------------------------------------------------------------------------
+
++ COMPOSITE (pronuncia: "cmposIt") 
+
+Consente di rappresentare gerarchie di oggetti in una struttura ad albero, al fine di trattare i singoli oggetti e i gruppi di oggetti in modo uniforme.
+In pratica, questo pattern consente di creare un albero di oggetti, in cui ogni oggetto può essere un elemento singolo o un insieme di altri oggetti.
+È particolarmente utile per rappresentare gerarchie di oggetti.
+
+-----------------------------------------------------------------------------
+
++ FACADE (pronuncia: "fsad") 
+
+Fornisce un'interfaccia unificata (riassuntiva di un set di funzionalità) a un set di interfacce in un sottosistema (con interfaccia qui stiamo intendendo un modo all'utente di affacciarsi alle funzionalità. 
+Facade definisce un'interfaccia di livello superiore che semplifica l'utilizzo del sottosistema
+
+Esempio accensione computer : l'accensione è composta da vari passaggi come la fornitura d energia elettrica , poi il controllo di funzionamento dell'hardware , poi il caricamento del sistema operativo ecc.... 
+
+---------------------------------------------------------------------------------
+
++ PROXY 
+
+Il Proxy consente di controllare l'accesso a un oggetto. Fornisce un oggetto sostituto che funge da rappresentante o segnaposto per l'oggetto reale, controllando l'accesso a esso. Il Proxy può aggiungere un livello di logica aggiuntiva prima di delegare la chiamata all'oggetto reale e può essere utilizzato per vari scopi, come la gestione della memoria, l'implementazione di un controllo di accesso, la gestione delle connessioni di rete, e molto altro.
+
+Il Proxy controlla e gestisce tutte le interazioni con l'oggetto reale, consentendo di aggiungere funzionalità aggiuntive come la gestione della cache, il controllo delle autorizzazioni, il logging, il caricamento ritardato (lazy loading), e altro ancora
+
+-------------------------------------------------------------------------------
+
++FLYWEIGHT
+
+utilizzato per ridurre il consumo di memoria quando si lavora con un gran numero di oggetti simili. Il pattern Flyweight sfrutta la condivisione per supportare efficientemente un grande numero di oggetti. Quindi si tratta di condividere al più possibile le funzionalità e oggetti condivisibili per ridurre il consumo , in particolar modo a livello di memoria ram e memoria di massa 
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+---Comportamentali:
+
+
++ OBSERVER
+
+Definisce una dipendenza uno-a-molti tra oggetti in modo che, quando un oggetto cambia stato, tutti i suoi dipendenti vengono notificati e aggiornati 
+automaticamente. Questo pattern è molto utile per mantenere un basso livello di accoppiamento tra oggetti poichè separa il soggetto dagli osservatori 
+
+-----------------------------------------------------------------------
+
++ STRATEGY 
+
+Il pattern Strategy consiste nell'incapsulare una famiglia di algoritmi in classi separate (strategie concrete) che implementano un'interfaccia 
+comune (la strategia). Questo permette di cambiare gli algoritmi in modo dinamico e intercambiabile durante l'esecuzione del programma, senza modificare
+ il codice dell'oggetto che utilizza l'algoritmo (il contesto).
+
+-----------------------------------------------------------------------
+
+
++ COMMAND 
+
+Permette di incapsulare una richiesta come un oggetto, rendendo possibile parametrizzare 
+clienti con diverse richieste, mettere in coda o registrare richieste e supportare operazioni annulabili. Questo pattern è utile per separare l'oggetto
+ che invoca l'operazione dall'oggetto che conosce come eseguirla. Quindi separare la richiesta della sua esecuzione (ovvero separare l'invoker dall'executor) . 
+
+---------------------------------------------------------------------------------
+
++ MEDIATOR 
+
+Mira a ridurre la complessità delle interazioni tra oggetti. Invece di far comunicare gli oggetti direttamente tra loro, il pattern Mediator introduce un oggetto intermediario (il Mediatore) che gestisce le interazioni tra gli oggetti. Ciò permette di ridurre le dipendenze tra gli oggetti e di variare l'interazione tra questi oggetti senza dover andare a modificare gli oggetti stessi.
+
+
+-------------------------------------------------------------------------------------
+
++ TEMPLATE METHOD
+
+Il design pattern Template Method è un pattern comportamentale che definisce la struttura di un algoritmo in un metodo, delegando alcuni passaggi alle sottoclassi. Permette alle sottoclassi di ridefinire alcuni passaggi di un algoritmo senza cambiarne la struttura.
+
+-----------------------------------------------------------------------------
+
++ STATE 
+
+Il problema è che dobbiamo far agire un oggetto in base a quello che è il suo stato interno . (cn stato si intende tipo il valore particolare di un suo attributo).
+State permette a un oggetto di modificare il suo comportamento quando il suo stato interno cambia. Questo pattern aiuta a separare la logica di gestione 
+dello stato dall'oggetto principale e a mantenere il codice più organizzato e flessibile.  
+State fa dipendere il comportamento dell'oggetto dal suo stato. 
+
+
+------------------------------------------------------------------------------------
+
++ CHAIN OF RESPONSABILITY 
+
+Il design pattern Chain of Responsibility è un pattern comportamentale che permette di separare la logica di gestione delle richieste tra una catena di oggetti, ognuno dei quali può gestire o passare la richiesta all'oggetto successivo nella catena. Questo pattern è particolarmente utile quando c'è un insieme di oggetti che potrebbero gestire una richiesta, ma non è noto a priori quale oggetto sia il più adatto.
+
+------------------------------------------------------------------------------------
+
++ NULL OBJECT 
+
+Il design pattern Null Object è un pattern comportamentale che permette di definire un oggetto nullo per evitare di utilizzare riferimenti null (quindi un vero e proprio oggetto che non fa un cazzo)  e verifiche di nullità nel codice. Un oggetto nullo fornisce un'implementazione predefinita che non fa nulla. Utilizzando questo pattern, possiamo ridurre la complessità del codice e migliorare la leggibilità. (se non capisci al volo guarda l'esempio e subito faj)
+
+-------------------------------------------------------------------------
+
++ ITERATOR
+
+fornisce un modo per accedere sequenzialmente agli elementi di una collezione senza dover conoscere o dipendere dalla struttura interna di come gli elementi sono memorizzati. In altre parole , può attraversare gli elementi della collezione senza doversi preoccupare di come la collezione è implementata, se come un array, una lista collegata, un albero, ecc
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                 DESING PATTERN (modello di progettazione)
+
+Nell'ingegneria del software, un design pattern è una soluzione generale ripetibile a un problema che si verifica comunemente nella progettazione del software.
+Un design pattern non è un progetto finito che può essere trasformato direttamente in codice. È una descrizione o un modello su come risolvere un problema
+che può essere utilizzato in molte situazioni diverse.
+
+Spesso le persone capiscono solo come applicare determinate tecniche di progettazione del software a determinati problemi.
+I design pattern forniscono soluzioni generali, quindi lo stesso design pattern può essere applicato in modi diversi per risolvere svariate tipologie di problemi . 
+
+I modelli di progettazione possono accelerare il processo di sviluppo fornendo paradigmi di sviluppo testati e collaudati. Una progettazione software efficace
+richiede la considerazione di problemi che potrebbero non diventare visibili fino a una fase successiva dell'implementazione. 
+
+Inoltre, i modelli consentono agli sviluppatori di comunicare utilizzando nomi noti e quindi rendendo il codice più comprensibile. 
+
+
+.
+                                                           CREATIONAL DESIGN PATTER (modelli di progettazione creazionali)
+
+Questo si concentra sul processo di CREAZIONE di classi e sul processo di creazione di oggetti (quindi le istanze delle classi).
+
+
+
+                                                         STRUCTURAL DESIGN PATTERN (modelli di progettazione strutturali)
+
+Questi a differenza dei creazionali si concentrano sulla vera e popria struttura di classi e oggetti , non sulla loro creazione. Si dividono in:
+STRUCTURAL CLASS CREATION PATTERN usano l'EREDITARIETà per comporre le interfacce.
+STRUCTURAL OBJECT PATTERN definiscono modi per comporre oggetti per ottenere nuove funzionalità
+
+
+ 
+                                                         BEHAVIOUR DESIGN PATTERN (modelli di progettazione comportamentali)
+
+Si concentrano sulla comunicazione tra i vari oggetti .
+
+
+
+                                                          SCOPE DEI DESIGN PATTERN 
+
+Inoltre i tipi di Design Pattern si differenziano anche per il loro scope , ovvero il dominio , la loro aria di lavoro . 
+Sono 2 : 
+
+CLASS PATTERN -> Si focalizzano sulle relazioni tra classi e sottoclassi e quindi si riferiscono a situazioni STATICHE (es. relazioni espresse con l'Ereditariertà)
+
+OBJECT PATTERN -> si focalizzano su oggetti e le loro relazioni. Quindi a situazioni più DINAMICHE che possono cambiare nel tempo .
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+                                                              SINGLETON (creational design pattern) (object creation pattern)
+
+
+Serve ad assicurarsi che una classe abbia solo una singola istanza in tutta l'applicazione e che abbia un punto di accesso globale a questa singola istanza.
+ (viene usato di solito per l'accesso al database in modo che si possa accedere ad esso da una singola "porta" ) 
+Il Singleton è spesso utilizzato quando è necessario avere un unico punto di controllo o coordinamento tra diversi componenti del sistema, 
+come ad esempio la gestione delle risorse, il logging, la configurazione e altre situazioni in cui avere più istanze potrebbe causare problemi di consistenza o prestazioni.
+
+
+Es:
+
+public class Singleton {
+    // Istanza privata e statica della classe Singleton
+    private static Singleton instance;
+
+    // Costruttore privato per evitare che altre classi possano istanziare la classe
+    private Singleton() {
+    }
+
+    // Metodo pubblico e statico per ottenere l'istanza del Singleton
+    public static Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+
+    // Altri metodi della classe Singleton
+    public void doSomething() {
+        System.out.println("Eseguo un'azione nel Singleton");
+    }
+}
+
+
+
+UTILIZZO :
+
+public class Main {
+    public static void main(String[] args) {
+        Singleton singleton = Singleton.getInstance();
+        singleton.doSomething();
+    }
+}
+
+
+
+
+1)   private static Singleton instance;
+
+Il codice fornito implementa un Singleton grazie a diverse caratteristiche chiave:
+Istanza privata e statica: La variabile instance è dichiarata come private e static. Essendo private, non può essere acceduta direttamente da altre classi.
+ Essendo static, appartiene alla classe stessa piuttosto che a una singola istanza, il che significa che viene condivisa tra tutte le istanze della classe.
+
+
+2) private Singleton() {}
+
+Costruttore privato: Il costruttore della classe Singleton è reso privato. Questo impedisce che altre classi istanzino direttamente oggetti di tipo Singleton
+ utilizzando l'operatore new. In questo modo, l'unica possibilità di creare un'istanza del Singleton è attraverso il metodo getInstance() fornito dalla classe stessa.
+
+
+3)  public static Singleton getInstance() {
+    if (instance == null) {
+        instance = new Singleton();
+    }
+    return instance;
+}
+
+Metodo getInstance(): Il metodo getInstance() è un metodo pubblico e statico che restituisce l'istanza unica del Singleton. Quando viene chiamato,
+ verifica se l'istanza è già stata creata (controllando se instance è null). Se non è stata ancora creata, ne crea una nuova utilizzando il costruttore privato. 
+In caso contrario, restituisce l'istanza esistente. Poiché il metodo è static, può essere chiamato direttamente sulla classe, senza dover istanziare un oggetto.
+
+
+-------------------------------------------------------------------------------------------------------------------------
+
+                                                                  FACTORY METHOD (Creattional design pattern) 
+
+Si tratta di definire una classe chiamata solitamente factory in cui centralizziamo la creazione di oggetti che implementano un’interfaccia comune. Consentendo di creare oggetti senza specificare esplicitamente a priori la classe precisa dell’oggetto che verrà istanziato.
+
+
+Definisce un’interfaccia per la creazione di oggetti, ma lascia che le sottoclassi decidano quale classe istanziare e si riferisce all’oggetto appena creato attraverso un’interfaccia comune. 
+
+es: 
+
+
+interface Forma {
+   void disegna();
+}
+
+
+
+class Rettangolo implements Forma {
+   @Override
+   public void disegna() {
+      System.out.println("Disegna un rettangolo");
+   }
+}
+
+
+
+class Cerchio implements Forma {
+   @Override
+   public void disegna() {
+      System.out.println("Disegna un cerchio");
+   }
+}
+
+
+
+
+//la nostra classe Factory 
+class FormaFactory {
+
+   public Forma ottieniForma(String tipo) {
+      if (tipo == null) {
+         return null;
+      }
+
+      if (tipo.equalsIgnoreCase("RETTANGOLO")) {
+         return new Rettangolo();
+      } else if (tipo.equalsIgnoreCase("CERCHIO")) {
+         return new Cerchio();
+      }
+
+      return null;
+   }
+}
+
+
+
+public class Main {
+   public static void main(String[] args) {
+      FormaFactory formaFactory = new FormaFactory();
+
+      Forma forma1 = formaFactory.ottieniForma("RETTANGOLO");
+      forma1.disegna();
+
+      Forma forma2 = formaFactory.ottieniForma("CERCHIO");
+      forma2.disegna();
+   }
+}
+
+
+
+In questo esempio, l'interfaccia Forma definisce il tipo di oggetti che verranno creati.
+Le classi Rettangolo e Cerchio implementano l'interfaccia Forma e rappresentano i tipi di oggetti che possono essere creati.
+La classe FormaFactory utilizza queste classi concrete per creare oggetti in base alle esigenze del programma.
+
+Il design pattern Factory Method è utile perché rende il codice 
+
+1) PIU' MODIFICABILE : poichè la logica di creazione degli oggetti è centralizzata. Se ad esempio modifichiamo il costruttore della classe Rettangolo , 
+se NON si fosse usato il Factory Method allora dovevi andare a modificare nel Main tutte le volte che creavi un'istanza di Rettangolo con "new Rettangolo" , 
+invece dato che la logica è gestita nella classe Factory ci basta modificare quell'unico "new Rettangolo" che sta nella classe Factory. 
+
+2) PIU' FLESSIBILITA' : se voglio aggiungere un'altra classe collegata alle altre, invece di crearla e andare a modificare il codice nel Main , mi basta andare 
+a crearla e aggiungerla alla Factory,  senza dover modificare il codice che utilizza gli oggetti creati dalla classe factory. Cosi lo posso direttamente usare 
+nel Main e crearlo , non devo usare degli if o roba del genere nel codice Main   
+
+3) VIENE USATO IL MENO POSSIBILE "new" all'interno del Main , le creazioni sono più controllate 
+
+4) MAGGIORE TESTABILITà : la creazione degli oggetti è centralizzata , quindi è più facile testare questo processo 
+
+NOTA: è un design pattern utile quando ci può essere il bisogno di creare un istanza di tipi diverse in base ala situazione e quindi lo possiamo fare risparmiando .
+Se invece il tipo di istanza nel Main è sempre la stessa allora è inutile .
+
+NOTA: il Factory Method non mira a ridurre l'uso delle risorse o aumentare l'efficienza, ma piuttosto a migliorare la flessibilità,
+ l'estendibilità e la manutenibilità del codice.  L'uso indiretto di new (quando l'istanza è creata nella classe FormFactory) non è meno dispendioso dell'uso 
+di new diretto (direttamente nel Main) 
+
+
+-----------------------------------------------------------------------------------------------------------------------
+
+                                                     ABSTRACT FACTORY (creational design pattern) (object creation pattern)
+
+
+Fornisce un'interfaccia per creare famiglie di oggetti correlati o dipendenti senza specificare le loro classi concrete.
+
+
+es:   l'implementazione del modello Abstract Factory per creare bottoni e caselle di testo per due diverse piattaforme: Windows e macOS.
+
+
+INTERFACCIA :   (ABSTRACT FACTORY)
+
+// Abstract Product: Button
+
+interface Button {
+    void draw();
+}
+
+// Abstract Product: TextBox
+
+interface TextBox {
+    void draw();
+}
+
+// Abstract Factory
+
+interface GUIFactory {
+    Button createButton();
+    TextBox createTextBox();
+}
+
+
+
+
+
+CONCRETE PRODUCT (le implementazioni dell'interafccia):
+
+
+
+// Concrete Product: WindowsButton
+class WindowsButton implements Button {
+    @Override
+    public void draw() {
+        System.out.println("Drawing a Windows button");
+    }
+}
+
+// Concrete Product: WindowsTextBox
+class WindowsTextBox implements TextBox {
+    @Override
+    public void draw() {
+        System.out.println("Drawing a Windows text box");
+    }
+}
+
+// Concrete Product: MacOSButton
+class MacOSButton implements Button {
+    @Override
+    public void draw() {
+        System.out.println("Drawing a macOS button");
+    }
+}
+
+// Concrete Product: MacOSTextBox
+class MacOSTextBox implements TextBox {
+    @Override
+    public void draw() {
+        System.out.println("Drawing a macOS text box");
+    }
+}
+
+
+
+
+
+
+
+
+CONCRETE FACTORY :
+
+
+// Concrete Factory: WindowsGUIFactory
+class WindowsGUIFactory implements GUIFactory {
+    @Override
+    public Button createButton() {
+        return new WindowsButton();
+    }
+
+    @Override
+    public TextBox createTextBox() {
+        return new WindowsTextBox();
+    }
+}
+
+// Concrete Factory: MacOSGUIFactory
+class MacOSGUIFactory implements GUIFactory {
+    @Override
+    public Button createButton() {
+        return new MacOSButton();
+    }
+
+    @Override
+    public TextBox createTextBox() {
+        return new MacOSTextBox();
+    }
+}
+
+
+
+
+
+
+CLIENT:
+
+
+
+public class Main {
+    public static void main(String[] args) {
+        // Scegliamo la factory in base alla piattaforma
+        GUIFactory factory;
+        String platform = "macos"; // Puoi cambiare questa stringa per testare con "windows"
+        
+        if (platform.equals("windows")) {
+            factory = new WindowsGUIFactory();
+        } else {
+            factory = new MacOSGUIFactory();
+        }
+
+        // Creiamo i componenti dell'interfaccia utente utilizzando la factory scelta
+        Button button = factory.createButton();
+        TextBox textBox = factory.createTextBox();
+
+        // Utilizziamo i componenti dell'interfaccia utente
+        button.draw();
+        textBox.draw();
+    }
+}
+
+
+
+
+
+La struttura è più complessa poichè dobbiamo implementare intere famiglie attraverso le classi e interfacce ed infine riunire queste famiglie (Windows e MAC) 
+in un unica interfaccia . 
+
+Abbiamo Button e TextBox che vengono implementati da WindowsButton/TextBox e MACButton/TextBox , e poi l'insieme delle due interfacce (Button e TextBox) sono 
+contenute in GUIFactory(interfaccia) . Quindi poi WindowsFactory e MACFactory fanno la loro personale implementazione di GUIFactory , ognuna con i suoi 
+personali Button e TextBox. 
+
+Non ti confondere , un'altra delle differenze con Factory Method è che la creazione diretta degli oggetti viene svolta direttamente nel Main , mentre 
+nel FactoryMethod veniva svolta indirettamente nel Main , ma veniva fatta realmente nella classe "factory". 
+
+Dato tutto ciò , nel Main possiamo utilizzare l'interfaccia generica per fare qualunque operazione (Button e TextBox negli ultimi righi) senza preoccuparci 
+di quale famiglia fa parte (ciò è gestito solo nell'if else all'inizio del Main) 
+
+
+VANTAGGI :  gli stessi del Factory Method (leggili da li') ma estesi alla famiglia di oggetti , quindi : 
++PIU' MODIFICABILITà
++PIù TESTABILITA 
++VIENE USATO IL MENO POSSIBILE "new" , poichè non bisogna specificare esplicitamente la classe della famiglia . 
++più FLESSIBILITA' nella creazione di nuove classi 
+
+
+
+---------------------------------------------------------------------------------------------------------------------------
+
+
+                                                                  BUILDER (creational design pattern) 
+
+Viene utilizzato per semplificare la creazione di oggetti complessi (si intende oggetti con tanti attributi e metodi) soprattutto quando l'oggetto a vari attributi opzionali , separando la loro costruzione della loro 
+rappresentazione , ovvero il modo in cui sono creati dalla loro reale struttura . 
+(Suddivide la costruzione in passaggi chiari e distinti (steps). Ogni metodo del Builder rappresenta un passaggio nella configurazione dell'oggetto.) 
+
+es:  
+
+//classe Pizza
+
+class Pizza {
+    private String base;
+    private String salsa;
+    private String formaggio;
+    private String topping;
+
+    private Pizza() {}
+
+    public static class Builder {
+        private String base;
+        private String salsa;
+        private String formaggio;
+        private String topping;
+
+        public Builder(String base, String salsa) {
+            this.base = base;
+            this.salsa = salsa;
+        }
+
+        public Builder formaggio(String formaggio) {
+            this.formaggio = formaggio;
+            return this;
+        }
+
+        public Builder topping(String topping) {
+            this.topping = topping;
+            return this;
+        }
+
+        public Pizza build() {
+            Pizza pizza = new Pizza();
+            pizza.base = this.base;
+            pizza.salsa = this.salsa;
+            pizza.formaggio = this.formaggio;
+            pizza.topping = this.topping;
+            return pizza;
+        }
+    }
+}
+
+
+
+
+public class Main {
+    public static void main(String[] args) {
+        Pizza margherita = new Pizza.Builder("normale", "pomodoro")
+                            .formaggio("mozzarella")
+                            .build();                     //topping avrà valore null
+
+        Pizza hawaii = new Pizza.Builder("normale", "pomodoro")
+                            .formaggio("mozzarella")
+                            .topping("ananas")
+                            .build();
+    }
+}
+
+
+
+
+Il Builder sostanzialmente un modo diverso dall'uso del costruttore di creare e inizializzare oggetti offrendo un elsaticità maggiore.
+Viene usato in particolar modo quando in classi complesse ci sono degli attributi opzionali che a volte non devono essere inizializzati . 
+Se non vogliamo usare il Builder e vogliamo impostare degli attributi a "null" dobbiamo inserire obbligatoriamente dei null nel costruttore quando usiamo "new" . 
+In alternativa si potrebbe fare l'overloading dei costruttori ma ciò renderebbe il codice confusionario e più difficile da usare . 
+
+Nel nostro codice , come puoi vedere dal Main , possiamo inserire i vari attributi a step e opzionalmente. Usiamo il costruttore Builder per gli attributi 
+basilari strettamente necessari e poi aggiungiamo i vari attributi a scelta e con il metodo build() creiamo l'oggetto. (se non inseriamo un attributo , come ad es. 
+topping nella prima pizza del Main , allora topping avrà valore null ) 
+
+NOTA : la classe Builder è comoda non solo quando si hanno attributi opzionali ma è una buona pratica in generale (leggi i vantaggi) 
+
+VANTAGGI : 
+
+1) Migliorare la leggibilità: 
+In alcuni casi, potresti avere un oggetto con molti attributi obbligatori. Utilizzare un costruttore con un gran numero di parametri può rendere il codice 
+difficile da leggere e capire. In questi casi, il Builder può migliorare la leggibilità del codice, permettendo di impostare gli attributi con metodi 
+specifici che rendono chiaro a quale attributo si riferiscono.
+
+2) Estensibilità e manutenibilità: 
+Il pattern Builder rende più facile aggiungere nuovi attributi o modificare la logica di costruzione senza dover modificare il codice esistente.
+Se prevedi che la classe potrebbe subire modifiche in futuro, l'adozione del pattern Builder può facilitare l'estensibilità e la manutenzione del codice.
+
+
+COSTRUTTORE "PRIVATE" :
+Il costruttore è private per garantire l'incapsulamento e quindi per forzare l'uso del Builder per istanziare oggetti Pizza. 
+In tal modo il costruttore non può essere accessibile al di fuori della classe stessa e quindi possiamo creare istanze Pizza solo attraverso il Builder e quindi 
+possiamo arricchire i metodi di creazione del Builder con controlli ecc...
+Non è obbligatorio creare un costruttore e si potrebbe cmq usare "new" per creare un oggetto Pizza , poichè di default viene creato un costruttore pubblico vuoto 
+quindi con tutti gli attributi inizialmente a null . Noi non vogliamo sia pubblico quindi lo dobbiamo dichiarare come privato 
+
+
+PERCHE' IL BUILDER E' "STATIC" ? 
+motivo :
+Indipendenza dalle istanze della classe esterna (Pizza):
+Essendo static, la classe Builder non richiede un'istanza della classe esterna (in questo caso, Pizza) per essere creata. 
+Ciò consente di creare un'istanza del Builder senza creare prima un'istanza della classe esterna.
+Questo è utile perché l'obiettivo del Builder è proprio quello di costruire un'istanza della classe esterna (se no non avrebbe senzo creare prima un'istanza Pizza 
+anche perchè non possiamo essendo il costruttore di Pizza private) .
+
+
+----------------------------------------------------------------------------------------------------------
+
+
+                                                                   OBJECT POOL (creational pattern) 
+
+
+All'avvio dell'applicazione o cmq quando serve viene creato un contenitore (pool) in cui vengono creati e conservati un certo numero di oggetti dello stesso tipo,
+in tal modo quando vogliamo usare un oggetto non dobbiamo andarcelo a creare ogni volta (operazione costosa) poichè è stato già fatto , dobbiamo solo chiedere 
+al pool di restituircelo e quando abbiamo finito glielo ridiamo in modo che possa essere resettato (se serve) e nel caso dato a qualche altro oggetto che se ne vuole servire
+in futuro . Tutto ciò è molto buono in fatto di prestazioni quando la creazione di un oggetto è costosa e quando il numero di istanze di una classe che dobbiamo 
+usare contemporaneamente è più o meno conosciuto .
+è come se avessimo un magazzino con cose che non ci potrebbero servire in futuro; quando ci servono, invece di ordinarle nuove da Amazon e dover pagare e aspettare 
+che arrivino (ci costa tempo e prestazioni) lo andiamo a prendere dal magazzino. 
+
+L'Object Pool è particolarmente utile quando la creazione(e volendo anche dell'inizializzazione) degli oggetti è costosa in termini di tempo e risorse (evitiamo 
+anche di deallocarlo e ricrearlo nel caso serva in seguito) , o quando è necessario limitare il numero di istanze di un oggetto poichè la memoria è limitata . 
+
+NOTA : 
+
+
+es: // Immaginiamo di dover gestire un'applicazione che invia messaggi di notifica agli utenti. La creazione di un oggetto Notifica potrebbe essere costosa
+    // in termini di tempo e risorse, poiché ci dobbiamo connettere ad un servizio esterno che ci elabora e restituisce il messaggio e destinatario.
+    // In questo caso, possiamo utilizzare un Object Pool per gestire gli oggetti Notifica e ottimizzare l'inizializzazione degli oggetti.
+
+
+1)    //Creazione dell'interfaccia Poolable: 
+   
+
+public interface Poolable {
+    void reset();
+}
+
+
+2)   //Implementazione della classe Notifica:
+
+
+
+      public class Notifica implements Poolable {
+
+    private String messaggio;
+    private String destinatario;
+
+    public Notifica() {
+        // Inizializzazione delle risorse costose, come la connessione al servizio esterno
+    }
+
+    public void setMessaggio(String messaggio) {
+        this.messaggio = messaggio;
+    }
+
+    public void setDestinatario(String destinatario) {
+        this.destinatario = destinatario;
+    }
+
+    public void invia() {
+        // Invia il messaggio al destinatario utilizzando il servizio esterno
+    }
+
+    @Override
+    public void reset() {
+        this.messaggio = null;
+        this.destinatario = null;
+    }
+}
+
+
+3)   // Creazione dell'interfaccia ObjectFactory:
+ 
+    public interface ObjectFactory<T> {          //T è un tipo generico (lo spieghiamo fra poco) 
+
+    T createObject();
+                     }
+
+//
+
+
+
+4)   //Implementazione della factory concreta:
+
+
+    public class NotificaFactory implements ObjectFactory<Notifica> {
+
+    @Override
+    public Notifica createObject() {
+        return new Notifica();
+    }
+           }
+
+
+
+5)  // Implementazione dell'Object Pool:
+
+    
+      import java.util.LinkedList;
+
+public class ObjectPool<T extends Poolable> {
+    private final LinkedList<T> pool;
+    private final ObjectFactory<T> factory;
+
+    public ObjectPool(ObjectFactory<T> factory, int initialSize) {
+        this.factory = factory;
+        pool = new LinkedList<>();
+        for (int i = 0; i < initialSize; i++) {
+            pool.add(factory.createObject());
+        }
+    }
+
+    public synchronized T acquire() {
+        if (pool.isEmpty()) {
+            return factory.createObject();
+        }
+        return pool.removeFirst();   //restituisce il primo oggetto della LinkedList del pool 
+    }
+
+    public synchronized void release(T object) {      //metodo implementato per riportare allo stato iniziale un oggetto quando non è più usato e restituito al pool
+        object.reset();
+        pool.add(object);
+    }
+ }
+
+
+
+
+6)      // Utilizzo dell'Object Pool:
+
+
+
+public class Main {
+    public static void main(String[] args) {
+        ObjectPool<Notifica> notificaPool = new ObjectPool<>(new NotificaFactory(), 5);    //istanziamo 5 oggetti Notifica nel Pool 
+
+        // Acquisizione di una notifica dalla pool
+        Notifica notifica = notificaPool.acquire();
+
+        // Inizializzazione della notifica
+        notifica.setMessaggio("Ciao, questo è un messaggio di notifica!");
+        notifica.setDestinatario("utente@example.com");
+
+        // Invio della notifica
+        notifica.invia();
+
+        // Rilascio della notifica nella pool
+        notificaPool.release(notifica);
+    }
+}
+
+
+
+
+In questo esempio, la classe Notifica implementa l'interfaccia Poolable e ha un metodo reset() per riportare l'oggetto al suo stato iniziale. 
+L'Object Pool gestisce gli oggetti Notifica, quando si crea l'Object Pool di oggetti specifici queste (5 istanze di Notifica nell'esempio) istanze vengono 
+conservate nel Pool e quando se ne richide una , se sono finite , ne viene creata una nuova (volendo si può anche mettere un limite al numero di istanze. 
+Quando si restituisce l'oggetto al Pool , questo viene resettato per uno nuovo futuro utilizzo . 
+
+
+NOTA :    all'inizio dell'applicazione la creazione di un ObjectPool contenente 5 istanze di Notifica può essere oneroso , però dopo ciò , le prestazioni 
+          per il resto dell'utilizzo ne trarranno vantaggio 
+         (Tuttavia, è importante notare che l'Object Pool potrebbe non essere sempre la soluzione ideale per tutte le situazioni.
+           In alcuni casi, il costo di mantenere gli oggetti nella pool e di gestire il loro stato potrebbe superare i vantaggi in termini di prestazioni. ) 
+
+
+NOTA :   il tipo "T" è un tipo generico di oggetto ( ci sono vari motivi del perchè nn si usa "object" , non staremo qui a dirli) 
+      Nell Object Pool , la prima riga ->   " public class ObjectPool<T extends Poolable> { " 
+      vuol dire che T rappresenta qualsiasi classe che estende o implementa Poolable   , questa è una limitazione al tipo generico T 
+
+
+NOTA :  la struttura dell'Object Pool  è progettata per essere flessibile e facilmente estendibile per gestire oggetti di diversi tipi. 
+        Grazie all'uso dei parametri di tipo generico T e dell'interfaccia ObjectFactory<T>, è possibile creare Object Pool per diverse classi senza dover
+        scrivere codice specifico per ogni tipo di oggetto.
+        Quindi in tal caso il tipo T deve essere una sottoclasse o un'implementazione dell'interfaccia Poolable. 
+
+
+NOTA:   NON è possibile creare un Object Pool contenente istanze di DIVERSO TIPO . (almeno non con questa implementazione) 
+
+
+NOTA:  "syncronized" nei metodi dell' ObjectPool sono usati per il multithreading 
+
+
+NOTA :   l'ObjectPool non è utile solo per la creazione o per limitare il numero di istanze di una classe , è utile per le prestazioni anche per quanto riguarda 
+         la DEALLOCAZIONE . 
+         Oltre ovviamente ad evitare la deallocazione e poi creazione di un oggetto nel caso serva di nuovo , riduciamo il carico del Garbage Collector che si 
+         occupa di liberare la memoria da oggetti inutilizzati . Il Garbage Collector è cmq parte della nostra applicazione Java , e rompergli il cazzo il meno 
+         possibile è una buona cosa per le prestazioni . 
+
+
+ VANTAGGI : 
+
+1)   Miglioramento delle prestazioni  : 
+    poichè evitiamo di creare ogni volta nuovi oggetti  (leggi sopra per dettagli)
+
+2) Miglior gestione delle risorse di memoria   :
+   poichè possiamo limitare la creazione delle istanze della classe gestita dal Pool (leggi sopra per dettagli)
+
+3) Favorisce il "THREAD-SAFETY" :
+ Utilizzando meccanismi di sincronizzazione come il modificatore synchronized, l'Object Pool può essere un modo semplice per garantire la non concorrenza di 2 
+thread che accedono ad un oggetto 
+
+
+-----------------------------------------------------------------------------------------------------------------------
+
+
+                                                                   PROTOTYPE (creational pattern) 
+
+
+Permette di creare nuovi oggetti clonando un prototipo esistente (ovvero un modello su cui basarsi), invece di usare l'operatore new per la creazione dell'oggetto.
+Questo design pattern è particolarmente utile quando la creazione/inizializzazione di un oggetto è particolarmente costosa , allora si preferisce creare l'oggetto
+e poi clonare/copiare quell'oggetto se ne vogliamo creare un'altro , senza ricrearlo da zero (evitando la creazione dispendiosa).
+Quindi è necessario cmq creare un'istanza dell'oggetto con new, poi le prossime istanze che creiamo vengono clonate e quindi la creazione è meno dispendiosa.
+
+
+
+
+Creare un oggetto e clonarlo , differenza:
+
+Creare un oggetto significa utilizzare l'operatore new, quindi il costruttore della classe viene chiamato, e può comportare l'inizializzazione di variabili, 
+l'allocazione di risorse, e altre operazioni necessarie per preparare l'oggetto all'uso. 
+
+Clonare un oggetto significa creare una copia di un oggetto esistente. Invece di chiamare il costruttore della classe e inizializzare tutte le variabili
+e le risorse da zero, la clonazione copia i valori dei campi dell'oggetto originale nel nuovo oggetto clonato. 
+A seconda dell'implementazione, la clonazione può comportare una copia superficiale (shallow copy) o una copia profonda (deep copy) dell'oggetto originale.
+(superficiale con primitivi e profonda con oggetti , quindi tipi complessi)
+
+Clonare un oggetto è spesso considerato meno dispendioso rispetto alla creazione di un nuovo oggetto perché:
+Evita l'esecuzione del costruttore: Quando cloni un oggetto, il costruttore della classe non viene chiamato, il che significa che non è necessario eseguire 
+le operazioni di inizializzazione e l'allocazione di risorse che vengono eseguite quando si crea un nuovo oggetto.
+
+Evita operazioni di inizializzazione costose: Se la creazione di un oggetto richiede operazioni di inizializzazione che richiedono molto tempo o
+risorse (ad esempio, caricare dati da un file o da un database, allocare grandi quantità di memoria che servono per i calcoli dell'inizializzazione ,
+operazioni complesse, ecc.), clonare un oggetto esistente che ha già 
+completato queste operazioni può essere più efficiente.
+
+Tuttavia, è importante notare che la clonazione di un oggetto non è sempre più efficiente rispetto alla creazione di un nuovo oggetto. 
+Se l'oggetto da clonare contiene riferimenti ad altri oggetti complessi e richiede una copia profonda, il processo di clonazione potrebbe richiedere tempo e 
+risorse simili alla creazione di un nuovo oggetto.
+
+
+NOTA : quando cloniamo ci viene restituito un'istanza identica di quella clonata, con i valori degli attributi identici . Se l'oggetto da clonare contiene 
+dei tipi complessi allora la copia profonda deve essere fatta esplicitamente , se no si copia solo il riferimento allo stesso oggetto.
+
+
+
+
+es:
+
+
+public class Car implements Cloneable {
+    private String brand;
+    private String model;
+
+    public Car(String brand, String model) {
+        this.brand = brand;
+        this.model = model;
+        expensiveInitialization();
+    }
+
+
+    private void expensiveInitialization() {
+        // Simuliamo un processo di inizializzazione costoso con un sleep di 2 secondi
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public String getBrand() {
+        return brand;
+    }
+
+
+    public String getModel() {
+        return model;
+    }
+
+
+    // Implementazione del metodo clone() usando l'interfaccia Cloneable e il metodo clone() di Object
+    @Override
+    public Car clone() {
+        try {
+            return (Car) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError("Cloning not supported", e);
+        }
+    }
+}
+
+
+
+
+
+
+//MAIN
+
+public class Client {
+    public static void main(String[] args) {
+        // Creiamo il prototipo di Car
+        Car prototype = new Car("Tesla", "Model S");
+
+        // Cloniamo il prototipo
+        Car clonedCar = prototype.clone();
+
+        System.out.println("Original car: " + prototype.getBrand() + " " + prototype.getModel());
+        System.out.println("Cloned car: " + clonedCar.getBrand() + " " + clonedCar.getModel());
+    }
+}
+
+
+
+
+
+Dopo aver creato Car attraverso il costruttore , se vogliamo creare un'altra istanza allora cloniamo quella già creata , evitando di nuovo l'inizializzazione costosa
+ma usando i valori già calcolati durante l'inizializzazione del primo oggetto , quindi evitiamo di ripetere l'inizializzazione . 
+
+
+Clonable è un'interfaccia "marker" Java usata SOLO per segnalare che quell'oggetto implementa il metodo clone() e che quindi è clonabile.
+Il che significa che Clonable non contiene metodi astratti, incluso il metodo clone(). 
+Essa serve solo a indicare che un oggetto è clonabile e che il suo metodo clone() può essere chiamato senza incorrere in un'eccezione CloneNotSupportedException.
+
+Il metodo super.clone() è una chiamata al metodo clone() della classe padre (superclasse) dell'oggetto corrente. 
+Nel nostro esempio, la classe Car estende implicitamente la classe Object, che è la classe padre di tutte le classi in Java.
+Pertanto, super.clone() chiama il metodo clone() della classe Object.
+Il metodo clone() della classe Object crea e restituisce una copia superficiale dell'oggetto su cui viene invocato. Una copia superficiale significa
+ che il nuovo oggetto clonato ha gli stessi valori dei campi dell'oggetto originale. 
+Tuttavia, per i campi che contengono riferimenti ad oggetti, solo i riferimenti vengono copiati, e non gli oggetti stessi. (se vuoi fare una copia profonda allora 
+devi usare super.clone() e poi copiare esplicitamente l'oggetto complesso da includere nella copia) 
+
+
+NOTA : 
+Quando si utilizza il metodo clone() per clonare un oggetto, il costruttore non viene chiamato. 
+Ciò avviene perché il metodo clone() della classe Object utilizza un meccanismo di basso livello per creare una copia dell'oggetto 
+Quindi sto meccanismo implementato a basso livello ci fa risparmiare , NON viene usato il costruttore.
+
+
+-----------------------------------------------------------------------------------------------------
+
+                                                                   ADAPTER  (structural pattern) 
+
+
+è un pattern strutturale che permette a due interfacce incompatibili di lavorare insieme, adattando un'interfaccia esistente in un'altra interfaccia
+che un'altra classe può utilizzare (Ciò viene realizzato avvolgendo una delle interfacce con una nuova interfaccia compatibile). L'Adapter viene utilizzato per risolvere problemi di interoperabilità tra classi che altrimenti non sarebbero in 
+grado di comunicare a causa di incompatibilità nelle loro interfacce.
+Questo pattern è particolarmente utile quando si lavora con librerie esterne o con codice legacy.
+Può essere implementato in due modi: tramite l'ereditarietà (class adapter) o la composizione (object adapter).
+
+
+
+es:   CON COMPOSIZIONE 
+//La nostra interfaccia MediaPlayer mostra i metodi per leggere file mp3 ed è implementata dalla classe Mp3Player (in grado di leggere file mp3) ,
+ dopo tempo aggiungiamo una libreria esterna(un nuovo aggiornamento) e questa classe Mp4Player può leggere file mp4.
+  Invece di modificare direttamente la classe Mp3Player, puoi creare un'interfaccia AdvancedMediaPlayer che supporta la riproduzione di file mp4.
+   Per rendere compatibili le due interfacce, creiamo un Adapter che implementa l'interfaccia MediaPlayer e utilizza l'interfaccia AdvancedMediaPlayer
+   dentro di se , e quindi per creare l'Adapter usiamo la COMPOSIZIONE 
+
+
+
+interface MediaPlayer {
+    void playMp3(String fileName);
+}
+
+
+
+
+class Mp3Player implements MediaPlayer {
+    @Override
+    public void playMp3(String fileName) {
+        System.out.println("Riproduzione file MP3: " + fileName);
+    }
+}
+
+
+
+//Invece di modificare direttamente la classe Mp3Player, puoi creare un'interfaccia AdvancedMediaPlayer che supporta la riproduzione di file mp4:
+
+interface AdvancedMediaPlayer {
+    void playMp4(String fileName);
+}
+
+
+
+
+
+class Mp4Player implements AdvancedMediaPlayer {
+    @Override
+    public void playMp4(String fileName) {
+        System.out.println("Riproduzione file MP4: " + fileName);
+    }
+}
+
+
+
+
+
+
+//Per rendere compatibili le due interfacce, creiamo un Adapter che implementa l'interfaccia MediaPlayer e utilizza l'interfaccia AdvancedMediaPlayer:
+
+class MediaAdapter implements MediaPlayer {
+    AdvancedMediaPlayer advancedMediaPlayer;
+
+    public MediaAdapter(String audioType) {
+        if (audioType.equalsIgnoreCase("mp4")) {
+            advancedMediaPlayer = new Mp4Player();
+        }
+    }
+
+    @Override
+    public void playMp3(String fileName) {
+        if (advancedMediaPlayer != null) {
+            advancedMediaPlayer.playMp4(fileName);
+        }
+    }
+}
+
+
+
+
+//Ora è possibile utilizzare l'Adapter per riprodurre sia file mp3 che mp4:
+
+public class Main {
+    public static void main(String[] args) {
+        MediaPlayer mp3Player = new Mp3Player();
+        MediaPlayer mp4Player = new MediaAdapter("mp4");
+
+        mp3Player.playMp3("file.mp3");
+        mp4Player.playMp3("file.mp4");
+    }
+}
+
+
+
+
+
+
+In questo esempio, il pattern Adapter viene utilizzato per rendere compatibili le interfacce MediaPlayer e AdvancedMediaPlayer, permettendo di riprodurre sia
+ file mp3 che mp4 senza modificare direttamente la classe Mp3Player.
+
+
+
+
+
+es:   CON EREDITARIETA'  (è meno flessibile rispetto all'approccio basato sulla composizione, poiché l'Adapter è vincolato all'implementazione della classe Mp4Player)
+
+
+
+
+interface MediaPlayer {
+    void playMp3(String fileName);
+}
+
+class Mp3Player implements MediaPlayer {
+    @Override
+    public void playMp3(String fileName) {
+        System.out.println("Riproduzione file MP3: " + fileName);
+    }
+}
+
+
+
+
+interface AdvancedMediaPlayer {
+    void playMp4(String fileName);
+}
+
+class Mp4Player implements AdvancedMediaPlayer {
+    @Override
+    public void playMp4(String fileName) {
+        System.out.println("Riproduzione file MP4: " + fileName);
+    }
+}
+
+
+
+
+class MediaAdapter extends Mp4Player implements MediaPlayer {
+    @Override
+    public void playMp3(String fileName) {
+        playMp4(fileName);
+    }
+}
+
+
+
+
+
+
+public class Main {
+    public static void main(String[] args) {
+        MediaPlayer mp3Player = new Mp3Player();
+        MediaPlayer mp4Player = new MediaAdapter();
+
+        mp3Player.playMp3("file.mp3");
+        mp4Player.playMp3("file.mp4");
+    }
+}
+
+
+
+
+VANTAGGI:
+
+Separazione delle preoccupazioni: 
+L'Adapter permette di mantenere separate le classi e le loro responsabilità, garantendo che ognuna si occupi solo delle proprie funzionalità 
+e che le modifiche in una classe non influenzino direttamente le altre.
+
+Riutilizzo del codice: 
+Poiché l'Adapter consente a classi con interfacce incompatibili di lavorare insieme, è possibile riutilizzare il codice esistente senza la necessità 
+di modificarlo per adattarlo a nuove esigenze o situazioni.
+
+Maggiore flessibilità: 
+Il pattern Adapter facilita l'aggiunta di nuove funzionalità o la modifica delle funzionalità esistenti senza alterare le classi esistenti
+
+Sostituzione facile: 
+L'Adapter rende più semplice la sostituzione di un componente con un altro, poiché l'interfaccia tra i componenti rimane invariata, anche se l'implementazione
+ interna viene modificata.
+
+
+
+SITUAZIONI DI UTILIZZO 
+
+Quando si desidera utilizzare una classe esistente che ha un'interfaccia incompatibile con quella richiesta 
+
+Quando si desidera creare una classe riutilizzabile che funziona con classi non correlate o non previste
+
+Quando si desidera combinare diverse librerie o API con interfacce diverse: L'Adapter può essere utilizzato per creare un'interfaccia comune tra le diverse librerie
+
+Quando si prevede che un'interfaccia possa cambiare nel tempo
+
+-----------------------------------------------------------------------------------------------------------------
+
+                                                                                BRIDGE (structural pattern) 
+
+Il design pattern Bridge è un pattern strutturale che separa l'astrazione da un'implementazione, in modo tale che entrambe possano essere modificate
+indipendentemente l'una dall'altra. Questo pattern è particolarmente utile quando si lavora con classi astratte o interfacce e si desidera evitare che
+ le modifiche ad una di esse influenzino l'altra.
+
+
+
+es:  //Immagina di dover implementare un'applicazione per disegnare diverse forme geometriche con diversi tipi di rendering, come ad esempio il rendering 
+vettoriale o raster. Senza utilizzare il Bridge pattern, potresti avere una gerarchia di classi per le forme e una gerarchia separata per i tipi di rendering,
+ portando ad una combinazione di classi molto complessa.
+Utilizzando il pattern Bridge, invece, possiamo separare l'astrazione delle forme geometriche dall'implementazione del rendering.
+
+
+
+
+// Interfaccia per il rendering
+interface Renderer {
+    void render(String forma);
+}
+
+
+
+// Implementazioni concrete del rendering
+class RasterRenderer implements Renderer {
+    public void render(String forma) {
+        System.out.println("Rendering raster della " + forma);
+    }
+}
+
+
+
+class VettorialeRenderer implements Renderer {
+    public void render(String forma) {
+        System.out.println("Rendering vettoriale della " + forma);
+    }
+}
+
+
+
+// Astrazione della forma
+abstract class Forma {
+    protected Renderer renderer;
+
+    public Forma(Renderer renderer) {
+        this.renderer = renderer;
+    }
+
+    public abstract void disegna();
+}
+
+
+
+// Implementazioni concrete delle forme
+class Cerchio extends Forma {
+    public Cerchio(Renderer renderer) {
+        super(renderer);
+    }
+
+    public void disegna() {
+        renderer.render("Cerchio");
+    }
+}
+
+
+
+class Quadrato extends Forma {
+    public Quadrato(Renderer renderer) {
+        super(renderer);
+    }
+
+    public void disegna() {
+        renderer.render("Quadrato");
+    }
+}
+
+
+
+//Ora, per utilizzare queste classi, puoi creare un'istanza di una forma e passare l'implementazione del rendering desiderata nel costruttore:
+
+
+public static void main(String[] args) {
+    Renderer rasterRenderer = new RasterRenderer();
+    Renderer vettorialeRenderer = new VettorialeRenderer();
+
+    Forma cerchioRaster = new Cerchio(rasterRenderer);
+    cerchioRaster.disegna();
+
+    Forma cerchioVettoriale = new Cerchio(vettorialeRenderer);
+    cerchioVettoriale.disegna();
+
+    Forma quadratoRaster = new Quadrato(rasterRenderer);
+    quadratoRaster.disegna();
+
+    Forma quadratoVettoriale = new Quadrato(vettorialeRenderer);
+    quadratoVettoriale.disegna();
+}
+
+
+In questo esempio, abbiamo separato l'astrazione delle forme geometriche dall'implementazione del rendering, permettendo così
+ di modificare indipendentemente l'una dall'altra.
+
+
+
+
+
+es:  //Se non avessimo usato il Bridge
+
+
+abstract class Forma {
+    public abstract void disegna();
+}
+
+class CerchioRaster extends Forma {
+    public void disegna() {
+        System.out.println("Rendering raster del Cerchio");
+    }
+}
+
+class CerchioVettoriale extends Forma {
+    public void disegna() {
+        System.out.println("Rendering vettoriale del Cerchio");
+    }
+}
+
+class QuadratoRaster extends Forma {
+    public void disegna() {
+        System.out.println("Rendering raster del Quadrato");
+    }
+}
+
+class QuadratoVettoriale extends Forma {
+    public void disegna() {
+        System.out.println("Rendering vettoriale del Quadrato");
+    }
+}
+
+
+
+
+public static void main(String[] args) {
+    Forma cerchioRaster = new CerchioRaster();
+    cerchioRaster.disegna();
+
+    Forma cerchioVettoriale = new CerchioVettoriale();
+    cerchioVettoriale.disegna();
+
+    Forma quadratoRaster = new QuadratoRaster();
+    quadratoRaster.disegna();
+
+    Forma quadratoVettoriale = new QuadratoVettoriale();
+    quadratoVettoriale.disegna();
+}
+
+
+
+
+Senza il Bridge pattern, per ogni nuova forma geometrica e tipo di rendering, dovresti creare una nuova classe combinata.
+Questo rende il codice meno flessibile e più difficile da mantenere, poiché ogni modifica a una forma o a un metodo di rendering potrebbe 
+richiedere modifiche in molteplici classi.
+
+
+SITUAZIONI DI USO : 
+
+Quando si desidera dividere e organizzare un sistema in due parti indipendenti che possono essere sviluppate e mantenute separatamente.
+
+Quando si lavora con classi astratte o interfacce e si desidera evitare che le modifiche ad una di esse influenzino l'altra.
+
+Quando si prevede che una classe abbia diverse varianti o implementazioni, e si vuole rendere il sistema estensibile senza dover modificare le classi esistenti.
+
+Quando si desidera condividere un'implementazione tra più oggetti senza dover duplicare il codice.
+
+
+
+VANTAGGI : 
+
+Separazione delle preoccupazioni: Il Bridge pattern separa l'astrazione dall'implementazione, permettendo di gestire indipendentemente le diverse parti del codice. 
+Ciò facilita la modifica e l'estensione di una parte del sistema senza influenzare l'altra.
+
+Flessibilità: Grazie alla separazione tra astrazione e implementazione, il Bridge pattern offre una maggiore flessibilità nel combinare diverse implementazioni 
+con diverse astrazioni. Ciò consente di creare nuove combinazioni senza dover modificare il codice esistente.
+
+Riduzione della complessità: Il Bridge pattern aiuta a ridurre la complessità delle gerarchie di classi, evitando la proliferazione di classi combinate che 
+possono risultare da una combinazione di diverse astrazioni e implementazioni.
+
+Riutilizzo del codice: Poiché l'astrazione e l'implementazione sono separate, è più facile riutilizzare il codice per diverse parti del sistema. 
+Ad esempio, potresti avere diverse implementazioni del rendering che possono essere riutilizzate con diverse forme geometriche senza dover duplicare il codice.
+
+
+------------------------------------------------------------------------------
+
+                                                                         COMPOSITE (structural pattern) 
+
+Consente di rappresentare gerarchie di oggetti in una struttura ad albero, al fine di trattare i singoli oggetti e i gruppi di oggetti in modo uniforme.
+In pratica, questo pattern consente di creare un albero di oggetti, in cui ogni oggetto può essere un elemento singolo o un insieme di altri oggetti.
+È particolarmente utile per rappresentare gerarchie di oggetti.
+
+
+
+Esempio in Java : 
+Supponiamo di voler rappresentare una struttura gerarchica di dipendenti in un'azienda.
+
+
+
+
+// Interfaccia Component
+interface Employee {
+    void showDetails();
+}
+
+
+
+
+
+
+// Classe Leaf che rappresenta un dipendente semplice
+class Developer implements Employee {
+    private String name;
+    private long empId;
+    private String position;
+
+    public Developer(long empId, String name, String position) {
+        this.empId = empId;
+        this.name = name;
+        this.position = position;
+    }
+
+    @Override
+    public void showDetails() {
+        System.out.println(empId + " " + name + " " + position);
+    }
+}
+
+
+
+
+
+
+
+// Classe Leaf che rappresenta un dipendente semplice
+class Manager implements Employee {
+    private String name;
+    private long empId;
+    private String position;
+
+    public Manager(long empId, String name, String position) {
+        this.empId = empId;
+        this.name = name;
+        this.position = position;
+    }
+
+    @Override
+    public void showDetails() {
+        System.out.println(empId + " " + name + " " + position);
+    }
+}
+
+
+
+
+
+
+
+// Classe Composite che rappresenta un gruppo di dipendenti
+class CompanyDirectory implements Employee {
+    private List<Employee> employeeList = new ArrayList<Employee>();
+
+    @Override
+    public void showDetails() {
+        for (Employee emp : employeeList) {
+            emp.showDetails();
+        }
+    }
+
+    public void addEmployee(Employee emp) {
+        employeeList.add(emp);
+    }
+
+    public void removeEmployee(Employee emp) {
+        employeeList.remove(emp);
+    }
+}
+
+
+
+
+
+
+// Classe principale per testare il pattern Composite
+public class CompositePatternDemo {
+    public static void main(String[] args) {
+        Developer dev1 = new Developer(100, "John Doe", "Developer");
+        Developer dev2 = new Developer(101, "Jane Smith", "Developer");
+        Manager man1 = new Manager(200, "James Bond", "Manager");
+
+        CompanyDirectory engineeringDirectory = new CompanyDirectory();
+        engineeringDirectory.addEmployee(dev1);
+        engineeringDirectory.addEmployee(dev2);
+
+        CompanyDirectory companyDirectory = new CompanyDirectory();
+        companyDirectory.addEmployee(man1);
+        companyDirectory.addEmployee(engineeringDirectory);
+
+        companyDirectory.showDetails();
+    }
+}
+
+
+
++NOTA : nella classe CompanyDirectory abbiamo una semplice ArrayList di Employee . Quindi sono liste , non alberi . Il passo fondamentale che permette di costruire l'albero è ciò che facciamo nel main 
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+                                                                    DECORATOR ( structural pattern) 
+
+Consente di aggiungere funzionalità a un oggetto esistente in modo dinamico, quindi senza dover modificare la sua struttura. 
+(buona alternativa all'eredarietà che in effetti estende il comportamento di una superclasse nella sottoclasse ) 
+In pratica, questo pattern consente di decorare un oggetto con altri oggetti che forniscono funzionalità aggiuntive.
+
+ANALOGIA MONDO REALE :
+Sei nudo 
+Se hai freddo ti metti un maglione 
+Se piove pure ti metti un giubotto sul maglione (il decoratore)
+
+
+es:     facciamo l'esempio di un bar cui caffè costa 2$ e se aggiungiamo zucchero il prezzo aumenta , aumenta ancora se aggiungiamo il latte 
+
+interface Coffee {
+    double cost(); // Metodo che restituisce il costo del caffè
+    String description(); // Metodo che restituisce la descrizione del caffè
+}
+
+// ConcreteComponent
+class SimpleCoffee implements Coffee {
+    @Override
+    public double cost() {
+        return 2.0;
+    }
+
+    @Override
+    public String description() {
+        return "Simple coffee";
+    }
+}
+
+// Decorator
+abstract class CoffeeDecorator implements Coffee {
+    protected Coffee decoratedCoffee;
+
+    public CoffeeDecorator(Coffee coffee) {
+        this.decoratedCoffee = coffee;
+    }
+
+    @Override
+    public double cost() {
+        return decoratedCoffee.cost();
+    }
+
+    @Override
+    public String description() {
+        return decoratedCoffee.description();
+    }
+}
+
+// ConcreteDecorator per aggiungere il latte
+class MilkDecorator extends CoffeeDecorator {
+    public MilkDecorator(Coffee coffee) {
+        super(coffee);
+    }
+
+    @Override
+    public double cost() {
+        return super.cost() + 0.5; // Aggiunge il costo del latte
+    }
+
+    @Override
+    public String description() {
+        return super.description() + ", with milk";
+    }
+}
+
+// ConcreteDecorator per aggiungere lo zucchero
+class SugarDecorator extends CoffeeDecorator {
+    public SugarDecorator(Coffee coffee) {
+        super(coffee);
+    }
+
+    @Override
+    public double cost() {
+        return super.cost() + 0.2; // Aggiunge il costo dello zucchero
+    }
+
+    @Override
+    public String description() {
+        return super.description() + ", with sugar";
+    }
+}
+
+// Client
+public class CoffeeShop {
+    public static void main(String[] args) {
+        Coffee simpleCoffee = new SimpleCoffee();
+        System.out.println(simpleCoffee.description() + " $" + simpleCoffee.cost());
+
+        Coffee milkCoffee = new MilkDecorator(new SimpleCoffee());
+        System.out.println(milkCoffee.description() + " $" + milkCoffee.cost());
+
+        Coffee sugarMilkCoffee = new SugarDecorator(new MilkDecorator(new SimpleCoffee()));
+        System.out.println(sugarMilkCoffee.description() + " $" + sugarMilkCoffee.cost());
+    }
+}
+
+
+--------------------------------------------------------------------------------------------------------------------
+     
+                                                                    FACADE (structural pattern) 
+
+Fornire un'interfaccia unificata a un set di interfacce in un sottosistema (con interfaccia qui stiamo intendendo un modo all'utente di affacciarsi alle funzionalità. 
+Facade definisce un'interfaccia di livello superiore che semplifica l'utilizzo del sottosistema
+
+PROBLEMA : Un segmento della comunità dei clienti necessita di un'interfaccia semplificata per la funzionalità complessiva di un sottosistema complesso.
+
+
+Facade riduce un sottosistema complesso all'interno di un singolo oggetto di interfaccia. 
+Ciò riduce la curva di apprendimento necessaria per sfruttare con successo il sottosistema.
+
+   
+Per spiegare questo pattern, consideriamo ad esempio la creazione di una classe "Computer" che rappresenta un computer e ha metodi per accendere e spegnere il
+computer, per avviare il sistema operativo e per accedere ai file sul disco rigido. Questi metodi possono essere complessi e specializzati, ma per l'utente 
+finale che utilizza il computer, sarebbe preferibile avere un'altra classe "riassuntiva" semplice e unificata.
+In questo caso, possiamo utilizzare il pattern Facade per creare una classe "ComputerFacade" che fornisce un modo più semplice e unificato per l'utilizzo del computer.
+ La classe "ComputerFacade" nasconde la complessità dell'implementazione del computer dietro una singola classe, semplificando l'utilizzo del sistema.
+
+
+
+class Computer {
+    public void turnOn() {
+        System.out.println("Turning on the computer...");
+    }
+
+    public void turnOff() {
+        System.out.println("Turning off the computer...");
+    }
+
+    public void startOS() {
+        System.out.println("Starting the operating system...");
+    }
+
+    public void accessFiles() {
+        System.out.println("Accessing files on the hard drive...");
+    }
+}
+
+
+
+class ComputerFacade {
+    private Computer computer;
+
+    public ComputerFacade() {
+        computer = new Computer();
+    }
+
+    public void turnOn() {
+        computer.turnOn();
+        computer.startOS();
+    }
+
+    public void turnOff() {
+        computer.turnOff();
+    }
+
+    public void accessFiles() {
+        computer.startOS();
+        computer.accessFiles();
+    }
+}
+
+
+
+public class FacadeExample {
+    public static void main(String[] args) {
+        // Utilizziamo la classe ComputerFacade per accendere e spegnere il computer
+        ComputerFacade computerFacade = new ComputerFacade();
+        computerFacade.turnOn();
+        computerFacade.turnOff();
+
+        // Utilizziamo la classe ComputerFacade per accedere ai file sul disco rigido
+        computerFacade.accessFiles();
+    }
+}                              
+
+------------------------------------------------------------------------------------------------------
+
+                                                                            PROXY (structural pattern)
+Il design pattern Proxy fornisce un surrogato o un segnaposto per un altro oggetto per controllare l'accesso a esso.
+ ( Un placeholder è un segnaposto temporaneo utilizzato per rappresentare un valore o un elemento che verrà sostituito con dati reali in seguito. ) 
+Il pattern Proxy è utile quando è necessario interporre un oggetto tra il client e un oggetto target per aggiungere funzionalità come la sicurezza, 
+il caching o la gestione delle risorse.
+
+è come un middlewre in Node.js , si mette in mezzo tra utilizzatore dell'oggetto e oggetto e fa in modo che prima del suo utilizzo delle condizioni 
+siano rispettate 
+
+
+
+----------------------------------------------------------------------------------------------------
+
+
+                                                                     CHAIN OF RESPONSABILITY (behavioral pattern) 
+                                 
+
+Il design pattern Chain of Responsibility è un pattern comportamentale che permette di separare la logica di gestione delle richieste tra una catena di oggetti,
+ ognuno dei quali può gestire o passare la richiesta all'oggetto successivo nella catena. Questo pattern è particolarmente utile quando c'è un insieme di oggetti
+ che potrebbero gestire una richiesta, ma non è noto a priori quale oggetto sia il più adatto.
+
+Esempio:
+Immagina di avere un'applicazione di supporto clienti in cui le richieste possono essere gestite da diversi livelli di supporto come Supporto di base, 
+Supporto tecnico e Supporto amministrativo. Invece di decidere quale team di supporto gestirà una richiesta specifica, puoi creare una catena di responsabilità
+ in cui ogni team decide se gestire la richiesta o passarla al livello successivo.
+
+
+
+
+
+public interface Support {
+    void setNext(Support nextSupport);
+    void handleRequest(String request);
+}
+
+
+
+
+public class BasicSupport implements Support {
+    private Support nextSupport;
+
+    public void setNext(Support nextSupport) {
+        this.nextSupport = nextSupport;
+    }
+
+    public void handleRequest(String request) {
+        if ("Basic".equals(request)) {
+            System.out.println("Basic Support: Handling the request.");
+        } else {
+            System.out.println("Basic Support: Passing the request to the next level.");
+            if (nextSupport != null) {
+                nextSupport.handleRequest(request);
+            }
+        }
+    }
+}
+
+public class TechnicalSupport implements Support {
+    private Support nextSupport;
+
+    public void setNext(Support nextSupport) {
+        this.nextSupport = nextSupport;
+    }
+
+    public void handleRequest(String request) {
+        if ("Technical".equals(request)) {
+            System.out.println("Technical Support: Handling the request.");
+        } else {
+            System.out.println("Technical Support: Passing the request to the next level.");
+            if (nextSupport != null) {
+                nextSupport.handleRequest(request);
+            }
+        }
+    }
+}
+
+public class AdministrativeSupport implements Support {
+    private Support nextSupport;
+
+    public void setNext(Support nextSupport) {
+        this.nextSupport = nextSupport;
+    }
+
+    public void handleRequest(String request) {
+        if ("Administrative".equals(request)) {
+            System.out.println("Administrative Support: Handling the request.");
+        } else {
+            System.out.println("Administrative Support: Cannot handle the request.");
+        }
+    }
+}
+
+
+--------------------------------------------------------------------------------------
+
+                                                                          ITERATOR (behaviour pattern) 
+
+Fornisce un modo per accedere agli elementi di una struttura dati composta (come una collezione o un elenco) in modo sequenziale senza esporre i dettagli 
+dell'implementazione della struttura dati stessa. In Java, il pattern Iterator è ampiamente usato e incorporato nel Java Collections Framework.
+
+------------------------------------------------------------------------------------------
+ 
+                                                                         OBSERVER (behaviour pattern) 
+
+Definisce una dipendenza uno-a-molti tra oggetti in modo che, quando un oggetto cambia stato, tutti i suoi dipendenti vengono notificati e aggiornati 
+automaticamente. Questo pattern è molto utile per mantenere un basso livello di accoppiamento tra oggetti poichè separa il soggetto dagli osservatori 
+
+
+-------------------------------------------------------------------------------------------
+
+                                                                     COMMAND (behaviour pattern) 
+
+Il design pattern Command è un pattern comportamentale che permette di incapsulare una richiesta come un oggetto, rendendo possibile parametrizzare 
+clienti con diverse richieste, mettere in coda o registrare richieste e supportare operazioni annulabili. Questo pattern è utile per separare l'oggetto
+ che invoca l'operazione dall'oggetto che conosce come eseguirla. Quindi separare la richiesta della sua esecuzione (ovvero separare l'invoker dall'executor) . 
+
+---------------------------------------------------------------------------------------------------
+
+                                                                    NULL OBJECT (behaviour pattern) 
+
+Il design pattern Null Object è un pattern comportamentale che permette di definire un oggetto nullo per evitare di utilizzare riferimenti null (quindi un vero e proprio oggetto che non fa un cazzo)  e verifiche di nullità nel codice. Un oggetto nullo fornisce un'implementazione predefinita che non fa nulla. Utilizzando questo pattern, possiamo ridurre la complessità del codice e migliorare la leggibilità.
+
+
+
+
+public interface Animal {
+    String getName();
+    void makeSound();
+}
+
+
+
+public class Dog implements Animal {
+    public String getName() {
+        return "Dog";
+    }
+
+    public void makeSound() {
+        System.out.println("Woof!");
+    }
+}
+
+public class Cat implements Animal {
+    public String getName() {
+        return "Cat";
+    }
+
+    public void makeSound() {
+        System.out.println("Meow!");
+    }
+}
+
+
+
+public class NullAnimal implements Animal {
+    public String getName() {
+        return "No Animal";
+    }
+
+    public void makeSound() {
+        // Do nothing
+    }
+}
+
+
+
+VANTAGGI : 
+-Riduci verifiche di nullità
+-Maggiore leggibilità 
+-Minimizzare NullPointerException , quindi errori a runtime 
+
+
+-------------------------------------------------------------------------------------------------
+          
+                                                                     STRATEGY (behaviour pattern) 
+
+il design pattern Strategy non si riduce semplicemente all'utilizzo di un'interfaccia. 
+Sebbene l'uso di un'interfaccia sia un elemento chiave nel pattern Strategy, il pattern stesso è un approccio più ampio per la progettazione del software.
+
+Il pattern Strategy consiste nell'incapsulare una famiglia di algoritmi in classi separate (strategie concrete) che implementano un'interfaccia 
+comune (la strategia). Questo permette di cambiare gli algoritmi in modo dinamico e intercambiabile durante l'esecuzione del programma, senza modificare
+ il codice dell'oggetto che utilizza l'algoritmo (il contesto).
+
+L'interfaccia in questo caso è solo uno strumento che permette di definire un contratto comune tra le diverse strategie e il contesto, 
+facilitando il loro utilizzo e l'intercambiabilità. 
+
+
+es:  
+
+//Creiamo l'interfaccia per la strategia
+public interface SortingStrategy {
+    void sort(int[] numbers);
+}
+
+
+//Creiamo classi concrete per le strategie
+
+public class BubbleSortStrategy implements SortingStrategy {
+    public void sort(int[] numbers) {
+        // Implementazione dell'algoritmo Bubble Sort
+        System.out.println("Sorting using Bubble Sort");
+    }
+}
+
+public class QuickSortStrategy implements SortingStrategy {
+    public void sort(int[] numbers) {
+        // Implementazione dell'algoritmo Quick Sort
+        System.out.println("Sorting using Quick Sort");
+    }
+}
+
+
+
+
+//Creiamo la classe per il contesto
+
+public class SortingContext {
+    private SortingStrategy strategy;
+
+    public SortingContext() {
+        strategy = null;
+    }
+
+    public void setStrategy(SortingStrategy strategy) {
+        this.strategy = strategy;
+    }
+
+    public void sort(int[] numbers) {
+        strategy.sort(numbers);
+    }
+}
+
+
+
+//main
+
+public class Main {
+    public static void main(String[] args) {
+        SortingContext context = new SortingContext();
+        int[] numbers = {3, 1, 4, 1, 5, 9};
+
+        context.setStrategy(new BubbleSortStrategy());
+        context.sort(numbers);
+
+        context.setStrategy(new QuickSortStrategy());
+        context.sort(numbers);
+    }
+}
+
+
+
+NOTA : creiamo solo il "new SortingContext()"  poi non creiamo altro .  
+Usiamo "context.setStrategy(new BubbleSortStrategy());" e  "context.setStrategy(new QuickSortStrategy());" usando sempre lo stesso context.
+
+-----------------------------------------------------------------------------------------
+
+                                                                           STATE (behaviour pattern) 
+
+Il problema è che dobbiamo far agire un oggetto in base a quello che è il suo stato interno . (cn stato si intende tipo il valore particolare di un suo attributo).
+State permette a un oggetto di modificare il suo comportamento quando il suo stato interno cambia. Questo pattern aiuta a separare la logica di gestione 
+dello stato dall'oggetto principale e a mantenere il codice più organizzato e flessibile.  
+State fa dipendere il comportamento dell'oggetto dal suo stato. 
+
+
+---------------------------------------------------------------------------------
+
+                                                                     MEDIATOR (behaviour pattern) 
+
+Il design pattern Mediator è un pattern comportamentale che mira a ridurre la complessità delle interazioni tra oggetti. Invece di far comunicare gli oggetti
+direttamente tra loro, il pattern Mediator introduce un oggetto intermediario (il Mediatore) che gestisce le interazioni tra gli oggetti. Ciò permette 
+di ridurre le dipendenze tra gli oggetti e di variare l'interazione tra questi oggetti senza dover andare a modificare gli oggetti stessi, rendendo il sistema più facile da comprendere, manutenere e estendere.
+
+----------------------------------------------------------------------------------------
+
+                                                                  TEMPLATE METHOD ( behaviour pattern) 
+
+Il design pattern Template Method è un pattern comportamentale che definisce la struttura di un algoritmo in un metodo, delegando alcuni passaggi alle sottoclassi. Permette alle sottoclassi di ridefinire alcuni passaggi di un algoritmo senza cambiarne la struttura.
+
+es:
+
+Supponiamo di avere un sistema che prepara diversi tipi di bevande: tè e caffè. La preparazione di una bevanda segue un processo simile, ma alcuni passi variano a seconda del tipo di bevanda.
+
+
+1) Classe Astratta
+
+abstract class Beverage {
+    // Template method
+    public final void prepareRecipe() {
+        boilWater();
+        brew();
+        pourInCup();
+        addCondiments();
+    }
+
+    abstract void brew();
+    abstract void addCondiments();
+
+    void boilWater() {
+        System.out.println("Boiling water");
+    }
+
+    void pourInCup() {
+        System.out.println("Pouring into cup");
+    }
+}
+
+
+
+2) Classe Concreta Tè
+
+class Tea extends Beverage {
+    @Override
+    void brew() {
+        System.out.println("Steeping the tea");
+    }
+
+    @Override
+    void addCondiments() {
+        System.out.println("Adding lemon");
+    }
+}
+
+
+
+3) Classe Concreta Caffè
+
+
+class Coffee extends Beverage {
+    @Override
+    void brew() {
+        System.out.println("Dripping coffee through filter");
+    }
+
+    @Override
+    void addCondiments() {
+        System.out.println("Adding sugar and milk");
+    }
+}
+
+
+
+4) Classe Client
+
+
+public class BeverageTest {
+    public static void main(String[] args) {
+        Beverage tea = new Tea();
+        tea.prepareRecipe();
+
+        System.out.println();
+
+        Beverage coffee = new Coffee();
+        coffee.prepareRecipe();
+    }
+}
+
+
+
+
+5) OUTPUT STAMPATO 
+
+Boiling water
+Steeping the tea
+Pouring into cup
+Adding lemon
+
+Boiling water
+Dripping coffee through filter
+Pouring into cup
+Adding sugar and milk

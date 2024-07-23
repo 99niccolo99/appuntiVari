@@ -1,0 +1,56 @@
+-Cntrl+F --> ricerca parole
+-Cntrl+U --> visualizzazione codice sorgente 
+-Cntrl+N --> consente di aprire una finestra che è la stessa dell'ultima cliccata però è la sua "verisone di default"
+-Cntrl+A --> seleziona tutti gli elementi di una cartella o file(es: selezioni tutto quello che sta scritto in un file , o tutti i file contenuti in una cartella)
+-Cntrl+D --> sposta nel cestino 
+-Cntrl+S --> salva l'elemento selezionato 
+-Cntrl+X --> taglia il file/cartella selzionato
+-Cntrl+Maiuscolo+Esc --> apre il task manager
+
+-F2 --> rinomina la cartella o file selezionato
+-F5 --> se in una pagina web la aggiorni , se stai scrivendo in un file di note incolla il timestamp di quel preciso momento
+
+-Alt+F4 --> chiudi l'ultima finestra,cartella,file cliccato (equivalente a premere il tasto X per chiudere una pagina)
+-Alt+Invio --> ci mostra le proprietà della cartella/file/programma selezionato
+-Alt(tenuto premuto) + premi Tab(il tasto con le due frecce sulla sinistra della Q) --> visualizzi in modo rapido tutte le pagine aperte in quel momento e puoi selezionarne una per visualizzarla
+-Alt+freccia sinistra--> torni indietro
+-Alt+freccia destra--> vai avanti
+
+-Windows+I--> apre le impostazioni
+-Windows+D--> indipendentemente dal numero di pagine aperte ci mostra direttamente il desktop , se lo ripremiamo ci rimostra le pagine nello stesso ordine 
+-Windows+E--> apre la cartella dei file
+-Windows+G--> Apre la barra di gioco di Windows. La barra di gioco consente di catturare uno screenshot oppure di registrare un elemento.
+-Windows+R--> Apre la finestra ESEGUI(questa finistra tramite una veloce ricerca ti permette di fare qualsiasi genere di operazione come aprire file pagine 
+web ecc in modo rapido )
+-Windows+X-->Apre il menu rapido di Start.Questo contiene una serie di strumenti utili alla gestione del sistema 
+-Windows+freccia --> diminuisce le dimensioni della pagina e se riusi il comando lo sposta ad esempio sul lato destro dello schermo se usi Windows+freccia destra
+
+----------------------------------------------------------------------------------------
+-Windows+Cntrl+D--> crea un nuovo desktop virtuale Windows 
+-Windows+Tab --> visualizza le applicazioni ed i desktop virtuali aperti
+-Alt + Maiusc (di sinistra) + Stamp --> attiva e ,se ripremuto, disattiva il Contrasto elevato.
+Il Contrasto elevato permette di migliorare la leggibilità dello schermo applicando colori speciali.
+
+--------------------------------------------------------------------------------------------
+
+VISUAL STUDIO CODE
+
+- Cntrl+k+s --> per aprire il pannello degli shortcuts
+
+- Cntrl+Shift+P --> per cercare i comandi 
+
+-Cntrl+Space --> per avere suggerimenti generici sulle prossime eventuali funzioni che puoi usare
+
+-Cntrl+. --> per avere suggerimenti su cose aggiuntive che puoi immettere nel codice o cambiamenti 
+es. aggiunta padding o margin da esprimere, aggiunta colonna/ riga ecc (per usare ques'ultimo devi selezionare più righe di codice)
+IMPORTANTE: se vuoi cambiare una classe da Widget Stateful a Stateless premi Cntrl+. sul nome di quella classe
+
+-Digita stless per avviare il suggerimento di creazione automatica di Widget Stateless
+stful per Widget Sataefull
+
+-Shift+Alt+f --> per riordinare/formattare il codice
+
+--------------------------------------------------------------------------------------------
+
+-BACKTIK ` --> Alt+96 (96 su tastierino numerico)
+-------------------------------------------------------------------

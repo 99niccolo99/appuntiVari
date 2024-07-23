@@ -1,0 +1,1242 @@
+ JavaScript : JavaScript is a high-level, often just-in-time compiled language that conforms to the ECMAScript standard.
+It has dynamic typing, prototype-based object-orientation, and first-class functions. It is multi-paradigm, supporting event-driven,
+ functional, and imperative programming styles. It has application programming interfaces (APIs) for working with text, dates, 
+regular expressions, standard data structures, and the Document Object Model (DOM).
+
+ITA
+
+JavaScript è un linguaggio di programmazione interpretato, orientato agli eventi , che supporta anche la programmazione ad oggetti .
+
+JavaScript è un linguaggio di scripting dinamico, il che significa che non richiede la compilazione in un file eseguibile. 
+Invece, il codice JavaScript viene interpretato al volo dal browser o da Node.js, a seconda dell'applicazione.
+
+
+JavaScript è ad oggetti ma è orientato agli EVENTI. 
+Significa che è progettato per gestire e rispondere agli eventi che si verificano durante l'esecuzione di un'applicazione, come l'interazione dell'utente con
+la pagina web, il caricamento di elementi o l'invio di richieste asincrone.
+In un'applicazione basata sugli eventi, i gestori di eventi o listener, vengono creati per rispondere a specifici eventi.
+Questi gestori di eventi vengono "collegati" agli eventi, in modo che quando l'evento si verifica, la funzione associata venga eseguita automaticamente.
+
+Nel contesto delle applicazioni web, gli eventi sono tipicamente generati dall'interazione dell'utente con l'interfaccia utente, come clic del mouse,
+pressioni dei tasti, scroll della pagina, ecc. 
+JavaScript permette di gestire questi eventi per creare interazioni dinamiche e complesse tra l'utente e l'applicazione.
+
+es;
+
+// Seleziona un elemento button dall'HTML
+const button = document.querySelector('button');
+
+// Crea un gestore di eventi per l'evento 'click'
+function handleClick() {
+  alert('Il bottone è stato cliccato!');
+}
+
+// Collega il gestore di eventi all'elemento button
+button.addEventListener('click', handleClick);
+
+
+
+
+
+JavaScript supporta anche la programmazione asincrona basata su eventi, il che significa che il codice può essere eseguito in modo non sequenziale,
+ in risposta a eventi che si verificano durante l'esecuzione dell'applicazione.(ad ogni evento corrisponde una funzione col codice per risolverlo)
+Ciò consente di scrivere applicazioni web interattive e reattive, in cui le azioni dell'utente possono essere gestite senza dover attendere
+ il completamento di operazioni a lungo termine.
+In pratica, si assegna una funzione di callback a un evento specifico, in modo che quando l'evento si verifica, la funzione di callback viene eseguita.
+
+
+Infine, JavaScript è un linguaggio molto flessibile e versatile, in grado di interagire con molte librerie e framework differenti.
+ Ciò significa che è possibile utilizzare JavaScript per la creazione di applicazioni web dinamiche e complesse,
+nonché per lo sviluppo di applicazioni desktop e mobile attraverso piattaforme come Electron e React Native.
+
+
+----------------------------------------------------------------
+
+VAR LET CONST 
+
+Per regola generale dovresti usare let e var("vecchio" , usato solo per programmi che devono funzionare per veccgi browser) per valori che credi possano cambiare , const per quelli da non cambiare .
+
++var ha uno scope globale sempre . Se dichiarato all'interno di un blocco ....lo possiamo visualizzare anche fuori . Inoltre se dichiariamo var fuori dal blocco e lo modifichiamo all'interno del blocco , le modifiche si vedranno anche al di fuori . 
+
+
+LET
+ viene utilizzato per dichiarare una variabile con una portata di blocco, il che significa che la variabile è accessibile solo all'interno del
+ blocco di codice in cui è stata definita. Inoltre, let è mutabile, ovvero il suo valore può essere modificato quindi può essere riassegnato.
+Non può essere ridichiarato nello stesso blocco ma si se in blocchi diversi e il suo valore dipende dal blocco in cui si trova
+(NOTA: ridichiarare e riassegnare sono 2 cose diverse).
+
+Variables declared with let have Block Scope
+
+Variables declared with let must be Declared before use
+
+Variables declared with let cannot be Redeclared in the same scope
+
+
+es: 
+
+{
+  let x = 2;
+}
+// x can NOT be used here
+
+
+
+
+es:
+
+let x = 3;
+{  
+  let x = 2;
+  // Here x is 2
+}
+//Here is 3
+
+
+
+
+es:
+
+
+if (true) {
+    let x = "visibile solo in questo blocco";
+    const y = "anche questa è visibile solo qui";
+    console.log(x); // Funziona
+    console.log(y); // Funziona
+}
+console.log(x); // Errore: x non è definito
+console.log(y); // Errore: y non è definito
+
+
+
+
+CONST viene utilizzato per dichiarare una variabile con una portata di blocco il che significa che la variabile è accessibile solo all'interno del
+ blocco di codice in cui è stata definita; il suo valore è immutabile, ovvero non può essere modificato dopo la sua assegnazione.
+ Tuttavia, se la variabile è un oggetto o un array, il suo contenuto può essere modificato.
+const deve essere per forza assegnata ad un valore. (possiamo fare let x; o var x; ma non const x;     const x deve avere un valore iniziale per forza)
+Non può essere ridichiarato nello stesso blocco ma si se in blocchi diversi e il suo valore dipende dal blocco in cui si trova
+(NOTA: ridichiarare e riassegnare sono 2 cose diverse).
+
+const x = 3;                                      
+{                                                 {
+  const x = 2;                                       const x = 2;
+  // Here x is 2                                     // Here x is 2
+}                                                    }
+//Here is 3                                       //here x doesn't exist          --> (è uguale anche in let)
+
+
+
+
+
+
+function example() {
+  var x = 1;
+  let y = 2;
+  const z = 3;
+  if (true) {
+    var x = 10;
+    y = 20;  // riassegnamento
+    const z = 30;
+    console.log(x, y, z); // output: 10, 20, 30
+  }
+  console.log(x, y, z); // output: 10, 20, 3
+}
+
+---------------------------------------------------------------------------------------------------------
+
+DATI PRIMITIVI E COMPLESSI 
+
+In JavaScript, i dati primitivi e i dati complessi vengono memorizzati in modo diverso nella memoria del computer.
+
+I dati PRIMITIVI (come numeri, stringhe, booleani, null e undefined) vengono memorizzati direttamente nella memoria a stack,
+ che è una porzione di memoria dedicata alla gestione delle variabili. Quando viene assegnato un valore a una variabile primitiva, 
+viene allocata una porzione di memoria sufficiente per contenere il valore e viene assegnato un riferimento a quella posizione di memoria.
+In altre parole, una variabile primitiva contiene il valore stesso, non un riferimento a un oggetto.
+Se faccio
+     let x = 3;     let y = x;     -->   y avrà il valore 3 , ma quel 3 non è lo stesso di x ma è una copia ; quindi se faccio  poi y++ 
+                                                    allora y sarà 4 ma x sarà sempre 3
+                         
+
+I dati COMPLESSI (come oggetti, array e funzioni) vengono invece memorizzati nella memoria heap, che è una porzione di memoria più grande e flessibile
+ rispetto alla memoria a stack. Quando viene assegnato un valore a una variabile complessa, viene allocata una porzione di memoria sulla heap per contenere
+ l'oggetto e viene assegnato un riferimento a quella posizione di memoria. In altre parole, una variabile complessa contiene un riferimento all'oggetto,
+ non il valore dell'oggetto stesso. (quindi quella variabile è sostanzialmente un puntatore alla memoria che contiene il dato complesso)
+Se faccio 
+         let x = [3]  ;  let y = x;      -->    y punterà allo stesso dato di x , se modifico il dato di y allora viene modificato anche il dato di x
+                                               in tal caso y non possiede una copia ma punta allo stesso dato (alla stessa porzione di memoria) 
+                                                 Se vogliamo che y punti ad una copia dobbiamo copiare esplicitamente il valore di x e passare la copia a y
+
+oppure 
+
+const cars = ["Saab", "Volvo", "BMW"];
+let x = cars;                                        -->     cars[0] adesso sarà 3 
+x[0] = 3;
+
+-----------------------------------------------------------------------
+
+PUNTATORI E RIFERIMENTI 
+
+Semplicemente per le variabile che puntano ai dati complessi quelle variabili sono come puntatori che contengono la locazione di memoria del dato , ma 
+in JavaScript il programmatore ha vita più semplice e non deve gestire esplicitamente i puntatori come in C , per questo si dice che le variabili possiedono
+i RIFERIMENTI ai dati complessi non la locazione di memoria. (praticamente sono come i puntatori ma dato che noi i puntatori come in C  var **x; non li tocchiamo
+proprio ma se ne occupa JavaScript allora si dice che JavaScript non ha realmente i puntatori.
+
+
+Ad esempio, se si crea una variabile in JavaScript che contiene un array, non si crea un puntatore all'array stesso,
+ ma si crea un riferimento al punto in cui l'array è memorizzato in memoria. Questo è fatto in modo automatico dal linguaggio
+ e non richiede l'uso di puntatori espliciti.
+
+L'assenza di puntatori espliciti semplifica la programmazione in JavaScript perché il linguaggio si preoccupa automaticamente di gestire la memoria,
+ senza che il programmatore debba preoccuparsi di allocare e deallocare la memoria manualmente. Tuttavia, ciò significa anche che alcune tecniche
+ di programmazione avanzate che richiedono l'uso di puntatori espliciti potrebbero essere più difficili o impossibili da implementare in JavaScript.
+
+Differenza puntatori e riferimenti: i punt. sono variabili che contengono direttamente il valore della locazione di memoria del dato. I rif invece 
+sono variabili che puntano ad una variabile che punta (contiene la locazione) del dato.    (quindi con il rif la variabile non contiene direttamente la locazione 
+ma la contiene indirettamente) 
+----------------------------------------------------------------------------------------------------------------
+
+DIFFERENZA undefined e null 
+
+undefined è un tipo primitivo che indica che una variabile è stata dichiarata ma NON è stata inizializzata con un valore.
+Una variabile che è stata dichiarata ma non è stata ancora assegnata a un valore specifico è automaticamente assegnata a undefined.
+("ANCORA DA DEFINIRE") 
+
+null è anch'esso un tipo primitivo e rappresenta un vero e proprio valore che indica che una variabile è stata inizializzata con un valore vuoto.
+null è un valore assegnato intenzionalmente che rappresenta l'assenza di qualsiasi valore oggetto. È un valore che indica "nessun valore".
+("VALORE VUOTO") 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+TIPI DI DATI DINAMICI 
+
+In JavaScript, i tipi di dati sono dinamici, il che significa che una variabile può contenere un tipo di dato diverso in momenti diversi durante 
+l'esecuzione del programma.
+
+Ciò significa che non è necessario specificare il tipo di dato di una variabile al momento della dichiarazione, 
+ma il tipo di dato della variabile viene determinato dinamicamente in base al valore assegnato alla variabile.
+
+es.
+let x = "Hello World"; // x è una stringa
+x = 42; // x è un numero
+x = { name: "John", age: 30 }; // x è un oggetto
+
+-----------------------------------------------------------------------------------------------------------------------
+
+OPERAZIONE TERNARIA   ?  : 
+
+
+condizione ? espressione1(se condizione vera) : espressione2(se condizione falsa)
+
+let x = 10;
+let y = x > 5 ? 'x è maggiore di 5' : 'x è minore o uguale a 5';
+console.log(y); // output: 'x è maggiore di 5'
+
+----------------------------------------------------------------------------------------------------
+
+
+OPERATORE   ?? 
+
+es.        let x = 10;
+             x ??= 5;           ---> in tal caso x è 10 ma se x fosse stato null oppure undefined avrebbe avuto valore 5 
+
+
+
+es.     let x ;
+        let y = 999;
+        x ??= y;                ---> in tal caso x era undefined e quindi ha preso il valore uguale a y quindi ha 999
+
+----------------------------------------------------------------------------------------------------------
+
+TYPEOF 
+
+es.
+typeof ""             // Returns "string"
+typeof "John"         // Returns "string"
+typeof "John Doe"     // Returns "string"
+typeof ""             // Returns "string"
+typeof "John"         // Returns "string"
+typeof "John Doe"     // Returns "string"
+
+
+ISTANCEOF
+
+L' instanceof operatore restituisce true se un oggetto è un'istanza dell'oggetto specificato.
+
+es.
+const cars = ["Saab", "Volvo", "BMW"];
+ 
+(cars instanceof Array)                  ----->   true
+(cars instanceof Object)                 ----->   true  (Array è un Object)
+(cars instanceof String)                 ----->   false
+(cars instanceof Number)                 ----->   false
+
+----------------------------------------------------------------------------------------------------------------------
+
+NUMBER  ( solo il tipo Number , non int o double ecc....)
+
+In JavaScript, il tipo di dato Number rappresenta tutti i numeri, inclusi numeri interi, numeri decimali e numeri in notazione esponenziale.
+Ciò significa che JavaScript non ha distinzione tra i tipi di dato interi (int), a virgola mobile (float) o doppi (double) come in altri linguaggi di programmazione.
+
+Quando si utilizza il tipo Number in JavaScript, non è necessario specificare il tipo di numero (intero o decimale) in quanto il tipo di
+ dato Number rappresenta entrambi. 
+
+es.
+let x = 42; // x è di tipo Number
+let y = 3.14; // y è di tipo Number
+
+
+NOTAZIONE ESPONENZIALE
+
+es.
+let y = 123e5;    // 12300000
+let z = 123e-5;   // 0.00123
+
+----------------------------------------------------------------------------------------------------------------
+
+FUNZIONI 
+
++Funzione normale 
+
+  function callMe(name) { 
+  console.log(name);
+  }
+
+
++La normale può essere anche scritta cosi
+
+. const callMe = (name) => {                                   -->  questa sostanzialmente quivale a-->      . const callMe = function(name) { 
+. console.log(name);                                                                                         . console.log(name);
+. }                                                                                                          . }                                                                                                     
+                                                                                                         
+
+
++Se ci sta un solo paramtero allora possiamo evitare le parentesi 
+
+. const callMe = name => { 
+. console.log(name);
+. }
+
+
++Se dobbiamo restituire un solo elemento allora possiamo evitare di scrivere return 
+
+. const returnMe = name => name                                          -->    equivale a   --->         . const returnMe = name => { 
+                                                                                                          . return name;
+                                                                                                          . }
+-----------------------------------------------------------
+
+MODULI 
+
+In JavaScript e vari file sono chiamati MODULI , e per essere usati negli altri moduli devono essere importati , e per rendere importabili bisogna prima esportarli.
+
++possono essere asportati di default :
+
+export default Home;   -->    import Home from "path...." 
+
++oppure esportati per nome 
+
+export const/function Home  -->   import {Home} from "path...."                
+
+CAMBIA SOLO le parentesi quanto si deve importare un modulo esportato con nome è il fatto che con quello di default possiamo importarlo usando qualsiasi 
+nome , quello per nome ha bisogno del nome esatto.
+
+-------------------------------------------------------------------
+
+OBJECT 
+
+
+In JavaScript, un oggetto è una struttura fondamentale che consente di memorizzare dati in coppie chiave-valore. Questa caratteristica lo rende simile a un dizionario o una mappa in altri linguaggi. Tuttavia, un oggetto in JavaScript può essere più versatile, in quanto può contenere sia dati (proprietà) che comportamenti (metodi).
+
+
+
+let persona = {
+    nome: "Mario",
+    età: 30
+};
+
+
+//accediamo alle variabili
+console.log(persona.nome); // Output: Mario
+console.log(persona["età"]); // Output: 30
+
+
+//utilizziamo i metodi 
+persona.saluta(); // Output: Ciao, mi chiamo Mario.
+
+
++ per accedere ad una proprietà :
+
+     Object.propriety;                               --Oppure--                      Object["propriety"];                   
+
+ 
+
++come oggetti ( in tal caso x è una var globale ( se non usiamo let var e const) questo però può causare problemi e non è consigliabile)
+
+x = new String();        // Declares x as a String object
+y = new Number();        // Declares y as a Number object
+z = new Boolean();       // Declares z as a Boolean object
+
+La keyword NEW crea sempre un oggetto . Nel caso di dati primitivi come String, Numbere Boolean come oggetti(quindi come dati complessi) , EVITIAMO. 
+ Complicano il tuo codice e rallentano la velocità di esecuzione.
+
+
+
+
+****IMPORTANE
+Se in un oggetto inserisco una variabile e quando lo faccio non scrivo la proprietà , allora la proprietà sarà uguale al nome della variabile inserita 
+e il valore sarà il valore della variabile inserita 
+
+es.
+           const name = "ALE";                                                                     const name = "ALE";
+           let age = 4;                                   --equivale a --->                        let age = 4;
+           const x = {name,age};                                                                   const x = {name : name, age : age};
+
+
+
+****IMPORTANE           --->           l'array è un Object 
+
+const x = ["John", "Doe", 46];
+const y ={c:"aaa"};
+typeof x ;  --------------------------------------->  da object 
+typeof y ;  --------------------------------------->  da object 
+
+---------------------------------------------------------------------------------------------------------------
+
+ITERABLE OBJECTS 
+
+Gli oggetti iterabili sono ad es. Stringa, Array, Set, Map . Sono oggetti che è possibile iterare ; iterare significa eseguire un'operazione ripetutamente 
+su una sequenza di elementi.
+
+es. 
+
+const name = "W3Schools";
+for (const x of name) {
+  // x sarà uguale prima a W poi a 3 poi.......
+} 
+
+---------------------------------------------------------------------------------------------------------------
+
+ESPRESSIONI REGOLARI O REGEX  
+
+Un'espressione regolare, o regex in breve, è una sequenza di caratteri che definisce un modello di ricerca.
+ In altre parole, è una stringa di testo che descrive un insieme di regole per cercare e corrispondere a determinati modelli di testo 
+all'interno di una stringa più grande.
+
+Le espressioni regolari sono spesso utilizzate in programmazione per manipolare e analizzare testo, come ad esempio la ricerca e
+la sostituzione di testo, la convalida di input utente, l'estrazione di informazioni da file di log e così via.
+
+Le espressioni regolari sono costituite da una serie di caratteri speciali e di simboli di controllo che definiscono il modello di ricerca.
+Ad esempio, il punto "." viene utilizzato per rappresentare qualsiasi singolo carattere, mentre l'asterisco "*" viene utilizzato per 
+rappresentare zero o più occorrenze del carattere precedente.
+-----------------------------------------------------------------------------------------------------------
+THIS 
+
+
+ è una parola chiave che viene utilizzata all'interno di una funzione o di un metodo di un oggetto per fare riferimento all'oggetto
+ corrente che sta invocando quella funzione o metodo. In altre parole, this rappresenta l'oggetto contestuale corrente.
+
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  id: 5566,
+  fullName : function() {
+    return this.firstName + " " + this.lastName;                                        
+  }
+};                                                                         -->  in questo esempio this fa riferimento all'oggetto person e solo grazie a this 
+                                                                              possiamo invocare le sue proprietà firstName e lastName all'interno di person stesso
+------------------------------------------------------------------------------------------------------------
+
+CLASSE 
+
+Una classe è un modo per definire i metodi e proprietà appartenenti ad un oggetto ed è necessaria per poterlo creare . 
+GUARDA SINTASSI 
+
+class Car {                            l'utilizzo di this consente di accedere e assegnare i valori alle proprietà dell'oggetto corrente che viene creato dalla class
+  constructor(name, year) {                          -->  Car è dotato di due parametri(name e year) e stiamo dicendo che le proprietà name e year APPARTENENTI
+                                                        all'oggetto Car sono uguali ai parametri che prende in input
+    this.name = name;                                --> stiamo assegnando il valore del parametro name, alla proprietà name dell'oggetto corrente che viene creato
+    this.year = year;
+  }
+  age(x) {
+    return x - this.year;
+  }
+}
+
+
++possiamo anche assegnare valori di default 
+
+. class Person {
+. constructor () {
+. this.name = 'Max';
+. } }
+
+
+
++Nel caso NON ci siano parametri nella classe possiamo usare una SINTASSI MODERNA
+
+. class Person {                    -->   è uguale al codice subito sopra
+. name = 'Max';
+. }
+
+
+-----------------------------------------------------------------------------------------------------------
+
+SPREAD o REST OPERATOR 
+
+è usato per clonare dati complessi come Object , Array (sti due soprattutto) ,Set , Map . NON può essere usato per clonare dati primitivi (per quello basta "=")
+
+es.
+
+const originalArray = [1, 2, 3];
+const cloned1Array = [...originalArray];                        --> contiene 1,2,3
+const cloned2Array = [...originalArray ,4,5];                   --> contiene 1,2,3,4,5
+
+es.
+
+const originalObject = { name: 'John', age: 30 };
+const cloned1Object = { ...originalObject };                             --> contiene name:'John' ed age:30
+const cloned2Object = { ...originalObject , city:"Naples" };             --> contiene name:'John' ed age:30 e city:"Naples"
+
+
+------------------------------------------------------------------------------------------------------
+
+DESTRUTTURAZIONE 
+
+Permette di accedere facilmente a valori di array o Object ed assegnarli a variabili 
+
+
+es. Object 
+
+. const myObj = {
+. name: 'Max',
+. age: 28
+. }
+. const {name} = myObj;                                        -->  stiamo dicendo "assegniamo alla variabile name il valore della proprietà name                                                                    dell'oggetto (avviene una clonazione)              
+. console.log(name); // prints 'Max'
+. console.log(age); // prints undefined
+. console.log(myObj); // prints {name: 'Max', age: 28}
+
+
+es. Array 
+
+. const array = [1, 2, 3];
+. const [a, b] = array;                                   --> qui il valore di a e b dipende dall'ordine dei valori contenuti nell'array 
+. console.log(a); // prints 1                            --> a e b sono semplicemente costanti , non sono array o altro
+. console.log(b); // prints 2
+. console.log(array); // prints [1, 2, 3]                --> a e b hanno valori indipendenti dall'array, i valori dell'array sono stati clonati in a e b
+
+
+es.  Funzioni 
+
+. const printName = (personObj) => {                     --> prende come parametro un oggetto e stampa la sua proprietà name 
+. console.log(personObj.name);
+. }
+. printName({name: 'Max', age: 28}); // prints 'Max'
+
+
+es . Funzioni 
+
+. const printName = ({name}) => {                    --> prende come parametro SOLO la proprietà name di un oggetto 
+. console.log(name);
+. }
+. printName({name: 'Max', age: 28}); // prints 'Max')
+
+
+------------------------------------------------------------------------------------------------------------
+
+        PROGRAMMAZIONE ASINCRONA 
+
+Programmazione Sincrona : ci sta un singolo thread che esegue uno ad uno , in ordine e in modo sequenziale le righe di codice . Se ci sta un operazione che impiega 
+più tempo per essere svolta , la riga dell operazione che sta dopo si fotte , deve aspettare che termina l'operazione che la precede . 
+
+Con la Programmazione ASINCRONA ciò va evitato . Il codice sarà sempre sequenziale , ma in tal caso possiamo scegliere , mentre la prima riga è ancora in 
+esecuzione e deve ancora terminare , di assegnare un'altro thread alla seconda operazione e di farla cominciare in parallelo con la prima e quindi farle eseguire 
+contemporaneamente. In tal modo il codice diventa NON BLoccante e non dobbiamo aspettare senza poter fare un cazzo e bloccare tutto il programma perchè dobbiamo 
+aspettare che la funzione lunga termini. 
+
++Un'operazione asincrona in programmazione è un'azione che viene iniziata ora ma si completa in un momento futuro, senza bloccare l'esecuzione del codice in attesa del suo completamento.
+
+EVENT LOOP  **************IMPORANTE
+
+(ricorda l'esempio del manager che delega le operazioni agli operai e poi , a fine operazione , controlla il risultato ) 
+
+L'event loop è un ciclo gestito da un thread che gestisce eventi e callback in Node.js. 
+Node.js è single-thread , questo si dice poichè c'è un singolo thread che gestisce l'intero flusso delle richieste/eventi del programma , ma in realtà al 
+di sotto di esso si nasconde pur sempre il multithreading. 
+Con l'event loop il thread principale esegue un loop di gestione degli eventi diviso in 7 fasi (che non diremo) , tramite ste 7 fasi gestisce tutti i tipi
+di eventi sincroni e asincroni in modo da non bloccare mai la sua esecuzione.(sta semp attiv) 
+
+Quando c'è un evento , esso viene inserito in una coda . Il Thread principale preleva il primo evento dalla coda e lo esegue . Se tale operazione è 
+bloccante (richiesta al database , lettura file) (operazioni I/O) , il thread principale va nel thread Pool e assegna tale operazione ad un'altro thread
+che la esegue in background (nel frattempo il thread principale gestisce gli altri eventi). 
+Una volta che il thread in background ha terminato l'operazione bloccante , il risultato viene messo in coda. Quando il thread principale lo recupera , 
+eseguirà la funzione di callback associata a quel risultato . Quindi la funzione di callback non è altro che il ponte che collega il risultato di una 
+funzione asincrona e ciò che si deve fare dopo con quel risultato . 
+Il thread principale quindi esegue la callback (questa magari porta ad un altra operazione bloccante , in tal caso si fa la stessa cosa prendendo un thread 
+dal pool thread   /   oppure si termina in qualche altro modo) 
+
+Quindi le operazioni bloccanti vengono eseguite asincronamente , ovvero le operazione bloccanti vengono eseguite con il multhithreading in background e poi
+riprese dal thread principale che continua l'esecuzione . 
+
+
++Una Promise è un oggetto che incapsula un'operazione asincrona e il suo valore risultante (o un errore, se l'operazione fallisce). Esse permettono di scrivere codice asincrono in modo che sembri più sequenziale e leggibile, evitando il problema del "callback hell".
+
+-----------------------------------------------------------------------------------------------------
+
+CALLBACK FUNCTION 
+
+Le funzioni di callback non sono altro che funzioni passate come parametro ad un'altra funzione , con la possibilità di essere "richiamate" all'interno 
+di questa funzione che le riceve come parametro .
+
+Nella programmazione asincrona, le funzioni di callback sono utilizzate per gestire l'esecuzione di una funzione o di un'operazione dopo che un'attività
+ asincrona è stata completata. Essenzialmente, le callback sono funzioni che vengono passate come argomenti ad altre funzioni e vengono
+ richiamate (o "chiamate indietro") al termine dell'esecuzione di un'operazione asincrona. 
+
+
+Le funzioni di callback nella programmazione asincrona ci permettono di fare ulteriori operazioni una volta che un'operazione asincrona termina , cosi andando a 
+proiori a gestire il risultato di una funzione asincrona una volta che il risultato è disponibile o a gestire eventuali errori che si attuano durante l'esecuzione 
+della funzione asincrona. 
+
+
+Ecco un esempio di utilizzo delle funzioni di callback per gestire una richiesta HTTP asincrona:
+
+
+function richiestaHTTP(url, callback) {
+  const xhr = new XMLHttpRequest();
+  
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        callback(null, xhr.responseText);
+      } else {
+        callback(new Error(`Errore HTTP: ${xhr.status}`));
+      }
+    }
+  };
+  
+  xhr.open('GET', url);
+  xhr.send();
+}
+
+
+
+
+richiestaHTTP('https://api.example.com/data', function(errore, dati) {
+  if (errore) {
+    console.error('Si è verificato un errore durante il download dei dati:', errore);
+  } else {
+    console.log('Dati scaricati con successo:', dati);
+  }
+});
+
+-----------------------------------------------------------
+
+   PROMISE 
+
+Una Promise è un oggetto che incapsula un'operazione asincrona e il suo valore risultante (o un errore, se l'operazione fallisce). Esse permettono di scrivere codice asincrono in modo che sembri più sequenziale e leggibile, evitando il problema del "callback hell".
+
+Le Promise sono un modo alternativo per scrivere le funzioni di callback e renderle più leggibili , ma sostanzialmente fanno la stessa cosa . 
+Quando vogliamo gestire la concatenazione di più callback assieme il codice diventa visivamente molto confusionario e si entra cosi nel cosiddetto "callback Hell". 
+Per evitare ciò le Promise ci permettono di utilizzare una sintassi molto più semplice usando "then" e "catch". 
+
+
+Una Promise è un oggetto JavaScript che rappresenta il risultato finale di un operazione asincrona che potrebbe non essere ancora disponibile ; e , all'interno 
+della Promise possiamo gestire quello che sarà il risultato dell'operazione asincrona . 
+
+IMPORTANTE : 
+
+LA PROMISE RAPPRESENTA IL RISULTATO , NON IMMEDIATAMENTE DISPONIBILE , DI UNA FUNZIONE ASINCRONA . 
+USIAMO THEN E CATCH PER IMMAGINARE IL RISULTATO PRODOTTO DALLA PROMISE E GESTIRLO COME MEGLIO CREDIAMO. 
+
+
+Cosi la funzione asincrona diventa indipendente da tutto e può essere gestita solo lei poichè già sappiamo cosa farci in caso di errore o risultato buono. 
+
+La Promise può essere in 3 stati : 
+
+1) Pending (in sospeso): Questo è lo stato iniziale della Promise; l'operazione asincrona è ancora in corso e il risultato non è ancora disponibile.
+
+2) Fulfilled (risolta): L'operazione asincrona è stata completata con successo e il risultato è disponibile.
+
+3) Rejected (rifiutata): L'operazione asincrona ha avuto un errore e non è riuscita a produrre un risultato.
+
+
+Le Promise consentono di gestire il flusso del codice asincrono in modo più strutturato e leggibile rispetto all'uso delle funzioni di callback. 
+Si possono utilizzare i metodi .then() per gestire i risultati (QUINDI IL CONTENUTO DI THEN E' UNA FUNZIONE DI CALLBACK) delle Promise risolte e .catch() per gestire gli errori delle Promise rifiutate.
+Quindi then(). ci permette di rendere il codice asincrono "bloccante" e di andare a lavorare con il risultato della funzione asincrona una volta che la funzione 
+asincrona è terminata e ci ha lasciato il risultato (then --> ovvero "poi" , quando la funzione asincrona precedente è terminata e ci ha reso il risultato disponibile)
+Inoltre, è possibile utilizzare il metodo .finally() per eseguire del codice indipendentemente dal fatto che la Promise sia stata risolta o rifiutata.
+
+
+
+
+es: 
+
+
+Immagina di ordinare una pizza in un ristorante.
+Quando fai l'ordine, il ristorante ti dà un "promemoria" (la Promise) (tipo il sensorino che vibra quando la pizza è pronta) che ti informerà se 
+la pizza è pronta (risolta) o se c'è stato un problema durante la preparazione (rifiutata). 
+Mentre aspetti la pizza, puoi continuare a fare altre cose, come parlare con gli amici o controllare il telefono (il codice è asincrono , non bloccante) .
+
+Quando la pizza è pronta o se c'è stato un problema, il ristorante ti avvisa attraverso il promemoria (la Promise passa da "in sospeso" a "risolta" o "rifiutata").
+A quel punto, puoi decidere cosa fare con la pizza (gestire il risultato con .then()) o come affrontare il problema (gestire l'errore con .catch()), quindi parte la funzione di callback
+
+
+
+
+const promessaPizza = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    const pizzaPronta = true; // Impostare a 'false' per simulare un errore
+    if (pizzaPronta) {
+      resolve('La pizza è pronta!');
+    } else {
+      reject('Si è verificato un problema durante la preparazione della pizza.');
+    }
+  }, 1000);
+});
+
+
+//questa è una Promise custom (creata da noi) 
+//Sta Promise contiene il codice che ti prepara la pizza e poi ti restituisce la pizza pronta o un errore (E' UNA PROMESSA DI UNA PIZZA CHE TI STANNO PREPARANDO, 
+ LAVORO A CUI CI VUOLE TEMPO E SOLO DOPO SAPRAI SE LA PIZZA é PRONTA O C'è STATO UN ERRORE ) 
+
+
+
+promessaPizza
+  .then((risultato) => {
+    console.log(risultato); // Gestisce il risultato (pizza pronta)
+  })
+  .catch((errore) => {
+    console.log(errore); // Gestisce l'errore (problema durante la preparazione)
+  });
+
+//qui andiamo ad usare la nostra Promise creata 
+//andiamo cosi ad attivare la promessa , quindi ordiniamo la pizza 
+//e gestiamo il codice nel caso in cui dopo la pizza sarà pronta (risultato positivo) e quindi il dato "result" ricevuto sarà "la pizza è pronta" 
+
+//e gestiamo anche a propri il caso in cui la preparazione della pizza ha riscontrato un errore e ci viene restituito "Si è verificato un problema......" 
+
+
+
+
+
+
+
+
+
+
+
++Utilizzare più then() concatenati è utile quando si desidera eseguire più operazioni asincrone in sequenza
+
+
+es:
+
+
+function doFirstAsyncOperation() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("Risultato 1");
+    }, 1000);
+  });
+}
+
+function doSecondAsyncOperation(input) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(input + " -> Risultato 2");
+    }, 1000);
+  });
+}
+
+doFirstAsyncOperation()
+  .then((result1) => {
+    console.log(result1); // "Risultato 1"
+    return doSecondAsyncOperation(result1);
+  })
+  .then((result2) => {
+    console.log(result2); // "Risultato 1 -> Risultato 2"
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+
+
+
+
+
+
+
+//In questo esempio, la funzione doFirstAsyncOperation() restituisce una Promise che si risolve con il valore "Risultato 1".
+//Il primo then() stampa il risultato e chiama la funzione doSecondAsyncOperation() passando il risultato come input. La funzione doSecondAsyncOperation()
+// restituisce una nuova Promise che si risolve con il valore "Risultato 1 -> Risultato 2". Il secondo then() nella catena stampa il risultato finale.
+
+
+
+---------------------------------------------------
+
+ASYNC  /  AWAIT 
+
+Async/await è una sintassi introdotta  dopo le Promise e rende la gestione delle operazioni asincrone ancora più semplice rispetto alle Promise, permettendo
+di scrivere codice asincrono con uno stile simile a quello sincrono. 
+La parola chiave async viene utilizzata per dichiarare una funzione asincrona, mentre await è usato su funzioni asincrone che restituiscono una Promise . e ci serve
+per dire "devo aspettare che sta funzione asincrona risolva la Promise perchè mi serve il risultato della Promise che devo gestire" ( l'await è come un then ed usi 
+try/catch per il catch  ) 
+Quindi ci permette di avere il risultato della Promise e di gestirlo .
+
+
+
+
+-La parola chiave await è utile solo con metodi che restituiscono una Promise ? 
+
+Sì, la parola chiave await è progettata per essere utilizzata con funzioni o metodi che restituiscono una Promise. 
+Quando si utilizza await davanti a una funzione che restituisce una Promise, il flusso di esecuzione viene bloccato fino a quando la Promise non viene risolta
+o respinta. Una volta che ciò accade, await restituisce il valore risolto della Promise o propaga l'errore se la Promise è stata respinta.
+
+È importante notare che await può essere utilizzato solo all'interno di una funzione dichiarata con la parola chiave async
+
+
+Se utilizzi await su una funzione che non restituisce una Promise, l'uso dell'await è inutile e non porta alcun vantaggio significativo. 
+Infatti, può causare confusione e rendere meno chiaro il codice.
+
+es:
+
+function notAPromise() {
+  return "Non una Promise";
+}
+
+async function example() {
+  const result = await notAPromise();
+  console.log(result); // "Non una Promise"
+}
+
+example();
+
+//Anche se l'await viene utilizzato in questo caso, non c'è alcun vantaggio nel farlo, poiché il valore viene restituito immediatamente e 
+//non c'è alcuna operazione asincrona in corso. 
+
+
+
+
+
+
+
+
+
+
+
+
+Ecco un esempio di utilizzo del metodo fetch in JavaScript, prima usando solo le Promise e poi usando async/await.
+
+
+// La firma del metodo fetch: fetch(input[, init])
+// input: URL o Request (obbligatorio)
+// init: opzioni per la richiesta come headers, method, body, ecc. (facoltativo)
+// Risultato: Restituisce una Promise che risolve con un oggetto Response
+
+quindi fetch restituisce 2 Promise ?
+
+Sì, il metodo fetch restituisce una Promise, e alcuni metodi dell'oggetto Response restituito da fetch restituiscono anch'essi una Promise.
+Quindi, è comune interagire con due Promesse durante l'utilizzo di fetch.
+La prima Promise è quella restituita direttamente dal metodo fetch. Si risolve con un oggetto Response che rappresenta la risposta HTTP.
+L'oggetto Response include metodi per estrarre il corpo della risposta in diversi formati, come json(), text(), formData(), arrayBuffer() e blob().
+Questi metodi restituiscono a loro volta una Promise.
+
+
+
+con PROMISE 
+
+
+const url = "https://jsonplaceholder.typicode.com/todos/1";
+
+fetch(url)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json(); // Restituisce una Promise che si risolve con il contenuto JSON
+  })
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((error) => {
+    console.error("Errore nella richiesta fetch:", error);
+  });
+
+
+
+
+con ASYNC / AWAIT 
+
+
+const url = "https://jsonplaceholder.typicode.com/todos/1";
+
+async function fetchData() {
+  try {
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json(); // Attende che la Promise del contenuto JSON sia risolta
+    console.log(data);
+  } catch (error) {
+    console.error("Errore nella richiesta fetch:", error);
+  }
+}
+
+fetchData();
+
+
+
+
+
+
+//Nell'esempio con async/await, si utilizza una funzione asincrona fetchData() per eseguire la stessa sequenza di operazioni. 
+//In questo caso, si utilizzano le parole chiave async e await per gestire le operazioni asincrone in uno stile simile a quello sincrono. 
+//Il blocco try/catch viene utilizzato per gestire gli errori.
+
+
+
+-------------------------------------------------------------------------------------------------
+
+PER CAPIRE ANCORA PIU' A FONDO 
+
+
+1) async viene utilizzato quindi per gestire una funzione asincrona cui all'interno vengono fatte partire altre funzioni asincrone 
+ (quelle che restituiscono le Promise su cui usiamo await) , giusto ? 
+
+
+
+Sì, è corretto. La parola chiave async viene utilizzata per dichiarare una funzione come asincrona e, di conseguenza, consente di utilizzare la parola 
+chiave await all'interno di quella funzione per gestire altre operazioni asincrone (cioè funzioni che restituiscono Promise).
+
+
+
+2) Quindi si tratta di un annidamento di funzioni asincrone in altre funzioni asincrone ? 
+
+
+Sì, è possibile avere un annidamento di funzioni asincrone all'interno di altre funzioni asincrone. Quando si utilizza async e await, è comune vedere funzioni 
+asincrone che vengono chiamate all'interno di altre funzioni asincrone, soprattutto quando si ha bisogno di eseguire operazioni asincrone in sequenza o
+ dipendenti l'una dall'altra.
+
+
+
+es:
+
+
+async function operazioneAsincrona1() {
+  // Esegui un'operazione asincrona e restituisci il risultato
+}
+
+
+
+async function operazioneAsincrona2(input) {
+  // Esegui un'altra operazione asincrona che dipende dall'input e restituisci il risultato
+}
+
+
+
+async function eseguiOperazioniAsincrone() {
+  try {
+    const risultato1 = await operazioneAsincrona1();
+    console.log('Risultato 1:', risultato1);
+
+    const risultato2 = await operazioneAsincrona2(risultato1);
+    console.log('Risultato 2:', risultato2);
+  } catch (errore) {
+    console.error('Si è verificato un errore durante l\'esecuzione delle operazioni asincrone:', errore);
+  }
+}
+
+
+
+------------------------------------------------------------------
+
+
+FUNZIONI TRATTATE COME CITTADINI DI PRIMA CLASSE :
+
+significa che le funzioni possono essere trattate come qualsiasi altro valore.
+Ciò implica che le funzioni possono essere:
+
+
+-assegnate a variabili, 
+es:
+
+const saluto = function(nome) {
+  return `Ciao, ${nome}!`;
+};
+
+console.log(saluto('Mondo')); // Stampa: Ciao, Mondo!
+
+
+-passate come argomenti ad altre funzioni (callback):
+es:
+
+setTimeout(function() {
+  console.log('Messaggio ritardato di 2 secondi');
+}, 2000);
+
+
+-restituite da altre funzioni,     proprio come i tipi di dati più semplici (come numeri, stringhe, ecc.). 
+ 
+
+
+---------------------------------------------------------------------------------------------------------
+
+GESTIONE MEMORIA : 
+
+in JavaScript , come in Java, c'è un Heap memory e Stack memory . L'Heap è la memoria più grossa e contiene tutte le istanze degli oggetti (tipi complessi) 
+mentre lo stack contiene le chiamate ai metodi , variabili che puntano agli oggetti nell'heap , e tipi primitivi , e quindi qui è gestito il ciclo di vita
+dei metodi. 
+
+
++Anche in JavaSCript c'è il garbage collector.
+
++Inoltre ci sono metodi di ottimizzazione come il Pooling Object . Ovvero un area di memoria in cui sono conservate istanze di oggetti molto usati . In modo
+che non si deve creare l'oggetto ogni volta ma lo si prende dal Pool . 
+
+
+
+
+----------------------------------------------------------------------------------------------------------------
+
+
+                         ASYNC/AWAIT         vs        PROMISE
+
+
+Sia i callback, le Promise, che async/await sono utilizzati per gestire situazioni dove il codice deve attendere che qualcosa accada—tipicamente operazioni come richieste di rete, accessi a file, o qualsiasi altra operazione che richiede tempo—prima di procedere. La funzionalità di base di questi strumenti è garantire che il flusso del programma possa continuare senza interruzioni mentre aspetta, e poi reagire adeguatamente una volta che l'operazione asincrona è completata.
+
+
+
+
+Le Promise e async/await sono due facce della stessa medaglia, entrambe destinate a semplificare la scrittura e la gestione del codice asincrono in JavaScript. Tuttavia, ci sono alcune differenze nell'uso e nei casi d'uso ideali per ciascuna delle due tecniche.
+
+Promise
+Le Promise sono particolarmente utili quando si ha a che fare con:
+
+Operazioni multiple che possono essere eseguite in parallelo: Le Promise possono essere combinate con Promise.all(), che aspetta che tutte le Promise in un array si risolvano prima di procedere. Questo è ottimo per ottimizzare le operazioni parallele senza bloccare il thread principale.
+
+
+
+javascript
+Copy code
+Promise.all([promise1, promise2]).then((results) => {
+    console.log(results[0]); // Risultato di promise1
+    console.log(results[1]); // Risultato di promise2
+});
+
+
+
+Catene complesse di operazioni: Se le operazioni devono essere eseguite in una sequenza specifica e ogni operazione dipende dal risultato della precedente, le catene di Promise con .then() possono essere una scelta naturale e chiara.
+Async/Await
+L'utilizzo di async/await offre un codice più pulito e facile da leggere, specialmente quando si annidano operazioni asincrone. È ideale per:
+
+Flussi di lavoro sequenziali: async/await rende il codice che dipende da operazioni asincrone sequenziali molto più semplice e diretto, similmente a come si scriverebbe codice sincrono.
+
+
+javascript
+Copy code
+async function fetchData() {
+    try {
+        const data1 = await fetch(url1);
+        const data2 = await fetch(url2);
+        console.log(data1, data2);
+    } catch (error) {
+        console.error('Errore durante il fetch dei dati', error);
+    }
+}
+Gestione degli errori: La sintassi try/catch usata con async/await è più intuitiva e familiare per molti sviluppatori rispetto al metodo .catch() delle Promise.
+Confronto e Scelta
+In generale, async/await è solo zucchero sintattico sopra le Promise e utilizza Promise "sotto il cofano". Non c'è una differenza di prestazione tra i due, ma async/await può rendere il codice più leggibile e facile da mantenere. La scelta tra Promise e async/await dipende spesso dalle preferenze personali e dalla specificità del problema.
+
+Per operazioni che richiedono una gestione parallela delle asincronie, le Promise con Promise.all() sono più indicate.
+Per una gestione lineare e più leggibile delle asincronie, async/await è generalmente preferito.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+è possibile fare Combinazione di risultati da più operazioni asincrone usando async/await ? 
+
+
+GPT
+Sì, è assolutamente possibile combinare i risultati di più operazioni asincrone usando async/await, simile a come lo faresti con Promise.all(). L'uso di async/await per gestire operazioni asincrone multiple in parallelo può rendere il codice ancora più leggibile e diretto rispetto all'uso delle Promise dirette.
+
+Uso di Promise.all() con async/await
+Promise.all() è un metodo che prende un array di Promise e restituisce una nuova Promise che si risolve quando tutte le Promise nell'array sono risolte, o si rifiuta se una delle Promise si rifiuta. Puoi usare async/await per attendere il risultato di Promise.all() in modo elegante, combinando così i vantaggi di entrambi gli approcci. Ecco come si può fare:
+
+javascript
+Copy code
+async function fetchMultipleData() {
+    try {
+        const [result1, result2, result3] = await Promise.all([
+            fetchData1(),  // Chiamata asincrona #1
+            fetchData2(),  // Chiamata asincrona #2
+            fetchData3()   // Chiamata asincrona #3
+        ]);
+
+        console.log(result1, result2, result3);  // Usa i risultati combinati
+    } catch (error) {
+        console.error("Errore durante il recupero dei dati:", error);
+    }
+}
+
+async function fetchData1() {
+    // Simula una richiesta di rete
+    return "Dati da 1";
+}
+
+async function fetchData2() {
+    // Simula una richiesta di rete
+    return "Dati da 2";
+}
+
+async function fetchData3() {
+    // Simula una richiesta di rete
+    return "Dati da 3";
+}
+In questo esempio, fetchData1(), fetchData2(), e fetchData3() sono funzioni che restituiscono delle Promise (potrebbero essere, ad esempio, richieste fetch HTTP). Promise.all() è usato per attendere che tutte e tre le funzioni siano completate. Con async/await, l'attesa di queste Promise è espressa in modo chiaro e lineare.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+GPT
+Esattamente, le Promesse e Async/Await offrono modi più puliti e gestibili per lavorare con operazioni asincrone rispetto alle funzioni di callback annidate tradizionali. Ecco degli esempi che illustrano ciascun approccio utilizzando operazioni di lettura di file in Node.js, che è un caso d'uso comune per l'asincronia:
+
+1. Funzioni di Callback Annidate
+Questo esempio mostra come si potrebbe leggere due file in sequenza utilizzando funzioni di callback annidate:
+
+javascript
+Copy code
+const fs = require('fs');
+
+fs.readFile('/path/to/first/file', (err1, data1) => {
+  if (err1) {
+    console.error("Failed to read file 1:", err1);
+    return;
+  }
+  console.log("First file read successfully");
+  
+  fs.readFile('/path/to/second/file', (err2, data2) => {
+    if (err2) {
+      console.error("Failed to read file 2:", err2);
+      return;
+    }
+    console.log("Second file read successfully");
+    // Potresti continuare a nidificare altre callback qui
+  });
+});
+2. Utilizzo delle Promesse
+Le Promesse semplificano la gestione dell'asincronia evitando la nidificazione eccessiva:
+
+javascript
+Copy code
+const fs = require('fs').promises;
+
+fs.readFile('/path/to/first/file')
+  .then(data1 => {
+    console.log("First file read successfully");
+    return fs.readFile('/path/to/second/file');
+  })
+  .then(data2 => {
+    console.log("Second file read successfully");
+  })
+  .catch(err => {
+    console.error("Failed to read a file:", err);
+  });
+3. Utilizzo di Async/Await
+Async/Await permette di scrivere codice asincrono che appare sincrono, rendendo il flusso di controllo molto più facile da seguire:
+
+javascript
+Copy code
+const fs = require('fs').promises;
+
+async function readFilesSequentially() {
+  try {
+    const data1 = await fs.readFile('/path/to/first/file');
+    console.log("First file read successfully");
+
+    const data2 = await fs.readFile('/path/to/second/file');
+    console.log("Second file read successfully");
+  } catch (err) {
+    console.error("Failed to read files:", err);
+  }
+}
+
+readFilesSequentially();
+In questi esempi, vediamo come l'approccio cambia radicalmente da uno stile di callback annidate a un approccio più lineare con Promesse e Async/Await. Sia le Promesse che Async/Await consentono di gestire le dipendenze tra operazioni asincrone in modo più chiaro e con meno codice boilerplate.
+
+
+----------------------------------------------------------------------------------------------------------
+
+1) ARRAY : lista ordinata che può contenere qualsiasi tipo di dato 
+2) Object : coppie chiave valore non ordinate   +se aggiungiamo un nuovo valore con una chiave già presente , il valore vecchio viene sovrascritto dal nuovo (vale anche per Map) 
+3) Map : coppie chiave valore ordinate 
+4) Set : non ordinati e non permette duplicati 
+5) WeakMap : map che può essere rimossa in qualsiasi momento dal garbage collector, quindi per utilizzi brevi (definizione non precisa) 
+6) WeakSet :  set che può essere rimossa in qualsiasi momento dal garbage collector , quindi per utilizzi brev(definizione non precisa) 
+7) TypedArray : array esclusivo per i tipi numerici 
+
+
+
+
+
+Differenze Chiave  MAP  vs  OBJECT 
+
+
+Caratteristica	                               Object	                             Map
+Tipo di chiavi	                          Stringhe e simboli	                Qualsiasi tipo
+Ordine delle chiavi	                     Non garantito	         Ordine di inserimento garantito
+Prototipo	                  Sì, ereditato da Object.prototype	       No, non ha prototipo
+Dimensione	                     Non disponibile direttamente              Iterabile (metodi keys, values, entries)
+Performance	       Generalmente veloce per piccole quantità di dati 	Ottimizzato per grandi quantità di dati
+Memoria                               in generale meno pesante di map              in  generale più pesante di Object
+
++ Map è iterabile naturalmente con operatore come "for...of"  
+Object NO , lo puoi comunque fare in altri modi ma non è iterabile naturalmente 

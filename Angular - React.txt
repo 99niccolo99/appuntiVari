@@ -1,0 +1,63 @@
+Single Page Application (SPA)
+Le applicazioni a pagina singola consentono di simulare il lavoro delle app desktop. L’architettura è organizzata in modo tale che quando si accede a una nuova pagina, viene aggiornata solo una parte del contenuto. Pertanto, non è necessario scaricare nuovamente gli stessi elementi. Questo è molto conveniente per sviluppatori e utenti. Per lo sviluppo di SPA viene utilizzato uno dei linguaggi di programmazione più popolari: javascript.
+
+È possibile creare una piccola applicazione Web con la libreria jQuery. Ma jQuery è ottimo per essere inserito in progetti pìu grandi sviluppati con altre tecnologie o framework.
+In azienda da noi, per esempio, utilizziamo da anni jQuery per rendere reattive alcune funzionalità di applicazioni sviluppati secondo il metodo tradizionale di MPA, con Zend Framework o Laravel.
+
+Per  costruire intere applicazioni in modalità SPA, consigliamo Vue.js (il mio preferito) ì, React.js, Angular.
+La loro architettura consente di sviluppare applicazioni Web flessibili.
+
+Vantaggi:
+
+Alta velocità e reattività: Poiché SPA non aggiorna l’intera pagina, ma solo la parte necessaria, migliora significativamente la velocità di lavoro.
+Ideale per le applicazioni interne che non richiedono indicizzazione dei motori di ricerca
+L’applicazione a pagina singola tuttavia presenta alcuni svantaggi che frenano la crescita della popolarità
+
+Svantaggi:
+
+Scarsa ottimizzazione SEO. SPA funziona sulla base di JavaScript e scarica informazioni su richiesta dalla parte client. I motori di ricerca difficilmente possono simulare questo comportamento.
+Basso livello di sicurezza. JavaScript ha un basso livello di sicurezza, ma se usi framework moderni (vuem react), possono rendere sicura la tua applicazione web.
+ 
+
+Multiple pages application (MPA)
+Le applicazioni multipagina hanno un’architettura più classica. Ogni pagina invia una richiesta al server e aggiorna completamente tutti i dati. Anche se questi dati sono piccoli. Pertanto, le prestazioni vengono spese per visualizzare gli stessi elementi. Di conseguenza, ciò influisce sulla velocità e sulle prestazioni. Molti sviluppatori utilizzano JavaScript / jQuery per aumentare la velocità e ridurre il carico. Un buon esempio, l’aggiornamento dei prodotti senza ricaricare la pagina, quando si utilizzano i filtri nel negozio online. È molto più conveniente e, soprattutto, più veloce.
+
+Vantaggi:
+
+Semplice ottimizzazione SEO. L’architettura di MPA consente di ottimizzare facilmente ogni pagina per i motori di ricerca. Uno sviluppatore può aggiungere metatag per qualsiasi pagina.
+Sviluppo facile. In genere, lo sviluppo di un’applicazione multi-pagina richiede uno stack di tecnologie più piccolo.
+
+Svantaggi:
+
+Lo sviluppo di applicazioni mobili richiede molto più tempo. Nella maggior parte dei casi, dovrai codificare il back-end da zero.
+È difficile separare front-end e back-end. Di norma, interagiscono molto strettamente tra loro. Il lavoro degli sviluppatori front-end e back-end sta diventando più complicato.
+Il vantaggio principale di MPA è una buona ottimizzazione SEO e molte soluzioni box.
+ 
+
+MPA o SPA
+Ogni architettura ha i suoi vantaggi e svantaggi ed è adatta a un particolare tipo di progetto.
+SPA si distingue per la sua velocità e la capacità di sviluppare un’applicazione mobile basata sul codice già pronto. Ma allo stesso tempo, SPA ha una scarsa ottimizzazione SEO. Pertanto, questa architettura è un approccio eccellente per piattaforme SaaS, social network, applicazioni interne e comunità chiuse, dove l’ottimizzazione dei motori di ricerca non ha importanza.
+MPA è più adatto per negozi e-commerce o siti aziendali
+
+FacebookEmailWhatsAppLinkedIn
+
+------------------------------------------------
+ANGULAR 
+1) più per applicazioni grandi (enterprise) 
+2)più studio iniziale , però dopo più semplice sviluppare 
+3) framework completo 
+4)
+5)
+6)
+7)FORZE: 
+framework completo
+
+
+
+REACT 
+1) anche per applicazioni piccole 
+2) minor studio ma più tempo per lo sviluppo e per "l'ingrandimento" di progetti 
+3) diversi microframework e librerie da aggiungere ; manutenzione più complicata
+4) codice più snello
+5) maggior controllo del rendering 
+6) materiale di terze parti più ampio ; quindi allo stesso tempo più manutenzione ; però puoi fare più cose 

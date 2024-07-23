@@ -1,0 +1,197 @@
+1) crea folder progetto 
+2) crea folder chiamato "backend" (o server)  e un'altro per dopo con "frontend" (o client)
+3) "npm init -y" per inizializzare il backend 
+4) installiamo varie dipendenza tra cui mongoDB express ecc..     --> "npm i express dotenv mongoose" e "npm i nodemon morgan -D"
+5) creo app.js
+6) su package.json in "scripts"  aggiungo     "start": "node app.js",
+                                               "dev": "nodemon app.js"            
+
+adesso se scrivi su terminale "npm start" parte l'applicazione una singola volta normalmente 
+se invece scrivi "npm run dev" parte in modalità sviluppo con nodemon e quindi viene ricaricata in automatico ogni volta che modifichi il codice
+
+sul terminale , invece se scrivo "npm run dev" app.js si starta e se restarta automaticamente ogni volta che cambio qualcosa nel codice (insomma creo sti 2 script)
+
+
+
+PACCHETTI utili allo sviluppo 
+-"nodemon" --> per far ripartire l'applicazione ad ogni modifica del codice 
+- "morgan" --> logger delle richieste HTTP 
+- "dotenv" --> rende il codice più organizzato usando variabili d'ambiene (che, se 
+ ----------------------------------------
+
+
+Introduction 
+
+NodeJS è un ambiente di esecuzione di Javascript al di fuori del browser , che quindi ci permette di eseguirlo ovunque.
+ è un applicazione scritta in C++ che contiene il motore V8(interprete JavaScript sviluppato da Google e presente nei browser per leggere Javascript) che ci permette di eseguire JavaScript al di fuori del browser.
+V8 e sto programma in C++ traducono Javascript in C++ , che poi verrà tradotto in codice macchina ....
+
++Node è Single-Thread event loop che esegue codici senza blocchi(non-blocking code)
+C'è un solo Thread che gestisce gli utenti in base alle loro richieste
+Evento:richiesta in corso      
+Asincrono-no block   (se c'è una richiesta non rimane fermo fino a quando non la risolve , ma la manda a risolvere e va avanti con le altre richieste)
+
++Sia back-end sia front-end in JavaScript
++Forte in Real-Time-Application come chat,cose con notifiche push ecc dove ci serve un riscontro veloce
+
+---------------------------------------------------------------------------------------
+
+
+
+Node.js è un ambiente di esecuzione JavaScript che permette di eseguire codice JavaScript sul lato server, ovvero all'interno di un computer anziché all'interno di
+
+un browser web.
+
+Node.js fornisce un motore JavaScript per eseguire il codice JavaScript, insieme a una serie di moduli built-in per accedere alle funzionalità del sistema operativo,
+
+come ad esempio la gestione dei file e delle reti. Questo permette di creare diverse tipologie di applicazioni come ad esempio server web, script di amministrazione
+
+e applicazioni real-time.
+
+Node.js utilizza un'architettura event-driven, ovvero un modello di progettazione basato sugli eventi, in cui gli eventi rappresentano azioni o cambiamenti di stato
+
+che avvengono all'interno dell'applicazione. Ogni evento viene gestito da una funzione di codice chiamata handler. La gestione degli eventi avviene in modo 
+
+asincrono, ciò significa che più eventi possono essere in corso contemporaneamente e gestiti una volta completati. Ciò consente di creare applicazioni ad alte 
+
+prestazioni e scalabili poiché non vengono bloccate dall'attesa della completazione di un evento specifico.
+
+Inoltre Node.js utilizza un modello di I/O non bloccante, ovvero quando un'operazione di I/O, come ad esempio la lettura di un file o l'invio di una richiesta HTTP,
+
+ viene richiesta, Node.js non blocca l'esecuzione del codice mentre l'operazione viene completata. Invece, Node.js fornisce un meccanismo di callback per specificare
+
+ quali azioni devono essere intraprese quando l'operazione di I/O è completata. Ciò consente al codice di continuare ad eseguire altre operazioni mentre l'operazione
+
+ di I/O viene completata in background.
+
+Infine, Node.js supporta anche l'utilizzo di pacchetti di terze parti, che possono essere installati utilizzando npm (Node Package Manager), il quale è incluso
+
+ in Node.js. Ciò permette di utilizzare facilmente librerie e framework scritti da altri sviluppatori per estendere le funzionalità dell'applicazione.
+
+Node.js utilizzando una architettura event-driven, adotta un sistema di gestione degli eventi in modo asincrono, con una coda di eventi e un meccanismo di 
+
+callback per specificare come gli eventi devono essere gestiti una volta completati. Ciò consente di creare applicazioni ad alte prestazioni e scalabili.
+
+
+RIASSUMENDO IN POCHE PAROLE : l'evento viene preso dall'handler e portato alla giusta funzione di callback che sa cosa farci; quindi viene eseguito da sta callback 
+in background , l'handler lascia velocemente l'evento alla callback e va a servire altri eventi alle callback apposite . 
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------
+MIDDLEWARE
+
+In Node.js, un middleware è una funzione che viene eseguita durante il processo di gestione delle richieste HTTP tra il server e l'applicazione.
+ Il middleware può modificare la richiesta in arrivo, la risposta in uscita o eseguire operazioni aggiuntive come l'autenticazione o la gestione degli errori.
+
+In sostanza, il middleware agisce come un intermediario tra il server e l'applicazione, consentendo di definire delle funzionalità comuni a più
+ parti dell'applicazione.
+
+
+
+
+
+
+
+
+
+
+LINGUAGGI    IMPERATIVI   -   AD OGGETTI   -   FUNZIONALI
+
+
+
+La differenza sostanziale tra i linguaggi imperativi, orientati agli oggetti e funzionali è il modo in cui questi linguaggi affrontano
+ la rappresentazione e la manipolazione dei dati e delle istruzioni.
+Va notato che molti linguaggi di programmazione moderni incorporano elementi di più paradigmi di programmazione, 
+come ad esempio la programmazione orientata agli oggetti e funzionale.
+
+Linguaggi imperativi: C, Pascal, BASIC, Fortran, Assembly, COBOL, Ada, ALGOL. Questi linguaggi sono focalizzati sulla definizione di una sequenza 
+di istruzioni dettagliate per indicare al computer cosa fare passo dopo passo.
+
+Linguaggi orientati agli oggetti: Java, C++, Python, Ruby, Smalltalk, Objective-C. Questi linguaggi sono orientati alla rappresentazione del mondo 
+reale come un insieme di oggetti interagenti, ciascuno con un proprio stato e comportamento.
+
+Linguaggi funzionali: Haskell, Lisp, ML, Erlang, Scheme, F#. Questi linguaggi si concentrano sulla definizione di funzioni matematiche e sulla
+ manipolazione di dati immutabili, piuttosto che sulla definizione di istruzioni dettagliate.
+
+
++DATI IMMUTABILI : 
+
+I dati immutabili sono dati che, una volta creati, non possono essere modificati. In altre parole, ogni operazione su un dato immutabile 
+restituisce un nuovo valore, piuttosto che modificare il valore esistente. Questo significa che ogni volta che un dato immutabile viene modificato,
+ viene creato un nuovo oggetto contenente il nuovo valore, mentre il vecchio oggetto viene abbandonato.
+
+I dati immutabili sono molto utili nei linguaggi di programmazione funzionali, poiché semplificano la scrittura di codice parallelo 
+e concorrente e riducono il rischio di errori causati da effetti collaterali. Inoltre, i dati immutabili sono spesso considerati più 
+sicuri e affidabili rispetto ai dati mutabili, poiché consentono di evitare la modifica accidentale o indesiderata di un valore.
+Esempi di dati immutabili includono numeri, stringhe, tuple e altri tipi di dati primitivi che non possono essere modificati.
+
+
+
+------------------------------------------------------------------------
+
+IMPORT/EXPORT MODULI 
+
+Sì, è possibile importare tutto il modulo con un unico import in Node.js, permettendoti di utilizzare tutte le funzioni esportate senza doverle importare una per una. Questo si ottiene esportando un oggetto che contiene tutte le funzioni nel modulo e poi importando quell'oggetto nel file in cui intendi utilizzarlo.
+
+Ci sono 2 modi in cui possiamo importare e asportare moduli 
+
+1) Usando CommonJS : 
+
+es:  EXPORT
+
+function funzioneUno() {
+  console.log("Funzione Uno");
+}
+
+function funzioneDue() {
+  console.log("Funzione Due");
+}
+
+module.exports = { funzioneUno, funzioneDue };
+
+
+      IMPORT
+
+const chatGPT = require('./chatGPT');
+
+chatGPT.funzioneUno(); // Chiama la Funzione Uno
+chatGPT.funzioneDue(); // Chiama la Funzione Due
+
+
+
+
+2) Usando ES6 Modules
+
+es:     EXPORT
+
+export function funzioneUno() {
+  console.log("Funzione Uno");
+}
+
+export function funzioneDue() {
+  console.log("Funzione Due");
+}
+
+
+
+      IMPORT 
+
+import * as chatGPT from './chatGPT';
+
+chatGPT.funzioneUno(); // Chiama la Funzione Uno
+chatGPT.funzioneDue(); // Chiama la Funzione Due
+
+
+
+
+
+
+
+
+

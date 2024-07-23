@@ -1,0 +1,199 @@
+Android version :  4.0.1
+
+Grandle : 6.1.1
+
+
+
+
+GRAFICA (xml): 
+
+
+(ricorda : se non scrivo niente sulla posizione di un oggetto , esso si andrà a posizionare sull'estrema sinistra sempre)
+
+
+
+-android:id="@+id/gennaro"  --> l'id di questo oggetto è gennaro
+
+
+
+-android:layout_width="match_parent" --> prenditi tutto lo spazio a disposizione (in largezza in sto caso preciso) (height se in altezza)
+
+
+
+-android:layout_width="wrap-content" --> prenditi solo lo spazio minimo che ti serve  (in larghezza in sto caso preciso) 
+
+
+
+-android:gravity="center"--> dove è posizionato l'oggetto in base allo schermo(in base alla largezza dello schermo) 
+(nell'esempio l'oggetto si andrà a mettere al centro dello schermo ma se non è specificato nulla al centro in alto)
+
+
+
+-android:layout_centerInParent="true" --> se è true l'oggetto figlio va posizionato al centro rispetto all'oggetto genitore in cui esso si trova
+
+
+
+-android:layout_below="@id/gennaro" --> posiziona il bordo superiore di questo oggetto sotto l'oggeto con id "gennaro" in questo esempio
+
+
+
+-android:layout_weight="1" -->  you can specify a size ratio between multiple views. E.g. you have a MapView and a table which should show some additional information
+to the map.The map should use 3/4 of the screen and table should use 1/4 of the screen. Then you will set the layout_weight of the map to 3 and the layout_weight
+of the table to 1.
+
+
+
+-android:layout_centerVertical="true" --> l'oggetto si posiziona centralmente ,rispetto all'oriento verticale del genitore
+
+
+-android:onClick="pulsantePremuto" --> ogni volta che viene premuto i l button a cui è applicato viene invocato il metodo "pulsantePremuto" presente nel MainActivity
+
+
+
+-app:layout_constraintLeft_toRightOf="@+id/buttonA" --> posizionati alla destra dell'oggetto buttonA che deve stare sulla sua sinistra
++"parent" al posto di un id possiamo anche mettere parent che si riferisce all'oggetto genitore
+
+
+
+-android:orderInCategory="100"--> per valutare l'importanza di un item all'interno di un menù, che corrisponde all'ordine dal primo all'utlimo
+(un item con 20 starà più in alto di un item con ordine 30)
+
+
+
+-android:hint="Domanda Quiz" --> Domanda Quiz uscirà scritto come suggerimento quando il TextView è vuoto 
+
+
+
+-android:showAsAction="always"--> l'item va nella barra di menù in alto
+-android:showAsAction="never" --> l'item non va nella barra dei menù in alto ma va nel 
+-android:padding="10dp" --> sono dentro al mio giubotto e il padding è l'imbottitura
+-android:layout_margin="10dp" --> lo spazio tra una view (un oggetto) e un altra
+-"fill_parent" --> la view deve essere della stessa grandezza del padre che lo contiene , quindi padding minimo
+
+LAYOUTS: 
+
+
+-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"  --> Constraint layout è quello di default di Android Studio
+è un layout completamente libero che copre tutto lo schermo 
+
+
+
+-<LinearLayout> -->   Guarda slide
+
+
+
+-<GridLayout>  --> è una griglia di item 
+
+
+
+-<FrameLayout..........> --> è fatto per isolare un item in un preciso spazio dello schermo ed evita che altri item si sovrappongano ad esso
+
+
+
+-<RadioGroup.....<RadioButton> > --> per un gruppo di bottoni radio(ovvero è possibile premere solo uno di questi)
+
+
+
+
+-<RelativeLayout> --->la posizione di ogni View figlia può essere specificata relativamente ai fratelli o al padre(lo stesso relativeLayout)
+(è un tipo di layout molto potente poichè può evitare di avere gruppi di view nidificati e mantenere invece la gerarchia layou piatta il che migliora le prestazioni,
+.Se ti ritrovi a usare diversi gruppi di LinearLayout annidati,potresti essere in grado di sostituirli con un singolo RelativeLayout.
+
+-(TextView)android:hint="0" --> quando il testo è vuoto viene mostrato 0 in questo caso trasparente, quindi come testo di suggerimento
+
+-<ListView.....> --> è una lista di View con le Views una sotto l'altra. 
+----------------------------------------------------------------------------------------------------------------
+CODICE Logica (java)
+
+
+
+-onCreate -->per creare l'Activity (è tipo lo Start() in Unity) 
+
+
+
+tv = findViewById(R.id.textView) --> (va solitamente nell'OnCreate(Bundle savedInstanceState) ) adesso l'oggetto tv contiene il riferimento all'oggetto che nell'xml 
+è stato segnato con id textView
+
+
+
+android:onClick="pulsantePremuto" --> sta nell'xml di un bottone e dice che una volta premuto il bottone parte la funzione denominata pulsantePremuto che è 
+implemanteta nella parte logica in Java 
+
+
+
+-ArrayAdapter<String> --> crea un array che prende un array di elementi (string nell'esempio) in entrata , ed in uscita da delle View
+
+
+
+-(AutoCompleteTextView) listView.setAdapter(arrayAdapter);  --> settiamo la listView con l'adapter pieno di stringhe , quindi riempiamo il listView (in grado di 
+mostrare i suggerimenti di autoriempimento , con le stringhe da suggerire
+
+
+
+-onCreateOptionsMenu --> per aggiungere un Menù  -getMenuInflater().inflate(R.menu.menu_main, menu) --> per aggiungere il menù all'Activity
+
+
+
+-Log.x(Tag, "messaggio")  --> il log è sostanzialmente l'azione che si deve eseguire o si sta eseguendo(che il compilatore sta eseguendo in quel momento) e serve semplicemente per 
+segnalare questa operazione nel Logcat (la console che segna tutte le operazioni) attraverso un messaggio messo come parametro , serve per il debug e per
+rendere l'esecuzione del codice più precisa . Il tag puo essere d:debug , e:errore , i:info, w:warning ,v:verbose 
+
+
+
+-listView.getItemAtPosition(position).toString() --> restituisce il contenuto della listView nella posizione position
+
+
+ 
+-Toast.makeText(....).show() --> il Toast è un piccolo popup che appare per pochi secondi , con questo metodo scegli il messaggio da inserirci all'interno
+e mostrare (l'ultimo parametro è relativo alla durata in cui è mostrato il popup) 
+
+
+-LayoutInflater inflater -->  questo oggetto ci permette di istanziare un layout XML all’interno di una view
+
+
+
+-LayoutInflater.inflate(xml,null) --> crea e restituisce una view creando cosi una View dall'xml ricevuto
+-View getView..... --> restituisce una View,presa da un insieme di Views(ViewGroup data come parametro) dell'oggetto alla posizione position data come parametro
+(getView viene utilizzata per personalizzare l'Adapter che poi usiamo per il gruppo di Views)
+
+When you write an XML layout, it will be inflated by the Android OS which basically means that it will be rendered by creating view object in memory.
+Let's call that implicit inflation (the OS will inflate the view for you)
+You can also inflate views explicitly by using the LayoutInflater. In that case you have to:
+
+1)Get an instance of the LayoutInflater
+2)Specify the XML to inflate
+3)Use the returned View
+4)Set the content view with returned view (above)
+
+For instance: 
+LayoutInflater inflater = LayoutInflater.from(YourActivity.this); // 1
+View theInflatedView = inflater.inflate(R.layout.your_layout, null); // 2 and 3
+setContentView(theInflatedView) // 4
+
+
+
+-public void onConfigurationChanged(Configuration newConfig) --> Configuration salva tutte le impostazioni del device personali dell'utente che possano 
+impattare sull'ezecuzione dell'applicazione , come la rotazione dello schermo la grandezza ecc.....
+
+
+
+-BACKSTACK [[[ SLIDE ]]]
+
+
+
+-Drawable --> è un concetto grafico generico 
+
+-onSaveInstanceState()--> utilizzata per salvare alcune informazioni che si vogliono in seguito recuperare dopo un OnStop
+
+
+-------------------------------------------------------------------------------------------------------
+-OnPause --> l'applicazione non è più in primo piano; la si sta utilizzando usando multischermo oppure si sta per scegliere un altra appicazione dalla Ram,
+se si torna all'applicazione corrente allora si fa OnResume() per recuperare lo stato dell'applicazione 
+
+-OnStop --> l'applicazione è stata lasciata completamente e si sta visualizzando totalmente altro , ma la nostra applicazione è ancora nella Ram, 
+se si torna all'applicazione corrente allora si fa OnRestart() e l'applicazione viene riavviate e , nel caso , si può recuperare lo stato precedente 
+
+-OnDestroy() --> quando l'applicazione viene scartata , quindi levata dalla Ram, si applica OnDestroy che ne distrugge l'istanza 
+allora si da OnRestart()
+
++GUARDA SLIDE 

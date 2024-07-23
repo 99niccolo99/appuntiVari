@@ -1,0 +1,100 @@
+
+Il protocollo di rete utilizzato in internet è TCP/IP . Esso è composto da un insieme di regole e altri sottoprotocolli (HTTP , ARP, UDP) che permettono il 
+corretto trasferimento di dati tra dispositivi informatici. 
+
+
+          
+                                    ISO/OSI   (International Organization for Standardization/ Open Systems Interconnection) 
+
+ISO/OSI NON è un protocollo di rete , ma è un modello concettuale sviluppato per standardizzare la struttura di una rete e le sue parti fondamentali . 
+Quindi ISO/OSI viene utilizzato come base per rendersi conto di come sviluppare un protocollo di rete (come TCP/IP) (anche se in verità TCP/IP è stato sviluppato indipendentemente da ISO/OSI) 
+
+ISO/OSI divide la rete in 7 livelli, ogni livello con delle sue responsabilità e compiti specifici. 
+Questa stratificazione aiuta a comprendere, progettare e gestire complesse architetture di rete. 
+
+1) Livello Fisico (Physical Layer):  Come il nome suggerisce, il livello fisico si occupa della strumentazione che consente il trasferimento dei dati, come cavi e router installati sulla rete. 
+
+2) Livello di Collegamento Dati (Data Link Layer): Garantisce una trasmissione affidabile dei dati tra due nodi adiacenti in una rete, gestendo errori, 
+controlli di flusso e definendo come i dati vengono incapsulati e trasmessi.
+
+3)Livello di Rete (Network Layer): Il livello rete si occupa di suddividere i dati sul dispositivo del mittente e riassemblarli sul dispositivo del destinatario quando la trasmissione avviene attraverso due reti differenti.
+
+4)Livello di Trasporto (Transport Layer)
+
+5)Livello di Sessione (Session Layer): Stabilisce, mantiene e termina sessioni di comunicazione tra applicazioni su dispositivi differenti.
+
+6)Livello di Presentazione (Presentation Layer): Traduce i dati tra il formato di trasmissione e il formato che le applicazioni possono comprendere. Si occupa anche di criptazione e compressione dei dati.
+
+7)Livello di Applicazione (Application Layer): Rappresenta l'interfaccia tra le applicazioni e i servizi di rete. Questo livello gestisce servizi come l'autenticazione e l'interazione con l'utente finale.
+
+
+
+
++ISO: Sta per "International Organization for Standardization". È un'organizzazione non governativa internazionale che sviluppa e pubblica standard internazionali
+su una vasta gamma di argomenti, comprese le tecnologie dell'informazione e le comunicazioni. L'obiettivo dell'ISO è facilitare la cooperazione e lo scambio 
+internazionali standardizzando procedure, terminologie, metodi e altro ancora in molti settori.
+
+
+
+
+
+
+
+                                 TCP/IP    (Transmission Control Protocol / Internet Protocol) 
+
+TCP/IP è il protocollo di rete (che comprende una serie di regole e protocolli) più utilizzato , su cui si basa Internet. 
+Esso consente semplicemente il trasferimento di dati tra dispositivi informatici (host) , anche se situati in reti diverse gestite da diversi hardware. 
+
+è formato da 4 livelli (più il livello "sale", più ci allontaniamo dall'hardware e  ci avviciniamo al software) : 
+
+1)Link Layer (Livello di collegamento):gestisce l'infrastruttura fisica che consente ai computer di comunicare tra loro in Internet. (Livello fisico in ISO/OSI)
+
+2) Internet Layer (Livello di rete):Gestisce il routing dei pacchetti di dati tra reti, utilizzando protocolli come IP (Internet Protocol).
+ È responsabile dell'indirizzamento, del pacchettamento e del routing dei dati.
+
+3)Transport Layer (Livello di trasporto): Fornisce meccanismi di comunicazione tra processi su host differenti, utilizzando protocolli come 
+TCP (Transmission Control Protocol) per connessioni affidabili e UDP (User Datagram Protocol) per connessioni meno affidabili ma più leggere.
+
+4)Application Layer (Livello di applicazione): Comprende protocolli che forniscono servizi specifici agli utenti e alle applicazioni,
+ come HTTP (per il web), FTP (per il trasferimento di file), SMTP (per la posta elettronica), e molti altri. Questo livello combina le funzionalità dei livelli
+ di sessione, presentazione e applicazione del modello OSI.
+
+
+
+
+
+
++Creato originariamente per l'ARPANET, il predecessore di Internet, il modello TCP/IP è diventato lo standard de facto per la comunicazione in reti e rappresenta
+ la colonna vertebrale dell'attuale infrastruttura di Internet.
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+  TCP Trasmission Control Protocol
+
+è uno dei protocolli di trasporto (livello 3) fondamentali. TCP fornisce una trasmissione affidabile, ordinata e senza errori di flussi di dati tra applicazioni che girano su host collegati tramite una rete IP.
+
+
+**Caratteristiche Principali di TCP
+
+-Affidabilità: TCP garantisce che i dati inviati dal mittente arrivino al destinatario correttamente e nell'ordine giusto. Utilizza vari meccanismi per assicurarsi che i dati non vadano persi o duplicati.
+
+-Connessione Orientata: Prima di iniziare la trasmissione dei dati, TCP stabilisce una connessione tra il mittente e il destinatario attraverso un processo chiamato handshake a tre vie.
+
+-Controllo di Congestione: TCP monitora la rete per evitare sovraccarichi, regolando dinamicamente la velocità di trasmissione dei dati in base alla capacità della rete.
+
+-Controllo di Flusso: TCP utilizza meccanismi per assicurarsi che il mittente non sovraccarichi il destinatario con troppi dati in una volta.
+
+
+**Trasmissione dei Dati
+
+Segmentazione: I dati da trasmettere sono divisi in segmenti di dimensioni gestibili. Ogni segmento ha un numero di sequenza che permette di riassemblare i dati correttamente dall'altra parte.
+
+Invio e Conferma: Ogni segmento inviato viene confermato dal destinatario attraverso un segmento ACK. Se il mittente non riceve una conferma entro un certo periodo di tempo, ritrasmette il segmento.
+
+
+**Vantaggio : affidabilità
+**Svantaggio : prestazioni minori (non adatto ad esempio a streaming video che richiede alte prestazioni e allo stesso tempo nun fa nient se qualche dato e quindi qualche pixel va perso) 
+
+-------------------------------------------------------------------

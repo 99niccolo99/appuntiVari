@@ -1,0 +1,405 @@
+
+
+
+Data Analyst focuses on extracting insights from data and supporting decision-making through data analysis and visualization.
+
+
+Data Scientist builds and deploys machine learning models to predict outcomes and automate decision processes.
+
+
+Data Engineer constructs the data infrastructure and pipelines necessary for data collection, storage, and processing, ensuring that data is accessible and usable by data analysts and scientists.
+
+---------------------------------------------------------------------------------------
+
+
+co-Con l'avvento dei big data si incominciano ad utilizzare database NON relazionali invece dei relazionali .Dati troppo grandi per esser controllati da umani , allora usiamo machine learning per fare in modo che questi dati siano usati da macchine che possano fare predizioni e imparare da essi 
+
+-data science : trasformare i dati da inutili e confusionari ad utili e organizzati
+
+-un algoritmo normale prende l'input , lo elabora ed esce fuori l'output (es. pollo crudo -> ricetta -> pollo arrosto) . Con il machine learning invece abbiamo come input il pollo crudo e il pollo arrosto e dobbiamo creare l'algoritmo/ricetta migliore per far diventare quel pollo crudo un pollo arrosto . Le varie ricette vengono provate svariate volte prima di trovare la ricetta giusta . 
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+Machine Learning (ML)
+
+Machine Learning (ML) è un sottocampo dell'IA che si concentra sulla costruzione di sistemi in grado di apprendere dai dati e migliorare le loro prestazioni nel tempo senza essere esplicitamente programmati per ogni singolo compito. In altre parole, i sistemi di ML utilizzano algoritmi per identificare pattern nei dati e fare previsioni o prendere decisioni basate su questi pattern.
+
+Deep Learning (DL)
+
+Deep Learning (DL) è una sotto-categoria del Machine Learning che si concentra su reti neurali artificiali con molti strati (da qui il termine "deep" che significa "profondo"). Il deep learning è particolarmente efficace nell'elaborazione di grandi quantità di dati non strutturati, come immagini, audio e testo.
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+TIPOLOGIE DI PROBLEMI : 
+
+
+
+
+Le principali tecniche usate per lo sviluppo di modelli di machine learning 
+
+
+
+***APPRENDIMENTO SUPERVISIONATO :
+
+
+
+Vengono dati in input i dati in input e output , etichettati con il risultato voluto . Quindi il modelo può imparare a mappare gli input e gli output corretti . 
+
+
+Processo di apprendimento supervisionato:
+
+1)Raccolta dei dati: Il primo passo è raccogliere i dati che includono sia le variabili di input (caratteristiche) sia le variabili di output (etichette). Questi dati vengono spesso divisi in due set: uno per l'addestramento e uno per il test.
+
+2)Preparazione dei dati: I dati potrebbero necessitare di pulizia e preprocessing per rimuovere eventuali errori o valori mancanti e per convertire i dati in un formato adatto all'elaborazione da parte del modello di machine learning.
+
+3)Sviluppo del modello: Un algoritmo di apprendimento viene utilizzato per addestrare il modello sui dati di addestramento. Questo processo comporta l'ottimizzazione di un'ipotesi iniziale sulla base dell'errore calcolato tra l'output previsto dal modello e l'output effettivo nei dati di addestramento.
+
+4)Valutazione del modello: Dopo l'addestramento, il modello viene testato sul set di dati di test per valutare la sua precisione e capacità di generalizzazione. L'obiettivo è verificare che il modello funzioni bene non solo sui dati di addestramento, ma anche su nuovi dati non visti durante l'addestramento.
+
+5)Affinamento e ottimizzazione: In base alla performance del modello, possono essere necessari ulteriori affinamenti, come la regolazione dei parametri dell'algoritmo o l'uso di tecniche di regolarizzazione per prevenire il sovraadattamento.
+
+
+
+
+Tipi di algoritmi di apprendimento supervisionato:
+
+Classificazione: Quando l'output è una categoria (es. gatto o cane).
+Regressione: Quando l'output è un valore continuo (es. prezzo di una casa).
+
+
+Esempi di algoritmi di apprendimento supervisionato includono la regressione lineare e logistica, le macchine a vettori di supporto (SVM), gli alberi di decisione e le reti neurali.
+
+
+
+
+
+
+***APPRENDIMENTO NON SUPERVISIONATO :
+
+Utilizzata quando non abbiamo dati etichettati, cioè non conosciamo a priori l'output corretto per i nostri dati di input. 
+
+Uno degli algoritmi più famosi di tal genere è il clustering :
+
+Clustering: Questa tecnica raggruppa un set di oggetti in modo che gli oggetti nello stesso gruppo (chiamato cluster) siano più simili (in qualche senso) tra loro rispetto a quelli in altri gruppi. È ampiamente usato per la segmentazione di mercato, organizzazione di grandi database di documenti, aggregazione di notizie simili, ecc.
+Esempio: Un'azienda vuole segmentare i suoi clienti in base alle abitudini di acquisto per personalizzare le campagne di marketing. Utilizzando il clustering, può raggruppare i clienti con abitudini simili e targettizzare le campagne di marketing in modo più efficace.
+
+
+Vantaggi:
+Scoprire pattern nascosti nei dati senza la necessità di interventi o etichette predefinite.
+Utile per esplorare la struttura dei dati e identificare variabili semplici che spiegano il comportamento dei dati.
+
+Sfide:
+Difficile valutare la performance del modello in assenza di etichette verificate.
+La scelta del numero di cluster o della configurazione dell'algoritmo può essere soggettiva e influenzare fortemente i risultati.
+
+
+
+
+
+
+
+
+***TRANSFER LEARNING : 
+
+
+
+Il transfer learning è una tecnica di machine learning in cui un modello addestrato per svolgere un'attività viene riutilizzato come punto di partenza per un'altra attività correlata. L'obiettivo è sfruttare la conoscenza che il modello ha già appreso da un compito precedente per migliorare l'apprendimento e la velocità di convergenza su un nuovo compito.
+
+Come funziona:
+
+Modello pre-addestrato: Il processo inizia con un modello che è stato addestrato su un ampio set di dati, spesso su un problema correlato.
+
+Fine-tuning: Il modello viene quindi adattato (fine-tuned) al nuovo compito con un numero minore di nuovi dati.
+
+Riutilizzo delle rappresentazioni: Le rappresentazioni apprese dal modello originale vengono riutilizzate nel nuovo modello, riducendo il tempo necessario per l'addestramento.
+
+
+Esempi di applicazioni:
+
+Visione artificiale: In molte applicazioni, come il riconoscimento di immagini, si utilizzano reti neurali convoluzionali pre-addestrate su grandi set di dati come ImageNet. Le rappresentazioni apprese possono essere riutilizzate per identificare nuove categorie di oggetti con meno dati e risorse.
+
+NLP (Natural Language Processing): Modelli come BERT e GPT sono pre-addestrati su grandi corpus testuali. Vengono poi adattati per attività specifiche come il riconoscimento di entità, la traduzione e la classificazione di testo.
+
+
+Vantaggi:
+
+Riduzione dei dati necessari: Riduce il numero di dati necessari per addestrare un nuovo modello, poiché si parte da una base già solida.
+
+Velocità di addestramento: Riduce il tempo di addestramento poiché molte rappresentazioni sono già apprese.
+
+Prestazioni migliorate: Fornisce prestazioni migliori in attività con pochi dati, sfruttando il know-how da altri compiti.
+
+
+Considerazioni:
+
+Similarità tra i compiti: Il transfer learning funziona meglio quando i due compiti sono correlati. Se sono troppo diversi, il riutilizzo del modello potrebbe non fornire vantaggi.
+
+Sovra-adattamento: È possibile che il modello si adatti troppo ai dati originali, limitando la sua capacità di generalizzare sul nuovo compito.
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+TIPOLOGIE DI DATI 
+
+
+***DATI STRUTTURATI 
+
+Sono dati organizzati in un formato predefinito e facilmente riconoscibile, come tabelle, database relazionali o fogli di calcolo.
+Hanno una struttura chiara, spesso composta da righe e colonne con valori specifici, facilitando così la ricerca, l'analisi e la gestione dei dati.
+
+
+***DATI NON STRUTTURATI 
+
+Non hanno una struttura predefinita e sono generalmente non organizzati in un formato specifico.
+Possono includere una varietà di tipi di dati, come testi, immagini, video, audio, e-mail o documenti.
+Esempi comuni includono file di testo come e-mail, file multimediali (audio, video), e contenuti generati dagli utenti sui social media.
+
+
+***DATI SEMI-STRUTTURATI
+
+Questi dati si trovano a metà strada tra strutturati e non strutturati. Hanno una struttura ma non seguono un rigido schema di database.
+Esempi includono file XML e JSON, che contengono dati in un formato organizzato ma flessibile.
+
+
+
+Altre 2 categorie separate : 
+
+***DATI STATICI 
+
+Sono fissi e non cambiano con il tempo. L'analisi può essere eseguita su questi dati senza la necessità di tener conto di modifiche o aggiornamenti in tempo reale.
+
+Esempi: database storici, dati di vendita passati, archivi di file
+
+
+***DATI IN STREAMING 
+
+Si riferiscono a flussi di dati che vengono generati in tempo reale o quasi reale da diverse fonti , quindi si tratta di dati che cambiano i continuazione nel tempo 
+Esempi includono feed di social media, dati di sensori IoT, transazioni finanziarie, e log di server web.
+
+
+Differenze chiave:
+
+Volume: I dati statici sono generalmente di volume fisso mentre i dati in streaming crescono continuamente.
+Tempo: I dati statici rappresentano il passato, mentre quelli in streaming vengono analizzati in tempo reale.
+Analisi: I dati statici si prestano a un'analisi approfondita e retrospettiva, mentre lo streaming data richiede processi rapidi per identificare immediatamente le tendenze.
+
+
+
+-----------------------------------------------------------------------------------------
+
+
+FEATURES 
+
+
+***FEATURE VARIABLE 
+
+sarebbero tutti i dati che vengono dati in input al modello per apprendere . Le feature possono essere di varie nature, a seconda del tipo di dati con cui si lavora e dell'obiettivo dell'analisi. 
+
+Tipi di Feature:
+
+-Feature Numeriche:
+Sono feature misurate su una scala numerica e possono essere continue (come altezza, peso, temperatura) o discrete (come il numero di figli in una famiglia; solitamente sono quindi numeri interi).
+
+Continuous Variables
+Continuous variables can take any value within a given range. This range can be finite or infinite. The key characteristic of continuous variables is that between any two values, there can be an infinite number of other values.
+
+Examples:
+
+Height: It can be 170.1 cm, 170.12 cm, 170.123 cm, etc.
+Weight: It can be 65.5 kg, 65.55 kg, 65.555 kg, etc.
+Temperature: It can be 20.1°C, 20.11°C, 20.111°C, etc.
+In essence, continuous variables can have decimal places and can be measured with as much precision as required by the instrument.
+
+Discrete Variables
+Discrete variables can only take specific, distinct values. There are no intermediate values between these distinct values. Discrete variables are often counts or whole numbers.
+
+Examples:
+
+Number of children in a family: It can be 1, 2, 3, but not 1.5 or 2.7.
+Number of cars owned: It can be 0, 1, 2, 3, but not 1.5 or 2.3.
+Number of students in a class: It can be 20, 21, 22, but not 20.5 or 21.3.
+Discrete variables are countable in a finite amount of time. They are often represented by integers because they involve counting objects or events.
+
+
+
+
+-Feature Categoriche:
+Sono variabili che assumono un numero limitato di categorie. Le categorie possono avere un ordine (ordinali) ad esempio il voto di un esame , ha un ordine , ci sono voti più bassi e alti e vanno da 1 a 30L. ;
+o non avere un ordine (nominali) ad esempio il genere (maschile/femminile) , il colore , quindi non c'è un ordine (non possiamo dire che viene prima l'uomo e poi la donna oppure che uno dei due è più importante)  
+
+-Feature Temporali:
+Include dati che fanno riferimento a timestamp o periodi di tempo.
+
+-Feature testuali :
+Derivate da dati testuali
+
+-Feature di Immagine:
+Estratte da immagini, possono includere colori, bordi, punti di interesse, o rappresentazioni più complesse ottenute tramite reti neurali convoluzionali.
+
+-Feature Audio
+
+
++Derived Feature : sono feature (dati) che vengono calcolati e quindi derivano da altra feature che già si avevano a disposizione 
+
+
+
+
+***TARGET VALUE 
+
+Sarebbe il valore di output che si cerca di prevedere . (nell'apprendimento supervisionato è il dato etichettato) 
+
+
+***FEATURE COVERAGE 
+
+
+Nel contesto del machine learning, il concetto di feature coverage (copertura delle caratteristiche) si riferisce alla misura in cui le caratteristiche (features) usate in un modello rappresentano efficacemente i vari aspetti del dominio di applicazione. Questo concetto è fondamentale per garantire che il modello sia in grado di generalizzare bene su nuovi dati e non sia troppo specializzato su quelli utilizzati durante l'addestramento.
+
+
+
+Aspetti Principali della Feature Coverage
+
+1)Rappresentatività delle Caratteristiche: Le caratteristiche scelte dovrebbero essere rappresentative dei fenomeni o delle relazioni che si vogliono modellare. Se le caratteristiche non coprono aspetti importanti dei dati, il modello potrebbe non essere in grado di fare previsioni accurate.
+
+2)Distribuzione e Variabilità: Le caratteristiche dovrebbero essere sufficientemente variabili all'interno del dataset. Se una caratteristica ha lo stesso valore per molte osservazioni, essa non aggiunge informazioni utili al modello.
+
+3)Completezza: La copertura delle caratteristiche dovrebbe essere abbastanza completa da includere tutti i fattori rilevanti. Ciò include la considerazione di interazioni complesse tra caratteristiche e la capacità di catturare dinamiche non lineari.
+
+
+
+
+***GENERALIZATION 
+Generalization è la capacità di un modello di intelligenza artificiale di performare bene su dati nuovi e non visti prima, che non sono stati utilizzati durante il processo di addestramento. In altre parole, un modello ben generalizzato può fare previsioni accurate non solo sui dati su cui è stato addestrato, ma anche su nuovi dati.
+
+
+
+***Come dobbiamo dividere i dati durante lo sviluppo del modello 
+
+Immaginiamo di dover fare un esame universitario. Prima usiamo dei libri (quindi dei dati) per studiare per l'esame. Poi usiamo dei libri di test (quindi dei dati) per esercitarci per l'esame . è poi facciamo l'esame vero e proprio (quindi dei dati).
+
+dopo aver organizzato i dati . Un 60% circa si usa per la fase di Training , un 20% per la fase di Validazione e un 20% per la fase di Test
+
+
+Le Tre Fasi: Training, Validation e Test
+
+1. Training (Addestramento) (studio per l'esame) 
+
+Descrizione: È la fase in cui il modello di intelligenza artificiale viene addestrato utilizzando un set di dati noto come training set. Durante questa fase, l'algoritmo apprende i pattern e le relazioni presenti nei dati.
+
+Obiettivo: Minimizzare la funzione di perdita (loss function) sui dati di addestramento, adattando i parametri del modello.
+
+
+2. Validation (Validazione)
+
+Descrizione: La fase di validazione utilizza un set di dati separato, chiamato validation set, che non è stato usato durante l'addestramento. Questo set viene utilizzato per valutare le prestazioni del modello mentre viene addestrato e per ottimizzare i suoi iperparametri.
+
+Obiettivo: Monitorare il modello per prevenire overfitting e scegliere i migliori iperparametri. I risultati sulla validation set vengono utilizzati per prendere decisioni su quando fermare l'addestramento (early stopping) e su come regolare i parametri del modello.
+
+
+3. Test (Test)
+
+Descrizione: La fase di test utilizza un set di dati separato e finale, chiamato test set, che viene utilizzato per valutare le prestazioni effettive del modello dopo l'addestramento e la validazione.
+
+Obiettivo: Fornire una valutazione imparziale delle prestazioni del modello sui nuovi dati. Il test set dovrebbe essere utilizzato solo una volta, dopo che tutte le decisioni di modellazione sono state prese.
+
+
+
+
+Esempio Pratico
+
+Immagina di avere un dataset di immagini di gatti e cani e vuoi costruire un modello di classificazione per distinguere tra i due:
+
+Training Set: 60% dei dati
+
+Usa queste immagini per addestrare il modello, cioè per far sì che l'algoritmo impari a riconoscere le caratteristiche che distinguono gatti e cani.
+Validation Set: 20% dei dati
+
+Durante l'addestramento, utilizzi questo set per regolare i parametri del modello. Per esempio, potresti provare diverse architetture di rete neurale e scegliere quella che performa meglio sul validation set.
+Test Set: 20% dei dati
+
+Dopo aver addestrato il modello e ottimizzato i suoi parametri, lo valuti utilizzando il test set per ottenere una stima realistica delle sue performance su dati nuovi.
+
+
+
+
+
+
+***OVERFITTING 
+
+Overfitting si verifica quando un modello di machine learning impara troppo bene i dettagli e il rumore dei dati di addestramento. Questo porta a una performance eccellente sui dati di addestramento, ma pessima sui nuovi dati (dati di test o dati reali). In altre parole, il modello è troppo specifico ai dati di addestramento e non generalizza bene.
+
+
+Cause di Overfitting:
+
+-Modello Troppo Complesso: Troppi parametri rispetto alla quantità di dati di addestramento.
+-Dati Rumorosi: Presenza di rumore o anomalie nei dati di addestramento.
+-Troppo Poche Dati: Non abbastanza dati per rappresentare la variabilità del problema.
+
+
+
+***UNDERFITTING 
+
+Underfitting si verifica quando un modello di machine learning è troppo semplice per catturare la relazione sottostante nei dati. Questo porta a una scarsa performance sia sui dati di addestramento che sui dati di test.
+
+Cause di Underfitting:
+
+Modello Troppo Semplice: Troppo pochi parametri per catturare la complessità dei dati.
+Poco Tempo di Addestramento: Il modello non è stato addestrato abbastanza a lungo.
+Dati Mal Preprocessati: Dati non puliti o caratteristiche non ben scelte.
+
+
+
+***DATA LEAKAGE (può causare overfitting) 
+
+Data leakage si verifica quando informazioni dal dataset di test finiscono accidentalmente nel dataset di addestramento. Questo può portare a valutazioni irrealistiche della performance del modello perché il modello ha accesso a informazioni che non dovrebbe avere durante l'addestramento.
+
+
+*** DATA MISMATCH(può causare overfitting/underfitting) 
+
+Data mismatch si verifica quando il dataset di addestramento non rappresenta accuratamente i dati che il modello incontrerà in produzione. Questo può causare problemi perché il modello è addestrato su dati che non riflettono le condizioni reali.
+------------------------------------------
+
+
+
+
+
+
+CONDA PRINCIPAL COMMANDS 
+
+
++ conda --version    :   Displays the currently installed version of Conda.
+
++ conda update conda    :    Updates Conda to the latest version.
+
++ conda create -n myenv python=3.8 pandas <others_libraries_names_if_you_want>    :   Creates a new Conda environment with a specified Python                                                                                   version, panda and other eventual packages . If you don't insert                                                                                    the version, by default will be the latest version.
+
+
+
++ conda activate <environment_name>      :   Activates a specified Conda environment. Sometimes you have to insert the entire path 
+                                to the environment file 
+
++conda deactivate   :    To deactivate the actual environment you are in 
+
+
++ conda list     :     Lists all packages installed in the current environment.
+ 
++  conda env list       :     Lists all Conda environments available on your entire system.
+
++ conda list <library_name>   :  to check if the specific library is already installed 
+
+
++ conda remove -n <environment_name> --all    :     Removes a specified Conda environment and all its packages.
+
+
+
+
++ conda install <library_name>       :    to install a library ;
+
++ conda update <library_name>       :    Updates a specified library to the latest version.
+
+
++  conda remove <library_name>   :    Removes a specified library  from the current environment.
+

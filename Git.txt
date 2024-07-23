@@ -1,0 +1,378 @@
+ Git is the tool that allows you to save the old and new versions of your code , so you can control all the changes made during the development process.
+GitHub is the website which with you can manage your projects and share they with the other developer.
+
++Repository : is the general name to intend a project 
+Git è un sistema di controllo di versione distribuito (se tutti scaricano la repository , essa non solo starà sul server ma ognuno avrà la sua repository clonata con gli eventuali cambiamenti)
+(quindi essa non sta solo sul server a cui tutti si devono connettere , non è centralizzata. Questo lo rende molto più sicuro e alla manno )
+
+--------------------------------------------------------------------------------------------------------------------------
+
+
+NOTA (Visual Studio Code)  : 
+
+(origin è il nome simbolo che viene dato al nostro riferimento alla repository remota , quindi nella repository locali ci riferiamo a quella remota con "origin" o 
+un'altro nome da noi scelto) 
+
+Immaginiamo di avere la nostra repository locale collegata alla remota e di avere vari branch. Quando visualizziamo la lista dei branch noteremo il main e poi gli 
+altri branch e poi la "origin/main" con una nuvoletta vicina che rappresenta il fatto che quello è il main però in remoto . Poi ci sarà "origin/branch1" ec.....
+ovvero il riferimento ai nostri branch remoti.
+RICORDA : i riferimenti dei branch remoti contengono quello che ci sta in remoto ma bisogna fare il fetch per averli sempre aggiornati) 
+(ricorda di fare spesso il pull per averli sempre aggiornati al massimo) 
+
+
+-------------      Git commands    ------------------------------- 
+
+
+
+-    git clone <url del progetto da clonare> 
+
+
+
+
+-    git init      :    viene creato il file .git per la gestione della repository corrente ( il file .git non è visibile) 
+
+
+
+-    git status   :  visualizza lo stato del branch 
+
+
+
+-   git add <nome del file>    :  il nome del file specificato sarà spostato dallo stato "Changes" a "Staged Changes" 
+                                  "Changes" ovvero i file modificati ma non inclusi nel prossimo potenziale commit 
+                                  "Staged Changes" i file modificati e inclusi nel prossimo potenziale commit  
+
+
+
+-  git add .                  :  tutti i file passano da "Changes" a "Staged Changes" , quindi sono tutti inclusi nel prossio commit  
+
+
+
+-  git commit -m <titolo del commit tra virgolette> -m <descrizione opzionale del commit tra virgolette> 
+
+immagina il commit com le tacchette sul muro quando si cresce in altezza , ogni volta che faccio delle modifiche al codice e finalmente voglio confermare la modifica
+faccio il commit ( lo step) e passo avanti 
+
+ 
+
+
+-  git log     :   per vedere i vari commit e con i titoli e descrizioni cosi ci rendiamo conto di cosa stavamo facendo quando stavamo maneggiando sto progetto,
+                           perchè ci sono i commit descrittivi                
+
+                                           --oneline   :   per il riassunto dei commit
+
+
+
+
+-git reset --soft <codice commit>     :    per riportare le modifiche nello stato in cui puoi confermare il commit , quindi il codice viene riportato alle 
+                                           modifiche fatte dal commit scritto all'ultimo e le unifica in un unico commit che puoi adesso registrare oppure eliminare 
+
+
+
+-git reset --hard <codice commit>     :   per eliminare tutti i commit che stanno dopo il commit specificato 
+
+
+
+-   git show <codice commit>     :           per vedere le modifiche fatte solo nel commit specificato  
+
+
+
+
+- git diff <codice commit>     :     per vedere le modifiche fatte dal commit scritto all'ultimo commit 
+                                             (modifiche fatte nel commit specificato non incluse) 
+
+
+
+
+
+-git branch      :     visualizza tutti i branch esistenti nella repository corrente. Il branch attualmente attivo è contrassegnato con un asterisco (*)
+
+
+
+-git branch <nome-branch>         :          crea un nuovo branch con il nome specificato.
+
+
+
+
+- git checkout <nome-branch>      :          per spostarsi nel branch con il nome che abbiamo specificato 
+
+
+
+
+- git checkout -b <nome-branch>     :  se il branch specificato esiste allora ci spostiamo su quel branch , se non esiste viene creato prima e poi ci spostiamo in esso
+
+
+
++[per eliminare un branch ti devi trovare fuori da quel branch che vuoi eliminare]
+
+
+
+-git branch -d <nome-branch>      :   -d il branch specificato viene eliminato solo se , quel branch specificato contiene del codice che è presente in un altro branch
+                                      Se ad es. vogliamo eliminare il branch b1 e da b1 creiamo b2 , adesso b1 può essere eliminato poichè il suo codice "vive" ancora 
+                                    in b2 , anche se b2 dopo verrà modificato . Se invece da b2 creiamo b1 e poi modifichiamo b1,se vogliamo eliminare b1 non possiamo 
+                                      poichè il codice che sta in b1 (che ricordiamo è partito da b2 ed è stato modificato) non sta de nessun altra parte, è sarebbe 
+                                      perso per sempre .
+
+
+
+
+- git branch -D <nome-branch>      :   in qualunque caso elimina il branch specificato 
+
+
+
+
+
+- git merge <nome-branch>        :    lo usiamo se vogliamo inglobare le modifiche di un branch in un altro. Dobbiamo stare nel branch che vogliamo                                modificare (a cui vogliamo aggiungerecodice) e specificare il nome di quello che contiene le modifiche (l'aggiunta)
+                                        
+
+IMPORTANTE : 
+
+ma se io nel mio branch ho un pezzo dell'applicazione e nel main (o in un'altro branch) ci sta un pezzo diverso ;
+quando faccio il merge nel main , dopo il main da cosa sarà formato ? Da entrambi i pezzi oppure solo dal pezzo appartenente al mio branch ? 
+
+
+Quando esegui un merge di un branch in un altro in Git, stai combinando le modifiche da entrambi i branch. 
+Quindi, dopo aver eseguito il merge del tuo branch nel branch "main", il branch "main" conterrà sia le modifiche originali che erano presenti nel "main" che
+le nuove modifiche dal tuo branch.
+
+Pensa al processo di merge come all'unione di due set di modifiche. Git cercherà di combinare automaticamente le modifiche da entrambi i branch. 
+Se le modifiche in ogni branch non si sovrappongono (cioè, se stanno modificando parti diverse del codice), Git sarà in grado di eseguire il merge automaticamente. 
+In questo caso, il branch "main" dopo il merge conterrà le modifiche da entrambi i branch.
+
+Se le modifiche in ogni branch si sovrappongono (cioè, se stanno cercando di modificare la stessa parte del codice), Git non sarà in grado di determinare quale
+versione del codice dovrebbe prevalere. In questo caso, Git ti mostrerà un "conflitto di merge" che dovrai risolvere manualmente. 
+Dovrai aprire i file con i conflitti, decidere quale versione del codice mantenere, e poi eseguire git add e git commit per finalizzare la risoluzione del conflitto.
+
+Quindi, in risposta alla tua domanda, dopo aver eseguito il merge del tuo branch nel "main", il "main" dovrebbe contenere le modifiche da entrambi i branch,
+ a meno che non ci siano conflitti di merge che devi risolvere.
+
+
+
+
+****NOTA : 
+Sto in branch1 e voglio fare git merge branch2 . Il branch2 contiene del codice in meno del branch1 
+Il fatto che il branch1 contenga codice in più rispetto al branch2 non implica automaticamente che ci sarà un conflitto. I conflitti si verificano solo quando entrambe le branch hanno modifiche che interessano le stesse linee di codice.
+
+
+
+
+- git clone [url repository remoto]  :        per clonare il repository remoto in quello locale (vengono clonati anche i branch) 
+
+
+
+
+
+-git remote add [nome che vogliamo assegnare alla rep] [url repository GitHub]       :    
+                                                       
+                                                             comando che serve per collegare la nostra repository locale a quella remota specificata dall'url. 
+                                                             quel [nome che vogliamo assegnare alla rep] sarà un nome simbolico nella nostra repository locale che 
+                                                             usiamo per riferirci alla nostra repository remota. (solitamente si usa "origin") 
+
+
+
+-git remote remove [nome repository]                      :       si usa per "slegare" la repository locale da quella remota, quindi il riferimento alla repository 
+                                                                    remota si svuota. Quel "[nome repository]" sta per il nome di riferimento alla repository 
+                                                                    remota. (solitamente si usa "origin")
+
+
+
+NOTA:    Ricorda che il comando git remote remove non elimina alcun dato dal tuo repository locale o da quello remoto. 
+         Modifica solo la configurazione del tuo repository locale per non includere più la connessione al repository remoto che hai rimosso.
+
+
+
+NOTA :   e se collego la mia repository locale ad una repository remota completamente diversa, cosa succede ? 
+         Se colleghi la tua repository locale a una repository remota completamente diversa, essenzialmente stai cambiando il riferimento a cui il tuo repository
+         locale guarda per le operazioni push e pull.
+         Se provi a eseguire un comando git pull, Git cercherà di unire le modifiche dalla nuova repository remota nel tuo repository locale.
+         Se le due repository non sono correlate (cioè, non hanno una base di codice comune), potresti ottenere un sacco di conflitti di fusione perché Git
+         non sarà in grado di conciliare le differenze tra i due repository.
+         Analogamente, se provi a eseguire un git push, Git cercherà di caricare le tue modifiche locali sulla nuova repository remota. 
+         Se non hai i permessi appropriati sulla nuova repository remota, o se le tue modifiche non si correlano con il codice presente nel repository remoto,
+         l'operazione potrebbe fallire o causare problemi.
+
+
+
+
+
+
+
+- git push -u origin main              :           push serve per inviare le tue modifiche fatte nel branch locale al tuo branch remoto.
+                                                       (origin è il nome della repository remota e main e il nome del branch remoto su cui vogliamo pushare) 
+                                                        Le modifiche avverranno quindi solo sul branch remoto main 
+                  
+
+
+
+-git pull origin main        :           è usato per aggiornare il repository locale con tutte le cose del repository remoto . In pratica stiamo mettendo la repository 
+                                      locale "al passo" con quella remota . In altre parole, git pull è un modo per sincronizzare il tuo lavoro locale con il lavoro
+                                      che è stato fatto in remoto e quindi avere sempre la versione più recente el lavoro.
+                                      Ottenendo aggiornamenti messi dagli altri sviluppatori come magari nuovi commit o nuovi branch ecc...
+                                                    ( Il pull si fa spesso nei lavori di gruppo per stare al passo con il team )
+                                     
+                                      Quando esegui git pull, succedono due cose sotto banco:
+                                      1) Fetch: Git recupera tutte le modifiche dal repository remoto che non sono ancora presenti nel tuo repository locale. 
+                                         Questo include nuovi commit in branch esistenti, nuovi branch, nuovi tag, ecc.
+
+                                      2)Merge: Dopo aver recuperato le modifiche, Git prova a unirle automaticamente nel tuo branch corrente. 
+                                        Se sei nel branch "main" e fai un git pull, Git prenderà tutte le nuove modifiche che sono state fatte sul branch "main"
+                                        nel repository remoto e proverà ad applicarle al tuo branch "main" locale.
+
+Se le modifiche che stai cercando di unire non entrano in conflitto con il lavoro che hai fatto localmente, Git può eseguire questo merge automaticamente. 
+Tuttavia, se ci sono conflitti (ad esempio, se hai modificato la stessa parte del codice che qualcun altro ha modificato nel repository remoto), dovrai 
+ risolvere manualmente questi conflitti prima che Git possa completare il merge.
+
+NOTA BENE :    Se mi trovo nel main e faccio "git pull" viene aggiornato SOLO il mio main locale in base al main remoto . 
+               Se mi trovo nel branch1 e faccio "git pull" viene aggiornato SOLO il mio branch1 locale in base al branch1 remoto . 
+               Cosi per tutti i branch
+               Quindi se vuoi aggiornare tutti i branch in base alla condizione della repository locale , devi fare git pull in tutti i branch 
+
+
+
+NOTA: 
+Ma se in un progetto su GitHUb io modifico il codice main e prima che io faccia il push viene fatto il push da un altro utente , poi cosa succede ?
+
+Se tu e un altro sviluppatore modificate la stessa parte del codice e lui fa il push prima di te, quando proverai a fare il push, Git ti dirà che la tua copia
+ del repository è obsoleta e devi fare un pull prima.
+
+Quando fai un git pull, Git scaricherà le modifiche fatte dall'altro sviluppatore e tenterà di unire automaticamente queste modifiche con le tue.
+Questo è solitamente un processo senza problemi, a meno che tu e l'altro sviluppatore non abbiate modificato la stessa parte dello stesso file. 
+In questo caso, si verifica un conflitto di merge.
+
+
+
+
+
+-git fetch origin                                :                 praticamente vengono aggiornati i riferimenti locali alla repository remota. 
+                                                               Ricorda che noi abbiamo i riferimenti alla repository remota (ovvero i branch e main con la nuvoletta)
+                                                               questi contengono quello che ci sta in remoto ma non sono sempre aggiornati al 100% , li aggiorniamo 
+                                                             al 100% quando facciamo il fetch. Quindi con il fetch aggiorniamo , in base ai branch remoti , il 
+                                                             contenuto dei nostri riferimenti MA non aggiorniamo i nostri branch locali......quello si fa con il merge.
+                                                                                ( FETCH + MERGE = PULL ) 
+
++Spiegazione facilitata : 
+è come quando fai il commit e poi devi fare il push ma all'inverso . 
+In tal caso , quando fai fetch , puoi vedere gli aggiornamenti e decidere se effettivamente integrarle o no nel tuo codice e quindi fare il merge
+
+
+                                       
+
+
+
++[CONFLITTI : se creiamo ad es. (branch) b2 da b1 , e poi andiamo a modificare b2 , se vogliamo fare il merge di b2 su b1 va bene. Ma se , invece di fare ciò, 
+modifichiamo b2 in un modo e poi b1 in un altro , se poi vogliamo fare un merge ci sarà un conflitto da risolvere. Il merge ed i branch servono per modificare 
+il codice senza rischiare di fare guai su quello originale , per poi essere sicuri di apportare le modifiche se vanno bene . Se modifichiamo entrambi , git 
+non saprà quali delle 2 modifiche dei 2 branch differenti apportare , cosi andrà in conflitto ]
+
+
+
+
+-PULL REQUEST 
+La pullRequest non è altro che una proposta , da parte di un membro del team , di aggiungere le modifiche del proprio branch al main e quindi anche agli altri branch. 
+Se fosse una frase sarebbe "controllate nel mio branch se ho fatto bene il mio lavoro e, nel caso sia un SI , qualcuno (di solito il manager del gruppo) si occupi 
+di fare il merge del mio branch con il main 
+
+
+
+
+-GitHub Pages 
+per pubblicare in un brach il gh-pages contenente il progetto buildato pronto ad essere hostato 
+dopo aver configuato il progetto , premere il comano "npm run deploy"
+
+configurazione : 
+Il comando si chiama gh-pages e può essere installato come dipendenza del progetto tramite il comando npm install gh-pages --save-dev.
+
+Una volta installato, puoi configurare il comando gh-pages nel campo deploy all'interno del blocco "scripts" nel tuo file package.json. Ecco un esempio di come potrebbe essere configurato il blocco "scripts":
+
+json
+Copy code
+"scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+}
+
+
+
+
+
+
+
+-DOMANDA SUL PULL : 
+
+è stato creato un nuovo branch nella repository remota . Come faccio a scaricarla in quella locale ? 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-Lavoro di gruppo 
+
+Se vuoi iniziare a lavorare su una nuova applicazione con il tuo team su GitHub, ecco i passaggi generali che potresti seguire:
+
+1) Crea un nuovo repository: Innanzitutto, avrai bisogno di un luogo per ospitare il tuo progetto. Vai su GitHub e crea un nuovo repository. 
+Dovrai decidere se rendere il repository privato (solo tu e le persone che inviti possono vederlo) o pubblico (tutti possono vederlo).
+
+2)Invita i membri del team: Nelle impostazioni del repository, troverai una sezione per gestire i collaboratori. 
+Qui puoi invitare i membri del tuo team a unirsi al repository in modo che possano clonarlo e iniziare a lavorare su di esso.
+
+3)Clona il repository: Ogni membro del team dovrà clonare il repository sul proprio computer locale. Possono farlo utilizzando il comando git clone URL_del_repository.
+
+4)Crea un branch: È buona pratica creare un nuovo branch quando si inizia a lavorare su una nuova funzionalità o correzione di bug. 
+Questo mantiene separato il tuo lavoro dal codice principale fino a quando non sei pronto per integrarlo.
+
+5)Inizia a lavorare: Ora sei pronto per iniziare a lavorare sulla tua applicazione. Puoi creare file, scrivere codice, e fare tutto ciò che serve per il tuo progetto.
+
+6)Fai commit delle tue modifiche: Quando hai effettuato delle modifiche che vuoi salvare, devi fare un commit. Usa git add nome_file per aggiungere file al
+ tuo commit, e poi git commit -m "messaggio del commit" per fare il commit delle tue modifiche.
+
+7)Pusha le tue modifiche: Dopo aver fatto un commit, devi "pushare" le tue modifiche al repository remoto su GitHub. 
+Usa git push origin nome_del_tuo_branch per farlo.
+
+8)Apri una Pull Request (PR): Una volta che hai pushato le tue modifiche e sei pronto per integrarle nel codice principale, puoi aprire una PR. 
+Questo avvisa il tuo team che il tuo codice è pronto per la revisione. Dopo la revisione, se tutto va bene, le tue modifiche possono essere unite nel 
+codice principale.
+
+9)Gestisci il progetto: Se stai coordinando il lavoro del team, potrebbe essere utile creare un "progetto" su GitHub. Questo ti permette di creare una bacheca con carte per tracciare le questioni, le PR e le note. Puoi organizzare le carte in colonne per rappresentare diverse fasi del tuo flusso di lavoro (ad esempio, "Da fare", "In corso", "Fatto").
+
+
+
+
+
+NOTA: 
+ma se i membri del team stanno lavorando su parti diverse dell'applicazione , ognuno nel suo branch , alla fine come si fa ad unire tutti i pezzi 
+dell'applicazione nel branch master ? 
+
+Questa è una buona domanda e tocca il cuore di come funziona il flusso di lavoro di Git. Dopo che ciascun membro del team ha finito di lavorare nel proprio branch, 
+si utilizza una funzionalità chiamata "Pull Request" (PR) per unire le modifiche nel branch principale (master o main).
+
+Ecco come si fa:
+
+1)Push del tuo branch al repository remoto: Dopo aver finito di lavorare sul tuo branch, esegui un git push per caricare il tuo branch e le relative modifiche 
+al repository remoto su GitHub.
+
+2)Apri una Pull Request: Vai su GitHub e apri una Pull Request per il tuo branch. Questo invierà una notifica al team che le tue modifiche sono pronte per 
+essere esaminate. In questa fase, puoi spiegare le modifiche che hai apportato e perché.
+
+3)Revisione del codice: I tuoi compagni di squadra ora possono esaminare le tue modifiche, fare commenti e suggerire modifiche. 
+Questo processo di revisione del codice aiuta a garantire che il codice sia di alta qualità e che tutti capiscano cosa stai cercando di fare.
+
+4)Merge del branch: Dopo che le tue modifiche sono state riviste e approvate, qualcuno (di solito un responsabile del progetto o un revisore del codice) 
+eseguirà il "merge" del tuo branch nel branch principale. Questo unirà le tue modifiche con il resto del codice nel branch principale.
+
+5)Pull delle modifiche nel branch principale: Dopo che il tuo branch è stato unito, tutti gli altri membri del team dovrebbero fare un git pull nel loro 
+branch principale per ottenere le tue modifiche. A questo punto, le tue modifiche faranno parte del codice principale dell'applicazione.
+
+Questo processo di utilizzo di branch, pull request e merge consente a un team di sviluppatori di lavorare su parti diverse di un'applicazione e poi unire le loro modifiche in modo sicuro e controllato.

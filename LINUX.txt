@@ -1,0 +1,140 @@
+standard input 
+
+stdin : tastiera
+stdout : il monitor 
+stderr : dove salva gli errori
+
+
+LINUX 
+
++ pwd : in quale cartella sto? 
++ whoami : uguale a pwd ma senza / 
+
++ ls -l [percorso] : guardo i file nella directory corrente (-l sta per long , le vedo più in dettaglio) 
++ ls -a : per visualizzare anche i file nascosti  
++ quando il nome di un file comincia con "." , vuol dire che questo file è nascosto 
+
++ cat nomeFile : per stampare su schermo il cotenuto del file 
+
++rm nomeFile : per eliminare un file 
++rm -f nomeFile : per forzare l'eliminazione ignorando i messaggi di errore 
++rm file1 file2 file3 : per eliminare più file 
++rm -i nomefile : viene chiesta la conferma prima dell'eliminazione
++rm *.txt :  Per eliminare tutti i file che corrispondono a un certo pattern
+-rm -r: rimuove una directory e il suo contenuto
+
++cp PathFileDaCopiare PercorsoDoveFileDeveEssereCopiato  :  copia e incolla un file 
+es: cp origine.txt destinazione.txt    :    questo copia origine.txt nella stessa directory con un nuovo nome, destinazione.txt.
+es:  cp origine.txt /percorso/alla/cartella/
+
+
++mv origine.txt /percorso/nuova/cartella/   :   Questo sposta il file origine.txt nella directory specificata.
+es: mv origine.txt nuovo_nome.txt    : Questo cambia il nome del file da origine.txt a nuovo_nome.txt.
+
+
++ in .ash_history ci stanno tutti i comandi che hai inserito fino ad adesso 
+
+
++tilde : sto in home/user 
++tilde e # : sei loggato come root 
+
++export nomeVariaile=contenuto   :  per definire(creare) o ridefinire una variabile d'ambiente 
++echo nomeVariabile   : per stampare il valore della variabile 
+
++man comando (es: man ls)  : mostra la documentazione dello specifico comando , in tal caso ls 
+
++uname -a : per vedere alcuni dettagli del sistema operativo in cui mi trovo come la versione del Kernel 
+
++alias ll='ls -l' :  associamo ad una variabile un comando , in tal caso associamo ad ll il comando ls -l , in tal modo se scriviamo il comando ll verrà eseguito "ls -l" 
+
++touch nomeFile.estensione   : per creare un file vuoto . Nel caso in cui il nome del file è di un file già presente , viene aggiornato il suo timestamp
+
+
++sudo comando  : serve per lanciare un comando come root . Sono un utente normale e voglio lanciare sto comando come root 
+
++sudo su 
+
++su nome_utente    :  per entrare come un determinato utente
+
++mkdir nomeDirectory :  crea una nuova directory
+
++ps : da informazioni sui processi (PID è l'identificativo di un processo , il kernel ha PID=1) 
+
+
++rmdir nome_directory : Questo comando rimuoverà nome_directory solo se è vuota.
+
+
+usa la var PS1 per andare a definire il prommpt 
+
++cambio password e crea utente 
+
++acl : privilegio di accesso ai file 
+
++permission denied
+
++comando whereis
+
++cat nomi_dei file _staccati_da_spazio  : per concatenare file 
+
++vi
+
++adduser miki
+
+-passwd
+
+
++head [flag] [percorso]  : per mostrare le prime 10 righe di un file 
++tail [flag] [percorso]  : per mostrare le ultime 10 righe di un file 
+
++wc [flag] [percorso] : conta righe o byte (a seconda del flag) del file 
+
++diff [flag] [percorso1] [percorso2] : ci mostra le differenze tra il file nel percorso 1 e 2
+
+
++ kill : , utilizzata per inviare segnali a processi in esecuzione. Principalmente, è usato per terminare processi, ma può essere impiegato anche per inviare altri segnali che possono avere varie funzioni, come fermare temporaneamente un processo, riprenderne l'esecuzione, o causarne il riavvio.
+
+kill [opzioni] <PID> : Dove <PID> è l'ID del processo a cui vuoi inviare il segnale. Senza specificazioni, kill invia il segnale SIGTERM (segnale 15), che chiede al processo di terminare in modo pulito
+
+Ecco alcune opzioni usate con kill: 
+SIGTERM (15): Termina il processo in modo pulito. È il segnale predefinito.
+SIGKILL (9): Termina forzatamente il processo. È usato quando un processo non risponde a SIGTERM, poiché non può essere intercettato dal processo, garantendo quasi sempre la sua terminazione.
+SIGSTOP: Ferma (pausa) l'esecuzione del processo senza terminarlo. Non può essere ignorato.
+SIGCONT: Continua un processo precedentemente fermato.
+Opzioni di kill
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

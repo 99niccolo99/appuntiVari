@@ -1,0 +1,213 @@
+-RASPBERRY PI (VIOLA):
+Raspberry Pi è un mini computer, un dispositivo hardware completo racchiuso in una singola board abbinato a una piattaforma di programmazione.
+Raspberry Pi è una piccola scheda madre grande quanto una mini calcolatrice, con una configurazione principale che prevede una porta LAN Wi-Fi, ingressi USB e HDMI,
+1 slot per schede SD e un’uscita audio jack stereo, con una porta microUSB per l’alimentazione. 
+A seconda del modello sono presenti molti altri connettori, per collegare device esterni come display LCD e perfino webcam.
+La scheda supporta il sistema operativo Linux, oltre ovviamente alla piattaforma nativa Raspberry Pi OS(Raspbian)
+
+-ARDUINO (ARANCIONE):
+Arduino è una scheda open-source cioè con licenza libera, utilizzata per costruire progetti di robotica, elettronica e automazione.
+Arduino è una scheda programmabile con microcontrollore e compresa di una parte software, o IDE, che eseguita su un computer, viene usata per scrivere e caricare
+ codice informatico (in linguaggio C o C++) nella scheda stessa. 
+
+-ARDUINO VS RASPBERRY (ROSSO):
+Tra i mini componenti tecnici più famosi rientrano indubbiamente il Raspberry Pi, il single-board computer inglese, e Arduino, il microcontrollore ideato in Italia.
+Il tipico setup di Arduino è composto da un mix di componenti hardware e software open source.
+ Rientrano tra le configurazioni tipiche una scheda con connettori I/O (input e output, quindi entrata e uscita) e un microcontrollore prodotto da Atmel,
+così come un ambiente di sviluppo integrato (IDE), scritto in Java. Questo IDE comprende anche un proprio editor per il codice e diverse librerie per 
+la semplificazione della programmazione in C e C++.
+A differenza di Arduino, i modelli Raspberry Pi non solo hanno un processore con prestazioni più elevate, ma dispongono anche di una propria RAM e di opzioni per
+ l’uscita video. Il mini computer inglese funziona perciò autonomamente ed esegue applicazioni, basta solo installare un sistema operativo per il Raspberry Pi.
+
+A differenza di Arduino, i modelli Raspberry Pi non solo hanno un processore con prestazioni più elevate, ma dispongono anche di una propria RAM e di opzioni per
+ l’uscita video. Il mini computer inglese funziona perciò autonomamente ed esegue applicazioni, basta solo installare un sistema operativo per il Raspberry Pi.
+
+I vantaggi e gli svantaggi di Arduino:
+Le schede di Arduino si contraddistinguono in particolare per due caratteristiche: la prima è che forniscono un processore integrato comprensivo
+ di periferiche (entrate, uscite e interfacce), cosa che rende Arduino interessante per tutti gli utenti con poche conoscenze elettroniche. 
+La seconda riguarda l'ambiente di sviluppo basato sull'hardware che fornisce un'interfaccia di programmazione con diverse librerie già pronte, 
+che facilitano notevolmente la programmazione.
+
+Un altro svantaggio di Arduino si trova nella portabilità, nel momento in cui la versione standard delle schede del microcontrollore deve essere 
+ampliata tramite interfacce aggiuntive e funzioni I/O. L'hardware standardizzato consente un upgrade semplice tramite le cosiddette shields; 
+tuttavia l'acquisto di questi moduli aggiuntivi per il collegamento Ethernet, la funzione LED e altri fa aumentare velocemente i costi del progetto.
+(Arduino da solo ha poco, ha solo porta input/output semplice,collegamenti esterni più "complicati" richiedono cash )
+
+Punti di forza e punti deboli del Raspberry Pi:
+ Rispetto alle schede di Arduino, il Raspberry Pi dispone già di tutti i componenti necessari per far funzionare il mini computer autonomamente.
+ Inoltre la maggior parte dei modelli riesce a connettersi di default alla rete (Wi-Fi, Ethernet o entrambe).
+ Grazie a queste proprietà il Raspberry Pi non solo può essere utilizzato come piattaforma di programmazione, ma serve anche per 
+l'uso di applicazioni come cloud privati, web server o VPN.
+
+
+.fine:
+Arduino e Raspberry Pi hanno in comune il fatto che si possono utilizzare subito senza dover installare o misurare dei circuiti elettrici
+, o inserire o saldare delle schede.
+le schede di Arduino, svolgendo la funzione di microcontrollore, sono in grado di eseguire un'applicazione predefinita senza troppi rallentamenti. 
+Sono fornite con un proprio ambiente di sviluppo che dispone di diverse librerie pronte all'uso e permettono così di semplificare molto il lavoro. Il Raspberry Pi 
+può sbrigare dei compiti essenzialmente più complessi, essendo un mini computer con un proprio sistema operativo, e può ad esempio eseguire più applicazioni
+ contemporaneamente o una dopo l'altra. Inoltre dispone di default di molte interfacce e porte (HDMI, Wi-Fi, LAN), che nelle schede di Arduino si devono aggiungere
+ con le shields.
+In parole povere si può dire che Arduino si presta soprattutto per quei progetti in cui si deve eseguire ripetutamente un semplice compito.
+ Se si tratta ad esempio di misurare la temperatura esterna e di mostrarla su qualsiasi display, il microcontrollore rappresenta la base perfetta. 
+Invece se non si vuole solo misurare la temperatura esterna, ma anche controllare le previsioni del tempo e avviare l'impianto di irrigazione del giardino
+ basandosi su criteri prestabiliti (come l'elevata temperatura e la bassa probabilità di pioggia), il Raspberry Pi risulta la scelta migliore.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+-Craccare:(VERDE)
+Nel gergo di Internet, manomettere il sistema di protezione di un programma, per poterlo copiare e utilizzare senza licenza.
+_------------------------------------------------------------------------------------------------------------------------------------------------------------
+Attacco DDOS:(BLU) 
+L’acronimo sta per Distributed Denial of Service, traducibile in italiano come Interruzione distribuita del servizio, e consiste nel tempestare di richieste 
+Per capire cos’è un attacco DDoS, bisogna prima comprenderne la versione meno sofisticata: il DoS, cioè Denial of Service. Si tratta di un’azione il cui 
+obiettivo è ingolfare le risorse di un sistema informatico che fornisce un determinato servizio ai computer connessi. Ci riesce prendendo di mira server,
+ reti di distribuzione, o data center che vengono inondati di false richieste di accesso, a cui non riescono a far fronte. In gergo si dice che ne viene 
+saturata la banda di comunicazione e i siti web o i naviganti che cercano di raggiungere quella determinata risorsa online hanno difficoltà,
+ o non ci riescono del tutto. I DDos funzionano allo stesso modo, ma avvengono su scala molto più ampia. Nel caso dei Dos, 
+infatti, bisogna difendersi da una sola sorgente di traffico informatico: per esempio, un numero elevato di email in arrivo contemporaneamente.
+ Mentre durante gli attacchi DDoS le domande fasulle arrivano nello stesso momento da più fonti. Tutto ciò determina una maggiore efficacia dello strumento
+ che per funzionare ha bisogno di minor tempo. Gli effetti disastrosi, invece, durano più a lungo: da qualche ora fino a diversi giorni, in base alla prontezza
+ con cui si reagisceun sito, fino a metterlo ko e renderlo irraggiungibile.
+In genere, lo strumento con cui i criminali informatici riescono nel loro intento è la cosiddetta botnet(computer zombie). Questo termine indica un insieme di computer compromessi
+ da un malware, cioè un virus informatico, che permette ai malintenzionati di prendere il controllo dei pc e fargli eseguire determinate operazioni.
+A seconda dei metodi utilizzati e degli obiettivi che si propongono, gli attacchi DDoS possono essere raggruppati in quattro principali categorie.
+ Ci sono quelli che prendono di mira la connessione TCP, puntando tutto sulla velocità. In questo caso, la botnet inonda il server di richieste di connessione,
+ senza mai arrivare alla fine: così la banda di comunicazione del sistema informatico viene saturata in fretta, rendendo impossibile l’accesso ai contenuti 
+da parte di qualunque utente. Un’altra tipologia di DDoS sono gli attacchi volumetrici in cui il volume di traffico creato è enorme e ingestibile. 
+Discorso diverso, invece, per gli attacchi di frammentazione che ambiscono a consumare le risorse di calcolo del sistema informatico inviando richieste 
+d’accesso incomplete. Come conseguenza l’oggetto dell’attacco usa gran parte delle proprie risorse per tentare di ricostruire l’informazione digitale ricevuta.
+ Infine, ci sono gli attacchi applicativi che non puntano all’intera infrastruttura. Ma ne bersagliano un programma indispensabile, rendendolo instabile e quindi
+ inutilizzabile.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-Taglia :(VIOLA)
+La differenza tra tagliare ed eliminare è che quando tagliamo un file esso viene eliminato ma allo stesso tempo copiato negli appunti ,quindi pronto per essere incollato da qualche altra parte.
+Si usa ad esempio se vogliamo spostare un file da una cartella ad un altra(facciamo taglia e poi lo incolliamo da qualche altra parte)
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+-Processore(continuo)(ROSSO):
++Linguaggio:
+Il codice scritto in linguaggio di programmazione(java,python,Ruby)viene a sua volta convertito(Compilato da un compilatore) in Assembly e poi(interpretato da un interprete)in linguaggio macchina(binario).
+Non esiste un solo linguaggio Assembly: la sua struttura e la sua sintassi è legata strettamente ad uno specifico di tipo di CPU; le istruzioni legate
+ad un linguaggio Assembly vengono definite Instruction Set Architecture 
++ARM e x86:
+Le ISA possono essere di due tipi: RISC dove ARM vuol dire proprio Advanced RISC Machine ,e architetture x86 (Intel,AMD)dove si parla invece di CISC.
+*CISC(Complex Instruction Set Computer):vengono utilizzate per elaborare i dati,istruzioni(contenute nell'ISA)complesse, ovvero che fanno più cose direttamente
+richiede meno memoria(istruzioni più corte quindi un programma più snello)
+ed il compilatore(Java,C,Python) fa molto meno fatica perché si trova davanti ad una istruzione già pronta implementata a livello hardware dal processore.(quindi è più orientata al programmatore)
+Istruzioni complesse richiedono più cicli di clock per l’esecuzione,tempo di esecuzione alto
+*RISC(Reduced Instruction Set Computer):siamo davanti ad una architettura snella,che ha poche istruzioni elementari(quindi per farne una più complessa ne deve utilizzare di più elementari)
+memoria richesta più ampia(istruzioni più elemetari quindi ripetute e quindi più
+Gran parte del lavoro viene svolto dal compilatore che deve prendere il linguaggio ad alto livello e creare l’elenco di istruzioni fondamentali che servono al programma per funzionare.(quindi è più orientato alla macchina)
+Istruzioni richiedono circa un singolo ciclo di clock,tempo di esecuzione basso
+
+64bit o 32bit citati di solito sono il numero di bit che un processore può gestire allo stesso tempo.
+bbiamo semplificato molto, perché oggi un processore moderno è molto più complesso e può fare più operazioni in un ciclo di clock come può richiedere per una operazione complessa più cicli. 
+Inoltre esiste anche la “pipeline”, ovvero l’utilizzo contemporaneo dei diversi stadi: un processore non aspetta che sia finito un intero ciclo per dare vita ad un nuovo ciclo
+
+CACHE: una memoria con una latenza(tempo che ci mette la memoria a cercare un dato e darlo in output) bassissima e una velocità altissima.Ci vuole una memoria che sia 
+veloce per dare sempre al processore dati in pasto(è una sorta di sala di attesa per i dati che provengono dalla RAM).Ci sono 3 livelli di Cache per core solitamente.
+Ci sono diverse cache per core distribuite soprattutto in base alle funzioni di un core in un sistema multicore.
+cache distribuite ai diversi .
+REGISTRI:sono la memoria più veloce disponibile all’interno di una CPU, circa 1 KB accessibili all’istante;sono i posti dove il processore parcheggia i dati durante una operazione semplice o complessa.
+BPU(Branch prediction unit):unità che si occupa delle diramazioni in italiano.Una componente della CPU che cerca di prevedere l'esito di un istruzione di salto condizionato(un istruzione dove ci sono
+una o più strade/decisioni da prendere ad es. IF-ELSE).Questa unità cerca di prevedere l'esito della diramazione prima che essa avvenga per far risparmiare tempo(utili soprattuto per gli errori di previsioni eventuali 
+del core che perderebbe tempo e cicli)
+Per fare un esempio molto pratico, la CPU si comporta come un turista che non sa quale strada prendere ad un bivio; mentre consulta la cartina, imbocca una strada sperando nell'intuito. Se indovina, evita
+ di fermarsi al bivio e perdere tempo; se non indovina, non deve tornare al bivio, ma è come se ripartisse istantaneamente dal bivio. 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+ProgramFile - ProgramFileX86 :
+Sono disponibili due diversi file di programma solo nel sistema operativo a 64 bit. Il sistema operativo a 32 bit avrà una sola cartella di file di programma.
+La differenza principale è che viene utilizzata la cartella di file di programma con percorso file”C:\Programmi“per eseguire applicazioni a 64 bit mentre 
+la cartella dei file di programma (X86) con percorso file “C:\Programmi (x86)” viene utilizzata per eseguire applicazioni a 32 bit.
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Sistema embedded(incorporati):identifica genericamente tutti quei sistemi elettronici di elaborazione a microprocessore progettati appositamente per un determinato
+utilizzo (special purpose), ovvero non riprogrammabili dall'utente per altri scopi,Contrariamente ai computer generici riprogrammabili (general purpose), un sistema
+ embedded ha dei compiti noti già durante lo sviluppo, che eseguirà dunque grazie ad una combinazione hardware/software specificamente studiata per la tale 
+applicazione. Grazie a ciò l'hardware può essere ridotto ai minimi termini per contenerne lo spazio occupato limitando così anche i consumi, i tempi di 
+elaborazione (maggiore efficienza) ed il costo di fabbricazione.La maggior parte dei sistemi embedded è progettata per eseguire ripetutamente un'azione a costo contenuto
+Un esempio tipico e diffuso di Sistema embedded sono le centraline elettroniche installate a bordo degli autoveicoli per il controllo del motore e dell'ABS
+----------------------------------------------------------------------------------------------------------------------------------------------------
+GPU (Graphic Process Unit)
+Per farlo, la scheda grafica ha bisogno di prendere i dati binari dal processore per poi trasformarli in un’immagine.
+La GPU è progettata per eseguire complessi calcoli matematici e geometrici che sono necessari per il rendering grafico
+quindi per creare i colori ed effetti di un immagine .
+La scheda grafica esegue queste attività utilizzando quattro componenti principali:
+.Una connessione della scheda madre per dati e l’alimentazione
+.Un processore per decidere cosa fare con ogni pixel sullo schermo
+.Memoria(ram) per contenere informazioni su ciascun pixel e per memorizzare temporaneamente le immagini completate
+.Una connessione al monitor in modo da poter vedere il risultato finale
+
+Usa quindi la memoria video per questo scopo per memorizzare i dati su ciascun pixel, il suo colore e la sua posizione sullo schermo.
+ Parte della memoria video può anche fungere da frame buffer. Nel frame buffer, vengono contenute le immagini completate fino a quando non sarà il momento di doverle visualizzare su schermo.
+
+RASTER VS VETTORIALE 
+Raster: immagine calcolata abbinando un colore ad ogni singolo pixel della griglia (formati png oppre jpeg la usano)
+Se andiamo ad ingrandire l'immagine la dimensione dei pixel aumenta ma non il loro numero,quindi l'immagine si degrada
+Più spazio richiesto rispetto a vettoriale, ma meno oneroso in termini di calcolo.
+Vettoriale:la grafica si basa su primitive geometriche (punto,segmento,triangolo ecc) da queste primitive si riesce a generare un immagine
+attribuendo alle forme colori e caratteristiche. (il famoso PDF è un formato vettoriale)
+Se andiamo ad ingrandire l'immagine essa non si degrada poichè si basa su una funzione matematica 
+che ricalcola l'immagine ogni volta che zoommiamo .
+Più oneroso in termini di calcolo rispetto al raster ma necessita di meno spazio.
+
+----------------------------------------------------------------------------------------------------------------------------------
+MOTORE DI RICERCA GOOGLE 
+La ricerca di google consiste in 3 passi:
+Scansione: Google usa programmi automatizzati chiamati crawler per cercare sul Web pagine nuove o aggiornate. Google memorizza gli indirizzi di tali pagine (o URL delle pagine) in un vasto elenco 
+da esaminare in un secondo momento. Troviamo le pagine con molti metodi diversi, ma quello principale è seguire i link da pagine che già conosciamo.
+Indicizzazione: Google visita le pagine che ha trovato tramite la scansione e cerca di analizzare il contenuto di ogni pagina. Google analizza i contenuti, le immagini e i file video per cercare di capire l'argomento della pagina
+cosi da poterla indicizzare al meglio per il tipo di ricerca svolta (es.google deve capire che un sito vende vestiti per indurre un utente che vuole comprare vestiti a quel sito)
+Risultati di ricerca: quando un utente effettua ricerche su Google, Google cerca di determinare i risultati di qualità ottimale.
+ I risultati "migliori" vengono stabiliti in base a molti fattori, ad esempio la posizione, la lingua, il dispositivo (desktop o telefono) e le query precedenti dell'utente.
+
+Crawling(Scansione):
+Il primo passaggio consiste nel capire quali pagine esistono sul Web. Non esiste un registro centrale di tutte le pagine web, pertanto Google deve costantemente cercare le nuove pagine e aggiungerle al proprio elenco di pagine note.
+ Alcune pagine sono note perché Google le ha già visitate. Altre pagine vengono scoperte quando Google segue un link che rimanda da una pagina nota a una nuova; altre ancora vengono scoperte quando il proprietario di un sito web sottopone a Google un elenco di pagine (una Sitemap) per la scansione. 
+Se utilizzi un host web gestito, ad esempio Wix o Blogger, il tuo fornitore potrebbe chiedere a Google di eseguire la scansione delle tue pagine nuove o aggiornate.
+(Una Sitemap è un file in cui fornisci informazioni su pagine, video e altri file presenti sul tuo sito, nonché sulle correlazioni tra i vari elementi. I motori di ricerca come Google leggono questo file per eseguire una scansione più efficiente del tuo sito.)
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+API 
+
+Le API (acronimo di Application Programming Interface, ovvero Interfaccia di programmazione delle applicazioni) sono un insieme di definizioni e protocolli con i 
+quali vengono realizzati e integrati software applicativi. Possono essere considerate come un contratto tra un fornitore di informazioni e l'utente destinatario
+di tali dati: l'API stabilisce il contenuto richiesto dal consumatore (la chiamata) e il contenuto richiesto dal produttore (la risposta). Ne è un esempio la
+ struttura di un'API di un servizio meteorologico, in cui l'utente invia una richiesta contenente un codice postale al quale il produttore fornisce una 
+risposta in due parti, dove la prima indica la temperatura massima e la seconda la minima.  
+Se, in altre parole, si desidera interagire con un computer o un sistema per recuperare informazioni o eseguire una funzione, un'API facilita la comunicazione 
+con il sistema che può così comprendere e soddisfare la richiesta. 
+L'API funge quindi da elemento di intermediazione tra gli utenti o i clienti e le risorse o servizi web che questi intendono ottenere.
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+CSRF (cross site Request Forgery) attack :
+è un attacco informatico che sfrutta l'id del cookie di sessione (quindi la sessione rimasta aperta) 
+addizionato ad un server con scarsa sicurezza. 
+In poche parole l'hacker deve sfruttare il momento in cui l'utente, che accede ad esempio 
+al suo sito bancario, ha la sessione attiva .In questo momento l'hacker fa aprire all'utente ,in 
+un modo o nell'altro, un falso sito creato dall'hacker attraverso cui entrerà nel browser/pc dell'utente . 
+A quel punto l'hacker visualizzerà la struttura della richiesta http mandata alla banca, che potrà replicare.
+Ma soprattutto verrà a conoscenza dell'Id di sessione(ancora attivo) , attraverso questo potrà usare l'account bancario dell'utente senza 
+il bisogno di fare l'accesso tramite password. 
+Questo attacco può essere evitato dal server abilitando , assieme all'id di sessione , uno speciale token non prevedivile e segreto che viene inviato 
+all'utente e che dovrà essere usato nelle successive richieste . Il token viene generato attraverso certi meccanismi che lo rendono "incopiabile" . 
+Il server una volta arrivata la richiesta controlla il token e , nel caso non sia giusto, rifiuta la richiesta . 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+APPLICAZIONE ENTERPRISE
+
+Differenza principale tra software business e software enterprice
+Nel senso più elementare, il software business è qualsiasi software che aiuta un’azienda a operare in modo più efficiente. Può essere un software di gestione 
+dell’inventario, un software di gestione delle relazioni con i clienti , un software di contabilità o uno dei tanti tipi di software business disponibili.
+
+L’enterprise aziendale è un tipo di software business creato per servire un determinato tipo di attività. Il software enterprise è pensato per le grandi
+ aziende che richiedono software in grado di adattarsi alle esigenze dell’azienda. Il software enterprise, quindi, deve essere più potente del software 
+venduto alle piccole imprese e può far parte di un pacchetto che include gli aggiornamenti hardware necessari per eseguirlo.
+
+Quindi, mentre il software business si riferisce a tutte le applicazioni che aiutano a gestire un’azienda, il software enterprise è un tipo specifico di 
+software aziendale pensato per le grandi organizzazioni che necessitano di un software potente che possa essere facilmente implementato in tutta l’organizzazione.
+

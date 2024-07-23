@@ -1,0 +1,615 @@
+Un database relazionale è un tipo di database che organizza i dati in tabelle o relazioni. Ogni tabella ha righe che rappresentano gli elementi di dati
+ e colonne che rappresentano le proprietà o le caratteristiche di questi elementi.
+
+Le tabelle possono essere connesse tra loro tramite relazioni, in modo che i dati correlati possano essere recuperati e visualizzati insieme.
+ Ad esempio, un database di una libreria potrebbe avere una tabella per i libri e una tabella per gli autori, e le tabelle potrebbero
+ essere collegate tra loro in modo da poter vedere quali libri sono stati scritti da un determinato autore
+
+--------------------------------------------------------------
+
+
++ALIAS (AS) : 
+gli alias sono nomi che inventiamo nella query e che utilizziamo per riferirici ad una tabella o a una colonna. 
+
+-Quando ad es. abbiamo più tabelle , possiamo riferirci alle specifiche tabelle semplicemente antecedendo il nome della tabella e il punto al nome della colonna 
+(in tal caso non abbiamo usato l'alias) 
+es:
+
+SELECT Calciatore.Nome , Calciatore.Eta
+FROM Calciatore 
+WHERE Calciatore.Eta > 30
+
+- Possiamo usare un alias per rinominare il nome della tabella all'interno della query 
+es:
+
+SELECT x.Nome , x.Eta
+FROM Calciatore x
+WHERE x.Eta > 30
+
+NOTA: in tal caso abbiamo usato x per riferirci alla tabella Calciatore all'interno della query . Notiamo che AS non c'è scritto ma in realtà c'è di default . 
+Se avessimo scritto "FROM Calciatore AS x" sarebbe stata la stessa identica cosa 
+
+
+-Possiamo usare l'alias per le colonne (è un pò diverso rispetto alla tabella). In tal caso "AS" si deve scrivere e non è di default 
+es:
+
+SELECT x.Nome AS NomeCalciatoreConAnniPiuDi30 , x.Eta AS EtaCalciatoreConAnniPiuDi30 
+FROM Calciatore x 
+WHERE x.Eta > 30 
+
+NOTA : quando eseguiamo una query, ne esce fuori il risultato sotto forma di tabella. Se non avessimo usato AS , la tabella avrebbe avuto la colonna "Nome" 
+con i nomi dei calciatori con età > 30 e la tabella "Eta" . Grazie al nostro alias , nella tabella RISULTATO , la colonna "Nome" si chiamerà 
+invece "NomeCalciatoreConAnniPiuDi30" e la colonna "Eta" si chiamerà "EtaCalciatoreConAnniPiuDi30"
+
+
+
+NOTA : l'alias usato per la tabella e per la colonna hanno due utilità diverse , poichè quello per la tabella ha utilità all'interno della query per rendere 
+il codice più chiaro e ordinato ; per la colonna invece serve per gestire meglio il risultato che ne esce fuori dalla query, quindi per gestire meglio ciò 
+che fuori esce dalla query 
+
+
+
+---------------------------------------------------------------------------------------------------------------
+JOIN
+
+Le JOIN sono utilizzate per combinare righe di due o più tabelle basandosi su una colonna correlata tra di esse
+(queste corrispondenze di solito sono foreig key e primary key , ma non necessariamente) 
+
+
+1. INNER JOIN
+L'INNER JOIN restituisce solo le righe che hanno corrispondenze in entrambe le tabelle.
+
+Esempio:
+Supponiamo di avere due tabelle, Orders e Customers.
+
+Orders
+
+OrderID	CustomerID	OrderDate
+1	1	2024-01-01
+2	2	2024-01-02
+3	3	2024-01-03
+
+
+Customers
+
+CustomerID	CustomerName
+1	         John
+2	          Jane
+4	           Mark
+
+
+SELECT Orders.OrderID, Customers.CustomerName
+FROM Orders
+INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
+
+
+Risultato:
+
+OrderID	CustomerName
+1	John
+2	Jane
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+2. LEFT JOIN (o LEFT OUTER JOIN)
+
+Il LEFT JOIN restituisce tutte le righe della tabella di sinistra (Orders), e le righe corrispondenti della tabella di destra (Customers). Le righe senza corrispondenza nella tabella di destra mostreranno NULL.
+
+Esempio:
+
+Orders
+
+OrderID	CustomerID	OrderDate
+1	1	2024-01-01
+2	2	2024-01-02
+3	3	2024-01-03
+
+
+Customers
+
+CustomerID	CustomerName
+1	         John
+2	          Jane
+4	           Mark
+
+
+SELECT Orders.OrderID, Customers.CustomerName
+FROM Orders
+LEFT JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
+
+
+Risultato:
+
+OrderID	CustomerName
+1	John
+2	Jane
+3	NULL
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+3. RIGHT JOIN (o RIGHT OUTER JOIN)
+Il RIGHT JOIN restituisce tutte le righe della tabella di destra (Customers), e le righe corrispondenti della tabella di sinistra (Orders). Le righe senza corrispondenza nella tabella di sinistra mostreranno NULL.
+
+Esempio:
+
+Orders
+
+OrderID	CustomerID	OrderDate
+1	  1	        2024-01-01
+2	  2	        2024-01-02
+3	  3	        2024-01-03
+
+
+Customers
+
+CustomerID	CustomerName
+1	          John
+2	          Jane
+4	          Mark
+
+
+SELECT Orders.OrderID, Customers.CustomerName
+FROM Orders
+RIGHT JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
+
+
+Risultato:
+
+OrderID	CustomerName
+1	John
+2	Jane
+NULL	Mark
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+4. FULL JOIN (o FULL OUTER JOIN)
+Il FULL JOIN restituisce tutte le righe quando c'è una corrispondenza in Orders o Customers. Le righe senza corrispondenza mostreranno NULL.
+
+Esempio:
+
+Orders
+
+OrderID	CustomerID	OrderDate
+1	1	2024-01-01
+2	2	2024-01-02
+3	3	2024-01-03
+
+
+Customers
+
+CustomerID	CustomerName
+1	         John
+2	          Jane
+4	           Mark
+
+
+SELECT Orders.OrderID, Customers.CustomerName
+FROM Orders
+FULL JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
+
+
+Risultato:
+
+OrderID	CustomerName
+1	John
+2	Jane
+3	NULL
+NULL	Mark
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+5. CROSS JOIN
+Il CROSS JOIN restituisce il prodotto cartesiano delle due tabelle, cioè tutte le combinazioni possibili di righe tra le due tabelle.
+
+Esempio:
+
+
+SELECT Orders.OrderID, Customers.CustomerName
+FROM Orders
+CROSS JOIN Customers;
+
+
+Risultato:
+
+OrderID	CustomerName
+1	John
+1	Jane
+1	Mark
+2	John
+2	Jane
+2	Mark
+3	John
+3	Jane
+3	Mark
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+6. SELF JOIN
+Il SELF JOIN è una join della tabella con se stessa. È utile quando si ha bisogno di confrontare righe all'interno della stessa tabella.
+
+Esempio:
+Supponiamo di avere una tabella Employees che contiene un campo ManagerID per indicare il manager di un dipendente.
+
+Employees
+
+EmployeeID	EmployeeName	ManagerID
+1	           Alice	NULL
+2	             Bob	1
+3	           Carol	1
+4	            Dave	2
+
+
+
+SELECT e1.EmployeeName AS Employee, e2.EmployeeName AS Manager
+FROM Employees e1
+LEFT JOIN Employees e2 ON e1.ManagerID = e2.EmployeeID;
+
+
+Risultato:
+
+Employee	Manager
+Alice	NULL
+Bob	Alice
+Carol	Alice
+Dave	Bob
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+          GROUP BY 
+
+Il comando GROUP BY viene utilizzato per raggruppare le righe che hanno gli stessi valori in colonne specificate. Viene spesso utilizzato con funzioni di aggregazione come COUNT, SUM, AVG, MAX, MIN per ottenere statistiche raggruppate.
+
+Con "funzioni di aggregazione" in SQL si intendono quelle funzioni che operano su un insieme di valori e restituiscono un singolo valore. Le funzioni di aggregazione più comuni includono:
+
+COUNT(): Conta il numero di righe.
+SUM(): Calcola la somma dei valori.
+AVG(): Calcola la media dei valori.
+MAX(): Trova il valore massimo.
+MIN(): Trova il valore minimo.
+
+
+struttura :
+
+SELECT column1, AGGREGATE_FUNCTION(column2)
+FROM table_name
+GROUP BY column1;
+
+
+Esempio di GROUP BY:
+
+
+Supponiamo di avere una tabella Sales:
+
+Sales
+
+SaleID	ProductID	Quantity	SaleDate
+1	101	           5	        2024-01-01
+2	102	           2	        2024-01-02
+3	101	           3	        2024-01-03
+4	103	           7	        2024-01-04
+5	102	           1	        2024-01-05
+
+
+Vogliamo sapere la quantità totale venduta per ogni prodotto:
+
+
+SELECT ProductID, SUM(Quantity) AS TotalQuantity
+FROM Sales
+GROUP BY ProductID;
+
+
+Risultato:
+
+ProductID	TotalQuantity
+  101	             8 
+  102	             3
+  103	             7
+
+
+
+------------------------------------------------------------------------------------------------
+
+                               HAVING 
+
+HAVING
+Il comando HAVING viene utilizzato per filtrare i risultati dopo che sono stati raggruppati. È simile a WHERE, ma viene applicato alle condizioni su aggregazioni.
+
+es:
+
+SELECT column1, AGGREGATE_FUNCTION(column2)
+FROM table_name
+GROUP BY column1
+HAVING condition;
+
+
+Esempio di HAVING:
+
+
+Estendiamo l'esempio precedente per mostrare solo i prodotti con una quantità totale venduta maggiore di 5:
+
+Sales
+
+SaleID	ProductID	Quantity	SaleDate
+1	101	           5	        2024-01-01
+2	102	           2	        2024-01-02
+3	101	           3	        2024-01-03
+4	103	           7	        2024-01-04
+5	102	           1	        2024-01-05
+
+
+
+SELECT ProductID, SUM(Quantity) AS TotalQuantity
+FROM Sales
+GROUP BY ProductID
+HAVING SUM(Quantity) > 5;
+
+
+Risultato:
+
+ProductID	TotalQuantity
+     101	8
+     103	7
+
+
+
+
+
+
+
++Differenza tra WHERE e HAVING
+
+
+WHERE viene utilizzato per filtrare le righe prima che le funzioni di aggregazione siano applicate.
+HAVING viene utilizzato per filtrare i risultati dopo che le funzioni di aggregazione sono state applicate.
+Ecco un esempio per chiarire la differenza:
+
+Supponiamo di avere una tabella Sales e vogliamo sapere la somma delle vendite per ogni prodotto per le vendite effettuate dopo una certa data, mostrando solo i prodotti con una somma totale delle vendite maggiore di 5:
+
+
+SELECT ProductID, SUM(Quantity) AS TotalQuantity
+FROM Sales
+WHERE SaleDate > '2024-01-01'
+GROUP BY ProductID
+HAVING SUM(Quantity) > 5;
+In questo esempio:
+
+Il filtro WHERE SaleDate > '2024-01-01' viene applicato prima del raggruppamento.
+Il filtro HAVING SUM(Quantity) > 5 viene applicato dopo il raggruppamento.
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+    FUNZIONI DI AGGREGAZIONE 
+
+Con "funzioni di aggregazione" in SQL si intendono quelle funzioni che operano su un insieme di valori e restituiscono un singolo valore. Le funzioni di aggregazione più comuni includono:
+
+COUNT(): Conta il numero di righe.
+SUM(): Calcola la somma dei valori.
+AVG(): Calcola la media dei valori.
+MAX(): Trova il valore massimo.
+MIN(): Trova il valore minimo.
+
+
+es:
+
+Sales
+
+SaleID	ProductID	Quantity	SaleDate
+1	 101	           5	       2024-01-01
+2	 102	           2	       2024-01-02
+3	 101	           3	       2024-01-03
+4	 103	           7	       2024-01-04
+5 	 102	           1           2024-01-05
+
+
+SELECT COUNT(*) AS TotalSales FROM Sales;        --> da 5 poichè ci stanno 5 righe
+
+SELECT SUM(Quantity) AS TotalQuantity FROM Sales;  -->     da 18 
+
+SELECT AVG(Quantity) AS AverageQuantity FROM Sales;  -->   3.6
+ 
+
+
+
+--------------------------------------------------------------------------------------------------------------------------
+
+  LIMIT 
+
+Il comando LIMIT viene utilizzato per specificare il numero massimo di record da restituire in una query. È utile quando si desidera ottenere solo un sottoinsieme di risultati.
+
+es:
+
+SELECT EmployeeID, FirstName, LastName
+FROM Employees
+LIMIT 3;
+
+
+semplicemente la tabella risultante ha un certo numero di record, però ci vengono restituiti solo i primi 3 
+
+
+----------------------------------------------------------------------------------------------------------------------------
+
+  DISTINCT 
+
+ Il comando DISTINCT viene utilizzato per rimuovere i duplicati dai risultati della query. Restituisce solo valori unici.
+
+
+es:
+
+
+Employees
+
+EmployeeID	FirstName	LastName	Age	Department
+1	            John	Doe	        30	  HR
+2	            Jane	Smith	        25	  IT
+3	             Alice	Johnson	        28	Finance
+4	             Bob	Brown	        35	  HR
+5	           Carol	White	        29	  IT
+
+
+
+SELECT DISTINCT Department
+FROM Employees;
+
+
+Risultato:
+
+Department
+   HR
+   IT
+   Finance
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+   UNION 
+
+Il comando UNION viene utilizzato per combinare i risultati di due o più query SELECT. Ogni query deve avere lo stesso numero di colonne, con tipi di dati compatibili, e le colonne devono essere nell'ordine corretto.
+
+struttura :
+
+
+SELECT column1, column2, ...
+FROM table1
+UNION
+SELECT column1, column2, ...
+FROM table2;
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+   IN 
+
+può essere utilizzato insieme alla clausola WHERE per confrontare varie stringhe, numeri o date 
+
+
+possiamo fare : 
+
+SELECT FirstName, LastName
+FROM Employees
+WHERE LastName = 'Smith';
+
+
+o meglio usare IN se vogliamo fare più confronti  : 
+
+SELECT FirstName, LastName, Department
+FROM Employees
+WHERE Department IN ('IT', 'Finance');
+
+
+Abbiamo fatto l'esempio con delle stringhe ma ovviamente possiamo farlo anche con altri tipi di dati come numeri e date 
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+LIKE 
+
+usato con WHERE per confrontare combinazioni di stringhe 
+
+
+% : Sostituisce zero o più caratteri.
+_ : Sostituisce un singolo carattere.
+
+
+es:
+
+SELECT * FROM Employees WHERE LastName LIKE 'J%';  -->  Trova tutti i cognomi che iniziano con 'J'.
+
+SELECT * FROM Employees WHERE LastName LIKE '%son'; --> Trova tutti i cognomi dove il primo carattere è qualsiasi e i successivi tre caratteri sono 'ohn'.
+
+
+---------------------------------------------------------------------------------------------------------
+
+BETWEEN 
+
+Il comando BETWEEN viene utilizzato per filtrare i risultati all'interno di un intervallo di valori. Può essere utilizzato per date, numeri e testuali (stringhe).
+
+struttura
+
+SELECT column1, column2, ...
+FROM table_name
+WHERE column_name BETWEEN value1 AND value2;
+
+
+SELECT FirstName, LastName, Age
+FROM Employees
+WHERE Age BETWEEN 25 AND 30;                
+
+selezionare i dipendenti la cui età è compresa tra 25 e 30 anni
+
+
+-----------------------------------------------------------------------------------------------------------------
+
+   INDICI 
+
+
++Un indice in un database è una struttura che migliora la velocità delle operazioni di ricerca nei dati. Pensalo come un indice di un libro: invece di sfogliare ogni pagina per trovare un argomento specifico, puoi consultare l'indice alla fine del libro per trovare rapidamente il numero di pagina.
+
+L'indice va applicano ad una colonna.
+Come scegliere la colonna da indicizzare : 
+-Scegli le colonne utilizzate frequentemente nelle condizioni WHERE delle query.
+-Se unisci spesso tabelle sulla base di una colonna (JOIN) , indicizzare questa colonna può migliorare le prestazioni
+-Se ordini frequentemente i risultati basati su una colonna (ORDER BY) 
+
+Esistono 3 modi per creare un indice :
+- PRIMARY KEY -> la chiave primaria ha automaticamente un indice
+- UNIQUE -> se a una colonna viene applicato "UNIQUE", in tale colonna non ci possono essere ripetizioni e viene inoltre applicato un indice 
+- es: 
+        CREATE INDEX idx_data_ordine ON ordini(data_ordine);   --> Creazione di un indice sulla colonna 'data_ordine' della tabella 'ordini'
+
+
+Svantaggi degli Indici:
+-Spazio: Gli indici richiedono spazio aggiuntivo nel database.
+-Manutenzione: Gli indici devono essere aggiornati quando i dati nella tabella cambiano (inserimenti, aggiornamenti, cancellazioni), il che può rallentare queste operazioni.
+
+----------------------------------------------------------------------------------------------------------------
+
+  VIEW 
+
+Una View è una tabella virtuale in un database relazionale, creata tramite una query che seleziona dati da una o più tabelle esistenti. Le View non memorizzano i dati fisicamente, ma generano dinamicamente il set di risultati ogni volta che vengono utilizzate.
+
+Caratteristiche:
+
+Virtuale: Le View non memorizzano i dati fisicamente ma sono generate dinamicamente quando vengono interrogate.
+Definita da una Query: La struttura e il contenuto di una View sono definiti da una query SQL.
+Utilizzo di Dati Esistenti: Le View utilizzano i dati di tabelle esistenti e possono combinare dati da più tabelle.
+Accessibile come una Tabella: Le View possono essere utilizzate nelle query SQL come se fossero tabelle vere e proprie.
+
+
+Scopi e Vantaggi delle View:
+
+-Semplificazione delle Query:
+Le View possono nascondere la complessità delle query SQL, rendendo più semplice per gli utenti finali ottenere i dati necessari.
+Esempio: Una query complessa che unisce più tabelle può essere salvata come View e utilizzata come se fosse una singola tabella.
+
+-Sicurezza:
+Le View possono limitare l'accesso ai dati sensibili. Gli utenti possono vedere solo le colonne e le righe specificate nella View, senza avere accesso diretto alle tabelle sottostanti.
+Esempio: Una View può escludere colonne contenenti informazioni sensibili come stipendi o dati personali.
+
+-Riusabilità:
+Le View possono essere riutilizzate in molteplici query, promuovendo la consistenza e riducendo la duplicazione del codice SQL.
+Esempio: Una View che calcola il totale delle vendite mensili può essere utilizzata in vari report e dashboard.
+
+Manutenzione:
+Le modifiche alla logica di estrazione dei dati possono essere fatte centralmente nella definizione della View, senza dover aggiornare tutte le query che utilizzano quella logica.
+Esempio: Se la logica di calcolo di un campo derivato cambia, basta modificare la View invece di aggiornare tutte le query che lo utilizzano.
+
+
+
+struttura:
+
+CREATE VIEW nome_view AS
+SELECT colonna1, colonna2, ...
+FROM tabella1
+JOIN tabella2 ON ...
+WHERE condizioni;

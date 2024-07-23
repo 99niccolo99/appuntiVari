@@ -1,0 +1,33 @@
+
+
+SOMIGLIANZE JAVA e C++
+
+1)Paradigma di Programmazione:
+Entrambi i linguaggi supportano la programmazione orientata agli oggetti (OOP), con concetti come classi, oggetti, ereditarietà, polimorfismo, incapsulamento e astrazione.
+
+2)Sintassi:
+La sintassi di base dei due linguaggi è molto simile. Entrambi usano strutture di controllo come if, for, while, e switch. La definizione delle classi e dei metodi è simile in entrambi i linguaggi.
+
+3) Librerie Standard:
+Sia Java che C++ dispongono di un'ampia libreria standard che fornisce molte funzioni predefinite per eseguire operazioni comuni.
+
+
+
+DIFFERENZE JAVA e C++
+
+
+1)Gestione della Memoria:
+
+-Java: Gestisce automaticamente la memoria tramite un garbage collector che libera la memoria inutilizzata.
+
+-C++: Richiede la gestione manuale della memoria tramite l'allocazione (new) e la deallocazione (delete) degli oggetti.
+
+
+2)Compilazione e Esecuzione:
+
+-Java: Viene compilato in bytecode che viene eseguito sulla Java Virtual Machine (JVM). Questo permette a Java di essere portabile su qualsiasi piattaforma che supporti la JVM.
+
+-C++: Viene compilato in codice macchina specifico per il sistema operativo e l'hardware su cui verrà eseguito, il che può rendere la portabilità più complessa.
+
+
+3)

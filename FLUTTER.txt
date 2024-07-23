@@ -1,0 +1,687 @@
++flutter si trova in C:\Users\Administrator\development\sdk    (lo mettiamo in un posto con accesso globale)
+
+Flutter ti permette di scrivere App che funzionano su più piattaforme Ios e Android ,tutto utilizzando l'unico codice sorgente sviluppato.
+Flutter è composto principalmente da due elementi: 
+-Un SDK(software development kit), ovvero una raccolta di tools che permettono la traduzione del codice per attuare il multipiattaforma poco fa
+citato, e inoltre permettono uno sviluppo semplice e veloce 
+-Una libreria di Widgets che ti permettono di programmare la UI in modo rapido inserendo widgets come bottoni , menù ecc....
+Quindi il codice creato grazie a queste librerie viene compilato e reso multipiattaforma grazie al nostro SDK
+
+
+Dart e FLutter sono stati sviluppati da Google. 
+
+Dart è un linguaggio ORIENTATO AGLI OGGETTI , FORTMENTE TIPIZZATO (garantisce che i tipi di dati utilizzati siano vincolati ed usati solo per ciò che servono; quindi 
+il compilatore è molto severo nel giudicare il tipo di utilizzo che fai di certi tipi di dati in confronto a quelle che sono le cose che può fare , per cui è stato 
+creato.Un vantaggio di una forte tipizzazione dei dati è che impone un rigoroso insieme di regole a un programmatore e quindi garantisce una certa coerenza dei
+risultati. Uno svantaggio è che impedisce al programmatore di inventare un tipo di dati non previsto dagli sviluppatori del linguaggio di programmazione e limita
+il modo in cui si può essere "creativi" nell'usare un dato tipo di dati.) 
+
+Dart è una miscela di JavaScript , Java , C#
+
++Flutter usa come linguaggio di programmazione principalmente DART , un linguaggio che si focalizza sullo sviluppo frontend di mobile apps e web , quindi sullo sviluppo
+delle UI ; volendo si possono utilizzare anche altri linguaggi per il frontend da usare con FLutter ma Dart è il migliore poichè è ottimizzato per lavorare in sintonia 
+con Flutter.
+
+FLUTTER SI BASA SU DART :  Dart è il linguaggio di programmazione che utilizziamo per fare il front-end e Flutter è un framework composto da una serie di widget 
+scritti in Dart; quindi noi possiamo usare Flutter per mettere nel nostro codice Dart questi Widget già fatti e rendere la programmazione più veloce.
+Per questo Flutter è abbastanza dipendente da Dart. Oltre a ciò ,ovviamente come abbiamo citato , Flutter è composto anche dal compilatore (la SDK) in grado di 
+compilare il codice rendendolo anche multipiattaforma e ad alte prestazioni (quello che varrà eseguito è il codice compilato ovviamente). 
+
+---------------------------------------------------------
+STRUTTURA APP FLUTTER
+
+I widgest sono organizzati in un albero di widgets. Ci sono tanti widget , l'intera schermata è un widget con altri widgets dentro...
+Tu dovrai lavorare solo sul codice , non c'è un meccanismo di Drag and Drop tipo WOrdPress , però ci sarà una piccola schermata grafica che , mentre inserisci il 
+codice, si aggiornerà in base a quello che scrivi facendoti vedere in real time il risultato (tipo AndroidStudio)
+
+--------------------------------------------------------------
+COME FLUTTER TRADUCE IN MULTIPIATTAFORMA 
+
+Flutter non usa le primitive delle piattaforme native . Ovvero se abbiamo per es. un bottone scritto in Dart, FLutter non è che fa la traduzione del bottone Dart 
+in bottone Android per Android e bottone iOS per iOS . NO . 
+Flutter controlla ogni pixel dell'applicazione sempre , e non attua nessun tipo di "traduzione" , questo ci da sicurezza a livello di compatibilità e ci da grande 
+controllo sulla nostra applicazione ; questo è un gran vantaggio, altri framweork come React Native fanno invece una vera e propria traduzione ma questo li rende
+dipendendenti dalle regole del sistema su cui le vanno ad applicare, ad es. se un certo tipo di bottone è diverso in iOS non potrà essere tradotto ,con Flutter invece
+si
+
+-------------------------------------------------------------------------------------------------
+
++VERSIONI DI FLUTTER: le nuove versioni non cambiano le cose che funzionano bene nelle vecchie; al massimo aggiungono funzionalità e correggono bug 
+
++NOTA: per sviluppare applicazioni Android su Windows useremo anche Android Studio (l'ambiente ufficiale di Google per sviluppare applicazioni Android). Non sarà 
+possibile sviluppare applicazioni iOS , per quello servirà un Mac.Per quanto riguarda le applicazioni desktop , non sono programmi che vengono affrontati da sto corso)
+
++Flutter usa e AndroidStudio sotto al cofano per creare le nostre applicazioni Android (usa anche Git , ma per altri motivi)
+Se vuoi sviluppare applicazioni desktop Windows dovrai proseguire con il Windows setUp che sta nella pag di installazione di Flutter per Windows
+
+------------------------------------------------------------------------------------------
+
+CREAZIONE APP FLUTTER 
+
+Con il prompt andiamo sulla cartella in cui vogliamo mettere il progetto da creare e digitiamo "flutter create first_app" dove first app è il nome del progetto.
+Adesso vogliamo aprire il progetto creato e gestire il codice; potremmo farlo con Android Studio ma lo facciamo con Visual Studio code che è più veloce.
+(ricorda: nome progetto SOLO LETTERE MINUSCOLE , NO PUNTI , NO TRATTINI , SOLO TRATTINI BASSI)
+Prima installiamo un paio di estensioni utili in Visual Studio Code (uno dei grandi vantaggi di sto editor è proprio quello di poterci applicare molti plug-in)
+Su Visual andiamo su View e poi su extension e installiamo flutter ( ci aiuterà a scrivere il codice più facilmente) Poi installiamo anche Dart , che ci auiterà
+nell'implementazione di codice Dart
+
+(
+Cntrl+s per salvare le modifiche
+Cntrl+r (hot reload)per applicare le modifiche a runtime cosi potendole vedere senza dover necessariamente riavviare l'applicazione
+Shift+r (hot restart) riavvia l'applicazione
+)
+
+
++Cancello la cartella web (se non ho intenzione di programmare una WebApp)
+LE VARIE CARTELLE (quelli con *** i più usati e importanti) 
+1) .idea -> contiene file di configurazione di android studio ( DA NON TOCCARE )
+2) android -> contiene un'applicazione android completa. Viene usata da flutter come base per fonderla con il nostro codice per creare la nostra applicazione android.
+ (DA TOCCARE MOLTO RARAMENTE) 
+3) build -> vari strumenti (alcuni file android e java) usati dalla sdk di flutter per lo sviluppo e creazione di applicazioni( DA NON TOCCARE )
+4) ios -> stesso ragionamento della cartella android ma per ios (DA TOCCARE MOLTO RARAMENTE)
+
+***5) lib -> dove andremo a fare il 99% del nostro lavoro; essa contiene i file .dart che andremo a scrivere
+***6) test -> per fare test automatizzati per il nostro codice
+7) .gitignore -> serve per utilizzare Git 
+
+8) .metadata -> file generato e gestito da flutter per salvare alcuni informazioni utili alla costruzione dell'applicazione ( DA NON TOCCARE)
+9) .packages -> generato e gestito da flutter per gestire  dipendenze interne e configurazione dei packages ( DA NON TOCCARE)
+10) flutter_coplete_guide -> anch'esso di configurazione e dipendenze interne gestite da flutter ( DA NON TOCCARE)
+
+***11)pubspec.yaml -> è un file che USEREMO per gestire le dipendenze , quindi pacchetti di terze parti che potremmo voler includere nel nostro progretto , o anche 
+dei font per il testo , immagini ecc... é scritto in YAML , una strutturazione particolare per le dipendenze
+
+12)pubspec.lock -> viene generato automaticamente in base al file pubspec.yaml , e contiene dei dettagli su ste dipendenze( DA NON TOCCARE)
+13) README.md -> contiene informazioni generali sul progetto che volendo possiamo inserire
+
+
+-------------------------------------------------------------------------------------
+CONTINUIAMO 
++ricorda di importare i pacchetti necessari
+Creiamo nel nostro file main , sotto alla dichiarazione del main una classe che chiamiamo MyApp (scelto a cazzo) che sarà il nostro primo Widget.
+estendiamo la classe StatelessWidget, cosi il nostro MyApp sarà trattato come un Widget (stateless in sto caso ).
+Mo facciamo l'Override del metodo build() che serve per creare il widget e prende come parametro di tipo BuildContext (nome della variabile poi scelto a piacere) 
+,questo è un oggetto che non usiamo ma necessario poichè contiene alcuni metadati di cui Flutter si serve per costruire il nostro widget e mostrarlo su schermo.è
+il contesto che Flutter prende 
++build() serve precisamente per ritornare il cosiddetto albero dei widget attraverso cui dice a Flutter cosa disegnare sullo schermo
+Restituiamo con  build(BuildContext) un oggetto di tipo Widget (RICORDA: quando facciamo l'override nome metodo ,oggetto di ritorno e parametri devono essere
+uguali al metodo di cui facciamo l'override; poi i nomi dei parametri possiamo seglierli a cazzo o anche aggiungere altri parametri)
+Facciamo return MaterialApp(
+      home: Text("Hello"),
+    );                                              MaterialApp è una potente classe ; è un widget contenitore di altri widget che Flutter usa per costruire 
+appunto i vari widgets; Inserendo la tua applicazione all'interno di MaterialApp , stai dicendo alla tua app di utilizzare Material Design di Android , che
+ è un sistema di progettazione creato da Google per aiutare i team a creare esperienze digitali di alta qualità per Android, iOS, Flutter e il Web.
+
+MaterialApp racchiude una serie di widget; esso è dotato di varie proprietà , ad es. con home: diciamo che qualunque cosa sia definita qui è la prima cosa 
+che vedremo sullo schermo (la nostra homaPage) , inseriamo nella proprietà home un widget o un insieme di widget
+
+Nel main per far partire l'applicazione usiamo il metodo runApp e gli diciamo qual'è il Widget principale, lo facciamo mettndo come parametri il METODO MyApp() 
+(con le parentesi) in sto modo viene automaticamente invocato il suo metodo build() che gli restituisce il Widget
+(nota: non dobbiamo preoccuparci del rendering dei pixel , o degli eventi o del ciclo di vita dei Widget ecc.....fa tutto ed ottimizza tutto Flutter)
+
+NOTA : la struttura ad albero . è un widget dentro un widget e cosi via 
+----------------------------------------------------------------------------------------------------------------
+
+DART (alcune funzionalità del linguaggio diverse da java da sapere)
+
+I costruttori si implementano come in Java ma inoltre ci sono funzionalità aggiuntive
+
++Posso impostare i parametri del costruttore come opzionali 
+es. 
+               class Persona{
+                String nome;
+                int eta;
+ 
+               Person( {String pNome, int pEta} ) {
+               nome = pNome;
+               eta = pEta;
+                           }   } 
+
+quelle parentesi graffe fanno in modo che, quando vogliamo usare il costruttore per avere un istanza di persona , non dobbiamo necessariamente inserire entrambi i 
+parametri ed inoltre possiamo inserirli con ordine diverso citando i nomi dei parametri (sarebbero gli attributi della classe ) (nome , eta) 
+
+ -->               var p1 = Persona ( pNome: "Gennaro" , pEta: 30) 
+
+
+
++ Posso impostare dei valori di default ai parametri del costruttore , nel caso non venga inizializzato uno dei parametri 
+
+class Persona{
+                String nome;
+                int eta;
+ 
+               Person( {String pNome = "Gennaro", int pEta} ) {
+               nome = pNome;
+               eta = pEta;
+                           }   } 
+
+
+
+
+
++Abbiamo detto che i parametri messi tra le graffe sono opzionali ; se avanti ad un parametro mettiamo @required quello specifico parametro diventa NON opzionale 
+
+             
+                           class Persona{
+                String nome;
+                int eta;
+ 
+               Person( {@required String pNome, int pEta} ) {
+               nome = pNome;
+               eta = pEta;
+                           }   } 
+
+ 
+
+
+
++ ovviamente , come in Java , posso mettere le variabili del costruttore con lo stesso nome di quelle di istanza ed usare this 
+Posso usare questa scorciatoglia ancora più veloce 
+
+ 
+                            class Persona{
+                String nome;
+                int eta;
+ 
+               Person( {this.nome, this.eta=30} )       //ho anche inizializzato l'età
+                                  }
+
+
+
+
++Non centra particolarmente con i Costruttori , ma volendo implementare una funzione dotata di una sola riga di metodo possiamo esprimerla con una sorta di freccia
+es:                                     
+
+        void main(){                                                                              
+           runApp(MyApp());                                      ->diventa->                         void main() => runApp(MyApp());
+          }
+
+---------------------------------------------------------------------------------------------
+CONTINUA (per adesso stiamo implementando un Widget Stateless)
+
++Scaffold: è un widget che costituisce un template già fatto con in alto una appBar ecc.....  se dopo aver inserito Scaffold vuoi continuare ad inserire 
+roba , ti usciranno tanti suggerimenti su quello che puoi aggiungere
+
++appBar : è la barra che si trova in alto nell'applicazione 
+
++Widgets[] --> per dichiarare una lista di generici elementi Widgets 
+Oppure    var questions = ["aee", "oee"] una lista di elemeti generici , evidentemente stringhe 
+          con Text( questions.elementAt(0))  è il testo "aee"       <-->   questions[0]   (fa la stessa edentica cosa di quello a sinistra)
+RICORDA: è una lista , ed ha un sacco di metodi già sviluppati per gestirla (elementAt ti restituisce l'elemento in base all'indice)
+
++onPressed --> è una proprietà di RaisedButton e notiamo che deve avere una funzione che ritorna void e che non prende nulla come parametro,
+ (possiamo vedere ciò dalla descrizione di onPressed.  Sviluppiamo sta funzione sempre nella classe MyApp subito sopra l'override di build.
+IMPORTANTE : dobbiamo scrivere onPressed:answerQuestion    (SENZA LE PARENTESI VUOTE) , se mettiamo le parentesi allora quel metodo verrà eseguito durante 
+l'esecuzione della creazione del bottone ; Noi non vogliamo ciò. Quindi ricorda , senza parentesi dei parametri 
+Quindi quando vuoi passare il nome della funzione va sempre messa senza parentesi; in caso contrario esssa viene eseguita mentre creiamo i widgets
+
+FUNZIONE ANONIMA 
++Eventualmente posso anche usare un altro modo per implementare la funzione che onPressed dovrà eseguire -> si chiama FUNZIONE ANONIMA(poichè come vedrai non ha nome,
+ma ne definiamo direttamente il corpo)
+faccio : 
+               onPressed: () {................}         
+
+dove tra le parentesi vuote andrebbero gli eventuali parametri (onPressed non ne vuole nessuno) e nelle graffe va la funzione 
+Un modo ancora più compatto per farlo se la funzione è solo di una riga ->  onPressed: () => print("aaaa") 
+
+
++Se voglio aggiungere una variabile che viene modificata dinamicamente durante l'esecuzione del programma posso metterla nella classe MyApp ma devo metterla fuori dal
+metodo build per evitare che venga resettata ; poichè Flutter usa il metodo build più volte quando deve costruire aggiornare ecc l'interfaccia 
+----------------------------------------------------------------
+
+WIDGET STATELESS vs STATEFULL
+
+Stateless: lo stato non cambia e quindi non possono essere modificati dinamicamente .Cambiano solo all'inizio se l'input iniziale che gli diamo cambia.
+ differenza degli Stateful non consumano un cazzo in fatto di rendering poichè non devono essere rebuildati 
+I Widget Stateless sono immutabili , non vengono modificati dinamicamente . Ad es. il nostro Widget che contiene solo un Text; una volta che assegniamo una stringa 
+es. "aaa" al Costruttore , esso sarà sempre "aaa" , non cambierà mai . Nasce "aaa" e muore "aaa". Il suo stato non cambia , è sempre "aaa". 
+
+(leggi la parte "CONTINUA (CustomWidget)" poco sotto per capire ancora meglio)
+
+Statefull: lo stato che può essere l'aspetto , il contenuto ecc... di un Widget può cambiare durante l'esecuzione(è capace di fare il re-build).
+Il main solitamente si fa con un Widget Statefull che può cambiare il suo stato; possiamo modificare i widgets figli , eliminarli ecc....
+Vedremo che usiamo dei metodi per cambiare solo il preciso widget da modificare , la pagina intera non viene riavviata ogni vota che un qualcosina cambia ,
+poichè questo si nota in fatto di prestazioni, ciò è fatto da FLutter
+---------------------------------------------------------------------
+
+CONTINUA (Vogliamo far diventare il Widget Statefull e far cambiare il testo ogni qual volta premiamo un bottone)
+
++L'estensione di MyApp sarà adesso StatefulWidget , spostiamo tutto il contenuto di build in un altra classe chiamata MyAppState (nome classe+ State) che estende 
+State<MyApp> ; il nome tra apici contiene il collegamento alla classe MyApp mentre il nome della classe (MyAppState) è solo una convenzione .
+
+In MyApp facciamo l'override si State<StatefulWidget> createState(){ return MyAppState;}    per creare ed aggiornare lo stato della nostra classe MyAppState.
+
+Poi , per cambiare il singolo Widget , devo usarre il metodo setState (guarda codice) per aggiornare lo stato (ovvero il contatore in sto caso)
+Quindi quando devo aggiornare delle cose che impattano sui miei Widget devo usare SetState per avere un effettivo cambiamento di stato poichè dice a Flutter 
+di fare il re-build di quel Widget.
+
+------------------------------------------------------------------
+PUBLIC E PRIVATE : 
+in generale quando creiamo un metodo o una variabile sono di default Public ma se aggiungiamo un _ all'inizio del metodo o variabile esso diventa Private e non 
+potrà essere utilizzato al di fuori del file in cui è stato dichiarato
+
+----------------------------------------
+CONTINUA (CustomWidget) 
+
+è buona norma ed è buono per le prestazioni e per la leggibilità e modificabilità del codice che Widgets più o meno piccoli che usiamo all'interno della nostra 
+applicazione siano implementati in un diverso file.dart . In esso solitamente implementiamo Widgets che costruiamo noi nella nuova classe e che sono Stateless .
+I Widget Stateless sono immutabili , non vengono modificati dinamicamente . Ad es. il nostro Widget che contiene solo un Text; una volta che assegniamo una stringa 
+es. "aaa" al Costruttore , esso sarà sempre "aaa" , non cambierà mai . Nasce "aaa" e muore "aaa". Il suo stato non cambia , è sempre "aaa". 
+Quindi usiamo il costruttore di questa nuova classe nel nostro main che ha un Widget Statefull . Quindi quando dobbiamo ad es. modificare il Widget di testo a suo 
+interno (che è stateless) lo facciamo facilmente , il nostro Widget padre è statefull (possiamo cambiare tutto) . Quindi come modifichiamo sto Testo? Lo eliminiamo 
+e lo creiamo di nuovo cambiando lo stato del nostro Widget padre . Stiamo ricostruendo il Testo e gli diamo un input diverso "bbb".
+Questo ci aiuta un sacco in fatto di prestazioni poichè il CustomWidget contiene tutti i particolari e strutturazione di quel miniWidget che è statico , è GIà
+BUILDATO , tu gli devi dare solo l'input nuovo.
+(ricorda che Flutter riesce, nel main , a non rebuildare tutto l'albero ma solo le singole parti che si devono rebuildare/modificare)
+(NOTA: dato che tecnicamente , data la definizione di Widget Stateless , le sue variabili sono tecnicamente final ; è buona norma (FALLO) mettere le var di 
+istanza della nostra classe CustomWidget come final) 
+--------------------------------------------------------------
+CONTINUA (stili e layout) 
+
+Nel nostro CustomWidget possiamo fare un sacco di cose con il testo modificando lo stile , colore, background ec.....basta inserire un'altra proprietà all'interno 
+del testo es. Text(style: TextStyle(fontsize: 28))      in tal caso nota che la proprità è gestita da una classe che ti permette di modificare tante cose inerenti
+allo stile del testo come colore e taglia .
+Sempre nel Text possiamo usare es.  Text(textAlign:TextAlign.center) che posiziona il testo al centro rispetto al suo Container , nota che sta volta ci vuole il 
+punto SONO TUTTE COSE CHE PUOI BENISSIMO NOTARE DAI SUGGERIMENTI E DOCUMENTAZIONI DATE DALL'ESTENSIONE DI FLUTTER MESSA SU VISUAL STUDIO CODE premendo CNTRL 
+Container : è importante per gestire il layout che ci sia un oggetto container che contiene uno o più WIdgets , avendo ad es. il testo all'interno del Container 
+è come se ci fosse un bordo invisibile attorno ad esso che possiamo regolare. Con Container possiamo regolare il MARGIN(sta tra il bordo e il Widget di testo) 
+il BORDO , e il PADDING (quello tra il bordo e gli altri Container) 
+I figli del container si individuano con la proprietà child 
+es.              Container(
+                       child: Text(................
+
++è buona norma mettere tutte ste caratteristiche del Widget,ovviamente, nel CustomWidget che stiamo implementando per rendere il codice più puluto ed efficente.
+
+----------------------------------------------------------
+COSTRUTTORI MULTIPLI e "diversi"  
+
+Dart ,come Java, ci da la possibilità di avere più costruttori che inizializzano diversi parametri . Inoltre con Dart sti costruttori possiamo chiamarli anche 
+in modo leggermente diverso con il nome della classe , un punto e una stringa molto simile ad un metodo 
+es.                            
+                     Person({this.name, this.age=20});              ->altro costruttore->         Person.veryOld(this.name) { age = 60; } 
+ //un uomo di cui dobbiamo mettere il nome ma che ha già l'eta inizializzata a 60
+
++Sta cosa si può implementare anche scrivendo un UNICO costruttore (un unico "metodo costruttore" indicando il costruttore con il tipo Enum) 
+
+-------------------------------------------------------------------------------------
+CONTINUA (Callback functions) 
+
+Una funzione di callback è una funzione che viene passata come parametro ad un altra funzione(metodo) . Qui vogliamo creare la classe che rappresenta i bottoni 
+e, dentro sta nuova classe , dobbiamo implementare la proprietà onPressed che ottiene la funzione legata a quello che succede quando premiamo un bottone. 
+Usiamo la stessa logica della classe per il Testo di domanda. Creiamo la classe per il bottone con tutte le caratteristiche come colore layout ecc , e dentro la 
+classe bottone, creiamo una variabile final di tipo Function , un tipo generico cha rappresenta la funzione (se questa funzione da dare in input è una funzione che
+non prende nulla in ingresso e nulla in uscita Function potrebbe darti errore , in quel caso al posto di Function metti VoidCallback) 
+Mettiamo sta Function in input al costruttore e la metttiamo anche come metodo legato al nostro onPressed. In sto modo sarà proprio come il testo che diamo in input
+alla nostra classe di Domanda , in sto caso però è una funzione . La funzione vera è propria ovviamente deve stare nel main .
+---------------------------------------------------------------------------------------
+CONTINUA (mappe) 
+
+Dart offre anche l'oggetto Map che comprende coppie nome-valore ; possiamo crearla come facciamo con la lista ma invece delle parentesi quadre usiamo le graffe
+es: 
+            var questions =
+               {
+                     'questionText': 'What is your favourite color?'}
+
++Per accedere al valore basta mettere il nome identificativo della Mappa seguito dalla chiave tra parentesi quadre.Questo ci restituirà il valore associato alla 
+chiave inserita 
+
+
+
+
++(guarda codice) 
+                                           children: [
+                                              Question(
+                                                 questions[_questionIndex]['questionText'],
+                                                ),
+                                                  ...(questions[_questionIndex]['answers'] as List<String>)       1)
+                                                            .map((answer) {                                       2)
+                                                         return Answer(_answerQuestion, answer);                  3)
+                                                }).toList()                                                       4)
+                                                ],                                                                5)
+
+
+   (guarda codice)COSA SUCCEDE QUI ? Lo spieghiamo subito 
+Stiamo implementando , nel main , la parte che prende domande e risposte dalla lista di mappe e le mostriamo adeguatamente.
+Con Question , la nostra classe di Widget di domanda creata in precedenza, prendiamo ogni volta opportunatamente la giusta domanda dalla lista di mappe; con la prima 
+parentesi quadra prendiamo la giusta mappa dalla lista di mappe e poi con la seconda quadra prendiamo la domanda inserendo la chiave 'questionText'.
+
+Poi nella seconda parte (dopo quei tre puntini , che poi in realtà hanno un significato che spiegheremo ) gestiamo le varie risposte .
+A riga 2 (guarda numeretto) usiamo il metodo map che non è altro che un iteratore , che infatti restituisce un Iterable, che itera gli elementi di una lista che 
+gli diamo in input. 
+Nella riga 1 , diamo in pasto a map la lista di risposte che si trova nella mappa , che , data la chiave 'answer' contiene una lista di stringhe (potrebbe dare errori
+quindi specifichiamo,anche se dovrebbe già saperlo , che è una lista di stringhe con as List<String> .
+Quindi questa lista di risposte è data in pasto a map che prende come parametro un identificativo che userà per rappresentare i vari elementi della lista durante 
+l'iterazione ; inoltre map prende in input una funzione che possiamo sviluppare . (riga 3) sviluppiamo sta funzione che ci crea dei widget Answer (classe creata 
+da noi in precedenza) che prendono in input , la funzione associata al bottone (non farci caso se non ricordi bene quest'ultimissima cosa) e la risposta che 
+è soggetto dell'iterazione . 
+Alla fine della riga 3 saranno stati creati vari Widget Answer , ognuno con la sua risposta ; e questi Widget stanno in un oggetto Iterable (poichè mpa restituisce 
+un Iterable) , ma noi vogliamo che ci restituisca una lista quindi a riga 4 usiamo .toList() cosi map restituirà una lista di Widget Answer. 
+Quindi abbiamo una Lista bella compatta di Widget Answer , MA QUESTO è UN PROBLEMA. children:[    è una lista di WIdget SINGOLI , se diamo a children una lista 
+di Widget (come stiamo facendo) essa andrà in difficoltà e ci darà errore; children vuole solo dei Widget da aggiungere alla sua lista e bast , è capace di gestire
+i singoli Widget , non le liste di WIdget . 
+(in realtà non è perchè non li gestisce ma in questo caso perchè sono dei bottoni singoli , ognuno fa na cosa)
+Quello che dobbiamo fare è quindi prendere la lista di Widget Answer e prelevare i singoli Widget uno ad uno e darli Singolarmente alla lista children; questo è il 
+lavoro svolto dai 3 puntini (riga 3)  , grazie a sti 3 puntini(nuovo OPERATORE di Dart di cui non ricordo il nome) la nostra lista di Widget Answer sarà scompattata
+e gli Answer saranno presi SINGOLARMENTE e dati in pasto SINGOLARMENTE alla lista children .
+-----------------------------------------------------------------------------------------------
+
+CONTINUA (final e const) (+ gestione dei dati memorizzati e variabili in Dart) 
+
+Una variabile final significa che quella variabile non è modificabile a runtime , essa dall'inizio delle esecuzione del codice fino alla fine di QUEL PEZZO di codice
+ha sempre lo stesso valore. Il valore di una var final è sempre lo stesso per l'istanza di una classe ma può cambiare da istanza ad istanza . 
+In pratica , una volta creata una classe e inizializzata la sua var final , quella var ha sempre quel valori li' , fino alla morte di quell'istanza . Però questo 
+non ci vieta di creare un'altra istanza di quella classe e inizializzare la nuova var final con un altro valore ovviamente . 
+Quindi una var final ha sempre lo stesso valore dalla nascita alla morte di un ISTANZA della classe 
+
+Prima di spiegare const spieghiamo un concetto importante di come Dart memorizza i dati 
+IMPORTANTE: Dart , come Java , quando ad es. creiamo una var che punta ad una String , crea una Stringa che memorizza in un area di memoria . E quella variabile non 
+è altro che un puntatore che punta a quell'area di memoria occupata dalla stringa(quella var non contiene la Stringa ma un puntatore all'area di memoria dove si 
+trova la Stringa) . Cosi è anche ad es. con i metodi .Il nome del metodo non è altro che un puntatore che punta all'area di memoria dove si trova l'implementazione 
+del metodo .
+
+Const non è altro che un final ancora più potente . Quando dichiariamo una Stringa const quella Stringa sarà costante A TEMPO DI COMPILAZIONE; significa che dall'
+inizio dell'intero programma fino alla fine ,qualunque cosa succeda, quel valore sarà sempre lo stesso. QUELL'AREA DI MEMORIA è SEMPRE OCCUPATA DAL MEDESIMO 
+VALORE(importante, spieghero a breve poichè sta parte è in maiuscolo) . A tempo di compilazione poichè già si sa che quel valore sarà sempre lo stesso in qualunque caso.
+Quindi il valore di const rimane sempre lo stesso per tutta la vita della classe , indipendentemente dalle sue varie istanze(per quelsiasi istanza il valore di 
+quella costante è quello e bast.) .
+
+Tuttavia ,in Dart , c'è una differenza nel dichiarare un puntatore come const oppure un dato come const.
+Es: 
+                   var x = const "aaa" ;       --> in sto caso c'è una variabile puntatore che punta ad un valore costante. Il valore è costante ,quindi quell'area
+
+memoria sarà sempre occupata da "aaa" , ma questo non ci vieta di far puntare x ad altre aree di memoria (è costante il valore "aaa" , non la variabile puntatore che 
+,all'inizio , punta ad esso) . 
+
+                  const x = "aaa";            --> in sto caso il puntatore x è costante , ed è come se infettasse anche la Stringa "aaa" e la rendesse anch'essa un 
+
+valore costante. Quindi l'area di memoria puntata da x sarà occupata sempre dal valore costante "aaa" (costante grazie al const di x) , ed inoltre x dovrà puntare 
+sempre a quell'area di memoria (è una "puntata" costante) , se proviamo a far puntare x ad altro , ci sarà ERRORE. 
+
+Come abbiamo detto il fare   const x = "aaa";    infetta anche "aaa" è lo rende un valore costante. 
+
+Quindi scrivere     const x = const "aaa";(che si può scrivere) è la stessa cosa di scrivere    const x = "aaa"; 
+
++NON ci possono essere variabili const a livello di classe ma solo a livello di metodo , quindi se vogliamo dichiarare dei valori const nella classe ma fuori dal metodo 
+allora ci conviene fare:      final questions = const "aaa";   (che alla fine ha lo stesso significato della var constante.
+
+
+
+
+---------------------------------------------------------------------------------------------------------------
+IF (alcune cosine in più sulla sintassi) 
+
+var hasCorrect = userName == 'Max' && pass == 'test';
+if(hasCorrect){..........}                                            ---> significa che      if(userName=='Max' && pass=='test'){.....}
+
+IF/ELSE nel widget: 
+
+body: _qustionIndex < question.lenght ? ............(Dopo ? tutto ciò che accade se la condizione è vera?
+............     ):.....                            (Dopo : tutto ciò che accade se è falsa) (è un if else dove ? è if , : è else ) 
+
+
+
+-----------------------------------------------------------------------------------
+NULL TYPE 
+
+Come ben sappiamo il valore null è un valore , che non vale un cazzo , ma è pur sempre un valore ed è di tipo null. Sto valore , come lo usiamo in java, può essere
+buono per diversi controlli che facciamo prima di usare il codice es. if (x != null){......} ; inizializzando i valori con null. 
+
++NULL SECURITY : questo è un tool di controllo inserito ultimamente da FLutter. La sua utilità sta nel fatto di essere sicuro che variabili con valori null non 
+vengano utilizzate , poichè se usate in modo inopportuno possono portare a bug .Sto Null Security spesso rompe il cazzo poichè da errori in codici che per noi 
+sono buoni poichè Flutter non sempre capisce come noi che un valore non potrà essere NULL, dato che lo fa in modo meccanico. 
+Per disablitare ciò devi andare sul file pubspec.yaml e impostare l'sdk > 2.11.ecc..    (quell' 11 è importante) 
+
++Inoltre certe volte può essere utile mettere un punto interrogativo alla fine della dichiarazione del tipo di una variabile , ciò serve a dire che sta variabile 
+può essere del tipo dichiarato oppure avere anche valore null. 
+es.        String? name = 'Max';     -->   stiamo dicendo a Flutter che quel name può avere valore String oppure Null
+             
+---------------------------------------------------------------------------------------
+
+CONTINUA (Ogni risposta ha un valore e vogliamo dare come parametro alla funzione delle risposte chiamate con onPressed il valore della risposta premuta , cosi da 
+calcolare un totale dei valori di tutte le domande premute)   (guardare molto il codice) 
+
+
+Prima aggiorniamo nel main la funzione _answerQuestion per darle come primo parametro score , che viene aggiunto al valore TotalScore. 
+Poi andiamo sul file quiz.dart dove ci sta l'implementazione dei Widget delle Risposte e Domande. Ci concentriamo sulle risposte che vengono riempite dalla funzione 
+map che vedemmo in precedenza. Ci sta onPressed che alla pressione del bottone avvia la funzione answerQuestion , funzione che il costruttore di quiz.dart prende 
+in input. Adesso dobbiamo fare in modo che sta funzione answerQuestion prenda come parametro score; questo è un problema poichè ricorda che onPressed accetta solo 
+funzioni che alla pressione del tasto non prendono nulla in input e non restituiscono nulla. 
+Allora nella costruzione di Answer la funzione da dare in pasto poi ad onPressed la esprimiamo come       () => answerQuestion()         (ricordiamo che questo serve 
+per creare un metodo/funzione dinamicamente, questa è solitamente lunga una riga)    (Quindi questa è una funzione senza nome che non prende nulla in input , nota(), e
+che non restituisce nulla in output, nota non ci sta nulla prima di () , manco il nome) 
+Quindi questo vuol dire che , nel momento in cui il bottone viene pressato , viene dinamicamente creata una funzione senza nome cui implementazione è formata da , 
+answerQuestion ; ovvero quello che fa questa nuova funzione è invocare la funzione answerQuestion (ma ricordiamo che () => answerQuestion()  non da nulla e riceve 
+nulla, e quindi rispetta l'onPressed )
+Allora dato ciò possiamo benissimo scrivere         () => answerQuestion(answer['score'])         dove , dato che ricordiamo con il metodo map stiamo iterando le varie 
+risposte, quell'answer['score']  avrà esattamente il valore della precisa risposta che abbiamo premuto . 
+Con ciò il valore score verrà aggiunto nel valore TotalScore che sta nel main ( nel main ovviamente dobbiamo dare al costruttore di quiz.dart la giusta funzione )   
+rispettando tutte le condizioni imposte dal linguaggio.
+
+----------------------------------------------------------------------------------------------
+
+CONTINUA (getter) 
+
+In result.dart vogliamo settare il testo del risultato che varia in base al punteggio finale di un utente. 
+Per fare ciò , il valore da dare a Text (una stringa) la decidiamo implementando una funzione get 
+es:       String get resultTotScore {...................return }
+
+NOTA che usiamo una parola chiave get e che le funzioni getter non prendono nulla in input e danno sempre qualcosa in output (una Stringa in tal caso) 
+e che dentro al Widget per invocare sta "funzione" non usiamo le parentesi , poichè non si tratta di un vero e proprio metodo che non accetta input. 
+Nel Widget mettiamo solo resultTotScore
+---------------------------------------------------------------------------------------------------
+
+CONTINUA (aggiunta tasto riavvio applicazione) 
+
+Non dobbiamo far altro che aggiungere un tasto in result.dart , ovvero il file finale con i risultati,  che permette il riavvio . 
+E nel main implementiamo un metodo privato che resetta il TotScore e l'indice delle pagine , cosi avremo il contatore azzerato e la prima pagina mostrata. 
+(+ FlatButton è un semplice bottone senza il bordo)
+----------------------------------------------------------------------------------------------------
+
+CONTINUA (sostituzione bottoni "vecchi" con "nuovi") 
+
+Ci sono alcune tipologie di bottoni che sono sbarrati da Visual Studio Code, questo non significa che non funzionano , funzionano ancora perfettamente , però sono 
+stati introdotti dei nuovi bottoni migliori durante gli aggiornamenti che potresti usare per sostituirli . 
+
++RaisedButton (sostituito da)--> ElevatedButton : questo ha il vantaggio che non dobbiamo definire , se vogliamo , lo stile del bottone (con stile intendo tipo font 
+o colore ecc) poichè ElevatedButton si basa sullo stile di base dell'applicazione e lo copia.Si basa solitamente sullo stile adottato dalla barra di sopra dell'
+applicazione (tipo il colore dello sfondo delle storie Instagram)
+In più , se vogliamo modificare lo stile , sto bottone ha un unica proprietà style da cui andremo a creare il resto(questo in tutti e 3 i bottoni) (guarda codice)
+In sto bottone la cosa principale e primaria è il bottone , con il suo contorno e background
+
+(FlatButton è un bottone senza il controrno e sfondo , sta solo la scritta)
++FlatButton (sostituito da)--> TextButton
+In sto bottone la cosa principale e primaria è il testo 
+
+(bottone con scritta, background bianco e solo bordo visibile) 
++OutlineButton (sostituito da) --> OutlinedButton 
+Anche in questo bottone la cosa principale è il testo
+
+----------------------------------------------------------------------------------------------------------
+
+NUOVO PROGETTO (utilizzo dei vari Widgets) 
+
+-Card : è un container con background bianco ed ombra ai margini che di default regola la grandezza in base a quella dei propri figli. Dato che il figlio che 
+può essere ad esempio un Text ,la grandezza dipende dal padre; quindi dobbiamo mettere il testo figlio di un oggetto Container e quel Container figlio del 
+Card. Un'altra soluzione è far diventare il nostro Card figlio di un Container.
++Non puoi definire il padding nel Card ( una SOLUZIONE è aggiungere gli oggetti che stanno nella Card in un COntainer,cosi' il Container si andrà a porre tra la 
+Card ed gli elementi nella Card e con esso potremmo gestire Margin, padding ecc...)
+
+-Column e Row : ( di default prendono tutto lo spazio che hanno a disposizione e bast) 
+   MainAxisAlignment -> dall'alto verso il basso
+   CrossAxisAlignment -> da sinistra verso destra
++Column e Row non hanno opzioni per lo stile
++NON possiamo gestire Margin o Padding con Column o Row
+
+
+-IMPORTANTE : ci conviene sempre usare i Container per gestire il layout dei singoli elementi o gruppi , poichè il Container è un oggetto che ci consente un ampia 
+gestione del layout .Es: se usiamo un elemento Row e vogliamo in esso un Text , quel Text lo inseriamo in un Container per grstire i singoli Text del Row. 
+
+                  Row(
+                     children: <Widget> [ 
+                          Container(
+                                margin: .....
+                               ........
+                                ),
+                                  child: Text(....
+
+
+RICORDA: IL Container PRENDE SOLO UN SINGOLO WIDGET FIGLIO ( Row e Column infiniti)
++Lo stile del testo si modifica nel testo stesso 
+NOTA : se aumentiamo le dimensioni del Text , verrà aumentata anche la dimensione del Container attorno 
+
+
+
++Se vogliamo inserire qualcosa in Text , quindi dovremo inserire una stringa , magari prima dobbiamo quindi anche convertirla con toString in una Stringa . Per 
+evitare ciò possiamo usare una particolare sintassi , sempre tra virgolette (dato che è una stringa)   '${tx.amount}'   in questo modo passiamo il valore amount 
+della variabile tx come stringa (amount è un intero), sta sintassi speciale ce lo permette ( '${   }')
+(quest'ultima funzione si chiama INTERPOLAZIONE DI STRINGHE) 
+Se vogliamo stampare caratteri speciali come $ in sto caso ma come Stringa dobbiamo metterlo dopo \ . 
+es.   ' \$ '      adesso Flutter tratta quel $ come un carattere e non come un simbolo speciale . Se non aggiungiamo quel \ lo considera come simbolo speciale e dato 
+che mancano nelle cose ci darà errore.    
+---------------------------------------------------------------------------------------------
+
+AGGIUNTA PACCHETTI 
+
+Abbiamo da gestire acluni oggetti NON primitivi creati da Dart come DateTime che convertito in stringa da DateTime.now() ci da il tempo in cui la certa operazione è
+stata eseguita . Ad es. in sto caso ci viene restituita una Stringa e non ci piace il modo in cui è stata formattata la data che vogliamo riformattare. Lo potremmo 
+fare manualmente ad es. prelevando da sta Stringa solo la parte che ci serve e lavorando su essa . Un modo meno dispendioso è usare dei pacchetti esterni con delle
+funzioni che lo fanno già , ce ne sono un sacco che fanno un sacco di cose , e noi dobbiamo scaricare il nuovo package e importarlo . 
+
+https://pub.dev   è il sito migliore per package aggiuntivi in Flutter ( se andiamo su API references guardiamo la documentazione del package correlato)
+ Per importare il package dobbiamo copiare la stringa che sta dopo dependencies e 
+incollarla nel nostro pubspec.yaml ( il nostro gestore delle dipendenze , tipo pom.xml) . NOTA che è importante sapere dove incollarla quella stringa , devi rispettare
+l'indentazione delle colonne ( non metterlo nella stessa colonna di dependencies , manco in quella di sdk... ma nella stessa di flutter (guarda codice)) .
+NOTA : dopo l'aggiunta salviamo e il pacchetto sarà automaticamente scaricato , però non sarà visibile da noi nel nostro progetto; essa si trova in qualche parte 
+nella nostra cartella User ed è opportunamente stata collegata da Flutter al nostro progetto ( noi non dobbiamo preoccuparcene) 
+(RICORDA: devi anche importare il package nei file dove vuoi usarlo , nel sito sta anche l'import)
+
+------------------------------------------------------------------------------------
+CONTINUO (altri Widget ecc)
+
+-TextField : per creare un campo form dove si può inserire Testo
+Per prendere l'input dell'utente ci sono 2 modi : 
+1) all'inizio dichiarare una variabile ed inserire il contenuto del TextField in quella variabile 
+es:                   
+               String title;
+           ......................                                           (uguale)
+           ..................                                               ----->            TextField(
+               TextField(                                                                          onChanged: (val) => title = val;
+                        onChanged: (val) {                                          
+                            title = val;   },
+
+  onChanged è una funzione che si attiva ogni volta che l'utente inserisce qualcosa nel TextField. Nei suggerimenti vediamo che onChanged ha bisogno di una funzione 
+che prenda un valore Stringa come parametro; in questo valore val verranno inseriti i caratteri che sono stati messi dall'utente nel TextField . Abbiamo creato 
+quindi una funzione anonima (la vedemmo già , sarebbe una funzione definita al momento , la possiamo definire in sto modo compatto () {}   nelle tonde i parametri 
+e nelle graffe il contenuto della funzione . Oppure () => .....   per definire funzioni anonime di un solo rigo dove al posto dei puntini messi da me va ovviamente 
+il contenuto ) (si chiama funzione anonima poichè come puoi ben notare è definita ed utilizzata al momento e non gli è assegnato alcun nome) .
+Quindi sta funzione anonima prende in input val che viene riempito con i valori inseriti dall'utente nel TextField , NOTA che val è un nome di una variabile a 
+cazzo inserita da noi , si poteva chiamare in qualunque modo, e una variabile che creata al momento (non l'abbiamo dichiarata da nessun altra parte); e poi NOTA che 
+andando a vedere i suggerimenti onChanged come parametro vuole una Stringa e quindi di regola noi dovevamo scrivere String val come input (di solito è meglio farlo)
+però in questo caso Flutter è abbastanza intelligente da capire che quel val è una Stringa . 
+Infine rimepiamo la graffa con il contenuto della funzione attivata al riempimento del Text field , che non fa altro che passare il contenuto di val (quindi del 
+TextField) alla nostr var di istanza title che possiamo usare come vogliamo poi. Abbiamo quindi ottenuto il contenuto inserito dall'utente. 
+
+2) Altro metodo è usare una funzione comoda di Flutter. Dichiaramo una Stringa final       final title = TextEditingController()      , questa funzione rende quel 
+title un ascoltatore del TextField che mangia tutto ciò che è inserito dall'utentenel form .
+Per applicarlo al TextFiled :                        
+                                          TextField(
+                                               controller: title,   )
+
+
+
++SingleChildScrollView  --> si usa come padre di un WIdget Column per renderlo scorrevole (accetta un singolo figlio)
++Usa un Container padre di Column e definiscine l'altezza e solo dopo crea un padre SingleChildScrollView sul Column , in questo modo l'altezza della parte da scrollare
+sarà ben conosciuta da SingleChildScrollView ; se no va a finire che scrolla tutt cos
++Di solito è meglio rendere SCrollable tutti gli elementi per tipo gli input che devono scrollare automaticamente in alto quando esce la tastiera per dare all'utente
+la posibilità di guardare il form mentre digita  (guarda codice)
+
++ListView :nvece di usare quest'ultimo oggetto di SCroll su Column potremmo anche usare direttamente un oggetto ListView; questo è un Widget che rappresenta appunto 
+una lista scorrelvole 
+ATTENZIONE : il ListView ha dimensione di default infinita , quindi è importante definire per es. un Container padre che definisca la dimenisone della ListView figlia
+Ci sono 2 modi per implementare ListView , un pò diversi a seconda della situazione 
+Si può implementare con (children:[])   e con il metodo .builder    .  
+-Con builder conviene quando si hanno lista grandi o di cui non conosciamo le dimensioni che potrebbero essere grandi; poichè gli elementi della lista che stanno nella 
+parte non visibile dello schermo non vengono creati , ma sono creati a run time quando devono essere visualizzati. Questo ci fa risparmiare un sacco di memoria , 
+ovvero ci permette di affaticare meno l'applicazione che dovrebbe creare/renderizzare un sacco di elementi anche se al moomento non visibili 
+-Con children: invece gli elementi non visibili vengono creati , questo può essere più conveniente per liste piccole di cui conosciamo la dimensione 
+
+children:    es: 
+                       ListView(
+                            children: transactions.map((tx) {
+                                    return Card(........
+
+Invochiamo la funzione che Itera e crea i vari elementi e la mettiamo semplicemente come figlio(figli in tal caso dato che itera) del ViewList
+
+
+
+builder      es: 
+                           ListView.builder(
+                               itemBuilder: (ctx,index) {
+                                       return Card..........
+
+implementiamo la proprietà itemBuilder con una funzione anonima che prende come parametri il BuildContext e index (nomi scelti da noi a cazzo dato che i parametri 
+sono di default quelli che servono a itemBuilder per funzionare) , index rappresenta l'indice dei vari elementi della lista che sono creati man mano uno ad uno 
+(quando so visualizzati) 
+NOTA: a differenza di children qui dobbiamo cambiare anche il resto dell'implementazione . La funzione restituisce una Card , quindi un membro della Lista ogni 
+volta che la funzione anonima è eseguita . Questo vuol dire che l'implementazione del Widget Card sarà unica , e in esso dobbiamo giocare su quell'index per 
+generare i diversi contenuti delle Cards prendendo dalla lista di transazioni le transazioni diverse sfruttando quell'index. 
+-------------------------------------------------------
+
+CONTINUA ( miglioramenti form aggiunta) 
+
++keyboardType: TextInputType.number   --> proprietà da inserire nel form TextField se vogliamo che al premere del form esca la tastiera con soli i numeri 
+
++Desso vogliamo aggiungere al form il fatto che quando premiamo il pulsante invio sulla tastiera , è come premere il pulsante di invio del form 
+Lo facciamo aggiungendo a TextField la proprietà onSubmitted: submitData 
+NOTA: submitData è un metodo che abbiamo implementato in questa classe e contiene quello che si deve fare quando premiamo il pulsante di invio del form 
+NOTAAA: per attivare la funzione quando si preme il tasto invio della tastiera, o anche quando associamo il metodo con onPressed del pulsante , il metodo si associa
+scrivendo solo submitData ( senza Parentesi) se mettiamo le parentesi dei parametri diventa un metodo che viene eseguito quando il bottone viene creato la prima 
+volta e non ogni volta che viene premuto.
+In sto caso specifico onSubmitted vuole una Stringa come parametro allora creiamo la funz anonima    (_) => submitData 
+quel trattino è una convenzione . Vuol dire che la Stringa come parametro che dobbiamo per forza ricevere in sto caso non ce ne fotte, non la usiamo. I sto caso 
+non usiamo la stringa che ci da ciò che è presente nel form perchè ricorda che creammo due variabili ascoltatori
+
+---------------------------------------------------------------------
+CONTINUA (aggiunta bottoni AppBar)
+
++Usiamo IconButton per aggiungere bottoni dotati di icona che possiamo scegliere tra quelli di FLutter
+
++ ShowModalBottomSheet( .......    (guarda codice)       --> questa funzione di Flutter , che andrebbe implementata in una funzione creata da noi che va associata
+ad un pulsante , permette , quando premiamo sto pulsante di far apparire il form per l'aggiunta della transazione da sotto lo schermo(quindi il form non era presente 
+dall'inizio)    (guarda codiceeeeee)    GestureDetector   e    onTap:() {}    e   behaviour :HitBehaviour.opaque    fanno in modo che quando tocchi una parte del 
+Container dove sta il form ,il form non si chiuda ( cosa che fa di default se non aggiungiamo sta cosa) .Quindi il form si chiude solo se premiamo il tasto indietro 
+o se premiamo lo schermo da qualsiasi altra parte che non sia il Container che contiene il form.
+           
+ ----------------------------
+CONTINUA (risoluzione problema che quando stiamo digitando qualcosa in un form e passiamo all'altro form quello che stava nel primo viene eliminato )
+
++La classe newTransaction deve essere un WidgetStateful , perediamo i nostri dati perchè prima con quello Stateless ogni volta che passiamo da un form ad un altro per 
+FLutter è come un cambiamento di stato 
+
++IMPORTANTE : la parola chiave widget è come un oggetto che si riferisce al widget di quella stessa classe
+
++Navigator.of(ocntext).pop()  --> context è il contesto che passiamo; sta funzione serve a far chiudere automaticamente il form una volta dato l'invio
+
++BUILD CONTEXT : è un insieme di vari metadati che ci da informazioni (da informazioni a Flutter) a proposito dei Widget che stiamo creando
+
++accentColor --> è il colore secondario del tema 
+
+-----------------------------------------------------
+CONTINUA (modifica font di base) 
+
+Dobbiamo creare una cartella assets in cui mettiamo una cartella fonts in cui mettiamo i vari file dei fonts 
+Poi andiamo nel nostro .yaml delle dipendenze e notiamo che tra i commenti ci sarà un fonts: 
+                                                                                      -family 
+liberiamo dai commenti questa prima parte e modifichiamo il nome della famigli con il primo nome del nostro file del font scelto . 
+Poi nel primo asset mettiamo il percorso del nostro font scelto.
+Nel secondo asset il percorso del font scelto per il grassetto . 
+Infine aggiungiamo weight:   seguito da un valore che determinerà la grandezza del font in grassetto 
+NOTA : rispettare l'ordine delle colonne è molto importante 
++Possiamo aggiungere anche altre famiglie di font nel caso ne volessimo usare più di una 
+
+Aggungiamo il nostro font in MaterialApp nel main e nella proprietà Theme 
+
+
+NOTA : se voglio usare diversi tipi di font posso impostare il font da me importato nel .yaml anche direttamente ad es. nel Text creato  (guarda codice)
+
++Puoi aggiungere anche un tema di font solo per l'AppBar 

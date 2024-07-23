@@ -1,0 +1,235 @@
+TESTING 
+
+In Java, il testing si riferisce alla pratica di valutare il funzionamento di un'applicazione Java o di una parte di essa mediante l'esecuzione
+ di una serie di test automatizzati. L'obiettivo del testing è quello di individuare eventuali errori o difetti nel codice e garantire che 
+l'applicazione funzioni correttamente.
+
+
+Sì, il testing può essere considerato una delle parti più impegnative dello sviluppo di un software. 
+Ciò è dovuto al fatto che il testing richiede molta attenzione ai dettagli e una pianificazione accurata per garantire la copertura
+ di tutti i casi di test necessari.
+
+Inoltre, il testing richiede l'utilizzo di strumenti di testing e framework che devono essere configurati e integrati nell'ambiente di sviluppo, 
+il che può richiedere tempo e competenze tecniche specifiche.
+
+Infine, i test devono essere eseguiti su diverse piattaforme e configurazioni di sistema per garantire la compatibilità dell'applicazione 
+con tutti i possibili scenari di utilizzo, il che può richiedere molte risorse e tempo.
+
+Tuttavia, nonostante le sfide, il testing è una fase critica nello sviluppo del software e ne garantisce la qualità e l'affidabilità. 
+Un'adeguata attenzione al testing può aiutare a individuare errori prima che l'applicazione venga rilasciata e a garantire una migliore 
+esperienza utente, migliorando quindi la reputazione dell'applicazione e dell'azienda che la produce.
+
+---------------------------------------------------------------------------------------------------------------------------
+
+  REQUISITI FUNZIONALI E NON FUNZIONALI
+
+
+++Requisiti funzionali :
+I requisiti funzionali descrivono le funzioni o le attività che il sistema deve essere in grado di svolgere. 
+Questi requisiti definiscono cosa il sistema deve fare, come ad esempio permettere agli utenti di inserire dati, elaborare informazioni,
+ visualizzare risultati, e così via. I requisiti funzionali sono spesso descritti in termini di casi d'uso o di scenari di utilizzo del sistema.
+
+++Requisiti NON funzionali : 
+I requisiti non funzionali, d'altra parte, descrivono le caratteristiche o le qualità del sistema che non riguardano direttamente le funzioni svolte dal sistema.
+Questi requisiti definiscono come il sistema deve funzionare, come ad esempio la sua affidabilità, la sua sicurezza, le prestazioni, la scalabilità,
+la manutenibilità, le tecnologie usate e così via.
+
+
+IN SOSTANZA, mentre i requisiti funzionali definiscono COSA IL SISTEMA DEVE FARE, i requisiti NON funzionali definiscono COME IL SISTEMA DEVE FARLO.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+MATRICE DI TRACCIABILITà 
+
+
+In generale, una matrice di tracciabilità (o Traceability Matrix in inglese) è un documento utilizzato durante il processo di sviluppo del software
+ che fornisce una tracciabilità tra le specifiche dei requisiti e gli elementi di lavoro correlati, come i test case e il codice sorgente.
+
+In particolare, in fase di testing, la matrice di tracciabilità viene utilizzata per tracciare il percorso dei requisiti del software fino ai 
+relativi test case, in modo da garantire che tutti i requisiti siano soddisfatti e testati.
+
+La matrice di tracciabilità può aiutare a rispondere alle seguenti domande:
+
+Quali requisiti del software sono stati implementati?
+Quali test case sono stati creati per testare i requisiti del software?
+Quali parti del codice sorgente corrispondono ai requisiti del software?
+Quali requisiti del software non sono stati ancora implementati o testati?
+
+In sintesi, la matrice di tracciabilità aiuta a mantenere traccia dei requisiti del software e del loro stato di implementazione e test,
+ in modo da garantire che il software soddisfi tutti i requisiti e funzioni come previsto.
+
+----------------------------------------------------------------------------------
+
+COMPONENT - FAULT - ERRONEOUS STATE - FAILURE        -  TEST CASE -  TEST STUB  - CORRECTION
+
+COMPONENT : è una parte del sistema che può essere isolata per essere testata. Una componente può essere un metodo , un oggetto , un gruppo di oggetti oppure
+uno o più sottosistemi .
+
+FAULT : (diffetto o bug) è un errore deò codice che può portare ad un malfunzionamento del programma. 
+
+ERRONEOUS STATE : (stato errato) si verifica quando il programma produce un risultato imprevisto o errato a causa di un fault , quindi è la manifestazione 
+del fault durante l'esecuzione del programma . Un programma può avere più faults e erroneous states
+
+FAILURE : (fallimento) si verifica quando il programma non riesce a produrre il risultato previsto e a soddisfare i requisiti specificati.
+Esso è causato da uno o più erroneous state ma non sempre un erroneous state porta ad un Failure, poichè il programma potrebbe funzionare correttamente nonostante 
+la presenza degli erroneous state. 
++Non tutti gli "erroneous state" portano necessariamente a una "failure". Infatti, ci possono essere casi in cui lo stato errato non influisce 
+direttamente sul risultato finale del software. Ad esempio, un'immagine potrebbe apparire leggermente distorta a causa di un errore grafico,
+ma il software potrebbe ancora funzionare correttamente in termini di funzionalità.
+Tuttavia, gli "erroneous state" devono essere corretti poiché potrebbero causare problemi in situazioni diverse o in futuro.
+
+
+TEST CASE : è un insieme di input e risultati attesi su cui ci basiamo per fare i test. L'obbiettivo è causare fallimenti e trovare faults. 
+Un tast case ha 5 attributi: 
++name --> per differenziare i vari test cases
++location
++input --> i dati e comandi in input 
++oracle --> il comportamento o risultato aspettato (quello con cui si confronta l'output per vedere se è corretto)
++log --> l'output prodotto dal test (per output si intende anche l'insieme dei comportamenti) 
+
+I test case sono divisi in : 
+Blackbox test --> non ci si preoccupa della struttura e composizione della componente (non si guarda l'implementazione del codice) ma ci interessano 
+solo l'input e output 
+Whitebox test --> (tutto il contrario) non ci si preoccupa di input e output , ma degli stati della componente , della struttura del codice e dell'interazione 
+con le altre componenti
+
+
+++++Si cerca sempre di isolare le componenti e di testarle singolarmente , ma a volte non è possibile poichè certe componenti possono dipendere 
+da altre e quindi non funzionare senza, oppure il contrario ........in tal caso si dovrebbe attendere l'implementazione di tutte queste componenti 
+per andare avanti, ma test stub e test driver sono la soluzione : 
+
+TEST STUB : è un componente software che simula il comportamento di un componente da cui la COMPONENTE TESTATA DIPENDE.
+Lo scopo principale di un test stub è quello di fornire un'implementazione parziale di un componente dipendente per consentire ai tester di eseguire i test 
+senza dover attendere l'implementazione completa di tutti i componenti del sistema.
+es. testiamo A (metodo) che contiene e per funzionare ha bisogno di B (metodo non ancora implementato)  B è invocato in A
+A DIPENDE da B 
+
+TEST DRIVER : (simile al test stub ma al contrario)  simula la componente che si occupa di chiamare la componente sotto test . (quindi se la componente sotto test
+è un metodo allora il test driver invoca il metodo testato) . Il test driver si occupa di dare l'input al componente testato e di mostrare l'output. 
+es. testiamo A (metodo) che appartiene a B (metodo non ancora implementato)  A è invocata in B 
+A DEVE ESSERE CHIAMATA DA B 
+
+CORRECTIONS : le correzioni apportate a cui bisogna fare attenzione poichè potrebbero creare altri faults
+
+-----------------------------------------------------------------------------------------------------------------
+
+           FASI DEL TESTING 
+
+++TEST PLANNING : 
+(non fa propriamente parte delle fasi di testing) si decidono quante risorse in fatto di tempo e denaro assegnare al testing in generale 
+e quante più quante meno alle specifiche fasi di testing in base alla tipologia di progetto . 
+
+++COMPONENT ISPECTION : 
+è un iniziale ispezione ad "occhio nudo" del codice. Lo sviluppatore spiega al tester la struttura e le funzionalità del codice e il tester lo testa 
+superficialmente "ad occhio nudo" 
+
+++USABILITY TESTING :  (può essere fatto anche verso la fine o solitamente in parallelo con quello functional) Si tratta di testare come il software offre le sue funzionalità . Ovvero 
+come l'interfaccia è facile da usare e alla mano , insomma quanto è USER-FRIENDLY. 
+Solitamente questo tipo di Testing viene fatto usando anche prototiopi dell'applicazione . 
+
+++UNIT TESTING :
+In questa fase vengono testate le singole unità di codice, come funzioni, classi o moduli, per verificare che rispondano alle specifiche e che producano
+i risultati attesi.  Viene fatto per 3 motivi:  1) riduce la complessità (difficoltà)  2)è più facile correggere i bug  3) si può lavorare in parallelo
+
+++INTEGRATION TESTING : 
+è la fase in cui i vari componenti del software vengono integrati tra loro e testati come un insieme. 
+L'obiettivo è verificare che i vari componenti funzionino correttamente anche quando sono integrati, e che le interazioni tra di essi non generino errori o problemi.
+Quindi è come se lo Unit Test si espande e si cercano errori che non abbiamo trovato in quella fase
+
+++SYSTEM TESTING :
+è la fase in cui l'intero sistema viene testato come un insieme, simulando l'ambiente reale in cui il software verrà utilizzato.
+ In questa fase si verificano le funzionalità e le prestazioni del sistema, la sua usabilità e la sua affidabilità.
+
+++FUNCTIONAL TESTING :
+
+++PERFORMANCE TESTING :
+
+++ACCEPTANCE TESTING :
+
+++REGRESSION TESTING : 
+è una fase che si ripete ad ogni modifica del software e consiste nell'eseguire nuovamente i test delle fasi precedenti per verificare che 
+le correzioni apportate non abbiano introdotto nuovi problemi o bug.
+
+/**  (DA RIVEDERE, concetto NON corretto al 100%) 
+In generale il Regression Testing viene svolto dopo che le modifiche vengono aggiunte. Però il momento preciso dipende dall'organizzazione del progetto e 
+dal grado di gravità del bug.
+In generale se il bug è di lieve entità e non influisce significativamente sul funzionamento del sistema, si finisce di svolgere il Testing e il bug viene 
+dopo corretto e viene svolto il Regression Testing.
+Se invece il bug è critico e causa problemi gravi al funzionamento, il Testing viene interrotto e il bug corretto e si procede al Regression Testing
+**/
+
+
+---------------------------------------------------------------------------------------------
+
+   JUnit (per fare i testi unitari in Java)
+
+
+ANNOTAZIONI 
+
+
++ @Test  -->  messo sopra un metodo di test per dire che appunto stiamo testando un metodo 
+- @Test può essere combinato con @Timeout i cui specifichiamo un tempo.Se dopo questo tempo dall'inizio del test , il test non si è concluso, allora sarà interrotto e designato come fallito
+-@Test può essere combinato con @RepeatedTest con cui possiamo far ripetere i test più di una volta. Questo può essere utile per verificare la stabilità e la consistenza del codice in situazioni che possono avere risultati variabili a ogni esecuzione
+
++@BeforeEach  --> indica che il metodo annotato deve essere eseguito prima di ogni metodo di test. Utilizzato per impostare le condizioni necessarie per i test.
+
++@AfterEach  --> indica che il metodo annotato deve essere eseguito prima di ogni metodo di test. Utilizzato per pulire le risorse utilizzate nei test.
+
++@BeforeAll  --> il metodo annotato deve essere eseguito una singola volta prima di tutti i metodi di test. Il metodo deve essere statico.
+
++@AfterAll  -->indica che il metodo annotato deve essere eseguito una singola volta dopo tutti i metodi di test. Il metodo deve essere statico.
+
++@Disabled  --> disabilita un metodo di test o una classe di test. Questo è utile se si vuole temporaneamente escludere un test dalla suite di test.
+
++@ParameterizedTest  --> indica che un metodo di test sarà eseguito più volte con diversi set di dati.
+
+Questa annotazione va accoppiata con altri tipi di annotazioni :
+
+-
+
+
+ANNOTAZIONI DI UTILITY
+
++@DisplayName(string nome) --> L'annotazione @DisplayName può essere utilizzata per specificare un nome leggibile per un metodo di test.
+
++@Tag(string tag) --> L'annotazione @Tag permette di classificare i metodi di test in gruppi.
+
+
+METODI 
+
+
++assertEquals(valore 1, valore 2) -->  Verifica che due valori siano uguali. C'è anche un terzo parametro Stringa opzionale che serve a mostrare un 
+messaggio quando il test fallisce . 
+NOTA: se in un metodo @Test ci sono più assertEquals e solo uno fallisce .....il test è fallito 
+
++assertNotEquals(valore 1, valore 2)  -->  Verifica che due valori non siano uguali.
+
++assertTrue(condizione) -> Verifica che una condizione sia vera.
+es:  assertTrue(3 > 2);
+
++assertFalse   -->  Verifica che una condizione sia falsa
+
++assertNull(oggetto)   -->  Verifica che un oggetto sia null.
+
++assertNotNull(oggetto)  -->  Verifica che un oggetto non sia null.
+
+
++assertAll -> Permette di eseguire più asserzioni e raccogliere tutti i fallimenti.
+assertAll è una funzione di JUnit che permette di raggruppare più asserzioni insieme e verificarle tutte in una volta. Questo è particolarmente utile quando si desidera eseguire una serie di verifiche correlate e si vuole essere sicuri che tutte le asserzioni siano controllate, anche se alcune falliscono. Se una qualsiasi delle asserzioni all'interno di assertAll fallisce, JUnit segnalerà tutte le asserzioni fallite dopo aver eseguito tutte le verifiche.
+es:
+
+@Test
+    public void testAll() {
+        assertAll("Multipli test",
+            () -> assertEquals(2, 1 + 1),
+            () -> assertEquals(4, 2 * 2),
+            () -> assertEquals(6, 3 + 3)
+        );
+
+
+
+
+
+SUITE DI TEST 
+
+Una Suite di Test in JUnit permette di raggruppare insieme più classi di test e di eseguirle come un unico insieme. Questo è utile per organizzare i test e per eseguire gruppi di test correlati insieme.

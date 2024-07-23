@@ -1,0 +1,1216 @@
+
+NOTA: Tomcat è sia web server sia un application server leggero
+
+----------------------------------------------------------
+
+                                                                     SPRING : 
+
+
+Spring è un ecosistema di framework associato al linguaggio Java. Un ecosistema poichè è formato da una serie di microframework  e strumenti 
+che servono a tanti diversi tipi di progetti e a diverse cose (es. Spring MVC , Spring Security, Spring Boot etc...).
+Questo è utilizzato per rendere più produttiva e veloce lo sviluppo di applicazioni Java web e non(solitamente applicazioni enterprise, ovvero "grandi" 
+utilizzate da aziende) . 
+Il framework si occupa in poche parole di automatizzare una serie di operazioni di base che evitano al programmatore di scrivere 
+numerose e frequenti righe di codice ; questo è fatto attraverso l'uso delle ANNOTAZIONI ,piccole stringhe precedute da @ piene di significato che si traducono,
+per Spring , in una serie di righe di codice da scrivere (quelle ripetitive di cui parlavamo poco fa ) .
+
+
+---------------------------------------------------------------
+
+                                                                  SPRING BOOT : 
+
+
+è uno dei framework più importanti dell'ecosistema Spring. Esso semplifica il processo di configurazione delle applicazioni rendendolo automatico, permettondoci 
+di creare immediatamente un applicazione stand-alone(non hanno bisogno di nessun altro software per funzionare) pronta all'uso, che farà da comoda base all'
+applicazione che ci andiamo a costruire sopra. 
+
+Vantaggi dati da Spring Boot : 
+
+1)Gestione semplificata delle dipendenze :
+
+tutto il tempo che perdiamo per cercare le dipendenze su internet ,aggiungerle al pom.xml e anche accertarsi 
+della versione e delle compatibilità con il resto delle dipendenze NON esisterà più. Spring boot ti permette di selezionare la dipendenza o quello che vuoi fare
+e poi ci penserà lui a cercarla su internet e aggiungerla al pom.xml , assicurandosi che sia la versione giusta che non vada in contrasto con le altre . 
+Es. selezioniamo il fatto che abbiamo bisogno delle dipendeze per sviluppare un applicazione web --> Spring boot penserà a caricare tutte le dipendenze che ci 
+servono per fare queste operazioni 
+
+2)Configurazione automatica:
+
+Spring Boot può configurare automaticamente molte delle dipendenze di un'applicazione Java,
+eliminando la necessità di configurare manualmente molte parti dell'applicazione.
+Dobbiamo configurare solo alcune cose(diversamente da Spring) e lo facciamo in un UNICO file di configurazione , tutto il resto lo fa Spring Boot.
+
+3)Incorporazione di Tomcat :
+
+Spring Boot include un web server integrato (embedded) per semplificare lo sviluppo di applicazioni web. 
+Per la precisione, Spring Boot include un'implementazione pre-configurata di Tomcat che si adatta alle esigenze della maggior parte degli sviluppatori,
+ma è possibile configurare facilmente diverse implementazioni di server web come ad esempio Jetty o Undertow a seconda delle esigenze del progetto.
+Quindi se si vuole far partire l'applicazione con Tomcat non dobbiamo fare nulla , è tutto già pronto e configurato.
+
+
++Spring Boot è orientato soprattutto allo sviluppo di applicazioni per Cloud
++Inoltre Spring Boot garantisce la qualità del codice grazie a test automatici (Unit Test)
+
+---------------------------------------------------------------------------------------------------
+
+                                                                   SPRING INIZIALIZR :   (e .JAR  vs   .WAR)
+
+
+Spring Initializr è uno strumento web fornito dal team di Spring che consente di generare velocemente un progetto base utilizzando Spring Boot.
+In pratica, Spring Initializr fornisce un'interfaccia grafica utente (GUI) in cui è possibile specificare le dipendenze, la versione di Java e le varie configurazioni
+desiderate per il progetto Spring Boot. In seguito, Spring Initializr genera automaticamente il progetto Spring Boot, che può essere scaricato e utilizzato 
+come base per l'applicazione.
+
+Spring Intializr ci permette anche di scegliere il PACKAGING; ovvero il tipo di file e modo in cui la nostra applicazione deve 
+essere impacchettata e quindi distribuita .
+Può essere impacchettata in un .war o in un .jar
+La differenza principale sta nella modalità di distribuzione di queste 2 tipologie : 
+
+-Il .JAR (Java Archive) è un file contenente il codice sorgente Java compilato (i .class), le dipendenze dell'applicazione e un server Tomcat integrato.
+In questo caso, l'applicazione viene eseguita come un'applicazione standalone, senza la necessità di un server web esterno poichè è già contenuto in essa , per 
+eseguirlo ci serve solo una JVM. 
+
+-Il .WAR (Web Application Archive), invece, è un archivio contenente anch'esso il codice sorgente compilato, le risorse web e le dipendenze dell'applicazione , ma 
+NON contiene il web server integrato. Questo vuol dire che se si sceglie di distribuire l'applicazione come file WAR, è necessario configurare un server web esterno
+in cui accogliere e far partire il WAR e creare un file di configurazione per il web server, che indichi dove trovare il file WAR e come configurare l'applicazione.
+(insomma il WAR deve contenere un file di confiurazione che dica al nostro server esterno come configurare il file e farlo partire) 
+
+
+NOTA : in entrambi i casi (WAR e JAR) è necessario configurare manualmente il file di configurazione all'interno del file. L'unica differenza sta nel fatto che 
+il JAR contiene il web server integrato oltre al file di configurazione , mentre il WAR contiene solo il file di configurazione e necessita di un web server esterno.
+Se invece utilizziamo Spring Boot e non Spring "normale" , non ci sarà bisogno in nessun caso di configurare i file di configurazione nel .WAR o .JAR poichè 
+saranno configurati in modo standard da Spring Boot.
+
+NOTA : il .jar è in generale più pesante poichè contiene anche il web server integrato 
+
+
+
+
++ concetto in più      DOCKER VS JAR 
+
+In generale, un file JAR (Java Archive) è un archivio di file Java che contiene il codice sorgente, le dipendenze e le risorse necessarie per eseguire 
+un'applicazione Java. Un file JAR può essere eseguito su una macchina virtuale Java (JVM) e include l'applicazione e tutte le sue dipendenze all'interno
+di un unico file.
+
+D'altra parte, Docker è una piattaforma di containerizzazione che consente di creare, distribuire e gestire container isolati che contengono applicazioni
+ e le relative dipendenze. Un container Docker è un'istanza isolata di un'immagine Docker, che contiene il codice sorgente, le dipendenze 
+e le risorse necessarie per eseguire un'applicazione.
+
+Anche se sia un file JAR che un container Docker possono essere utilizzati per distribuire un'applicazione, sono concetti molto diversi.
+Un file JAR contiene il codice e le dipendenze dell'applicazione, ma richiede una JVM per essere eseguito. 
+Un container Docker, d'altra parte, contiene non solo il codice e le dipendenze dell'applicazione, ma anche il sistema operativo e tutte le librerie
+ necessarie per eseguire l'applicazione in modo isolato.(in tal caso contiene anche la JVM)
+
+
+---------------------------------------------------------------------------------------------------------------
+
+                                                              MAVEN e GRADLE
+
+Gradle e Maven sono entrambi strumenti (tool) di build automation e package management. (utile anche per la creazione del progetto)
+Se generalmente per sviluppare un software sono necessarie numerose fasi, con la build automation l’intero processo viene automatizzato, riducendo il carico 
+di lavoro del programmatore e diminuendo le possibilità di errore da parte dello stesso. Alcune delle fasi fondamentali che vengono automatizzate dal tool 
+sono la compilazione , il packaging , l’esecuzione di test per garantire il funzionamento del software, il deployment sui server (con le dipendeze e 
+configurazioni adatte)  ed infine la documentazione relativa al progetto portato a termine. 
+Maven si occupa di fare tutte ste cose automaticamente , noi se vogliamo ,le dobbiamo solo configurare come vogliamo. 
+
+Inoltre svolge anche il ruolo di package management ovvero si occupa di gestire le dipendenze relative alle varie librerie esterne utilizzate. 
+
+Maven utilizza un formato di configurazione basato su XML chiamato Project Object Model (POM) per definire la struttura del progetto e le dipendenze varie.
+Inoltre, Maven fornisce una vasta gamma di plugin (estensioni) per le operazioni di build e per l'integrazione continua e il deploy su servr .
+
+
+ ( L'integrazione continua (Continuous Integration o CI in breve) è una pratica di sviluppo del software che prevede l'automazione dei processi di build, 
+test e distribuzione del software in modo continuo e incrementale. In questo modo, ogni volta che un nuovo codice viene integrato nel repository del progetto,
+ viene eseguita automaticamente una serie di attività per verificare che il software funzioni correttamente e che non ci siano problemi di compatibilità
+ o di integrazione. 
+In parole povere possiamo impostare processi come build , test , packaging che vengono eseguite in modo automatico ogni volta che modifichiamo il codice )
+
+
+
+
+
+
+Sì, in Spring Boot, Maven è uno strumento di gestione delle dipendenze e di automazione della build che viene utilizzato per l'intero ciclo di vita del progetto.
+Quando esegui un'applicazione Spring Boot con Maven, segui questi passaggi:
+
+Compilazione: Maven compila il codice sorgente e genera i file di classe.
+Gestione delle dipendenze: Maven gestisce le dipendenze del progetto e le include nel classpath.
+Creazione del pacchetto: Maven crea un file JAR o WAR che contiene l'applicazione e le sue dipendenze.
+Esecuzione: Maven esegue l'applicazione utilizzando il plugin Spring Boot Maven.
+Quando fai "run" in un IDE come IntelliJ IDEA o Eclipse, il processo è simile: l'IDE usa Maven per eseguire la build dell'applicazione, gestire le dipendenze
+ e creare il pacchetto. Successivamente, viene avviato il server integrato di Spring Boot (solitamente Tomcat) e il pacchetto viene caricato ed eseguito su di esso.
+
+In sintesi, sì, quando fai "run", Maven si occupa della build e del deploy dell'applicazione, che viene poi caricata ed eseguita sul server integrato di Spring Boot.
+
+
+
+Maven non "esegue" le librerie Spring, ma le include nel classpath del progetto e le rende disponibili per l'applicazione durante la compilazione e l'esecuzione.
+
+quindi in poche parole è il server web e la JVM integrate in Spring Boot che eseguono l'eseguibile
+
+--------------------------------------------------------------------------------------------------------
+
+                                                                     ARTIFACT 
+
+In Maven, un "artifact" è un file di distribuzione di un progetto, che può essere un file JAR, WAR, ZIP o altro formato utilizzato per distribuire il 
+codice del progetto, le dipendenze e le risorse necessarie all'esecuzione del software.
+
+L'artifact di un progetto Maven è solitamente generato attraverso il processo di build del software, che produce il file di 
+distribuzione(il file da distribuire/deployare) (come ad esempio un file JAR). L'artifact contiene il codice compilato e le dipendenze necessarie all'esecuzione del software, 
+insieme a eventuali risorse come file di configurazione, immagini o file di documentazione.
+In sintesi, un "artifact" in Maven è il file di distribuzione di un progetto, che contiene il codice compilato, le dipendenze e le risorse necessarie
+ all'esecuzione del software.
+
+--------------------------------------------------------------------------------------------------------------
+
+                                                                     SWAGGER 
+
+Swagger è uno strumento open source che aiuta a documentare e testare le API RESTful. In un'applicazione Spring, Swagger può essere integrato tramite
+ la libreria Springfox per fornire una documentazione automatica delle API.
+
+In particolare, Springfox genera automaticamente una documentazione Swagger per le API RESTful esposte dall'applicazione Spring.
+ La documentazione Swagger è creata a partire dalle annotazioni presenti nel codice, come ad esempio @RequestMapping, @PathVariable e @RequestParam, 
+e descrive i dettagli delle API come i parametri di input e di output, il tipo di ritorno, le eccezioni gestite, ecc.
+
+In questo modo, Swagger semplifica la documentazione delle API per gli sviluppatori e facilita la comprensione e l'utilizzo delle stesse.
+ Inoltre, Swagger fornisce un'interfaccia grafica utente (UI) che consente agli sviluppatori di testare e provare le API senza dover utilizzare
+ un client RESTful separato.
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+                                                                     ALTA COESIONE  
+
+Una classe deve corrispondere ad un unità concettuale ben definita e deve contenere tutti gli attributi e metodi strettamente collegati a quell'unità concettuale.
+Ad esempio, tutti i metodi all'interno di una classe User dovrebbero rappresentare il comportamento dell'utente e basta.
+Si dice che un modulo abbia una bassa coesione se contiene elementi non correlati. Ad esempio, una classe User contenente un metodo su come convalidare
+l'indirizzo e-mail; la classe utente può essere responsabile della memorizzazione dell'indirizzo e-mail dell'utente ma non della convalida o dell'invio di un'e-mail.
+Cosa che dovrebbe appartenere a qualche altra classe come Email. 
+
+Vantaggi : 
+
+1) Migliora la manutenibilità : 
+Quando i metodi sono altamente coesi, è più facile apportare modifiche in un'unica parte del codice senza dover modificare
+l'intera classe. Ciò rende il codice più manutenibile e meno soggetto a errori.
+
+2) Migliora la riusabilità :
+Una classe con alta coesione può essere riutilizzata in altri progetti senza la necessità di apportare modifiche sostanziali.
+Ciò rende il codice più modulare e facile da riutilizzare in futuro.
+
+3) Aumenta la comprensibilità : 
+Quando i metodi sono altamente coesi, è più facile capire cosa fa ogni metodo e come essi cooperano per realizzare una funzionalità.
+ Ciò rende il codice più leggibile e comprensibile.
+
+4)Migliora la sicurezza : 
+Quando i metodi sono altamente coesi, è meno probabile che il codice contenga bug o vulnerabilità di sicurezza,
+ perché i metodi sono più facili da testare e debuggare.
+
+
+es. di BASSA COESIONE(sbagliato):
+Allo stesso sportello degli uffici postali si pagano i bollettini di conti corrente e contemporaneamente si ritirano le pensioni (servizi disomogenei!)
+
+
+
+                                                                         
+
+
+                                                                 BASSO ACCOPPIAMENTO 
+
+L’accoppiamento (in inglese Coupling) misura quanto ciascuno dei moduli del programma dipende dagli altri moduli del programma. 
+Le interazioni tra due oggetti avvengono perché c’è accoppiamento. I programmi ad accoppiamento libero sono altamente flessibili ed estensibili.
+
+
+Infatti, un basso accoppiamento consente sicuramente di avere una buona comprensione del codice associato ad una classe senza doversi preoccupare di andare a reperire i dati delle altre classi coinvolte. Inoltre, utilizzando un basso accoppiamento, eventuali modifiche apportate ad una classe avranno poche o nessuna ripercussione sulle altre classi con cui è instaurata una relazione di dipendenza.
+
+Per fare un esempio di basso accoppiamento nel mondo reale, si può pensare ad una Radio connessa con degli Altoparlanti attraverso l'uso di un cavo. Sostituendo o modificando il cavo, le due entità (Radio e altoparlanti) non subiranno alcuna modifica sostanziale alle loro strutture. Viceversa, un forte accoppiamento può essere rappresentato da due travi di acciaio saldate tra di loro. Infatti, per poter muovere una trave, anche l'altra subirà inevitabilmente degli spostamenti
+
+
+
+
+L'Accoppiamento fa riferimento ai legami esistenti tra classi diverse. Una classe deve contenere e quindi dipendere dal minor numero di classi possibili (basso 
+accoppiamento) , utilizzare il meno possibile metodi di altre classi e scambiare il minor numero di dati possibile con esse 
+
+Le interfacce possono aiutare a mantenere un basso accoppiamento tra le classi in quanto definiscono solo il contratto tra due classi e non specificano
+ l'implementazione concreta dei metodi. Ciò significa che una classe può utilizzare un'altra classe solo attraverso l'interfaccia, 
+senza dipendere direttamente dalla classe concreta. Quindi, se volessimo andare a modificare i metodi della classe che implementa l'interfaccia, non andremmo a 
+influire sulla classe che ne dipende 
+
+es: 
+
+Immaginiamo di avere una classe Customer che ha bisogno di interagire con una classe PaymentProcessor. Utilizzando un'interfaccia PaymentService,
+possiamo definire un contratto tra Customer e PaymentProcessor senza specificare l'implementazione concreta dei metodi.
+La classe Customer utilizzerà solo l'interfaccia PaymentService per interagire con PaymentProcessor, senza conoscere l'implementazione concreta della classe.
+
+In questo modo, se la classe PaymentProcessor dovesse essere sostituita con un'altra classe, ad esempio PaymentProcessorV2, non ci sarebbero impatti 
+sulla classe Customer, in quanto PaymentProcessorV2 implementa ancora l'interfaccia PaymentService.
+
+
+
+// Definiamo l'interfaccia PaymentService
+public interface PaymentService {
+    void processPayment(double amount);
+}
+
+// Implementiamo l'interfaccia PaymentService nella classe PaymentProcessor
+public class PaymentProcessor implements PaymentService {
+    public void processPayment(double amount) {
+        // Implementazione del metodo processPayment
+        // ...
+    }
+}
+
+// Utilizziamo la classe PaymentProcessor tramite l'interfaccia PaymentService nella classe Customer
+public class Customer {
+    private PaymentService paymentService;
+
+    public Customer(PaymentService paymentService) {
+        this.paymentService = paymentService;
+    }
+
+    public void buyProduct(double price) {
+        // Processo il pagamento utilizzando l'interfaccia PaymentService
+        paymentService.processPayment(price);
+        // ...
+    }
+}
+
+// Esempio di utilizzo delle classi
+public class Main {
+    public static void main(String[] args) {
+        // Creiamo un'istanza di PaymentProcessor
+        PaymentService paymentProcessor = new PaymentProcessor();
+        // Creiamo un'istanza di Customer, passando l'istanza di PaymentProcessor come parametro
+        Customer customer = new Customer(paymentProcessor);
+        // Il cliente acquista un prodotto
+        customer.buyProduct(10.0);
+        // ...
+    }
+}
+
+
+
+
+
+                  ALTO ACCOPPIAMENTO (sbagliato) 
+
+
+In Java, un esempio di alto accoppiamento può essere quando una classe dipende direttamente da un'altra classe, il che significa che una modifica alla classe dipendente può causare problemi alla classe principale.
+
+Ecco un esempio di codice che mostra un alto accoppiamento tra le classi "Order" e "Customer":
+
+es:
+
+public class Order {
+   private Customer customer;
+   private int orderNumber;
+   
+   public Order(Customer customer, int orderNumber) {
+      this.customer = customer;
+      this.orderNumber = orderNumber;
+   }
+   
+   public void printOrderDetails() {
+      System.out.println("Order #" + orderNumber + " belongs to customer " + customer.getName());
+   }
+}
+
+public class Customer {
+   private String name;
+   private String address;
+   
+   public Customer(String name, String address) {
+      this.name = name;
+      this.address = address;
+   }
+   
+   public String getName() {
+      return name;
+   }
+}
+
+
+In questo esempio, la classe "Order" dipende direttamente dalla classe "Customer", poiché utilizza il metodo "getName()" della classe "Customer" per stampare
+ i dettagli dell'ordine. Ciò significa che se la classe "Customer" viene modificata, ad esempio se il metodo "getName()" viene rinominato,
+ la classe "Order" potrebbe smettere di funzionare correttamente. Questo è un esempio di alto accoppiamento tra le due classi.
+
+
+
+I vantaggi di un buon accoppiamento includono:
+
+1) Maggiore manutenibilità : 
+Quando le classi sono debolmente accoppiate, i cambiamenti apportati a una classe non richiedono modifiche alle altre classi del sistema. 
+Ciò rende il codice più facile da mantenere e meno soggetto a errori.
+
+2) Maggiore flessibilità : 
+Un buon accoppiamento rende più facile aggiungere nuove funzionalità o modificare le esistenti. Poiché le classi sono indipendenti tra loro,
+ è più facile modificare il comportamento di una classe senza influire sulle altre classi.
+
+3) Maggiore riusabilità :
+Un buon accoppiamento rende le classi più modulari e indipendenti, il che le rende più facili da riutilizzare in altri progetti.
+
+4) Migliore testabilità : 
+Quando le classi sono debolmente accoppiate, è più facile testare le singole classi in modo isolato senza dover testare l'intero sistema.
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+                                          INVERSION OF CONTROL (IoC)    -    DEPENDENCY INJECTION (DI)
+
+
+L'Inversione di Controllo (IoC) è un principio per cui non sei tu a controllare il flusso del programma, ma lo lasci a un framework (Spring)  o a un container. Spring lo implementa principalmente tramite l'Iniezione delle Dipendenze (DI), che permette di iniettare le dipendenze tra le classi in modo automatico, rendendo il codice più modulare, testabile e manutenibile.
+Quindi IoC è un concetto generale, non si applica solo all'iniezione delle dipendeze .
+
+Abbiamo ad es. una classe Veicolo che contiene un istanza della classe Motore:
+
+
+            class Veicolo{
+                    private Motore motore = new Motore();
+
+                .....................
+               ......................
+                                }
+
+
+Quindi per usare la classe Veicolo abbiamo bisogno di istanzare , attraverso l'operatore NEW , un istanza della classe Motore .
+Quindi se volessimo per es. andare ad usare da un'altra parte la classe Motore potremmo tranquillamente , mentre se dobbiamo usare la classe Veicolo
+c'è necessariamente bisogno che Veicolo si porti appresso anche la classe Motore . 
+In questo modo quindi abbiamo creato una DIPENDENZA e reso il codice FORTEMENTE ACCOPPIATO , cosa che non è buona soprtattutto per il testing o nel caso volessimo 
+andare poi a modificare o riutilizzare il codice . ( RICORDA : un buon codice necessita di BASSO ACCOPPIAMENTO e FORTE COESIONE )
+
+Questo problema lo si risolve con l'INVERSION OF CONTROL , ovvero invece di creare con NEW l'istanza della classe Motore nella classe Veicolo cosi creando la 
+dipendenza nella classe Veicolo; andiamo a dare la responsabilità della gestione delle dipendenze ad un entità esterna alla classe Veicolo , il framework Spring ,
+che si occuperà di creare l'istanza di Motore fuori da Veicolo all'interno del "container" cosi da rendere il codice poco accoppiato.
+(quindi Spring si occupa di gestire la dipendenze e di rendere disaccoppiate il nostro codice, noi ce ne laviamo le mani...dobbiamo solo 
+dare a Spring alcune indicazioni attraverso le annotazioni)
+(in questo modo possiamo usare Motore come se il codice fosse fortemente accoppiato anche se non è cosi)
+
+
+L'idea di base dell'IoC è di liberare i componenti di un'applicazione dalla responsabilità di creare e gestire le loro dipendenze.(qiundi responsabilità dello sviluppatore)
+Invece di avere ogni componente che crea direttamente le proprie dipendenze, il controllo viene "invertito" e delegato a un componente esterno, chiamato "container".
+In questo modo, i componenti diventano meno accoppiati e più facilmente riutilizzabili, testabili e manutenibili.
+
+
+
+L'IoC è implementato principalmente attraverso il DEPENDENCY INJECTION (DI).
+Quando creiamo un'istanza Veicolo, esso ha bisogno di un istanza della classe Motore , allora Spring CREA UN ISTANZA DI MOTORE MA AL DI FUORI DI VEICOLO (in un entità
+esterna chiamata "container") , cosi Veicolo potrà usare i metodi e tutti i vantaggi della classe Motore , ma senza la necessità di portarsela appresso.
+(Spring "innnetta" un istanza di Motore in Veicolo , gli permette di usarla senza dargliene il peso della dipendenza).
+Ciò significa che il componente non è responsabile della creazione delle sue dipendenze, ma piuttosto dichiara ciò di cui ha bisogno e il container si occupa
+di fornirlo.  (è possibile utilizzare annotazioni come @Autowired, @Inject o @Resource per specificare solo che Veicolo ha bisogno di un istanza di Motore)
+ 
+
+
+[DA RIVEDERE SE BUONO]
+[[un'altro metodo oltre alla DI è il Service Locator , che richiede al container le dipendenze non tramite annotazioni ma tramite metodi come getBean(), però 
+bisogna cmq che il componente abbia una conoscenza minima del container, quindi informarlo in qualche modo]]
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+                                               BEAN     &     "CONTAINER" --> APPLICATION/SPRING CONTEXT/ IOC Container e BEAN FACTORY 
+
+Il container è un componente (un aria di memoria) che si occupa principalmente della creazione, configurazione, gestione del ciclo di vita e 
+iniezione delle dipendenze degli oggetti chiamati "BEAN" all'interno di un'applicazione Spring.
+Sostanzialmente IL CONTAINER E' IL BEAN FACTORY e l'Application Context , possiamo dire che sono 2 componenti Spring che implementano delle funzionalità.
+(più precisamente queste sono 2 interfacce implementate da Spring; Spring offre varie implementazioni di queste interfacce per soddisfare l'esigenza di ogni 
+tipo di progetto , tocca allo sviluppatore configurarle e quindi scegliere quale implementazione usare) 
+
+BEAN FACTORY : è la componente base che si occupa di gestire il ciclo di vita dei Bean, la loro creazione , distruzione , l'iniezione di dipendenze ecc... insomma 
+tutte operazioni basilari sui Bean che possiamo configurare in base alle nostre esigenze. (noi configuriamo i Bean , poi il Bean Factory si comporta in base a 
+come il Bean è configurato) 
+
++Tuttavia, nella pratica quotidiana dello sviluppo con Spring, lavoriamo raramente direttamente con il Bean Factory. Al suo posto, interagiamo maggiormente con ApplicationContext, che estende Bean Factory. insomma possiamo configurare il Bean Factory lavorando e configurando direttamente l'Application Context
+Quindi , volendo , in generale possiamo dire che Bean Factory e Application Context sono la stessa cosa ? semplicemente con l'Application Context possiamo andare a toccare e configurare altre funzionalità oltre a quelle che possiamo configurare interagendo solo co i lBean Factory
+
+APPLICATION CONTEXT : è una componente più avanzata che ESTENDE IL BEAN FACTORY (quindi è la sua sottoclasse) e offre funzionalità aggiuntive al Bean Factory.
+
+Oltre alla gestione dei Bean offerta del Bean Factory , l'Application Context offre : 
+
+-Supporto per l'internazionalizzazione: consentendo di gestire facilmente le risorse per diverse lingue e localizzazioni all'interno dell'applicazione.
+-Pubblicazione e gestione degli eventi: . Gli eventi possono essere utilizzati per comunicare tra componenti dell'applicazione in modo disaccoppiato.
+-Supporto per la risoluzione dei temi: L'ApplicationContext fornisce funzionalità per la risoluzione dei temi, che possono essere utilizzate
+ per personalizzare l'aspetto dell'applicazione.
+-Caricamento delle risorse: L'ApplicationContext offre un modo uniforme per caricare risorse, come file di configurazione e immagini,
+ indipendentemente dal fatto che siano memorizzate sul file system, nel classpath o in altre locazioni.
+-Supporto per l'AOP (Aspect-Oriented Programming): L'ApplicationContext offre supporto per la programmazione orientata agli aspetti, che consente di separare
+ la logica trasversale (come la gestione delle transazioni, la sicurezza e la registrazione) dalla logica principale dell'applicazione.
+-Supporto per l'integrazione con altri framework e tecnologie: L'ApplicationContext facilita l'integrazione con altre tecnologie 
+e framework, come Java EE, JMS (Java Message Service), JMX (Java Management Extensions) e altre.
+
+NOTA : Gran parte delle funzionalità offerte dall'ApplicationContext nel framework Spring è legata alla gestione dei bean, 
+ma non tutte le funzionalità richiedono necessariamente la configurazione o l'utilizzo dei bean. 
+
+
+IMPORTANTE!!!
+Gli oggetti usati all'interno dello Spring Context sono chiamati Bean 
+
+
+
+
+BEAN : In un'applicazione Spring, i bean sono gli oggetti che rappresentano i componenti principali della logica dell'applicazione e delle sue funzionalità.
+Sostanzialmente un Bean è solo una classe Java "speciale", ovvero dotato di funzionalità aggiuntive, ciò che la rende speciale è la sua gestione da parte 
+di Spring ( si un container) che si occupa del suo ciclo di vita, di inniettare le dipendenze e tant'altro. Grazie a ciò un Bean può rappresentare un servizio , una componente, 
+un'entità o qualsiasi altro oggetto, insomma la sua gestione da parte di Spring gli permette di fare un sacco di cose diverse , TUTTE CONFIGURABILI. 
+
+I Bean possono essere configurati tramite file XML o annotazioni.
+Questo permette di modificare facilmente la configurazione dei bean senza dover apportare modifiche al codice sorgente dell'applicazione,
+ aumentando la flessibilità e la manutenibilità del codice.
+
+
+Ecco alcune caratteristiche e funzionalità importanti dei Bean :
+
+-Creazione e configurazione: 
+Puoi configurare un bean fornendo informazioni sulle sue proprietà e dipendenze, e il container si occuperà di inizializzarlo correttamente.
+
+-Ciclo di vita:
+Il container Spring gestisce il ciclo di vita dei bean, dalla loro creazione alla loro distruzione.
+Ciò include l'inizializzazione, l'utilizzo e la pulizia dei bean. Spring fornisce metodi e interfacce che consentono di intervenire nel ciclo di vita dei bean,
+ad esempio per eseguire azioni personalizzate all'avvio o alla chiusura dell'applicazione.
+
+-Dipendenze: 
+Spring gestisce le dipendenze tra i bean utilizzando il principio del Dependency Injection.
+Ciò significa che un bean può dichiarare le sue dipendenze e il container Spring si occuperà di iniettarle quando il bean viene creato.
+
+-Implementare la logica dell'applicazione:
+ I bean possono essere utilizzati per implementare la logica di business,
+gestire le operazioni CRUD (Create, Read, Update, Delete) su entità, eseguire operazioni complesse o fornire servizi all'applicazione.
+Ad esempio, potresti avere un bean per gestire le operazioni legate agli utenti, un altro per gestire gli ordini e così via.
+
+-Gestire la configurazione dell'applicazione: 
+I bean possono essere utilizzati per gestire la configurazione dell'applicazione, come le impostazioni, i parametri e le risorse.
+Ad esempio, potresti avere un bean che legge un file di configurazione e fornisce i valori di configurazione all'applicazione.
+
+-Fornire servizi e integrazioni:
+I bean possono essere utilizzati per integrare l'applicazione con servizi esterni, come database, servizi web, sistemi di messaggistica e altre API.
+Ad esempio, potresti avere un bean che fornisce un servizio di autenticazione utilizzando un'API esterna o un altro che gestisce la connessione a un database.
+
+-Creare componenti riutilizzabili:
+Poiché i bean sono oggetti indipendenti e modulari, possono essere facilmente riutilizzati all'interno dell'applicazione 
+o in altre applicazioni. Ciò promuove la modularità e la riusabilità del codice, rendendo più semplice la manutenzione e l'evoluzione dell'applicazione nel tempo.
+
+
+------------------------------------------------------------------------------------------------------------
+
+                                                                     SPRING MVC (Model-View-Controller)
+
+è un framework che offre svariati strumenti per applicare alla tua applicazione il pattern architetturale MVC.
+
+-Controller :
+Gestisce le interazioni tra la View e il Model , prendendo le richieste dalla View e elaborandole interagendo col Model ; dopo la risposta del Model le ripassa 
+di nuovo alla View. Il controller si occupa anche di cose come parte della sicurezza, la gestione dei cookie , della sessione ecc..
+
+-View : 
+Si occupa dell'interazione diretta con l'utente, quindi di mostrare i dati e di accogliere le sue richieste.
+
+-Model :
+Gestisce l'interazione col Database , quindi la logica di persistenza e la logica di business , ovvero il modo in cui i dati vengono manipolati e trasformati 
+all'interno dell'applicazione . è qui che gli oggetti delle varie entità dell'applicazione vengono rappresentati . 
+
+
+PASSAGGi : 
+
+1) ricezione richiesta da parte del CONTROLLER
+2) il CONTROLLER passa la richiesta al MODEL che interagisce con il databse ed esegue la logica di business
+3) il MODEL passa i dati al CONTROLLER che li organizza opportunatamente 
+4) il CONTROLLER passa i dati organizzati alla VIEW che genera la risposta visiva e la invia all'utente 
++l'invio vero e proprio della risposta dipende dal meccanismo usato, in Spring lo fa il Dispatcher Servlet
+
+
+VANTAGGI : 
+
+
+1) Separazione delle responsabilità: 
+La separazione delle responsabilità in MVC rende il codice più organizzato e facile da capire, poiché ogni componente si concentra su un aspetto specifico 
+dell'applicazione. Il Modello gestisce la logica di business e l'accesso ai dati, la Vista si occupa della presentazione dei dati e dell'interfaccia utente,
+e il Controllore gestisce le interazioni tra la Vista e il Modello.
+
+2) Modularità e riutilizzo del codice:
+Poiché ogni componente dell'architettura MVC ha un ruolo ben definito, è più facile sviluppare, modificare e riutilizzare parti dell'applicazione senza 
+influenzare gli altri componenti. Ad esempio, è possibile modificare l'aspetto dell'applicazione aggiornando la Vista senza apportare modifiche al Modello
+o al Controllore.
+
+3)Testabilità:
+ La separazione dei componenti facilita la scrittura di test unitari e di integrazione per ciascun componente.
+
+4)Scalabilità, manutenibilità e flessibilità:
+L'architettura MVC permette di sviluppare applicazioni più scalabili e facili da mantenere. La separazione dei componenti consente agli sviluppatori di
+lavorare su parti diverse dell'applicazione in parallelo senza interferire tra loro, il che può ridurre il tempo di sviluppo e facilitare la manutenzione.
+
+
+UTILIZZO : 
+
+-Applicazioni complesse che richiedonno una fitta separazione di responsabilità 
+-Applicazioni con interfaccia utente ricca
+-Progetti con team di sviluppo diversificati
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+                                                             DISPATCHER SERVLET 
+
+In Spring MVC, il DispatcherServlet è un componente fondamentale che funge da gestore principale dell'applicazione.
+È una classe che estende la classe HttpServlet di base e viene utilizzata per gestire tutte le richieste in arrivo nell'applicazione.
+il DispatcherServlet in Spring MVC è un componente centrale che funge da gestore centralizzato , coordinando il flusso di controllo tra i vari componenti
+del framework e gestendo il ciclo di vita delle richieste e delle risposte.
+Immagina il DispatcherServlet come un direttore d'orchestra che coordina tutte le richieste HTTP verso la tua applicazione, decidendo quale controller deve gestire ogni richiesta e poi instradandola al componente appropriato.
+Il DispatcherServlet è una servlet (estende HttpServlet) che riceve tutte le richieste alla tua applicazione e le gestisce invocando i controller specifici e altre componenti configurate. È configurato nel file web.xml di un'applicazione o tramite l'approccio basato su Java Config in Spring Boot.
+
+COMPITI PRINCIPALI : 
+
+1) Ricezione della richiesta: Esso è un responsabile centralizzato dell'elaborazione di tutte le richieste per l'applicazione.
+
+2) Mappatura della richiesta: Il DispatcherServlet utilizza un componente chiamato HandlerMapping per determinare quale Controller deve gestire la richiesta.
+L'HandlerMapping esamina l'URL della richiesta e seleziona il Controller appropriato.
+
+3)Invocazione del controller
+
+4)Creazione della risposta: Dopo che il controller ha elaborato la richiesta, restituisce un oggetto ModelAndView al DispatcherServlet. L'oggetto ModelAndView
+contiene informazioni sulla View da utilizzare e i dati da visualizzare.
+
+5)Risoluzione della View: Il DispatcherServlet utilizza un componente chiamato ViewResolver per determinare quale vista deve essere utilizzata per presentare
+i dati all'utente. Il ViewResolver utilizza le informazioni fornite dall'oggetto ModelAndView per selezionare la vista appropriata.
+
+6)Invio della risposta: Infine, il DispatcherServlet invia la risposta al client utilizzando la vista selezionata. La vista è responsabile di generare il 
+contenuto HTML che verrà visualizzato nel browser dell'utente.
+
+
+
+NOTA:  Il DispatcherServlet è configurato nel file di configurazione dell'applicazione web (solitamente web.xml o tramite configurazione Java) .
+
+NOTA : Il Dispatcher Servlet crea , secondo le nostre configurazioni il server Application Context 
+
+------------------------------------------------------------------------------------
+
+                                                               CONFIGURAZIONE DISPATCHER SERVLET (DS)
+
+
+[Ricorda: Il Dispatcher Servlet crea , secondo le nostre configurazioni, l' Application Context ]
+
+Il DispatcherServlet in un'applicazione Spring MVC effettivamente crea e gestisce un proprio ApplicationContext specifico, che è una sorta di sottotipo o "figlio" dell'ApplicationContext principale dell'applicazione.
+
+Con IL DISPATCHER SERVLET CREA L'APPLICATION CONTEXT intendiamo che configurando il dispatcher servlet , possiamo assegnarlo ad uno specifico application context in modo che si serve di sto application context specifico che gestisce i bean come cazzo vuole lui. Quindi in sostanza si crea il suo schiavo personale 
+
+Per essere "attivato" il DS deve essere configurato.
+Creiamo nel src/main/java il package "Configuration" e creiamo in essa la classe "DispatcherServletInitializer facciamo l'estensione a ......
+e poi implementiamo in automatico premendo il tasto destro del mouse tutti i suoi metodi (sono 3).
+
+
+*************IMPORTANTE : 
+
+Il Dispatcher Servlet può essere configurato attraverso Java (come nell'esempio) o configurando il web.xml . 
+Con Spring Boot questa configurazione è fatta IN AUTOMATICO 
+CON SPRING BOOT NON CONFIGURIAMO UN NULLA CAZZO  (Spring Boot autoconfigura il Dispatcher Servlet basandosi sulle dipendenze presenti nel classpath dell'applicazione.  il Dispatcher Servlet può essere configurato sia tramite file web.xml che programmazione Java. La classe DispatcherServletInitializer) 
+
+
+
+
+
+
+
+
+
+
+//CODICE
+
+
+public class MyWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+
+    @Override
+    protected Class<?>[] getRootConfigClasses() {
+        return null;
+    }
+
+    @Override
+    protected Class<?>[] getServletConfigClasses() {
+        return new Class<?>[] { MyWebConfig.class };
+    }
+
+    @Override
+    protected String[] getServletMappings() {
+        return new String[] { "/" };
+    }
+}
+
+
+
+
+
+Nel metodo getServletMappings andiamo ad impostare quali richieste vogliamo siano gestite dal DispatcherServlet e quindi da Spring ;
+Con la String  "/" stiamo dicendo che qualunque tipo di richiesta sarà gestita dal DispatcherServlet (abbiamo la possibilità che solo parte del programma 
+sia gestito da esso , ci basterà modificare il path e dire quali path di richieste vogliamo siano gestite dal DispatcherServlet) 
+
+
+Poi devi prima sapere che per un DS possono essere creati 2 tipi di Application Context :
+(solitamente ne viene creato 1 di ognuno)
+La differenza principale tra il root ApplicationContext e il servlet ApplicationContext riguarda il loro scopo e le responsabilità all'interno di un'applicazione Spring MVC.
+ Entrambi sono tipi di ApplicationContext e fungono da contenitori per i bean e le configurazioni dell'applicazione, ma sono utilizzati per scopi diversi.
+
+
+
+
+createRootApplicationContext(): 
+Questo metodo viene utilizzato per creare e configurare l'ApplicationContext radice per l'applicazione. Nel tuo esempio, il metodo ritorna null, il che significa che non verrà creato un contesto radice.
+Potresti configurare qui i bean a livello di applicazione, come i servizi di business e l'accesso ai dati, se necessario.
+
+createServletApplicationContext(): 
+Questo metodo viene utilizzato per creare e configurare l'ApplicationContext specifico della servlet, che sarà il contesto figlio dell'ApplicationContext radice (se presente).
+
+getServletMappings(): 
+Questo metodo viene utilizzato per specificare i mapping dell'URL per il DispatcherServlet.
+Nel tuo esempio, viene mappato all'URL radice ("/"), il che significa che il DispatcherServlet gestirà tutte le richieste all'applicazione.
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
++l'aApplication Context gestisce i Bean , esistono dei Bean "speciali" come il ViewResolver o HandlerMapping che si occupano di svolgere particolari compiti
+
+
+
+
+
+
+
+
+
+
+
+
+
+-@Configuration  -->  come detto molte cose come i Bean possono essere configurate con xml oppure tramite codice java con opportune annotazioni . Con questa 
+stiamo dicendo che in sta classe Java sarà presente codice di configurazione , è na classe di configurazione. 
+
+
+-@Bean -->  viene utilizzata per indicare che un metodo produce un oggetto che deve essere gestito come bean dal contenitore di Spring. 
+Se abbiamo due Bean dello stesso tipo (quindi due metodi che restituiscono un Bean dello stesso tipo) sarà necessario dargli un nome per renderlo univoco.
+Un Bean ha l'attributo NOME , AUTOWIRE (e altri 2 per personalizzare l'init e il destroy del bean)
+ 
+IMPORTANTE : con @Bean dichiariamo che quel metodo di occupa di creare e restituire un BEAN e bast . Non stiamo dicendo che quello è il Bean o cose del genere.
+
+-@Autowired -->  serve per iniettare dinamicamente un oggetto Bean in un altro codice in modo da poterne usare liberamente i metodi senza l'onere della dipendenza
+
+-@Qualifier("bean1") -->  viene usato subito prima o dopo l'@Autowired per dire "il Bean di cui faccio l'autowired ha precisamente nome bean1" 
+
+-@Resource("bean1)  -->  invece di scrivere @Qualifier("bean1") e @Autowired   ......scrivo @Resource("bean1)
+
+-@PostContruct e @PreDestroy  -->  viene usato quando stiamo implementando la CLASSE del Bean . Vengono usati prima di metodi dicendo che quei metodi devono essere 
+eseguiti subito dopo la creazione del Bean (@PostConstruct) o prima che venga ditrutto (@PreDestroy) 
+Il Bean viene creato e distrutto un unica volta nel ciclo di vita dell'applicazione 
+
+-@Lazy --> se annoti un Bean (dopo @Bean) con @Lazy esso sarà istanziato al primo utilizzo 
+(il Bean è istanziato una singola volta nel ciclo di vita dell'applicazione , o all'avvio o al primo utilizzo) 
+
+
+
+
+-@RestController --> classe controller dell'MVC che usa REST Api   ( se scriviamo @Controller e @ResponseBody è equivalente) 
+Tecnicamente il controller è un Bean Singleton 
+
+
+-@RequestMapping("/api/control") --> per mappare la "servlet" per servire la richiesta al seguente URL 
+Può ricevere come attributi una serie id valori 
++ 1 o più path URL es : @RequestMapping({"/users" , "/clients"})    ,   anche uno formato da espressione regolare  es: @RequestMapping("/{usersIs:[0-9]+}")
+
++ tipi di richieste supportate    es:  @RequestMapping( method = {RequestMethod.GET})
+
++parametri supportati (nell'URL se GET , nel boody se POST)      es:    @RequestMapping( params = "id4")
+
++tipi di valori accettati in input    es:   @RequestMapping( consumes = MediaType.APPLICATION_JSON_VALUE)
+
++tipi di valori prodotti in output    es:   @RequestMapping( produces = MediaType.APPLICATION_XML_VALUE)
+
+
+
+
+-@PathVariable --> per prendere in input nei metodi i parametri del @RequestMapping
+
+es:        @RequestMapping("api/{userName}/{userId}")
+                     public String handleRequest ( @PathVariable String userName, @PathVariable String userId, Model model)
+
+
+
+
+-Model model -->   è solitamente messo come parametro nei metodi dei Controller . Questo è un contenitore di coppie nome-valore, inizialmente vuoto e dato
+ai metodi dei controller in modo che , interagendo con il database (con il Model) questo possa essere riempito di dati che poi il Controller manda alla View .
+IMPORTANTE : l'oggetto Model viene creato alla richiesta HTTP accolta dal metodo e muore alla fine di quel metodo 
+
+
+
+-@RequestParam -->  serve per prendere i parametri presenti nella richiesta (nell'URL con il GET e nel body con il POST) 
+Esso supporta vari attributi tra cui il nome del parametro da prendere , se un certo parametro è required=true si deve avere per forza se no Eccezione , oppure 
+può anche supportare un valore di default
+
+
+
+
+-@ModelAttribute  -->  in generale viene utilizzato per inizializzare con dei valori l'oggetto Model dato come parametro ai metodi del Controller
+    Ha 2 utilizzi : 
+
+1) Identifichiamo un metodo "speciale" del controller con @ModelAttribute , in tal modo sto metodo sarà automaticamente chiamato prima di ogni metodo gestore
+delle richieste in questo controller
+
+es.     @Controller
+public class EsempioController {
+
+
+    @ModelAttribute("categorie")
+    public List<String> popolaCategorie() {
+        // Qui potresti recuperare le categorie dal database o da un'altra fonte
+        List<String> categorie = Arrays.asList("Categoria 1", "Categoria 2", "Categoria 3");
+        return categorie;
+    }
+
+    @GetMapping("/mostraForm")
+    public String mostraForm(Model model) {
+        // La vista associata avrà accesso all'attributo "categorie" aggiunto automaticamente dal metodo popolaCategorie()
+        return "form";
+    }
+}
+
+
+//Il metodo popolaCategorie viene invocato prima di ogni metodo gestore delle richieste in questo controller  e aggiunge automaticamente al Model i valori 
+resituiti . Cosi il Model è inizializzato prima dell'utilizzo dei veri metodi del Controller
+
+
+2) Può essere usato per associare i parametri dati direttamente ad un oggetto, adattando i valori dei parametri direttamente all'oggetto POJO contenitore 
+
+es:
+
+@Controller
+public class EsempioController {
+
+    @GetMapping("/mostraForm")
+    public String mostraForm(Model model) {
+        // La vista associata avrà accesso all'attributo "categorie" aggiunto automaticamente dal metodo popolaCategorie()
+        return "form";
+    }
+
+    @PostMapping("/salvaProdotto")
+    public String salvaProdotto(@ModelAttribute Prodotto prodotto, Model model) {
+    
+        model.addAttribute("prodotto", prodotto);
+        return "risultato";
+    }
+}
+
+
+//in tal caso , in base al nome , i parametri vengono legati direttamente all'oggetto Prodotto che poi possiamo aggiungere al Model se vogliamo
+
+
+-------------------------------------------------------------------------------------------------
+
+                                                                        SCOPE 
+
+@Scope è un'annotazione di Spring che viene utilizzata per definire lo scope di un bean. 
+Uno scope definisce la durata e l'ambito di un oggetto all'interno del contesto dell'applicazione. 
+
+Ecco una lista degli scope disponibili in Spring + Spring MVC:
+
+1) SINGLETON (scope predefinito Spring) : viene creato una singola istanza del Bean all'avvio dell'applicazione ed usato da tutte le componenti
+
+2) PROTOTYPE : viene creato un nuovo Bean clone ed usato ogni volta che ne viene richiesto l'utilizzo
+
+3) REQUEST : è creato un Bean per ogni singola richiesta HTTP che arriva e distrutto dopo l'invio della risposta
+
+4) SESSION : è creato un Bean per ogni sessione HTTP e distrutto alla fine della sessione 
+
+5) GLOBAL SESSION : è creato un Bean per l'intera applicazione e distrutto alla fine della sessione 
+
+6) APPLICATION : Bean creato è distrutto all'avvio e fine dell'applicazione 
+
+7) WEB SOCKET : Bean creato per ogni connessione Web Socket e distrutto alla fine della singola connessione 
+
+
+es: 
+
+@Component
+@Scope("prototype")
+public class MyBean {
+   //...
+}
+
+In questo esempio, il bean MyBean viene configurato con lo scope prototype, il che significa che ogni volta che viene richiesto dal container Spring, 
+viene creato un nuovo oggetto.
+
+
+-----------------------------------------------------------------------------------------------------
+
+
+                                                                    MEMORIE 
+
+Nella fase di sviluppo di un'applicazione web basata su Spring MVC, lo sviluppatore può utilizzare diverse tipologie di memoria per gestire i dati a runtime-
+
+
+1) Request memory: ogni volta che viene effettuata una richiesta HTTP, viene creato un oggetto HttpServletRequest che contiene i dati relativi alla richiesta.
+Inoltre, è possibile utilizzare l'oggetto HttpServletResponse per gestire la risposta HTTP. 
+
+2) Session memory: quando un utente accede all'applicazione web, viene creata una sessione che permette di mantenere i dati dell'utente durante la sua 
+navigazione all'interno dell'applicazione. Lo sviluppatore può utilizzare l'oggetto HttpSession per memorizzare i dati relativi alla sessione,
+come le informazioni dell'utente o le preferenze dell'applicazione.
+
+3) Cache memory: la cache è una memoria veloce utilizzata per memorizzare temporaneamente i dati che vengono richiesti frequentemente.
+Lo sviluppatore può utilizzare la cache per migliorare le prestazioni dell'applicazione, evitando di eseguire operazioni costose ogni volta che un dato viene richiesto.
+
+4)Application Context : viene creato una volta sola all'avvio dell'applicazione e contiene tutti i bean definiti nell'applicazione.
+l'ApplicationContext può essere utilizzato in modo simile al ServletContext in JavaEE per gestire oggetti e informazioni a livello di applicazione. 
+
+4)Database memory
+
+
+
+
+
+
+
+
+-@SessionAttribute   -->L'annotazione @SessionAttribute in Spring MVC viene utilizzata per accedere agli attributi memorizzati nella sessione HTTP nella parte server
+è limitato alla durata della sessione corrente e che i dati memorizzati con questa annotazione non saranno disponibili oltre il
+ termine della sessione HTTP
+
+es: 
+
+@Controller
+@SessionAttributes({"username", "password"})
+public class RegistrationController {
+  // ...
+}
+
+//In questo esempio, i campi "username" e "password" saranno conservati nella sessione HTTP e saranno disponibili durante la successiva richiesta HTTP.
+
+
+
+
+
+
++esiste una memoria di sessione anche lato client ? cosa posso usare per memorizzare le informazioni lato client oltre ai cookie ? e cosa determina la durata di una sessione ? 
+
+Oltre ai cookie, ci sono due principali meccanismi di memorizzazione lato client:
+
+LOCAL STORAGE: È un meccanismo di memorizzazione permanente che consente di salvare coppie chiave-valore nel browser dell'utente. 
+I dati memorizzati in localStorage persistono anche dopo che il browser viene chiuso e riaperto e non hanno una data di scadenza. 
+Tuttavia, i dati sono specifici per il dominio e non possono essere condivisi tra diversi domini. (prima parte dell'url, sostanzialmente deve essere lo stesso server) 
+
+
+SESSION STORAGE: È simile a localStorage, ma ha una durata limitata alla sessione del browser corrente. 
+I dati memorizzati in sessionStorage vengono eliminati quando il browser viene chiuso o quando la sessione del browser viene terminata.
+
+La durata di una sessione HTTP lato server viene determinata dalla configurazione del server o dell'applicazione. Ad esempio, in un'applicazione Spring,
+
+Il ciclo di vita della SESSIONE LATO SERVER è determinato dalla configurazione del server web utilizzato per ospitare l'applicazione.
+In genere, il ciclo di vita della sessione inizia quando un utente accede all'applicazione e termina quando l'utente esce o quando la sessione scade.
+La durata della sessione può essere impostata tramite la configurazione del server web.
+
+In generale, la gestione della sessione utente viene fatta in modo automatico dal server web e dal framework utilizzato dall'applicazione web,
+ come ad esempio Spring MVC.
+
+
+
+
++la sessione del client e quella del server sono differenti ?
+
+Sì, la sessione lato client e quella lato server sono differenti e servono a scopi diversi, anche se entrambe sono utilizzate per mantenere lo stato dell'utente
+ tra diverse richieste HTTP.
+
+Sessione lato server:
+La sessione lato server è gestita dal server e viene utilizzata per memorizzare le informazioni relative all'utente sul server stesso.
+Questa sessione viene identificata da un ID di sessione univoco, che viene solitamente memorizzato nel browser dell'utente sotto forma di cookie.
+Quando l'utente invia una richiesta al server, il server utilizza l'ID di sessione per recuperare le informazioni associate a quella sessione. 
+La sessione lato server può essere utilizzata per memorizzare informazioni sensibili, come le credenziali dell'utente, che non dovrebbero essere esposte al client.
+
+Sessione lato client:
+La sessione lato client si riferisce alla memorizzazione delle informazioni direttamente nel browser dell'utente utilizzando meccanismi come i cookie,
+localStorage o sessionStorage. Poiché queste informazioni sono memorizzate nel browser dell'utente, possono essere facilmente accessibili e modificate dal
+ codice JavaScript eseguito sul client. La sessione lato client può essere utilizzata per memorizzare le informazioni che non sono sensibili o che 
+devono essere facilmente accessibili dal codice JavaScript del client, come le preferenze dell'utente o i dati per migliorare l'esperienza utente.
+
+
+
+
+
+
+
+
+
+-@RequestAttribute  -->  è collegato a quella che è la memoria della HttpRequest che può contenere degli attributi che possiamo settare e ottenere 
+
+es
+
+@RequestMapping("/example")
+public String handleRequest(HttpServletRequest request) {
+    request.setAttribute("myAttribute", "myValue");
+    // ...
+}
+
+
+Con @ReqeustAttribute possiamo iniettare un attributo della richiesta direttamente nel parametro di un metodo 
+
+es: 
+
+@RequestMapping("/example")
+public String handleRequest(@RequestAttribute("myAttribute") String myAttributeValue) {
+    // ...
+}
+
+//adesso il parametro myAttributeValue contiene direttamente l'attributo "myAttribute" della richiesta , senza il bisogno di fare getAttribute e ottenerlo e trasferirlo 
+poi in String myAttributeValue
+
+
+
+
+
+
+
+
+Il WebApplicationContext è un'interfaccia specifica di Spring Framework che estende ApplicationContext, un'interfaccia centrale nel sistema di Spring per
+ fornire configurazioni e gestione delle risorse. Il WebApplicationContext è stato progettato specificamente per le applicazioni web basate su Spring e 
+fornisce un supporto per le funzionalità web-oriented, come la registrazione e la risoluzione dei bean e la gestione dei cicli di vita dei bean.
+
+Il WebApplicationContext fa parte di Spring Web MVC (Model-View-Controller), un sottoinsieme del framework Spring, che fornisce un'architettura MVC per 
+sviluppare applicazioni web basate su Spring. Spring Web MVC è un modulo del progetto Spring Framework ed è utilizzato per creare applicazioni web scalabili,
+ flessibili e facilmente testabili.
+
+se uso Spring Boot senza includere Spring MVC otterrò una web application pronta all'uso o no ?
+Se utilizzi Spring Boot senza includere Spring MVC, non otterrai automaticamente una web application pronta all'uso. Spring MVC è il componente di Spring che offre il supporto per la creazione di applicazioni web basate su model-view-controller (MVC).
+
+Tuttavia, Spring Boot supporta diversi moduli per lo sviluppo di applicazioni web oltre a Spring MVC, come Spring WebFlux (per applicazioni web reattive) o l'integrazione con altri framework web come Jersey (per applicazioni RESTful basate su JAX-RS).
+
+Per creare una web application con Spring Boot, devi includere uno di questi moduli nel tuo progetto. Ad esempio, per includere Spring MVC, aggiungeresti una dipendenza "spring-boot-starter-web" nel tuo file di configurazione delle dipendenze (Maven o Gradle).
+
+Se non includi alcun modulo per la creazione di applicazioni web, Spring Boot creerà comunque un'applicazione, ma sarà un'applicazione non-web (standalone) senza le funzionalità tipiche di una web application, come la gestione delle richieste HTTP e la generazione di risposte.
+
+
+
+
+
+
+POJO 
+È un oggetto semplice che contiene solo dati e metodi getter/setter per accedere e modificare i dati. 
+In altre parole, è una classe Java "pulita" che rappresenta solo un'entità del dominio (come ad esempio un utente o un ordine) e che può essere utilizzata 
+in modo indipendente in qualsiasi parte dell'applicazione senza dipendenze esterne.
+
+I POJO sono comunemente utilizzati nelle applicazioni web per rappresentare i dati dei modelli, come ad esempio i dati degli utenti, degli ordini o dei prodotti.
+Sono anche utilizzati come DTO (Data Transfer Object) per trasferire dati tra le diverse parti dell'applicazione o tra l'applicazione e il database.
+Quindi, mentre un bean è effettivamente un POJO, la differenza chiave tra i due è che un bean è gestito dal container Spring, mentre un POJO è solo
+ una classe Java ordinaria senza alcuna dipendenza o legame con il framework Spring.
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------------
+
+
+STRUTTURA PROGETTO 
+
+
+src/
+|-- main/
+|   |-- java/
+|   |   |-- com/
+|   |       |-- tuonomeprogetto/
+|   |           |-- controller/    # Contiene i controller dell'applicazione
+|   |           |   |-- PrenotazioneController.java
+|   |           |-- model/         # Contiene le entità JPA
+|   |           |   |-- Prenotazione.java
+|   |           |-- repository/    # Interfacce JPA per l'accesso ai dati
+|   |           |   |-- PrenotazioneRepository.java
+|   |           |-- service/       # Servizi per la logica di business
+|   |           |   |-- PrenotazioneService.java
+|   |           |-- config/        # Classi di configurazione
+|   |           |-- Application.java  # Classe principale di Spring Boot
+|   |-- resources/
+|       |-- static/     # Contiene risorse statiche come CSS, JS, immagini
+|       |-- templates/  # Contiene le viste del tuo progetto, se usi Thymeleaf o simili
+|       |-- application.properties # File di configurazione per Spring Boot
+|-- test/               # Contiene i test dell'applicazione
+    |-- java/
+        |-- com/
+            |-- tuonomeprogetto/
+                # Struttura di cartelle simile a src/main/java per i test
+
+
+
+
+
+
+
+
+ENTITY 
+
+Usando JPA , possiamo interagire con il nostro database usando elementi Java e Spring. Però Spring non sa come sfaccimma sono le tabelle del nostro database e come sono organizzate . Con le classi Entity non facciamo altro che specificare le caratteristiche delle nostre tabelle , i tipi di dati contenuti e le relazioni tra le tabelle ecc...  Ad esempio specifichiamo con @Entity che quell'elemento è una tabella , con @Id specifichiamo la chiave primaria ecc....
+In teoria dovremmo specificare tutto delle nostre tabelle , come se stessimo implementando il database da zero , se non specifichiamo alcune informazioni,
+Spring automaticamente prenderà per buone le sue configurazioni di defaul . 
+Una classe annotata come Entity è considerata una tabella del database (quindi la usiamo per rappresentare una tabella del database già esistente con lo stesso nome della classe) , gli attributi della classe Entity sono automaticamente considerate colonne della tabella 
+
+
+es: 
+
+@Setter
+@Getter
+@Entity
+@Table(name = "users")
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
+
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    // Constructor vuoto richiesto da JPA
+    public User() {
+    }
+
+    // Constructor per la creazione dell'oggetto User
+    public User(String firstName, String lastName, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
+
++@Column permette di specificare alcune caratteristiche di una colonna del database.
+-L'attributo name specifica il nome della colonna nel database a cui il campo dell'entità è mappato. Questo è utile quando il nome della colonna nel database differisce dal nome del campo nell'entità
+-nullable : specifica se la colonna può essere null
+
+
+
+REPOSITORY 
+
+serve per l'implementazione dei metodi che si occupano di accedere e interagire con il database . Service utilizzerà poi i metodi che implementiamo qui 
+per interagire con il database e gestire la logica di business . In Repository dichiariamo i metodi e Service li usa . 
+
+es:
+
+public interface UserRepository extends JpaRepository<User, Long> {    //User è il tipo di Entità che viene gestita 
+                                                                       //Long è il tipo della chiave primaria dell'Entità 
+    @Transactional
+    void deleteByLastName(String lastName);
+}
+
+
+
+andando ad estendere la classe JpaRepository succede che i metodi CRUD inerenti alla entità User sono già implementati di default . 
+Metodi come 
+save(S entity): salva un'entità nel database. Può essere usato sia per creare che per aggiornare un'entità.
+findById(ID id): recupera un'entità per il suo ID.
+findAll(): recupera tutte le entità.
+delete(T entity): elimina l'entità dal database.
+count(): restituisce il numero di entità presenti.
+deleteById(ID id): elimina l'entità con l'ID specificato.
+
+ad esempio sono già implementati e pronti all'uso per la nostra entità User , e non devono essere riscritti .
+Inoltre possiamo implementare altri metodi, ci sono 2 modi per farlo : 
+
+1)semplicemente scrivendo il nome secondo alcune convenzioni : 
+
+es: 
+
+public interface UserRepository extends JpaRepository<User, Long> {
+    
+    @Transactional
+    void deleteByLastName(String lastName);
+}
+
+
+Il prefisso "delete" già fa capire a Spring che dobbiamo eliminare un istanza ell'Entità User , "by" 
+Spring da queste parole chiave riesce a capire cosa deve fare.
++è ovviamente importante scrivere i nomi precisi "String lastName" dato come parametro a deleteByLastName , equivale a "String lastName" che è 
+l'attributo appartente alla classe Entity
+
+
+2)un altro metodo consiste nello scrivere le query da adottare per quel metodo . Le query vengono scritte in JPQL (è un linguaggio praticamente uguale a SQL , ma per riferirici ad una determinata tabella o colonna non usiamo il nome della tabella del database ma ii nomi nel nostro programma Java che abbiamo usato come riferimento per mappare in java i nostri elementi del database ) 
+
+es:
+
+@Query("SELECT u FROM User u WHERE u.status = 1")
+Collection<User> findAllActiveUsers();
+
+
+
+
+
++Oltre ad ereditare i metodi principali e poter creare semplicemente usando le parole chiave delle query più complesse , possiamo , nello stesso modo 
+gestire anche la paginazione e il sorting . Ovvero per la paginazione decidere quanti dati restituire poichè se sono tanti l'utente non li potrà visualizzare tutti assieme , e per il sorting di avere i dati ordinati in un certo modo . 
+
+Per implementare i metodi usando le parole chiave e allo stesso tempo regolando la paginazione e sorting dobbiamo far prendere come paramentro al nostro 
+metodo anche un oggetto Pageable . 
+
+es:
+
+public interface UserRepository extends JpaRepository<User, Long> {
+    Page<User> findByLastName(String lastName, Pageable pageable);
+}
+
+
+//in questo esempio andiamo a creare un metdo che prende gli utenti in base al cognome , ne prende una certa quantità che dobbiamo andare poi a definire 
+nel Service creando un oggetto PageRequest in cui definiamo il numero della ppagina e il numero di elementi in essa:
+
+
+@Service
+public class UserService {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    public Page<User> findUsersByLastName(String lastName, int page, int size) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        return userRepository.findByLastName(lastName, pageRequest);
+    }
+}
+
+//NOTA che restituisce un elemnto Page che alla fine è come una lista ma con informazioni aggiuntive per la paginazione
+
+
++Se vogliamo inserire anche il Sort , possiamo farlo stesso nel Pageable che poi andiamo ad utilizzare come parametro nel metodo : 
+
+es:
+
+Pageable sortedByPriceDesc = 
+  PageRequest.of(0, 3, Sort.by("price").descending());
+
+
+//oppure possiamo anche creare un metodo che prende in input solo il Sort e restituisce la lista ordinata ma non paginata : 
+
+es:
+//nel repository
+List<User> findByFirstName(String firstName, Sort sort);
+
+
+//nel Service
+Sort sort = Sort.by("lastName");
+
+public List<User> getUsersByFirstName(String firstName, Sort sort) {
+    return userRepository.findByFirstName(firstName, sort);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

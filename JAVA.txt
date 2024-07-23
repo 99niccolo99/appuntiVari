@@ -1,0 +1,1932 @@
+import java.util.*;
+
+public class CollectionInitialization {
+    public static void main(String[] args) {
+        // List Initialization
+        List<String> arrayList = new ArrayList<>(Arrays.asList("Apple", "Banana", "Cherry"));
+        List<String> linkedList = new LinkedList<>(Arrays.asList("Dog", "Cat", "Horse"));
+        List<String> vector = new Vector<>(Arrays.asList("Red", "Green", "Blue"));
+        Stack<String> stack = new Stack<>();
+        stack.push("One");
+        stack.push("Two");
+        stack.push("Three");
+
+        // Set Initialization
+        Set<String> hashSet = new HashSet<>(Arrays.asList("Alpha", "Beta", "Gamma"));
+        Set<String> linkedHashSet = new LinkedHashSet<>(Arrays.asList("Orange", "Apple", "Banana"));
+        Set<String> treeSet = new TreeSet<>(Arrays.asList("Delta", "Alpha", "Charlie"));
+
+        // Queue Initialization
+        Queue<Integer> priorityQueue = new PriorityQueue<>(Arrays.asList(3, 1, 2));
+        Deque<String> arrayDeque = new ArrayDeque<>(Arrays.asList("First", "Last", "Middle"));
+
+        // Map Initialization
+        Map<String, Integer> hashMap = new HashMap<>();
+        hashMap.put("One", 1);
+        hashMap.put("Two", 2);
+        hashMap.put("Three", 3);
+
+        Map<String, Integer> linkedHashMap = new LinkedHashMap<>();
+        linkedHashMap.put("Monday", 1);
+        linkedHashMap.put("Tuesday", 2);
+        linkedHashMap.put("Wednesday", 3);
+
+        Map<String, Integer> treeMap = new TreeMap<>();
+        treeMap.put("X", 24);
+        treeMap.put("A", 1);
+        treeMap.put("M", 13);
+
+        Hashtable<String, Integer> hashtable = new Hashtable<>();
+        hashtable.put("Jan", 31);
+        hashtable.put("Feb", 28);
+        hashtable.put("Mar", 31);
+
+
+
+
+
+JAVA 
+
+-è un linguaggio di programmazione orientato agli oggetti ad alto livello ,ovvero
+con un alto livello di astrazione e lontananza dal linguaggio macchina. 
+
+-La programmazione orientata agli oggetti (OOP - Object-Oriented Programming) è un paradigma di programmazione che si
+ basa sull'idea di creare oggetti che rappresentano entità del mondo reale o concetti astratti, e di interagire con 
+questi oggetti attraverso il loro stato (i loro dati interni) e i loro comportamenti (i metodi che possono essere chiamati su di essi). 
+
+-Il file sorgente .java viene prima COMPILATO in Bytecode(linguaggio intermedio 
+tra linguaggio macchina e java) ,ovvero .class ; poi basta avere una Java Virtual
+Machine sulla propria macchina interpretare(eseguire) il .class.
+Indipendentemente dal sistema operativo o dall'hardware su cui è eseguito il 
+codice .class parte , ti basta solo avere una Java Virtual Machine .
+Questo comportamento differisce da quanto avviene in molti altri linguaggi di
+programmazione che, una volta compilati, producono codice macchina che 
+può essere eseguito solo su sistemi specifici(si intende telefoni distributori
+ecc...)
+
+-JRE e JDK
+JRE Java Runtime Environment è un ambiente di esecuzione che sostanzialmente usi
+solo per eseguire i .class; infatti include principalmente la JVM e le librerie
+standard(API Java).(quindi è sostanzialmente solo la JavaVirtualMachine) 
+Se vuoi solo eseguire .class puoi scaricare solo JRE che è pure più leggero.
+Se vuoi sviluppare in Java hai bisogno della JDK Java Development Kit , che 
+contiene JRE e inoltre altri strumenti utili allo sviluppo come un
+ compilatore (javac), un archiviatore (jar), un generatore di documentazione
+(javadoc)  ecc.....
+
+Per compliare ed eseguire un programma Java avremo bisogno di un
+compilatore Java e di una Java Virtual Machine (JVM)
+Entrambi questi strumenti sono forniti dal Java Development Kit (JDK).
+
+
+
+
+4 PRINCIPI FONDAMENTALI :    
+
+1) Incapsulamento
+
+2) Ereditarietà
+
+3) Astrazione 
+
+4) Polimorfismo
+
+-----------------------------------------------------------------------------------------------
+
+1)INCAPSULAMENTO 
+
+
+è un principio che consente di proteggere i dati dell'oggetto e limitare l'accesso diretto a essi da parte di altri oggetti o classi.
+
+Sto principio è usato solitamente per le variabili di istanza.
+
+Le variabili di istanza sono generalmente dichiarate come private, il che significa che sono accessibili solo all'interno della stessa classe.
+
+Per accedere a queste variabili da altre classi, è necessario utilizzare i metodi pubblici della classe che accedono e modificano(get e set) le variabili di istanza.
+
+In questo modo, le altre classi possono accedere alla variabile solo attraverso i metodi forniti dalla classe, che possono effettuare controlli o validazioni 
+sull'input prima di modificare la variabile di istanza.
+
+L'incapsulamento consente di proteggere i dati e di garantire che l'accesso ad essi avvenga solo attraverso i metodi definiti dalla classe,
+ migliorando la sicurezza e la stabilità del codice e semplificando la manutenzione.
+
+NOTA: lo si fa per fornire un modo controllato di modificare la variabile , cosi rendiamo accessibile al di fuori solo che vogliamo rendere accessibile , 
+mettendo ad esempio controlli sul tipo di dato da poter inserire con un set
+
+
+
+
+--------------------------------------------------------------------------------------
+
+EREDITARIETA' 
+
+(una classe può estendere SOLO 1 altra classe) 
+Si da con la parola chiave "extends" e si tratta di ereditare metodi e attributi da un'altra classe. Una volta che li erediti usando extends , la classe 
+che ha ereditato si chiama sottoclasse , quella che ha ceduto si chiama superclasse. 
+È utile per la RIUSABILITà del codice poichè riutilizza attributi e metodi di una classe esistente quando crei una nuova classe.
+L'ereditarietà è particolarmente utile quando si desidera estendere il comportamento di una classe esistente per creare una nuova classe con funzionalità aggiuntive.
+
+es: 
+
+class Vehicle {
+  protected String brand = "Ford";        // Vehicle attribute
+  public void honk() {                    // Vehicle method
+    System.out.println("Tuut, tuut!");
+  }
+}
+
+class Car extends Vehicle {
+  private String modelName = "Mustang";    // Car attribute
+
+
+  public static void main(String[] args) {   
+    Car myCar = new Car();
+
+    myCar.honk();        //stampa "Tuut,tuut!" usando il metodo ereditato
+
+    System.out.println(myCar.brand + " " + myCar.modelName); //stampa l'attributo ereditato e l'attributo di cui è nativamente proprietario
+  }
+}
+
+
+
+NOTA: la sottoclasse può usare i metodi della superclasse ( usando super() se ha fatto l'override) 
+la superclasse invece non può usare direttamente quelli della sottoclasse (Animal n = new Animal() non può usare un metodo di Gatto 
+                                                                           Animal n = new Gatto()   invece può ) 
+
+
+RICORDA : se Car ha bisogno di ereditare e usare delle variabili da Vehicle allora queste NON devono essere private , se no non le può usare . 
+Soluzione -> 1) modificatore di accesso "protected" (utilizzabile nel package e nelle classi che ereditano)(senza modificatore, usabile nello stesso package)
+
+ 2)  Crea dei metodi getter e setter nella classe "Vehicle" per accedere e modificare le variabili. 
+Questo è il metodo consigliato, in quanto consente di mantenere l'incapsulamento e il controllo sull'accesso alle variabili.
+
+
+class Vehicle {
+    private String brand;
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+}
+
+
+
+
+
+Il LATE BINDING, anche noto come Dynamic Method Dispatch o Runtime Polymorphism,si riferisce alla risoluzione dei metodi sovrascritti durante l'esecuzione 
+del programma invece che durante la compilazione. 
+In altre parole, il metodo corretto da chiamare viene determinato al momento dell'esecuzione sulla base del tipo dell'oggetto a runtime, non del tipo di 
+riferimento della variabile.
+
+Il Late Binding viene implementato attraverso il meccanismo del metodo sovrascritto. Quando una classe eredita da una classe base e sovrascrive uno dei suoi
+ metodi, il metodo appropriato viene selezionato dinamicamente a runtime in base all'oggetto con cui stiamo lavorando.
+
+
+class Animale {
+    void suono() {
+        System.out.println("L'animale emette un suono");
+    }
+}
+
+class Cane extends Animale {
+    void suono() {
+        System.out.println("Il cane abbaia");
+    }
+}
+
+class Gatto extends Animale {
+    void suono() {
+        System.out.println("Il gatto miagola");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animale mioAnimale = new Cane();
+        mioAnimale.suono(); // Stampa "Il cane abbaia"
+
+        mioAnimale = new Gatto();
+        mioAnimale.suono(); // Stampa "Il gatto miagola"
+    }
+}
+
+
+
+
+NOTA:
+
+ESEMPIO su come ereditare gli attributi private (guardatelo)
+
+
+class SuperClass {
+  private int x;
+  private String y;
+  
+  public SuperClass(int x, String y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  public int getX() {
+    return x;
+  }
+
+  public String getY() {
+    return y;
+  }
+}
+
+class SubClass extends SuperClass {
+  public SubClass(int x, String y) {
+    super(x, y);
+  }
+
+  public void printXandY() {
+    System.out.println("x: " + getX());
+    System.out.println("y: " + getY());
+  }
+}
+
+class SubClass2 extends SuperClass {
+  public SubClass2(int x) {
+    super(x, null);
+  }
+
+  public void printX() {
+    System.out.println("x: " + getX());
+  }
+}
+
+
+----------------------------------------------------------------------------------------------------------
+
+ASTRAZIONE 
+
+Viene utilizzata per nascondere i dettagli complessi di implementazione e mostrare solo le funzionalità essenziali all'utente. L'astrazione permette di concentrarsi su cosa fa un oggetto piuttosto che su come lo fa, facilitando così la gestione della complessità nei grandi sistemi software.
+
+Ciò significa che i dettagli di implementazione di un oggetto o di una classe possono essere modificati senza influire sulla logica di utilizzo 
+dell'oggetto o della classe stessa. Questo rende il codice più flessibile, facilmente modificabile e meno propenso agli errori.
+
+(Le interfacce e le classi astratte promuovono la modularità attraverso l'astrazione, consentendo di definire contratti o comportamenti che le implementazioni concrete devono seguire. Questo consente di cambiare le implementazioni concrete senza alterare il codice che si basa su queste interfacce astratte.)
+
+NOTA :se l'obbiettivo è solo separare l'implementazione dall'utilizzo , allora usa un INTERFACCIA
+
+
+CLASSE ASTRATTA
+
+Una classe astratta è una classe che non può essere istanziata da sola e può contenere sia metodi astratti (senza implementazione) che metodi concreti (con implementazione).
+
+es:
+
+abstract class Animale {
+    abstract void mangia();  // Metodo astratto, senza corpo
+
+    void respira() {         // Metodo concreto
+        System.out.println("Respira");
+    }
+}
+
+
+  
+
+NOTA : una classe non astratta NON può avere metodi astratti 
+
+NOTA: una classe che eredità da una classe astratta , è COSTRETTO ad implementare/sovrascrivere i metodi astratti 
+
+NOTA : da utilizzare talvolta nelle superclasse per creare una gerarchia quando la classe è un concetto astratto che non viene istanziato . 
+Le usiamo al posto delle interfacce quando c'è una relazione gerarchica tra le classi
+
+
+
+
+-------------------------------------------------------------------------------------------------------------
+
+MAIN 
+
+il metodo main è il punto di partenza per l'esecuzione di un programma Java e rappresenta il cuore del programma stesso.
+
+--------------------------------------------------------------------------------------------------------------
+
+TIPI DI DATI    PRIMITIVI E COMPLESSI 
+
+In Java la differenza tra dati primitivi e complessi funziona come JavaSCript , ovvero quelli primitivi sono salvati con dimensione fissa nello stack 
+mentre quelli complessi nell'heap . Come JS , quando si passa un dato primitivo da una variabile ad un altra ne viene passata una copia (passaggio per valore)
+, quando passo un dato complesso viene passato il riferimento allo stesso dato (non una copia , quella deve essere fatta in modo esplicito).
+(passaggio per riferimento)
+
+In Java tutti i dati complessi ereditano dal tipo Object che è radice della gerarchia 
+
+
+++In Java, i dati calcolati e allocati a tempo di compilazione sono quelli che possono essere determinati durante la fase di compilazione del codice sorgente.
+Questi dati sono noti al compilatore al momento della compilazione e non cambiano durante l'esecuzione del programma. 
+Alcuni esempi di dati calcolati e allocati a tempo di compilazione includono costanti, valori letterali, dimensioni di array e variabili final.
+
+D'altra parte, i dati calcolati a tempo di esecuzione sono quelli che vengono determinati durante l'esecuzione del programma.
+Questi dati possono essere influenzati da input utente, dati esterni o dallo stato del sistema durante l'esecuzione del programma.
+
+
+++ I dati COMPLESSI, come gli oggetti, gli arrayList e le classi, vengono allocati dinamicamente nella memoria DURANTE L'ESECUZIONE del programma. 
+Ciò significa che la memoria per questi dati viene allocata durante l'esecuzione del programma, in modo dinamico, ovvero durante l'esecuzione del codice.
+Durante l'allocazione dinamica della memoria, Java utilizza un sistema di gestione della memoria automatizzato, noto come Garbage Collector (GC),
+per rilevare e rimuovere i dati non più utilizzati e liberare la memoria.
+
+I dati PRIMITIVI vengono allocati staticamente durante la FASE DI COMPILAZIONE del programma e vengono memorizzati direttamente nella memoria della macchina.
+Quando si dichiara una variabile di tipo primitivo, come ad esempio un'int o un double, il compilatore riserva una porzione di memoria sufficiente 
+per contenere il valore di quel tipo di dato; magari durante l'esecuzione il valore di quell'int cambierà, però la porzione di memoria usata per quel dato 
+è sempre la stessa , per questo viene allocata staticamente in fase di compilazione , mentre quelle dei dati complessi cambia nel tempo . 
+Dato che la gestione dei primitivi è più semplice (poichè dimensione fissa) la loro gestione è più veloce ma meno flessibile , è la scelta giusta quando 
+vogliamo gestire dati estremamente semplici come un booleano. 
+
+
+
+
+NOTA :  quando usiamo == tra due oggetti , stiamo confrontando le aree di memoria a cui puntano e non l'oggetto in se a cui puntano , poichè contengono 
+il valore dell'aria di memoria 
+
+
+------------------------------------------------------------------------------------------------------------------
+
+OVERLOADING (sovraccarico) 
+
+Semplicemente dice che in una classe Java puoi creare 2 o più metodi con lo stesso identico nome , basta che abbiano 
+o un diverso numero di parametri 
+o parametri di tipo diverso . 
+
+
+NOTA : diverso da OVERRIDING che si ha qundo una classe sovrascrive un metodo della superclasse 
+
+-------------------------------------------------------------------------------------------------------
+SCOPE 
+
+(uno scope è delimitato da parentesi graffe {} )
+In Java le variabili sono accessibili solo nello scope in cui sono state dichiarate . 
+Sono accessibili negli scope "sotto" "all'interno" , 
+ma NON sono accessibili "da fuori" "dall'esterno" se dichiarate "all'interno" di uno scope . 
+
+----------------------------------------------------------------------------------------------------------
+
+PASSAGGIO PER      VALORE    E     RIFERIMENTO
+
+il passaggio per valore e quello per riferimento si riferiscono alle due modalità con cui un parametro viene passato ad una funzione.
+
+Il passaggio per VALORE significa che quando un parametro viene passato ad una funzione, viene effettuata una copia del valore originale
+e quindi la funzione lavora su una copia di quel valore. Questo significa che qualsiasi modifica apportata alla variabile all'interno della funzione non influirà sulla variabile originale che è stata passata come parametro.
+
+Il passaggio per RIFERIMENTO significa che invece di creare una copia del valore originale, viene passato un riferimento alla variabile originale alla funzione.
+In questo caso, la funzione lavorerà direttamente sulla variabile originale che è stata passata come parametro. 
+Quindi, qualsiasi modifica apportata alla variabile all'interno della funzione influirà sulla variabile originale che è stata passata come parametro.
+
+In molte lingue di programmazione ad oggetti, come ad esempio Java, il passaggio DI DEFAULT è PER VALORE .
+
+NOTA: quando passiamo come paramentro un tipo PRIMITIVO , esso viene passato per valore , quindi lavoriamo su una copia .
+      Quando passiamo come parametro un tipo COMPOSTO , esso viene tecnicamente passato per valore , ma viene passata una copia del riferimento in memoria 
+      dell'oggetto , non l'oggetto stesso . Quindi ci si riferirà sempre allo stesso oggetto ( è come se fosse un passaggio per riferimento poichè lavoriamo 
+      sempre sullo stesso oggetto e una modifica modificherà questo stesso oggetto) 
+
+
+--------------------------------------------------------------------------------------------------------------
+
+ORM 
+
+In Java, ORM (Object-Relational Mapping) è una tecnologia che permette di mappare i dati provenienti da un database relazionale in oggetti Java, 
+semplificando il lavoro degli sviluppatori e migliorando la manutenibilità del codice.
+
+L'ORM elimina la necessità di scrivere manualmente query SQL e di gestire la connessione al database, 
+fornendo invece una API che permette di manipolare gli oggetti Java come se fossero record del database. 
+Ciò significa che gli sviluppatori possono utilizzare i concetti di programmazione orientata agli oggetti per manipolare i dati,
+ invece di dover imparare la sintassi SQL.
+
+Le librerie ORM più utilizzate in Java includono Hibernate, EclipseLink e MyBatis.
+
+
+
+***IMPORTANTE 
+ORM è un termine generico che si riferisce ad un tool in grado di comunicare con il database usando uno specifico linguaggio di programmazione e le sue 
+caratteristiche (es . Java con gli oggetti)
+JPA è un interfaccia che specifica le regole da implementare per sviluppare un ORM per Java
+In altre parole, JPA specifica come un ORM dovrebbe essere implementato in Java
+JPA è solo una specifica; per usarla, è necessario un'implementazione concreta come Hibernate, EclipseLink, o OpenJPA.
+
+DIFFERENZA ORM / JPA / JDBC 
+
+ORM, JPA e JDBC sono concetti e tecnologie correlati ma distinti nell'ambito dello sviluppo di applicazioni Java che interagiscono con database. Vediamo in dettaglio ciascuno di essi per comprendere meglio le loro differenze.
+
+ORM (Object-Relational Mapping)
+Cos'è: ORM è un concetto generale che descrive una tecnica di programmazione per convertire dati tra il sistema di tipo incompatibile dei database relazionali e il modello ad oggetti delle applicazioni di programmazione. In altre parole, un ORM è un layer di astrazione che permette agli sviluppatori di lavorare con oggetti nel loro codice, che vengono poi mappati automaticamente a tabelle in un database relazionale.
+Vantaggi: Semplifica lo sviluppo software consentendo agli sviluppatori di operare con oggetti Java invece che con query SQL dirette, migliorando la produttività e riducendo la probabilità di errori.
+Esempi: Hibernate, EclipseLink, e JPA (che è una specifica per ORM).
+JPA (Java Persistence API)
+Cos'è: JPA è una specifica Java per ORM. Fornisce un set di regole e interfacce che i framework ORM possono implementare. JPA astrae la logica di persistenza del database, permettendo agli sviluppatori di manipolare le entità (oggetti Java che rappresentano le tabelle del database) in modo più intuitivo senza preoccuparsi delle specifiche del database sottostante.
+Vantaggi: Offre un'interfaccia standardizzata per la persistenza dei dati che è indipendente dal fornitore, consentendo una maggiore portabilità del codice e facilità di manutenzione.
+Relazione con ORM: JPA è una specifica ORM, che significa che è un insieme di interfacce e annotazioni che definiscono come un framework ORM dovrebbe essere implementato per essere conforme.
+
+
+JDBC (Java Database Connectivity)
+Cos'è: DBC (Java Database Connectivity) è un'API standard di Java che fornisce un'interfaccia per connettersi e eseguire operazioni su database relazionali. Fornisce i mezzi per stabilire connessioni con il database, eseguire query SQL, gestire risultati e gestire transazioni.
+Vantaggi: Offre controllo dettagliato sulle operazioni di database, consentendo ottimizzazioni specifiche del database e gestione fine dei risultati delle query.
+Relazione con ORM e JPA: JDBC opera a un livello di astrazione inferiore rispetto ad un ORM come Hibernate. Mentre Hibernate si occupano di mappare oggetti a tabelle di database in un modo ad alto livello, JDBC si occupa delle operazioni di basso livello necessarie per eseguire queste operazioni nel database.
+NOTA*****: la maggior parte degli ORM utilizzano JDBC al loro interno 
+
+
+Conclusione:
+ORM è un concetto generale che descrive il mappaggio tra oggetti Java e tabelle di database.
+JPA è una specifica Java che definisce come implementare l'ORM in modo standard, permettendo agli sviluppatori di utilizzare interfacce uniformi per la persistenza dei dati.
+JDBC è un'API per connettersi e operare direttamente con i database, servendo come fondamento su cui possono essere costruiti ORM e implementazioni JPA.
+
++ddl : è la funzionalità che ci permette di fare la creazione automatica del database dall'applicazione Java
+--------------------------------------------------------------------------------------------------------------------
+
+RICORSIONE 
+
+la ricorsione si riferisce alla capacità di una funzione di richiamarsi. Questa tecnica fornisce un modo per scomporre problemi complicati 
+in problemi semplici che sono più facili da risolvere.
+
+es. 
+
+           public class Fattoriale {                                          
+    public static int fattoriale(int n) {                                                 
+        if (n == 1) {
+            return 1;
+        } else {
+            return n * fattoriale(n-1);
+        }
+    }
+
+Se facessi fattoriale(5) 
+
+--> fattoriale(3) --> 3 * fattoriale(2) --> 3 * (2 * fattoriale(1))  -->  3 * (2 * ( 1) )  --> 6
+
+
+----------------------------------------------------------------------------------------------------------------------
+
+ATTRIBUTI 
+
+Sono le proprietà degli oggetti definiti nelle classi . Vi si accede con "oggetto.attributo"
+
+public class Main {
+  int x = "John";                                                --> x è l'attributo , possiamo inizializzarlo o meno
+
+  public static void main(String[] args) {
+    Main myObj = new Main();
+    System.out.println(myObj.x);
+    myObj.x = "Kevin";
+  }
+}
+
+---------------------------------------------------------------------------------------------------------------------
+
+COSTRUTTORE 
+
+Viene usato per inizializzare gli attributi di un oggetto. 
+
+es:
+
+public class Main {
+  int modelYear;
+  String modelName;
+
+  public Main(int year, String name) {
+    modelYear = year;
+    modelName = name;
+  }
+
+  public static void main(String[] args) {
+    Main myCar = new Main(1969, "Mustang");
+    System.out.println(myCar.modelYear + " " + myCar.modelName);
+  }
+}
+
+
+NOTA:   se non dichiaramo un costruttore ci sarà lo stesso un costruttore di default che non inizializza nulla . Se invece dichiariamo un costruttore , quello di 
+default NON è più utilizzabile (anche se ad es. il costruttore creato prende un parametro in input mentre quello di default ovviamente non prende nulla) .
+
+--------------------------------------------------------------------------------------------------------------------
+
+VARIABILI 
+
+-Variabili di ISTANZA
+ è una variabile definita all'interno di una classe, ma al di fuori di qualsiasi metodo, costruttore o blocco statico.
+Ogni classe ha una propria variabile di istanza , appunto appartiene alla specifica istanza.
+Queste , se non inizializzate , ricevono un valore di default : 0 per un intero , false per booleano, null per oggetti. (ciò vale anche per le statiche) 
+
+-Variabili LOCALI 
+Variabili definite all'interno di un blocco di codice.Esse non possono essere utilizzate al di fuori del blocco in cui sono state definite.
+Le variabili locali vengono create quando il loro scope viene eseguito e vengono distrutte quando lo scope termina. 
+Ad esempio, quando si chiama un metodo, le variabili locali dichiarate all'interno del metodo vengono create e, una volta che il metodo termina, 
+queste variabili locali vengono eliminate.
+A differenza di quella di istanza , se non inizializzata non avrà un valore di default . Se la usiamo prima di inizializzarla......ERRORE .
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+                                       AMBIENTE DELLE CLASSI   -   STACK    -    HEAP 
+
+In Java, l'ambiente delle classi, lo stack e l'heap sono tre componenti essenziali per la gestione della memoria e l'esecuzione del codice.
+Ognuno di questi componenti svolge un ruolo cruciale nell'allocazione, gestione e rilascio di risorse durante l'esecuzione di un'applicazione Java.
+
+-Ambiente delle classi (Class Environment):
+L'ambiente delle classi è il contesto in cui le classi vengono allocate
+
+Stack (Pila):
+Lo stack è un'area di memoria utilizzata per conservare le informazioni relative all'esecuzione dei metodi, come le variabili locali, i parametri dei metodi
+ e i riferimenti agli oggetti. Lo stack è organizzato in una struttura LIFO (Last-In, First-Out), il che significa che l'ultimo elemento inserito 
+sarà il primo ad essere rimosso.
+
+Quando un metodo viene chiamato, la JVM crea un nuovo frame di stack per il metodo, che contiene le informazioni necessarie per l'esecuzione del metodo stesso. 
+Quando il metodo termina, il frame di stack viene eliminato e il controllo viene restituito al metodo chiamante. 
+Se lo stack diventa troppo grande e supera la capacità massima, si verifica uno StackOverflowError.
+
+Heap (Mucchio):
+L'heap è un'area di memoria utilizzata per conservare gli oggetti e le loro istanze. Quando un oggetto viene creato utilizzando l'operatore "new",
+viene allocato nello heap e viene restituito un riferimento all'oggetto. A differenza dello stack, l'heap non ha una struttura LIFO e la sua dimensione
+ può variare dinamicamente durante l'esecuzione del programma.
+
+La JVM gestisce l'heap attraverso un meccanismo chiamato "garbage collection" (raccolta dei rifiuti). Il garbage collector si occupa di rilevare e rimuovere 
+gli oggetti non più utilizzati, liberando così la memoria occupata da essi. Quando la quantità di memoria libera nell'heap scende al di sotto di un certo livello,
+il garbage collector viene invocato per liberare la memoria e prevenire un OutOfMemoryError.
+
+
+
+In sintesi, l'ambiente delle classi è responsabile del caricamento e dell'organizzazione delle classi, 
+lo stack gestisce l'esecuzione dei metodi e le variabili locali, e 
+l'heap si occupa dell'allocazione e della gestione degli oggetti. 
+
+
+NOTA:  Nello stack vengono memorizzate le variabili primitive contenenti il loro valore , 
+invece nell'heap vengono memorizzati i tipi composti , cui riferimento di memoria è memorizzato in una variabile nello stack 
+
+
+
+NOTA: RECORD DI ATTIVAZIONE 
+
+Un record di attivazione è una struttura dati che viene creata nello stack durante l'esecuzione di un metodo in un programma.
+Il record di attivazione contiene informazioni sullo stato corrente dell'esecuzione del metodo, come il valore degli argomenti passati al metodo, le 
+variabili locali del metodo, il valore di ritorno del metodo e l'indirizzo di ritorno, ovvero l'indirizzo di memoria del codice del programma dal quale 
+il metodo è stato chiamato.
+         
+---------------------------------------------------------------------------------------------------------------------
+
+MODIFICATORI DI ACCESSO 
+
+sono utilizzati per impostare il livello di accesso per classi, attributi, metodi e costruttori.
+
+Per le CLASSI :  (protected e private NON si usano per le classi) 
+
+PUBLIC --> la classe è visibile ovunque nel programma 
+DEFAULT --> (quando non si scrive nessun modificatore d'accesso) classe visibile nello stesso package
+
+Per METODI, ATTRIBUTI, COSTRUTTORI 
+
+PUBLIC --> visibili ovunque nel programma 
+
+PROTECTED --> accessibile alle classi dello stesso package e dalle sottoclassi della classe con metodo/attributo/costruttore protected
+                              (nel caso in cui sia sottoclasse non importa se è in un package diverso , è accessibile) 
+
+DEFAULT --> (quando non si scrive nessun modificatore d'accesso) visibile nello stesso package 
+
+PRIVATE --> accessibili solo all'interno della classe stessa 
+
+
+------------------------------------
+
+MODIFICATORI NON DI ACCESSO 
+
+utilizzati con classi, variabili, metodi, costruttori. Definiscono il comportamento delle entità alla JVM , non l'accessibilità .
+
+FINAL   
+-Se abbinato alla classe essa non può essere estesa , quindi non può avere sottoclasse
+-Se ad una variabile essa non può essere modificata dopo l'inizializzazione 
+-Se metodo non può essere sovrascritto dalle classi figlie 
+
+STATIC
+-NON può essere abbinato alla classe (si se la classe è interna ad un altra classe) 
+-Se ad una variabile vuol dire che sta variabile appartiene all'intera classe non ad un istanza della classe. Tutte le diverse istanze si riferiscono alla stessa
+variabile con il medesimo valore. 
+-se ad un metodo allora questo diventa un metodo della classe e non più un metodo dell'istanza.
+Ciò significa che il metodo può essere chiamato direttamente sulla classe, senza dover creare un'istanza dell'oggetto.
+ Inoltre, i metodi statici non possono accedere alle variabili non statiche o ai metodi non statici della classe,
+ poiché questi appartengono alle istanze della classe e non alla classe stessa.
+
+
+ABSTRACT 
+-Se abbinato ad una classe esso diventa un modello , non una classe vera e propria quindi non possiamo creare istanze di essa.
+-(metodo) lo stesso della classe
+-NON può essere applicato ad un attributo
+
+
+SYNCRONIZED
+-indica che un metodo o un blocco di codice può essere eseguito da un solo thread alla volta, per evitare problemi di concorrenza.
++può essere applicato SOLO  a blocchi di codice e metodi 
+
+
+
+--------------------------------------------------------------------------------------------------------
+
+NULL 
+
+In Java, null è un valore speciale che rappresenta l'assenza di un riferimento a un oggetto. Quando una variabile di riferimento viene inizializzata 
+con il valore null, significa che attualmente non fa riferimento a nessun oggetto.
+
+In altre parole, null è utilizzato per indicare che una variabile di riferimento non ha ancora un oggetto associato ad essa o che ha perso
+ il riferimento all'oggetto in precedenza assegnato.
+
+È importante notare che null non rappresenta un valore in sé, ma indica l'assenza di un valore. Pertanto, non può essere utilizzato come valore per 
+i tipi primitivi come int, double, boolean, ecc. perché questi tipi non hanno un riferimento.
+
+Inoltre, quando si tenta di utilizzare un oggetto null in un'operazione, ad esempio chiamare un metodo su di esso, viene generata un'eccezione
+ NullPointerException, che segnala che si sta cercando di utilizzare un oggetto che non esiste o che non è stato ancora creato.
+
+---------------------------------------------------------------------------------------------------------------
+
+ ENUM 
+
+sono valori costanti , che sai non verranno modificati
+
+es. 
+
+public class Main {
+  enum Level {
+    LOW,
+    MEDIUM,
+    HIGH
+  }
+
+  public static void main(String[] args) {
+    Level myVar = Level.MEDIUM;                    //non sono Stringhe , sono enum 
+    System.out.println(myVar);
+  }
+}
+
+
+
+
+---------------------------------------------------------------------------------------------------
+
+
+COMPOSIZIONE 
+
+
+Si riferisce all'utilizzo di classi e oggetti come blocchi di costruzione per creare strutture più complesse. 
+In pratica, la composizione implica l'inclusione di un'istanza di una classe (oggetto) all'interno di un'altra classe come campo, permettendo alla classe 
+contenente di accedere alle funzionalità e ai dati della classe contenuta.
+La composizione permette di creare relazioni tra classi in cui una classe è parte di un'altra classe.
+(è diverso dalla nidificazione tra classi) 
+
+La composizione è un esempio del principio "ha-un" o "parte-di", dove, ad esempio, un'auto "ha-un" motore o una stanza "è-parte-di" una casa.
+
+es:
+
+class Motore {
+    public void avvia() {
+        System.out.println("Il motore è stato avviato.");
+    }
+}
+
+class Auto {
+    private Motore motore; // Composizione: Auto "ha-un" Motore
+
+    public Auto() {
+        motore = new Motore(); // Inizializzazione del motore all'interno dell'auto
+    }
+
+    public void avviaAuto() {
+        motore.avvia(); // Delega: Auto utilizza il metodo del suo componente Motore
+        System.out.println("L'auto è pronta per essere guidata.");
+    }
+}
+
+
+
+IMPORANTE:
+NOTA che in tal caso stiamo creando una dipendenza (accoppiamento) , poichè il comportamento di Auto dipenderà da Motore; se per es. Motore viene modificato 
+,le modifiche saranno riscontrate anche da Auto; o se per es. Motore non funziona più allora non funzionerà più manco Auto . Questa è una DIPENDENZA. 
+
+(il termine "dipendenza" si riferisce a una relazione tra classi o moduli in cui una classe utilizza funzionalità o dati forniti da un'altra classe.Quindi il comportamento di una classe (la classe dipendente) è, in qualche modo, condizionato o influenzato dalla classe da cui dipende (la classe di dipendenza).
+
+Per gestire le dipendenze e mantenere l'accoppiamento il più basso possibile, è possibile adottare l'Iniezione delle dipendenze 
+
+
+
+
+INIEZIONE DELLE DIPENDENZE : 
+ con l'iniezione delle dipendenze la composizione si fa con l'interfaccia della classe e non con la classe stessa, quindi si fa dipendere la classe Auto
+ da un'astrazione della classe Motore.
+Facendo dipendere le classi da astrazioni piuttosto che da implementazioni concrete, si riduce l'accoppiamento tra di esse. Le classi non sono più rigidamente legate alle specifiche implementazioni, rendendo il sistema più flessibile e facilitando modifiche o sostituzioni di componenti senza impatti collaterali significativi.
+
+
+IMPORTANTE : una differenza fondamentale è che l'istanza della classe IMotore in Auto viene passata tramite il costruttore , quindi in tal caso possiamo passare ad Auto qualsiasi tipo di istanza , Auto non se ne fotte . Nell'esempio in cui non utilizziamo l'iniezione invece l'operatore new Motore viene utilizzato direttamente all'interno del costruttore , cosi rendendo Auto strettamente dipendente dallo specifico tipo Motore . 
+
+
+es:
+
+
+
+// Interfaccia IMotore come definito precedentemente
+interface IMotore {
+    void avvia();
+}
+
+
+
+-------------------------------------------------------------
+// Implementazione concreta di IMotore
+class Motore implements IMotore {
+    @Override
+    public void avvia() {
+        System.out.println("Il motore è stato avviato.");
+    }
+}
+
+
+
+
+
+---------------------------------------------------------------
+// Un'altra implementazione di IMotore per scopi di test o variazione
+class MotoreElettrico implements IMotore {
+    @Override
+    public void avvia() {
+        System.out.println("Il motore elettrico è stato avviato silenziosamente.");
+    }
+}
+
+
+
+
+-------------------------------------------------------
+// Classe Auto che utilizza un'istanza di IMotore
+class Auto {
+    private IMotore motore;
+
+    public Auto(IMotore motore) {
+        this.motore = motore;
+    }
+
+    public void avviaAuto() {
+        motore.avvia();
+        System.out.println("L'auto è pronta per essere guidata.");
+    }
+}
+
+
+
+-----------------------------------------------------------
+
+// 
+public class Main {
+    public static void main(String[] args) {
+        // Creazione di un motore
+        IMotore motore = new Motore();
+        // Iniezione della dipendenza nel costruttore di Auto
+        Auto auto = new Auto(motore);
+        auto.avviaAuto();
+
+        // Cambiare il tipo di motore senza modificare la classe Auto
+        IMotore motoreElettrico = new MotoreElettrico();
+        Auto autoElettrica = new Auto(motoreElettrico);
+        autoElettrica.avviaAuto();
+    }
+}
+
+
+
+
+
++Il concetto di INVERSIONE DELLE DIPENDENZE è un principio , su cui si basa la tecnica dell'iniezione delle dipendenze .
+Questo principio afferma che le classi dovrebbero dipendere da interfacce o classi astratte piuttosto che da classi concrete
+
+-----------------------------------------------------------------------------------------------------
+
+EREDITARIETA'    vs     COMPOSIZIONE 
+
+
+Composizione:
+
+Relazioni "has-a": Quando si modellano relazioni in cui una classe "ha" un'altra classe come parte di sé, la composizione è la scelta appropriata.
+Ad esempio, un'Auto "ha un" Motore, quindi la composizione è più adatta per rappresentare questa relazione.
+
+
+Ereditarietà:
+
+Relazioni "is-a": Quando si modellano relazioni in cui una classe "è un tipo di" un'altra classe, l'ereditarietà è la scelta appropriata. 
+Ad esempio, un "Cane" è un tipo di "Animale", quindi l'ereditarietà è più adatta per rappresentare questa relazione.
+
+
+In sintesi, scegli la composizione quando si desidera una maggiore flessibilità, un migliore riutilizzo del codice e relazioni "has-a". 
+Opta per l'ereditarietà quando si modellano relazioni "is-a", si desidera sfruttare il polimorfismo o si intende ridefinire o estendere
+il comportamento di una classe esistente. Tuttavia, è importante notare che queste due tecniche non sono mutualmente esclusive e possono essere 
+utilizzate insieme per creare soluzioni robuste e modulari.
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+INTERFACCE        
+
+
+NOTA :se l'obbiettivo è solo separare l'implementazione dall'utilizzo , allora usa un INTERFACCIA
+
+Una interfaccia in Java è una struttura astratta che definisce un insieme di metodi e costanti, senza fornire un'implementazione concreta.
+ Essa rappresenta un contratto che una classe può scegliere di implementare, garantendo così di fornire un comportamento specifico.
+Contratto poichè ogni classe che implement un interfaccia è costretta a sovrascrivere tutti i metodi dell'interfaccia che implementa.
+Quindi le interfacce sono una sorta di contratto che specifica i metodi che una classe che implementa quella specifica interfaccia deve fornire.
+
+Le interfacce consentono di definire un set di metodi che possono essere implementati da diverse classi in modo diverso, permettendo così di avere
+ diverse implementazioni dello stesso metodo, ma con comportamenti specifici per ciascuna classe. Questo approccio favorisce la modularità del codice,
+ permettendo di sviluppare le classi in modo indipendente, mantenendo la compatibilità con il resto del sistema.
+
+Le interfacce sono particolarmente utili quando si desidera definire 
+un insieme di metodi comuni che diverse classi devono implementare.
+Una classe che implementa un'interfaccia può essere trattata come un oggetto dell'interfaccia stessa.
+
+ A differenza dell'ereditarietà, in cui una classe può estendere solamente una classe madre, le classi in Java possono implementare più di un'interfaccia.
+ Questa caratteristica è conosciuta come ereditarietà multipla delle interfacce.
+Il vantaggio dell'ereditarietà multipla delle interfacce risiede nella flessibilità che offre nella progettazione e nello sviluppo del software.
+ Permette alle classi di combinare comportamenti e funzionalità provenienti da più fonti senza incorrere nei problemi di ambiguità e complessità tipici
+ dell'ereditarietà multipla delle classi. Inoltre, le interfacce consentono di stabilire relazioni tra classi non legate gerarchicamente, aumentando il
+ riutilizzo del codice e promuovendo la modularità e l'indipendenza tra componenti del sistema.
+
+
+Ecco un approfondimento sui motivi per utilizzare le interfacce: 
+
+1)1. Separazione tra Specifica e Implementazione (come le classi astratte) DISACCOPPIAMENTO
+Le interfacce separano ciò che deve essere fatto (specifica) da come deve essere fatto (implementazione). Questo permette agli sviluppatori di cambiare  e aggiornare l'implementazione di un'interfaccia senza alterare il codice che la utilizza, facilitando la manutenzione e l'aggiornamento del software.
+
+
+es: 
+
+
+public interface Pagamento {
+    void effettuaPagamento(double importo);
+}
+
+
+
+public class PagamentoConCarta implements Pagamento {
+    @Override
+    public void effettuaPagamento(double importo) {
+        System.out.println("Pagamento di " + importo + " euro effettuato con carta di credito.");
+        // Qui va la logica per il pagamento con carta di credito
+    }
+}
+
+public class PagamentoConPayPal implements Pagamento {
+    @Override
+    public void effettuaPagamento(double importo) {
+        System.out.println("Pagamento di " + importo + " euro effettuato tramite PayPal.");
+        // Qui va la logica per il pagamento tramite PayPal
+    }
+}
+
+
+
+///////
+
+
+public class Checkout {
+    private Pagamento metodoPagamento;
+
+    public Checkout(Pagamento metodoPagamento) {
+        this.metodoPagamento = metodoPagamento;
+    }
+
+    public void processaOrdine(double importo) {
+        metodoPagamento.effettuaPagamento(importo);
+        System.out.println("Ordine processato per un importo di " + importo + " euro.");
+    }
+}
+
+
+
+
+
+
+
+
+
+public class Main {
+    public static void main(String[] args) {
+        Pagamento pagamentoConCarta = new PagamentoConCarta();
+        Checkout checkout = new Checkout(pagamentoConCarta);
+        checkout.processaOrdine(100.0);
+
+        Pagamento pagamentoConPayPal = new PagamentoConPayPal();
+        checkout = new Checkout(pagamentoConPayPal);
+        checkout.processaOrdine(200.0);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+2)Supporto per l'Ereditarietà Multipla
+
+3) POLIMORFISMO nelle interfacce
+
+ Il polimorfismo, nel contesto della programmazione orientata agli oggetti, è la capacità di un oggetto di assumere molte forme. Più specificamente, in Java, il polimorfismo permette a un riferimento di tipo interfaccia di riferirsi a oggetti di qualsiasi classe che implementi quell'interfaccia.
+Consentendo agli sviluppatori di scrivere codice che può operare su oggetti di diverse classi che condividono la stessa interfaccia.
+
+es:
+
+// Definizione dell'interfaccia
+public interface Animale {
+    void emettiSuono();
+}
+
+// Prima implementazione dell'interfaccia
+public class Cane implements Animale {
+    @Override
+    public void emettiSuono() {
+        System.out.println("Bau bau!");
+    }
+}
+
+// Seconda implementazione dell'interfaccia
+public class Gatto implements Animale {
+    @Override
+    public void emettiSuono() {
+        System.out.println("Miao miao!");
+    }
+}
+
+// Classe che usa l'interfaccia
+public class Zoo {
+    public static void faiParlare(Animale animale) {
+        animale.emettiSuono();
+    }
+    
+    public static void main(String[] args) {
+        Animale mioCane = new Cane();
+        Animale mioGatto = new Gatto();
+        
+        faiParlare(mioCane); // Output: Bau bau!
+        faiParlare(mioGatto); // Output: Miao miao!
+    }
+}
+
+
+
+
+
+es : per renderlo ancora migliore possiamo usare una factory 
+
+// Interfaccia Animale come prima
+public interface Animale {
+    void emettiSuono();
+}
+
+// Implementazioni Cane e Gatto come prima
+public class Cane implements Animale {
+    @Override
+    public void emettiSuono() {
+        System.out.println("Bau bau!");
+    }
+}
+
+public class Gatto implements Animale {
+    @Override
+    public void emettiSuono() {
+        System.out.println("Miao miao!");
+    }
+}
+
+// Nuova implementazione Uccello
+public class Uccello implements Animale {
+    @Override
+    public void emettiSuono() {
+        System.out.println("Cip cip!");
+    }
+}
+
+// Factory per la creazione degli animali
+public class AnimaleFactory {
+    public static Animale getAnimale(String tipo) {
+        switch (tipo) {
+            case "cane":
+                return new Cane();
+            case "gatto":
+                return new Gatto();
+            case "uccello":
+                return new Uccello();
+            default:
+                throw new IllegalArgumentException("Tipo di animale non supportato.");
+        }
+    }
+}
+
+// Classe Main modificata per usare la factory
+public class Zoo {
+    public static void faiParlare(Animale animale) {
+        animale.emettiSuono();
+    }
+    
+    public static void main(String[] args) {
+        Animale animale1 = AnimaleFactory.getAnimale("cane");
+        Animale animale2 = AnimaleFactory.getAnimale("gatto");
+        Animale animale3 = AnimaleFactory.getAnimale("uccello"); // Nessuna modifica necessaria qui per aggiungere Uccello
+        
+        faiParlare(animale1); // Output: Bau bau!
+        faiParlare(animale2); // Output: Miao miao!
+        faiParlare(animale3); // Output: Cip cip!
+    }
+}
+
+
+ 
+
+
++""l'istanza"" della classe interfaccia può essere usato come puntatore delle classi che la implementano 
+
+
+
+NOTA:  
+es: 
+
+interface Animal {
+  public void animalSound(); 
+}
+
+
+class Pig implements Animal {
+  public void animalSound() {
+    System.out.println("wee wee wee");
+  }
+}
+
+class Dog implements Animal {
+  public void animalSound() {
+    System.out.println("bau bau bau");
+  }
+}
+
+class Main {
+  public static void main(String[] args) {
+    Animal myPig = new Pig();                       
+    myPig.animalSound();                       //wee wee wee
+    Dog dog = new Dog();
+    dog.animalSound();                         //bau bau bau
+    dog = (Pig) myPig ;
+    dog.animalSound();                       // wee wee wee
+  }
+}
+
+
+
+NOTA : 
+
+Animal è come un tipo intermedio , può puntare a Dog e a Pig , può puntare a chi cazzo vuole , tanto tutti implementano i suoi metodi .
+
++Se vuoi che il riferimento del tipo interfaccia venga restituito ad una classe concreta , allora devi specificare quel tipo a cui sta puntando l'interfaccia che 
+tipo è. Poichè l'interfaccia è neutra e dobbiamo dire a sta classe cosa gli stiamo passando 
+
+es:
+
+Pig pig1 = new Pig();
+Animal a = pig1; 
+Pig pig2 = (Pig) a;    --> a è un Animal che punta a un Pig , dobbiamo specificare il tipo che punta e che stiamo passando a pig2 
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------
+
+POLIMORFISMO 
+
+In Java, il polimorfismo si riferisce alla capacità di un oggetto di identificarsi con più tipi di dato .
+(polimorfismo -> avere più forme, quindi identifica la capacità di un oggetto di avere più forme , è collegato a più tipi di dato) 
+di una delle sue superclassi o interfacce implementate.
+
+es.
+
+class Animale {
+   public void muovi() {
+      System.out.println("Animale che si muove");
+   }
+}
+
+class Gatto extends Animale {
+   public void muovi() {
+      System.out.println("Gatto che si muove");
+   }
+}
+
+class Cane extends Animale {
+   public void muovi() {
+      System.out.println("Cane che si muove");
+   }
+}
+
+public class Main {
+   public static void main(String[] args) {
+      Animale animale = new Animale();
+      Animale gatto = new Gatto();
+      Animale cane = new Cane();
+
+//PUO' SERVIRE PER DEFINIRE COLLEZIONI "GENERICHE"
+
+    Animale[] zoo = { animale, gatto, cane };
+
+      for( Animale a : zoo) {
+             a.muovi();
+     //STAMPA 
+     // "Animale che si muove"
+     // "Gatto che si muove" 
+     // "Cane che si muove" 
+
+   }
+}
+
+//GRAZIE AL POLIMORFISMO "ANIMALE" PUO' RAPPRESENTARE SIA "CANE" CHE "GATTO"
+
+
+
+IMPORTANTE :
+
+Entrambi l'ereditarietà e le interfacce possono essere utilizzati per sfruttare il polimorfismo in Java. 
+Tuttavia, le interfacce sono generalmente considerate come una soluzione più pulita e flessibile per sfruttare il polimorfismo.
+
+Con l'ereditarietà, è possibile creare una gerarchia di classi che condividono metodi e proprietà comuni, ma ciò può portare a una gerarchia di classi complessa
+ e difficile da gestire. Inoltre, una classe può ereditare solo da una classe padre, il che può limitare la flessibilità nella creazione di gerarchie di classi.
+
+Con le interfacce, è possibile definire contratti tra le classi, garantendo che tutte le classi che implementano un'interfaccia forniscano gli stessi metodi. 
+Ciò rende più facile l'utilizzo delle classi in combinazione tra loro, poiché è possibile sapere esattamente cosa forniranno. Inoltre, una classe può
+ implementare più di un'interfaccia, il che offre maggiore flessibilità nella creazione di gerarchie di classi.
+ 
+
+NOTA: 
+
+Se facciamo     " Animale a = new Gatto() "  -->   a può usare SOLO metodi che sono implementati in Animale (che magari sono stati overraidati da Gatto e quindi 
+specifici di Gatto ) NON puoi usare , in sto caso , metodi che stanno in Gatto e non in Animale 
+Quindi NON possiamo chiamare metodi di Gatto che NON siano in Animale 
+però
+ATTENZIONE  -->  se vuoi usare i metodi specifici di Gatto lo puoi fare lo stesso , basta che usi il Casting   " (Gatto) a.miagola();" 
+
+
+NOTA : 
+
+nell'uso fatto nel main " Animale a = new Gatto() "
+Animale --> si chiama TIPO APPARENTE 
+Gatto --> si chiama TIPO EFFETTIVO
+
+Il compilatore si basa sul tipo APPARENTE , l'interprete (esecuzione) sul tipo EFFETTIVO
+
+--------------------------------------------------------------------------------------------------
+
+REGEX
+
+Un'espressione regolare è una sequenza di caratteri che forma un modello di ricerca. Quando cerchi dati in un testo, 
+puoi utilizzare questo modello di ricerca per descrivere ciò che stai cercando.
+
+-----------------------------------------------------------------------------------------------------
+
+CLASSI WRAPPER
+
+In Java, un tipo primitivo rappresenta un valore dati primitivo come un numero intero o una variabile booleana,
+ mentre la classe Wrapper rappresenta l'oggetto corrispondente al tipo primitivo.
+
+Ecco alcune delle principali differenze tra i tipi primitivi e le loro classi Wrapper:
+
+-Memoria: i tipi primitivi sono immagazzinati direttamente sulla memoria, mentre le classi Wrapper sono oggetti e richiedono più memoria rispetto ai tipi primitivi.
+
+-Nullabilità: i tipi primitivi non possono essere nulli, mentre le classi Wrapper possono essere nulli.
+
+-Metodi aggiuntivi: le classi Wrapper offrono metodi aggiuntivi rispetto ai tipi primitivi, come ad esempio metodi per convertire i valori numerici in formato stringa.
+
+-Boxing e Unboxing: i valori primitivi possono essere incapsulati (boxing) all'interno di oggetti di classe Wrapper e poi utilizzati in contesti 
+in cui si richiedono oggetti, mentre gli oggetti di classe Wrapper possono essere convertiti in valori primitivi (unboxing) per utilizzarli in
+ contesti in cui si richiedono tipi primitivi.
+
+Unboxing -> da primitivo a oggetto  -->   " Integer numeroOggetto = Integer.valueOf(42); " //42 era int , mo è Integer
+Boxing --> da oggetto a primitivo -->    "int n = numeroOggetto"   //numero oggetto era Integere , mo è int 
+
+
+Ecco un esempio di utilizzo della classe Integer (un'istanza della classe Wrapper per il tipo primitivo int):
+
+// Utilizzo di un tipo primitivo int
+int a = 42;
+// Utilizzo della classe Wrapper Integer
+Integer b = new Integer(42);
+
+
+In generale, le classi Wrapper sono utilizzate quando è necessario utilizzare i tipi primitivi come oggetti, 
+ad esempio quando si utilizzano le collezioni Java che richiedono oggetti come parametri (le Collezioni NON possono contenere primitivi) .
+
+
+---------------------------------------------------------------------------------------------------------
+
+DESIGN PATTERN 
+
+Un design pattern è una soluzione generale e riutilizzabile a un problema comune nell'ambito dello sviluppo del software. 
+In altre parole, è un approccio collaudato e documentato per risolvere problemi di progettazione che si verificano frequentemente nello sviluppo del software.
+ I design pattern possono essere considerati come una sorta di "vocabolario" per la progettazione del software, che consente ai programmatori
+ di utilizzare soluzioni collaudate e di successo per problemi comuni.
+
+SINGLETON (design pattern)
+
+In Java, un Singleton è un design pattern che garantisce che una classe abbia una sola istanza e fornisce un punto di accesso globale a tale istanza.
+Questo è utile quando si vuole garantire che esista solo una singola istanza di una classe in un'applicazione e fornire un modo conveniente 
+per accedere a tale istanza da qualsiasi punto dell'applicazione.
+
+Nella CONNESSIONE AL DATABASE, l'utilizzo di un Singleton può essere utile per garantire che solo una singola istanza della classe di connessione
+ al database sia presente in un'applicazione. Ciò può aiutare a evitare problemi di concorrenza e migliorare le prestazioni dell'applicazione.
+
+es.
+
+public class DatabaseConnection {
+    private static DatabaseConnection instance;
+    
+    private DatabaseConnection() {
+        // costruttore privato
+    }
+    
+    public static synchronized DatabaseConnection getInstance() {
+        if (instance == null) {
+            instance = new DatabaseConnection();
+        }
+        return instance;
+    }
+    
+    // metodi per la creazione e la gestione della connessione al database
+}
+
+In questo esempio, la classe DatabaseConnection ha un costruttore privato, il che significa che non può essere istanziata dall'esterno della classe.
+ Inoltre, la classe ha un metodo statico chiamato "getInstance", che restituisce l'istanza della classe. Questo metodo utilizza la variabile statica 
+"instance" per verificare se l'istanza è già stata creata. Se l'istanza non esiste ancora, viene creata una nuova istanza della classe e restituita.
+ In caso contrario, viene restituita l'istanza esistente.
+
+In questo modo, è possibile accedere alla stessa istanza di DatabaseConnection da qualsiasi punto dell'applicazione semplicemente
+ chiamando il metodo "getInstance". Questo rende la gestione della connessione al database più efficiente e sicura.
+
+
+-------------------------------------------------------------------------------------------------
+
+BASSO ACCOPPIAMENTO       -       ALTA COESIONE 
+
+Basso Accoppiamento:
+L'accoppiamento si riferisce al grado di dipendenza diretta tra due classi o moduli. Nel contesto della programmazione, un basso accoppiamento significa che le classi o i moduli sono progettati in modo tale da avere il minor grado di dipendenza possibile l'uno dall'altro. Ciò si traduce in un sistema in cui le componenti possono essere modificate, aggiornate o sostituite con un impatto minimo sulle altre componenti.
+
+come farlo : 
+-Utilizzare interfacce per definire contratti tra componenti, riducendo la dipendenza da implementazioni concrete.
+-Favorire l'iniezione delle dipendenze per passare le dipendenze esterne a una classe piuttosto che crearle direttamente all'interno della classe.
+
+risultato : 
+-Facilità di manutenzione  -Maggiore riutilizzabilità -tasting semplificato
+
+
+Alta Coesione : 
+Un'alta coesione significa che una classe o un modulo si occupa di un set ben definito di responsabilità correlate e non è sovraccaricato con funzionalità che potrebbero non essere strettamente correlate. Classi e moduli altamente coesi sono focalizzati, facili da comprendere, mantenere e testare.
+
+come farlo : 
+-Mantenere le classi focalizzate su una singola responsabilità o concetto.
+-Evitare classi "god", che tentano di fare troppo o che hanno troppe responsabilità..
+
+risultato : 
+-Facilità di manutenzione  -Maggiore riutilizzabilità -tasting semplificat
+
+---------------------------------------------------------------------------------------------------
+
+ESPRESSIONE LAMBDA 
+
+Un'espressione lambda è un breve blocco di codice che accetta parametri e restituisce un valore. Le espressioni lambda sono simili ai metodi,
+ ma non necessitano di un nome e possono essere implementate direttamente nel corpo di un metodo.
+In sostanza sono delle piccole funzioni anonime 
+
+
+-Quando ha un solo parametro e il codice è solo 1 rigo:          IN QUEL SINGOLO RIGO è SOTTINTESO "RETURN"
+
+                                         parameter -> expression
+                                    es:
+                                        StringFunction exclaim = (s) -> s + "!";                -->questa lambda ritorna "s+!"  (s parametro con un valore)
+
+-Quando hai 2 parametri e il codice è solo 1 rigo: 
+
+                                           (parameter1, parameter2) -> expression
+                                        es:
+                                            StringFunction exclaim = (s, x) -> s + "!";
+
+-Quando il codice è di più righe . IN TAL CASO BISOGNA ESPLICITARE LA PAROLA RETURN 
+
+                                                       (parameter1, parameter2) -> { code block }
+                                                 es:
+                                                       StringFunction exclaim = (s) ->  { StringFunction exclaim = (s) -> s + "!"; 
+                                                                                                                  return  exclaim;  }
+
+
+
+
+                                   
+-------------------------------------------------------------------------------------------------------------
+
+THREAD  
+
+In Java, un "thread" (o "filo" in italiano) è un singolo flusso di esecuzione all'interno di un programma. 
+In altre parole, un thread è un'entità che rappresenta un singolo percorso di esecuzione all'interno di un processo.
+
+
+L'utilizzo del multithreading in Java può portare a diversi problemi e sfide che devono essere gestiti adeguatamente. Alcuni dei problemi più comuni sono:
+
+Concorrenza: i thread possono accedere contemporaneamente alle stesse risorse, come variabili o file, creando problemi di concorrenza e conflitti. 
+Questo può portare a comportamenti imprevedibili, corruzione dei dati e risultati errati.
+
+Deadlock: il deadlock si verifica quando due o più thread sono in attesa che si verifichi un'azione che solo un altro thread può completare, 
+ma nessuno dei thread può procedere finché l'altro non lo fa. Ciò può portare a un'impasse in cui i thread sono bloccati indefinitamente.
+
+Starvation: la starvation si verifica quando un thread viene continuamente bypassato dagli altri thread e non ha accesso alle risorse che richiede.
+ Ciò può portare a rallentamenti o addirittura al blocco del thread.
+
+Problemi di performance: l'utilizzo di thread può aumentare la complessità del codice e, se non gestito correttamente, 
+può portare a un'efficienza ridotta del programma e ad un'esperienza utente peggiore.
+
+---------------------------------------------------------------------------------------------------------------
+
+
+COLLEZIONI
+
+
+Le collezioni sono strutture dati utilizzate per memorizzare, organizzare e manipolare insiemi di elementi.
+Collection è un interfaccia che rappresenta una collezione di elementi e definisce i metodi fondamentali per la manipolazione di collezioni di elementi,
+e fa parte del pacchetto java.util. 
+Collection possiede 3 sottointerfacce , ovvero 3 interfacce che estendono Collection (quindi che estendono e specializzano diversamente tra loro 
+l'interfaccia Collection personalizzando i metodi e talvolta aggiungendone altri ) :
+
++List : è invece una collezione ordinata di elementi, ovvero gli elementi vengono mantenuti in ordine di inserimento e possono essere duplicati.
+
++Set : è una collezione NON ordinata di elementi univoci (non viene mantenuto l'ordine di inserimento) , ovvero non possono esserci duplicati. 
+
++Map : una mappa è una raccolta NON ordinata (non viene mantenuto l'ordine di inserimento) di coppie chiave-valore,
+ dove ogni chiave è univoca e associata ad un valore.
+
+LE VARIE IMPLEMENTAZIONI DI QUESTE INTERFACCE : (le nostre collezioni) 
+
+++ArrayList (implementazione dell'interfaccia List) : 
+è una lista dinamica di elementi posti in modo contiguo che può essere espansa o ridotta dinamicamente.
+Gli elementi sono memorizzati in ordine sequenziale e possono essere acceduti tramite un indice. es:  object.get(0) --> accede all'elemento in indice 0
+Un ArrayList è una lista che accetta OGGETTI , quindi possiamo mettere quante tipologie di oggetti diverse vogliamo (ripeto , contiene oggetti .....i tipi primitivi
+non sono accettati). Volendo possiamo definire il tipo specifico di oggetto che l'arrayList accetta . 
+
+es:    ArrayList<String> listaStringhe = new ArrayList<String>();    --> se aggiungiamo un'elemento che non è stringa allora....eccezione 
+
+Se vogliamo modificare le dimensioni di un ArrayList come ad esempio aggiungere un elemento , allora viene eliminato l'ArrayList "vecchio" e ne viene creato 
+uno "nuovo" con l'elemento in più. (tutto ciò viene fatto in automatico ma cmq è dispendioso)  
+L'ArrayList ha un accesso casuale, ovvero si accede direttamente all'elemento che si vuole tramite l'indice (tempo di accesso costante indipendentemente dalla 
+posizione dell'elemento). 
+
+
+++LinkedList (implementazione dell'interfaccia List) : 
+ è un oggetto che ha le stesse caratteristiche e metodi dell'ArrayList , ma invece è una lista dove ogni elemento ha un riferimento al nodo successivo.
+In tal caso per aggiungere o eliminare un elemento non è necessario fare una copia modificata come nell'arrayList , ma basta modificare i riferimenti.
+ 
+Anche nel caso della LinkedList possiamo definire il tipo di oggetto specifico che accetta.
+
+Il LinkedList ha accesso sequenziale , ovvero bisogna percorrere la lista dall'inizio per arrivare all'elemento.
+(tempo di accesso che dipende dalla posizione dell'elemento). 
+
+
+IMPORTANTE :
+
+è meglio usare ArrayList quando bisogna archiviare e accedere spesso ai dati , meglio LinkedList per manipolare e modificare spesso i dati. 
+
+
+
+
+++HashSet (implementazione dell'interfaccia Set) : 
+è un insieme di elementi unici e NON è ordinato, che NON consente la presenza di duplicati. Per memorizzare questi elementi viene usata una hash table(la spieghiamo dopo)
+Grazie all'hash table gli elementi possono essere aggiunti o rimossi in modo efficiente.
+L'HashSet è efficiente quando si deve verificare la presenza o l'assenza di un elemento all'interno dell'insieme, o quando si devono aggiungere o rimuovere elementi.
+NON quando si devono manipolare e Inoltre offrono vari metodi attinenti agli insiemi come intersezione e unione di elementi 
+
+Anche nel caso della HashSet (come ArrayList e LinkedList) possiamo definire il tipo di oggetto specifico che accetta, ma in generale accetta tutti gli oggetti. 
+
+
+
+++HashMap (implementazione dell'interfaccia Map) :
+è una mappa di elementi chiave-valore, in cui ogni elemento è identificato da una chiave unica (non ci possono essere 2 chaivi...se no eccezione).
+Le chiavi NON sono ordinate e possono essere aggiunte o rimosse in modo efficiente grazie al fatto che la memorizzazione degli elementi viene fatta grazie ad una 
+hash table.
+
+Il valore dei campi di una HashMap sono oggetti generici ma può esserne specificato il tipo .
+Per la chiave, di solito è di tipo String , però 
+No, la chiave in un HashMap non deve necessariamente essere di tipo String. 
+In Java, la chiave di un HashMap può essere di qualsiasi tipo, a condizione che tale tipo implementi correttamente i metodi hashCode() e equals().
+
+
+Un HashMap è una buona scelta quando si vuole associare valori ad una chiave e si ha bisogno di una struttura dati che offra alte prestazioni
+ in termini di velocità di accesso e di modifica degli elementi.
+
+
+NOTA : l'HashMap non ammette 2 chiavi uguali . Se uso put() (metodo per aggiungere elementi) sull'HashMap cercando di inserire un elemento avente una chiave che è 
+già in esso presente , allora la chiave rimane la stessa e il nuovo valore sovrascrive il vecchio valore presente .
+
+
+++TreeSet: è un insieme di elementi ordinati, in cui gli elementi sono ordinati in base al loro valore.
+ Gli elementi non sono duplicati e possono essere aggiunti o rimossi in modo efficiente.
+
+++TreeMap: è una mappa di elementi chiave-valore ordinati, in cui gli elementi sono ordinati in base alle chiavi.
+
+
+
+Queste sono solo alcune delle principali collezioni fornite dal framework Collection di Java. Oltre a queste, esistono molte altre collezioni come
+ PriorityQueue, HashSet, LinkedHashMap e molte altre ancora, ognuna delle quali ha le sue caratteristiche e i suoi vantaggi specifici.
+
+
+
+
+IN GENERALE (per quanto riguarda l'uso ottimale) 
+
+
+ArrayList è utile quando si deve gestire una grande quantità di dati e si effettuano frequenti operazioni di accesso in lettura e scrittura 
+in una posizione specifica dell'array;
+LinkedList è utile quando si devono effettuare frequenti operazioni di aggiunta e rimozione di elementi in coda o in testa alla lista;
+TreeSet e TreeMap sono utili quando si devono gestire insiemi o mappe ordinati in base all'ordine naturale degli elementi o in base ad un
+ criterio di ordinamento definito dall'utente.
+
+
+
+
+
+NOTA su "Vector"
+
+Vector: Vector è una classe simile ad ArrayList, ma con alcune differenze. La principale differenza è che Vector è sincronizzato, 
+il che significa che è thread-safe, ma offre prestazioni inferiori rispetto ad ArrayList in ambienti single-thread.
+ Inoltre, Vector è considerato obsoleto e la sua utilizzazione è sconsigliata a favore di strutture dati più moderne come ArrayList e CopyOnWriteArrayList,
+ che possono essere sincronizzate manualmente se necessario.
+
+Quale struttura dati utilizzare dipende dai requisiti specifici del tuo caso d'uso:
+
+Usa gli array quando hai bisogno di una struttura semplice e veloce con una dimensione fissa e conosci il numero di elementi in anticipo.
+
+Usa ArrayList quando hai bisogno di una struttura dinamica con accesso rapido agli indici e non hai requisiti di sicurezza del thread.
+
+Usa LinkedList quando hai bisogno di una struttura dinamica con inserimenti e rimozioni frequenti degli elementi e l'accesso agli indici
+ non è critico per le prestazioni.
+
+Evita di utilizzare Vector e considera invece l'utilizzo di altre strutture dati del Java Collection Framework che offrono migliori prestazioni e flessibilità.
+ Se hai bisogno di thread-safety, usa ArrayList o LinkedList insieme ai metodi di sincronizzazione appropriati o scegli una struttura dati thread-safe 
+come CopyOnWriteArrayList
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+HASH TABLE 
+
+è composta da un array contenente coppie chiave-valore è consiste nell'utilizzo di una funzione hash che calcola lo specifico indice dell'elemento da "prendere"
+basandosi sulla chiave ricevuta in input, quindi questo indice viene usato per accedere al valore corrispondente nell'array.
+ (Si tratta quindi di collezioni chiave-valore)
+In questo modo l'accesso ad un elemento è casuale , ovvero indipendente dalla quantità e posizione degli elementi.
+
+NOTA : l'hash Table è thread safe ,  ovvero può essere utilizzata in un ambiente multi-thread senza incorrere in problemi di concorrenza (l'HashMap NO) 
+
+------------------------------------------------------------------------
+
+ARRAY normali/classici
+
+In Java, si può istanziare un array utilizzando la parola chiave new. 
+
+es.
+int[] numeri = new int[5];
+
+Gli array hanno una dimensione fissa, il che significa che una volta che un array è stato creato con una determinata dimensione, non è possibile cambiarne la dimensione.
+Non è possibile ingrandire o rimpicciolire un array in Java dopo che è stato creato.
+Ciò significa che, se si vuole aggiungere o rimuovere elementi da un array in Java, sarà necessario creare un nuovo array con la dimensione adeguata e 
+copiare i dati dall'array originale al nuovo array.
+
+NOTA:  i tipi di elementi che un array può contenere devono essere definiti a priori durante la dichiarazione dell'array.
+Se si cerca di aggiungere un elemento di un tipo diverso da quello specificato durante la dichiarazione dell'array, il codice genererà un errore di compilazione.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+   FOR-EACH
+
+Il costrutto for-each può essere utilizzato per iterare su tutti gli elementi di una COLLEZIONE o di un ARRAY senza la necessità di gestire 
+manualmente l'indice dell'iterazione.
+
+es. ArrayList
+
+List<Persona> listaPersone = new ArrayList<>();
+listaPersone.add(new Persona("Mario", "Rossi"));
+listaPersone.add(new Persona("Luigi", "Verdi"));
+
+for (Persona persona : listaPersone) {
+    persona.saluta();
+}
+
+
+es.  array
+
+String[] array = {"ciao", "mondo", "!"};
+
+for (String str : array) {
+    System.out.println(str);
+}
+
+----------------------------------------------------------------------------------------------------------------------------
+
+ITERATOR 
+
+è un oggetto che serve per iterare sulle COLLEZIONI (non anche array)
+
+
+es. 
+
+    // Make a collection
+    ArrayList<String> cars = new ArrayList<String>();
+    cars.add("Volvo");
+    cars.add("BMW");
+    cars.add("Ford");
+    cars.add("Mazda");
+
+    // Get the iterator
+    Iterator<String> it = cars.iterator();            --> puoi specificare l'oggetto da iterare (se no è un oggetto generico , funzionerebbe lo stesso in questo caso)
+
+    System.out.println(it.next());               //stampa "Volvo" 
+  }
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+CLASSI INTERNE O ANNIDATE    ( guarda W3school) 
+
+Le classi annidate (o classi interne) in Java sono classi definite all'interno di un'altra classe e sono utilizzate per raggruppare il codice in modo logico
+ e per migliorare l'incapsulamento e la modularità del codice.
+
+
+NOTA: le classi annidate possono essere private 
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+     TRY - CATCH     e   THROW 
+
+Le eccezzioni possono essere :
+Unchecked -> sono gestite direttamente dal compilatore e non c'è bisogno di crearle perchè vengono sollevate lo stesso; appaiono nel caso di errori irreversibili 
+ed evidenti come una divisione per zero, tentativo di accedere a un indice di array non valido, ecc. 
+Checked --> devono essere gestite direttamente dal programmatore , se no Java non le lancia 
+
+
+try-catch :   nel blocco try viene controllato se ci sono eccezioni a runtime e catch si occupa di lanciare il messaggio di eccezione che possiamo personalizzare
+
+try {
+// ... comandi monitorati ....
+}
+catch ( Exception e) {
+// ... comandi da eseguire in caso di eccezione
+}
+
+
+NOTA: Possono esserci anche più catch consecutivi , questi vengono controllati in ordine e bisogna stare attenti col tipo usato 
+
+es: 
+try {
+....
+}
+catch ( NumberFormatException e ) {
+....
+}
+catch ( Exception e) {
+....
+}         
+
+se non ci sono eccezioni di tipo specifico NumberFormatException , si controlla se ce ne sono di tipo generico Exception
+
+
+
+
+"throw" viene utilizzata per sollevare direttamente un'eccezione in un punto specifico del codice. 
+
+es:
+if (age < 18) {
+   throw new IllegalArgumentException("You must be at least 18 years old");
+}
+
+
+Si può usare benissimo anche dentro al "try" ma non ha senso 
+
+
+"throwS" (diverso da throw ma simile nel significato) si può mettere alla fine della firma di un metodo e si fa quando stiamo dicendo che quel metodo può lanciare 
+una o più eccezioni del tipo scritto e quelle eccezioni devono essere gestite manualmente dal programmatore . 
+(Alla fine quell'errore potremmo anche non gestirlo ma è buona norma farlo perchè potrebbe causare errori inaspettati)
+
+
+es:
+public void readFile(String fileName) throws IOException {
+   // codice che potrebbe sollevare un'eccezione IOException
+}
+
+
+
+
+
+Ci sono due modi per gestire un'eccezione in Java:
+
+1)Utilizzare un blocco try-catch per catturare l'eccezione e gestirla in modo appropriato:
+
+try {
+   readFile("file.txt");
+} catch (IOException e) {
+   // gestione dell'eccezione IOException
+}
+
+2) Dichiarare che anche il metodo che invoca readFile solleva IOException:
+
+public void anotherMethod() throws IOException {
+   readFile("file.txt");
+}
+
+
+
+
+
+"finally" :  è una sezione di codice che viene sempre eseguita, indipendentemente dal fatto che sia stata generata un'eccezione o meno.
+Viene utilizzato per eseguire del codice che deve essere eseguito in ogni caso, ad esempio per chiudere risorse come file, connessioni a database o socket.
+ Questo garantisce che le risorse vengano correttamente liberate e che non rimangano inutilizzate, evitando così problemi di memoria o di altro tipo.
+
+es: 
+
+BufferedReader reader = null;
+try {
+  reader = new BufferedReader(new FileReader("file.txt"));
+  String line = reader.readLine();
+  System.out.println(line);
+} catch (IOException e) {
+  e.printStackTrace();
+} finally {
+  try {
+    if (reader != null) {
+      reader.close();
+    }
+  } catch (IOException e) {
+    e.printStackTrace();
+  }
+}
+
+
+In questo esempio, l'oggetto BufferedReader viene aperto all'interno del blocco try, e viene chiuso correttamente nel blocco finally indipendentemente
+ dal fatto che sia stata generata un'eccezione o meno. 
+
+
+---------------------------------------------------------------------------------------------------------------------
+     VARARGS
+
+c'è la possbilità di dichiarare in un metodo un numero variabile di parametri  ( ciò si può fare SOLO con l'ultimo parametro) 
+
+  
+es:      public class Sommatore {
+
+               public static int somma ( int ... valori ) {
+               int s = 0;
+              for (int x: valori ) {
+                s += x;
+                         }
+                 return s;
+                          }
+                            }
+
+
+
+
+System . out . println ( somma ()); // stampa 0
+System . out . println ( somma (3 ,4)); // stampa 7
+System . out . println ( somma (5 ,7 ,2 ,1 ,6 ,8 ,1)); // stampa 30
+
+
+
+int somma (int ... valori)    -->equivalente a-->    somma(int[])
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+       FILE 
+
+Il File deve essere aperto in lettura o scrittura per essere usato e poi chiuso . Possiamo trasferirvi Stream di caratteri o Stream di byte .
+
+Stream di Byte : dati binari che sono usati per rappresentare solitamente dati come immagini , video , audio ecc...
+Stream di caratteri : sono pur sempre byte ma prima ci sta una conversione (in caratteri appunto) che li trasforma in testo 
+
+
+IMPORTANTE : 
+prima si usava spesso FileReader/FileWriter e FileInputStream/FileOutputStream ma adesso sono stati sostituiti 
+da BufferedReader/BufferedWriter e BufferedInputStream/BufferedOutputStream.
+
+Questi sono più efficienti e offrono gli stessi metodi dei precedenti , ma mentre i precedenti dovevano ad esempio svolgere la lettura un carattere alla volta 
+, quindi svolgere sempre la medesima operazione , i nuovi hanno un buffer che gli permette di raccogliere più dati assieme quindi anche più righe . 
+
+
+es: 
+
+BufferedReader reader = new BufferedReader (new FileReader (" prova .txt" , true));     //grazie a quel true , se prova.txt non esiste , viene creato 
+
+
+
+IMPORTANTE : 
+Se apri un file in scrittura , il suo contenuto viene azzerato e viene scritto quello che ci scrivi poi. 
+Se vuoi evitare ciò e scrivere altro devi aprirlo cosi :   " FileWriter writer = new FileWriter("test.txt", true);"  //con quel true
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+
+SERIALIZZAZIONE 
+
+La serializzazione è il processo di trasformazione di un oggetto (o una struttura dati) in un formato che può essere facilmente salvato su un supporto di memorizzazione (come un file o un database) o trasmesso attraverso una rete. L'obiettivo principale della serializzazione è di convertire le strutture dati complesse in un formato che sia facile da condividere, trasmettere o memorizzare
+
+es: conversione da un oggetto Java a JSON
+
+La serializzazione è un processo di trasformazione di dati in uno stream di byte o in un formato standrardizzato che può essere memorizzato in modo persistente.
+
+La serializzazione in Java avviene principalmente per gli Oggetti che possono essere memorizzati ad esempio in file e poi deserializzati e quindi riportati 
+in Oggetto Java. 
+
+Per quanto riguarda i file 
+Tecnicamente qualsiasi oggetto è serializzabile , basta rappresentarlo attraverso un formato testuale ovvero rappresentarlo come stringa facendo 
+l'override del metodo "toString" . 
+Se si vuole memorizzare su file il vero e proprio oggetto e quindi con la deserializzazione ottenere l'oggetto Java bisogna rendere l'oggetto 
+serializzabile implementando l'interfaccia Serializable . (DEVONO essere serializzabili anche le classi in esse contenute) 
+Questa interfaccia non deve essere implementata , devi solo scrivere "implements Serializable" sulla classe che vuoi rendere serializzabile. Serve per dare il 
+permesso di serializzare l'oggetto , poichè facendo ciò bisogna sta attenti alla sicurezza poichè ad es. gli attributi private possono essere ottenuti da un 
+malintenzionato che semplicemente prende il file e lo deserializza un byte alla volta.  
+
+
+es :
+
+ObjectOutputStream out = new ObjectOutputStream ( new BufferedOutputStream ( new FileOutputStream (" serializza .dat " )));
+out . writeObject ( v1 );      //v1 è un oggetto
+out . close ();
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+GESTIONE MEMORIA 
+
+HEAP MEMORY: 
+
+Lo heap è l'area di memoria utilizzata per memorizzare le istanze degli oggetti durante l'esecuzione del programma.
+Lo heap è gestito dal garbage collector di Java, che automaticamente libera la memoria eliminando gli oggetti che non sono più raggiungibili o utilizzati dall'applicazione.
+
+
+STACK MEMORY:
+
+Lo stack è utilizzato per l'esecuzione dei thread.
+Lo stack è un area di memoria in cui però ogni thread ha il proprio stack indipendente dagli altri . Il singolo thread , nel proprio stack gestisce le 
+chiamate ai metodi/funzioni, le variabili locali e in generale il flusso di esecuzione del thread. Lo stack è diviso in più frame stack . Un frame stack 
+viene creato ogni volta che un metodo viene chiamato e viene distrutto quando il metodo termina .
+
+
+
+TIPI PRIMITIVI E COMPLESSI IN MEMORIA:
+
+I tipi primitivi come int, float, double, boolean, ecc., sono memorizzati direttamente nello stack. Questo rende l'accesso ai tipi primitivi molto veloce.
+
+Gli oggetti e gli array, indipendentemente dal loro contenuto (tipi primitivi o riferimenti ad altri oggetti), sono sempre allocati nello heap. Le variabili di riferimento agli oggetti sono memorizzate nello stack, ma l'oggetto stesso risiede nello heap.
+
+
+--------------------------------------------------------------------------------------------
+
+PUNTATORI E RIFERIMENTI 
+
+In Java in realtà non abbiamo puntatori , ma abbiamo riferimenti. Il termine puntatori è più associato a linguaggi a basso livelli come il C . 
+
+
+**(leggendo il resto ti sarà chiaro) quindi in sostanza riferimenti e puntatori sono la stessa cosa , ovvero l'indirizzo di memoria in cui è memorizzato un oggetto , ma la differenza sta nel cosa possiamo fare con l'uno e con l'altro 
+
+
+La distinzione tra "puntatori" e "riferimenti" in Java rispetto a C deriva principalmente dalla volontà di semplificare la gestione della memoria e aumentare la sicurezza del codice. 
+
+
+Astrazione della Memoria
+
+Java: I riferimenti in Java nascondono l'astrazione della memoria. Non hai accesso diretto alla memoria o agli indirizzi di memoria. Quando crei un oggetto, ricevi un riferimento a quell'oggetto, e la JVM (Java Virtual Machine) gestisce la memoria per te. Questo processo include l'allocazione della memoria quando crei un oggetto e la raccolta dei rifiuti (garbage collection) per liberare la memoria quando un oggetto non è più raggiungibile.
+
+C: I puntatori in C sono essenzialmente degli indirizzi di memoria. Consentono un controllo molto diretto e a basso livello sulla memoria, inclusa la possibilità di modificare gli indirizzi di memoria, fare aritmetica dei puntatori, e così via. Questo offre grande potenza e flessibilità ma introduce anche la possibilità di errori di programmazione come dangling pointers, memory leaks, e altri problemi di sicurezza.
+
+
+
+Sicurezza
+
+Java: Poiché non hai accesso diretto alla memoria, è molto più difficile (se non impossibile) per il codice Java causare danni al sistema attraverso operazioni di memoria non sicure. Anche la JVM implementa vari controlli per garantire che l'accesso alla memoria sia sicuro.
+
+C: La gestione diretta della memoria può portare a vulnerabilità di sicurezza se non gestita correttamente. Errori come buffer overflow, use-after-free e altri problemi legati alla gestione della memoria possono essere comuni se non si presta attenzione.
+
+
+
+------------------------------------------------------------------------------------------------------
+
+METODOLOGIA AGILE 
+
+DAO E DTO   
+
+es: ci sta la classe "Contenuto" (DTO) che contiene gli attributi e getter/setter per implementare l'incapsulamento e poi la classe "ContenutoDAO" che 
+usa come contenitore la classe Contenuto usandola come contenitore e si interfaccia al Database 
+
+
+In una Java web application, un DAO (Data Access Object) è un oggetto che fornisce un'interfaccia tra la parte applicativa dell'applicazione e il database, facilitando l'accesso ai dati e separando la logica di accesso ai dati dalla logica di business.
+
+Un DAO è solitamente una classe Java che contiene metodi per leggere, scrivere, aggiornare e cancellare dati dal database, utilizzando un'interfaccia standard come JDBC (Java Database Connectivity) per interagire con il database. Il DAO può anche contenere metodi per la gestione delle transazioni e per l'implementazione di query complesse.
+Quindi principalmente per eseguire operazioni CRUD (Create, Read, Update, Delete) sui dati.
+
+
+
+DTO (Data Transfer Object):
+
+Un DTO è un oggetto semplice utilizzato per trasferire dati tra i vari livelli di un'applicazione, come ad esempio tra il livello di presentazione e il livello di business logic.
+Un DTO non contiene logica di business o comportamenti complessi, ma è usato solo per incapsulare i dati in modo strutturato.
+Può essere utilizzato per ridurre il numero di chiamate tra il client e il server in un'architettura distribuita, raggruppando diversi dati in un unico 
+oggetto.
+
+
+
+
+----------------------------------------------------------------
+
+MVC
+
+
+Il pattern MVC (Model-View-Controller) è un modello architetturale molto diffuso nello sviluppo di applicazioni web, che aiuta a separare la logica dell'applicazione dalla sua presentazione. Questo approccio rende il codice più modulare, più facile da gestire e a mantenere. Ecco una breve descrizione dei tre componenti principali del pattern MVC:
+
+1) Model: Rappresenta la logica di business e i dati dell'applicazione. Il modello comunica con il database e gestisce tutte le operazioni relative ai dati, come le query o le transazioni.
+2) View: È responsabile della presentazione dei dati all'utente. Non contiene logica di business, ma visualizza i dati forniti dal controller in un formato comprensibile.
+3) Controller: Funge da intermediario tra il Model e la View. Riceve gli input dall'utente (generalmente attraverso le view), li elabora (possibilmente con l'aiuto dei modelli) e poi passa i dati aggiornati alle view per essere visualizzati.
+
+
+
+----------------------------------------------------------------------------------
+
+
+
+
+
+                                                  Collection
+                                                     |
+                             ----------------------------------------------------
+                              |            |               |                   |
+                             List         Set            Queue               Deque
+                              |            |               |                   |
+                              |            |               |                   |
+                         ArrayList    HashSet        PriorityQueue        ArrayDeque
+                        LinkedList  LinkedHashSet   LinkedList          LinkedList
+                           Vector      TreeSet
+                             |
+                           Stack
+
+
+
+
+
+------------------------------------------------------------------------------------
+
+    ALGORITHM TIME COMPLEXITY 
+
+1)      O(1) - Constant Time:
+
+Description: The algorithm's running time is constant and does not depend on the input size.
+Example: Accessing an element in an array by index.
+
+
+2)      O(log n) - Logarithmic Time:
+
+Description: The algorithm's running time grows logarithmically with the input size.
+Example: Binary search.
+
+
+3)      O(n) - Linear Time:
+
+Description: The algorithm's running time grows linearly with the input size.
+Example: Linear search.
+
+
+4)      O(n log n) - Linearithmic Time (linearitmico)  :
+
+Description: The algorithm's running time grows linearly, but multiplied by a logarithmic factor.
+Example: Merge sort, heapsort.
+
+
+5)      O(n^2) - Quadratic Time:
+
+Description: The algorithm's running time grows quadratically with the input size.
+Example: Bubble sort, selection sort, insertion sort.
+
+
+6)      O(n^3) - Cubic Time:
+
+Description: The algorithm's running time grows cubically with the input size.
+Example: Some matrix multiplication algorithms.
+
+
+7)      O(2^n) - Exponential Time:
+
+Description: The algorithm's running time grows exponentially with the input size.
+Example: Recursive algorithms for the Fibonacci sequence without memoization.
+
+
+8)      O(n!) - Factorial Time:
+
+Description: The algorithm's running time grows factorially with the input size.
+Example: Algorithms that generate all permutations of a set.

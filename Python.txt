@@ -1,0 +1,982 @@
+
+PARADIGMA :
+
+principalmente orientato agli oggetti ma riconosciuto come general purpose poichè supporta anche paradigmi come quello funzionale e procedurale .
+
+
+
+
+
+TIPIZZAZIONE DINAMICA    e    TIPIZZAZIONE FORTE 
+
+
+-Tipizzazione Dinamica
+
+In un linguaggio con tipizzazione dinamica, i tipi delle variabili sono determinati al momento dell'esecuzione e non durante la compilazione. Ciò significa che non è necessario dichiarare il tipo di una variabile quando la si crea. Il tipo della variabile può anche cambiare durante l'esecuzione del programma. 
+
+Ecco un esempio:
+
+
+x = 10       # x è un intero
+print(type(x))  # Output: <class 'int'>
+
+x = "Ciao"   # Ora x è una stringa
+print(type(x))  # Output: <class 'str'>
+
+
+In Python, non si specifica il tipo di x quando lo si dichiara. Il tipo di x è determinato dal valore assegnato e può cambiare in qualsiasi momento.
+
+
+
+-Tipizzazione Forte
+
+
+Un linguaggio con tipizzazione forte non consente operazioni tra tipi incompatibili senza una conversione esplicita. In Python, se provi a combinare due tipi incompatibili senza una conversione esplicita, otterrai un errore. 
+
+Ecco un esempio:
+
+
+x = 10
+y = "20"
+
+# Questo genererà un errore di tipo
+result = x + y  # TypeError: unsupported operand type(s) for +: 'int' and 'str'
+
+# Conversione esplicita
+result = x + int(y)  # Funziona, result è 30
+
+In Python, devi convertire esplicitamente y da stringa a intero prima di poterlo aggiungere a x. Questo è un esempio di tipizzazione forte: Python non consente operazioni tra tipi diversi senza una conversione esplicita.
+
+--------------------------------------------------------------------------------------------------------------
+
+VARABILI : 
+
+c'è tipizzazione dinamica che viene decisa a tempo di interpretazione 
+Il tipo di una variabile viene deciso solo dall tipologia di dato a cui collegato 
+
+es: 
+
+ x = "aa"               ----->  la Python virtual machine penserà :  probabilmente sarà una stringa 
+
+
+Come in JavaScript , anche in Python possiamo cambiare facilmente il tipo di riferimento di una variabile 
+
+es:
+
+x = 4       # x is of type int
+x = "Sally" # x is now of type str
+
+
+
+
+
+
+
+
+
++In Python, le variabili dichiarate fuori da tutte le funzioni sono considerate globali e sono accessibili da qualsiasi parte del modulo. Tuttavia, per modificare una variabile globale all'interno di una funzione, devi dichiararla esplicitamente come global all'interno di quella funzione; altrimenti, Python tratterà qualsiasi assegnazione come la creazione di una nuova variabile locale con lo stesso nome della variabile globale.
+Se non utilizzi la parola chiave global quando assegni un valore a una variabile all'interno di una funzione, Python creerà una nuova variabile locale che ha lo stesso nome della variabile globale, lasciando inalterata quest'ultima.
+
+es: 
+
+
+x = "globale"
+
+def modifyGlobal():
+    global x  # Specifica che si vuole usare la variabile globale x
+    x = "modificata all'interno della funzione"  # Riassegnazione della variabile globale
+
+print(x)  # Output: "globale"
+modifyGlobal()
+print(x)  # Output: "modificata all'interno della funzione"
+
+
+
++in Python , quando creo una variabile , devo immediatamente inizializzarla . Se la crei e non la inizializzi ---> ERRORE
+
+
++Supportata l'inizializzazione multipla .   es:
+
+x = y = z = 3       --> sono tutti 3 
+
+x, y, z = 1, 2, 3   --->  rispettivamente 1 , 2 e 3
+
+
++es altro tipo di inizializzazione per le collezioni : 
+
+citta = ["Roma", "Napoli", "Milano"] 
+x, y, z = citta             --------------> x sarà Roma  , y Milano, z Napoli
+
+
++ type(x)   --> per sapere il tipo di dato 
+
+----------------------------------------------------------------------------------------------------------------
+
+TIPI 
+
+Python non ha una distinzione netta tra tipi primitivi e complessi poiché tutto è un oggetto, inclusi i numeri e le stringhe. Questo unifica la manipolazione dei dati ma, a volte, può avere un impatto sulle prestazioni.Ricorda che tutte le variabili hanno sede nello stack e puntano agli oggetti , cui tutte le tipologie risiedono nello'heap
+
+In Python abbiamo dei tipi IMMUTABILI e tipi MUTABILI 
+
+
+IMMUTABILI 
+
+quando 2 variabili puntano allo stesso numero perchè c'è stata un assegnamento , se una delle due variabili modifica il numero , questo non 
+avrà impatto sull'altra variabile che punta al numero , Poichè si tratta di un tipo immutabile , non viene fatta una vera e propria modifica ma 
+viene direttamente creato un nuovo numero .
+
+***Quando passiamo un tipo immutabile come parametro ad una funzione e all'interno di questa funzione viene modificato , le modifiche non 
+impatteranno sul valore poichè viene passata una copia del valore 
+
+1) Numeri interi (int)      2)Numeri a virgola mobile (float)      3)Numeri complessi (complex)
+ 4)Stringhe (str)    5) Tuple (tuple)   6)Frozenset (frozenset)     7) Booleani (bool)
+
+
+
+
+MUTABILI 
+
+In tal caso , quando vogliamo creare una copia e modificarla senza impattare sulle altre variabili che puntano all'oggetto , 
+dobbiamo creare una copia esplicitamente 
+
+***Quando passiamo un tipo mutabile come parametro ad una funzione e all'interno di questa funzione viene modificato , le modifiche  
+impatteranno sul valore poichè viene passato il riferimento a quell'oggetto che viene modificato . Quindi se modifico il valore all'interno della 
+funzione , le modifiche avverranno anche fuori .  
+
+1) Liste (list)   2)Dizionari (dict)   3)Insiemi (set)   4) Oggetti definiti dall'utente
+
+
+
+
+
+COPIA SUPERFICIALE (shallow copy)  E PROFONDA (deep)
+
+
+
+Praticamente se abbiamo una collezione e vogliamo fare la copia di sta collezione per assegnarla ad un'altra variabile , ci sono 2 casi : 
+
+1) La collezione da clonare contiene dei tipi Immutabili (ad esempio una lista di interi o stringhe)  : 
+In tal caso ci basterà fare una normale copia (copia superficiale) attraverso ".copy()" e assegnarla alla nuova variabile 
+
+2) Se invece la collezione da clonare contiene tipi mutabili (es una lista di liste) :
+in tal caso la collezione non contiene i valori , ma i riferimenti ai valori ; quindi se facciamo una copia superficiale , andiamo a 
+creare una nuova lista con gli stessi riferimenti della lista precedente . In tal caso bisogna usare un'altro metodo che fa una 
+copia più profona   ".deepcopy()"  
+
+-------------------------------------------------------------------------------------------------------
+
+MEMORIA : 
+
+Python , come Java , ha una memoria heap e stack . Sempre come Java, l'esecuzione dei metodi avviene nello stack , però, a differenza di Java , Python 
+non fa differenza tra tipi primitivi e complessi . Le strutture dati e oggetti stanno tutte nell'heap e le variabili che puntano ad essi stano nello stack. 
+La gestione delle allocazioni e deallocazione in memoria è oscura al programmatore e viene gestita dal Python memory manager e dal Garbage Collector. 
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+STRINGA:
+
+es:
+
+nome="andrea"
+eta=25
+
+print("Ciao, mi chiamo", nome, "e ho", eta, "anni.")
+
+
+
++se vogliamo una stringa fatta da più righe ci basta dichiararla con 3 apici "
+es:
+
+x = """fadfd
+fdafaaf
+fafadffdafdfd"""
+
+
++Le stringhe in Python sono un tipo IMMUTABILE e non possono essere modificate dopo la loro creazione. 
+Qualsiasi operazione che sembra modificare una stringa in realtà crea una nuova stringa.  (Vale lo stesso in JavaScript e Java) 
+
++ x[3:7]  --> restituisce dal carattere 3 a 7 (compresi 3 e NON 7)  (nelle stringhe si parte da 0) 
+  x[:3]   --> dal carattere 0 a 3 NON compreso 
+  x[-2]   --> prendo il secondo carattere partendo dalla fine (es: "luca" x[-3] da "u" , l'ultimo carattere è -1, non 0)
+  x[-3:]  --> dal terzultimo carattere a 0
+
+NOTA: se il numero è a sinitra dei due punti , è compreso , se a destra NON lo è
+
++gli spazi nelle stringhe sono considerati veri e propri caratteri 
+
++ len(x)  --> per ottenere la lunghezza
+
++   for x in carattere :
+       print(x)                   -->   per percorrere l'array carattere per carattere e stamparne uno alla volta 
+
+
+
+
++  il metodo "format" ci serve per trasformare delle variabili in stringhe 
+
+es: 
+
+    peso = 65
+    eta = 25
+
+  print("Ciao, mi chiamo {} anni {}.".format(nome, eta))
+
+
+OPPURE         (ovviamente possiamo anche non usare gli indici e mettere i parametri semplicemente in ordine) 
+    peso = 65
+    eta = 25
+    frase = "Ciao mi chiamo {1} , ho anni {0}"
+
+  print(frase.format(nome, eta))                  //stampa Ciao mi chiamo 25 , ho anni Andrea 
+
+
+OPPURE  (possiamo anche usare i nomi) 
+
+    peso = 65
+    eta = 25
+    frase = "Ciao mi chiamo {nome} , ho anni {eta}"
+
+  print(frase.format(nome=nome, eta=eta))         /stampa Ciao mi chiamo Andrea , ho anni 25
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+BOOLEANO 
+
++ y = 0
+  print(bool(y))   --->  bool restituisce un valore uguale a True o False relativo all'input 
+
+Valore che usati in bool daranno False -->  False , None, 0 , "", (), [], {}       sarebbero liste tuple ecc vuote 
+
+
+
+-----------------------------------------------------------------------------------------------
+
+OPERAZIONI ARITMETICHE e IF 
+
++  ** --> potenza       // --> ci da il risultato della divisione arrotondato per difetto (se usiamo la divisione normale e viene un numero con la virgola , ci viene restituito un numero float ovvero con la virgola) 
+
++  x = 15 
+   x += 2  ovvero x  = x + 2 
+
+
+AND E OR 
+
++ if 10 < x < 20    --> la condizione è soddisfatta se x è tra 10 e 20 
+
+ if 10 < x < 20      è uguale a      if 10<x and x<20      (and si scrive and)  (or si scrive or) 
+
++ not si usa per fare la negazione di ciò che scriviamo 
+es:
+        if not(5>10)    --> entriamo nell'if: poichè 5>10 è false , e grazie al not diventa true
+
+
+
++ se vogliamo fare più condizioni oltre a if ed else , usiamo ELIF 
+
++versione corta if (ovvero tutto nella stessa riga) lo usiamo solo se abbiamo uno statement (ovvero solo una singola istruzione nell'if) 
+    es    :         if 10>14 : print("vero frra") 
+                                                             (lo stesso vale per l'else) 
+    es :            if x>14 : print("vero frra")  else:print("falso fra")       -->   tutto nella stessa riga 
+
+
+-------------------------------------------------------------------------------------------
+
+CICLI 
+
+
++ while i<6 :     --> la sintassi è questa 
+  .......... 
+  ..........
+  i += 1;          --> RICORDA i++ non esiste in Python 
+  .........
+    if i==3 :
+       break      --> per uscire prima dal while 
+    if i==2 :
+       continue    --> salta direttamente alla prossima iterazione del while saltando tutto ciò che c'è sotto 
+
+  else:
+     print("ho finito")   -->  è un else collegato al while(sta sulla stessa colonna) viene eseguito quando si finisce il ciclo while , con break si salta anche                                 l'else  
+
+
+
+
+
++ citta = ["Roma", "Napoli", "Milano"] 
+  for x in citta :
+  print (x)                                --> stampo le città
+
+
++ for x in range(6) : 
+      print(x)                 --> stampa i valori da 0 a 5 poichè range genera a runtime una lista di valori da 0 a 5
+
+
+
+
+-----------------------------------------------------------------------------------------------
+
+COLLEZIONI 
+
+
+
+In Python le collezioni basilari (quelle che non derivano da librerie di terze parti) sono List , Sets , Tuple , Dictionary, Range(non è una collezione)
+
++Le liste sono diverse dagli array (per gli array dobbiamo usare numPy per gestirli 
+
+
+
+
+-LISTA 
+
+collezione di dati Ordinati , Indicizzate, Modificabile , Duplicati permessi 
+
+
++possiamo avere più tipi diversi in una lista 
+
++len(x) --> da la lunghezza della lista x
+
++citta = ["Roma", "Napoli", "Milano"]     
+ citta = list(("Roma", "Napoli", "Milano"))        --> modi equivalenti per creare una lista 
+
++anche con le liste si può fare il fatto x[1:3]........ecc  --> restituisce una lista con gli elementi da 1 a 3 NON incluso 
+Si può usare sta tecnica per modificare più elementi di un array 
+
++ x.append("brescia") --> aggiunge in fondo
++x.insert(1,"brescia") --> mette brescia all'indice 1 e shifta tutto quello che c'era a destra (se a 1 ci stava roma , mo roma sta al 2)
++x.extend(y) --> aggiunge gli elementi della lista y alla fine della lista x
+      z = x + y  --> è un modo veloce per fare  z = x.extend(y)
+
++x.remove("brescia") --> eliminiamo lo specifico elemento 
++x.pop(indice)  --> rimuove elemento all'indice (se non inseriamo l'indice , muore l'ultimo elemento) 
++del x --> eliminiamo la lista 
++x.clear() --> la lista diventa vuota
+
++citta.sort() --> ordina in ordine alfanumerico o numerico
++citta.sort(reverse=True) --> ordina al contrario
+
++ y = citta.copy()    --> ricorda che se non fai una copia della lista , y punterà alla lista città e le modifiche avvengono su città. 
+                          Dobbiamo fare copy() per creare una copia esplicita 
+
+
++ citta.count("milano") --> torna le occorrenze di milano
++ citta.count("milano") --> ci restituisce l'indice delle prima occorrenza di milano
+
+
+
+
+
++LIST COMPREHENSION : è un modo per creare una nuova lista da zero in modo intelligente e in un solo rigo 
+
+Struttura     x = [ expression        for item in iterable       if condition]
+
+
+es1:   Creare una lista di numeri quadrati
+
+numbers = [1, 2, 3, 4, 5]
+squares = [n**2 for n in numbers]               --> abbiamo creato la lista squares sfruttando la lista numbers
+print(squares)  # Output: [1, 4, 9, 16, 25]
+
+
+
+es2:  Creare una lista di numeri pari
+
+numbers = range(10)
+even_numbers = [n for n in numbers if n % 2 == 0]
+print(even_numbers)  # Output: [0, 2, 4, 6, 8]
+
+
+
+es3: Applicare una funzione a ogni elemento di una lista
+
+def double(x):
+    return x * 2
+
+numbers = [1, 2, 3, 4, 5]
+doubled = [double(n) for n in numbers]
+print(doubled)  # Output: [2, 4, 6, 8, 10]
+
+
+es4: 4. Estrarre le prime lettere da ogni parola in una lista di stringhe
+
+words = ["apple", "banana", "cherry"]
+first_letters = [word[0] for word in words]
+print(first_letters)  # Output: ['a', 'b', 'c']
+
+
+
+es5: Creare una lista di tuple (numero, quadrato). è una lista che contiene tuple fatte da due elementi interi 
+   (ovviamente le collezioni possono contenere , come propri elementi, altre collezioni) 
+
+
+numbers = [1, 2, 3, 4, 5]
+tuples = [(n, n**2) for n in numbers]
+print(tuples)  # Output: [(1, 1), (2, 4), (3, 9), (4, 16), (5, 25)]
+
+
++La lista può essere trasformata in tupla , non esiste una tupla comprehension ma possiamo usare tuple(lista) per fare il casting da lista a tupla
+
+es:
+squares = tuple(x**2 for x in range(10))
+print(squares)  # Output: (0, 1, 4, 9, 16, 25, 36, 49, 64, 81) #squares è una tupla
+
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    -TUPLE
+
+collezioni di dati Ordinate , Indicizzate, NON modificabili , ammette Duplicati 
+Moltissime cose per quanto riguarda ad esempio l'accesso agli elementi sono uguali alle liste
+
+
++ x = ("milano", "napoli")  --> per creare una tupla 
+
+
++ RICORDA la tupla è immodificabile . L'unico escamotage per modificarla è trasformarla in una lista , poi modificare la lista , e poi ritrasformarla in una tupla 
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  -SET 
+
+collezioni di dati NON Ordinate, NON indicizzate , modificabili (NON possiamo accedere agli elementi poichè non sono indicizzati PERO' possiamo AGGIUNGERE E RIMUOVERLI)  e NON permettono duplicati
+
+
++ x = {"milano", "roma", "napoli"}   --> creazione di set
+  x = set(("milano", "roma", "napoli")) --> creazione di set
+
++ x.add("venezia") --> aggiungo al set 
+
++ y = {"venezia","catania"}
+  x.update(y)                  --> aggiungo venezia e catania a x 
+
+
++ x.remove("roma") 
+  x.discard("roma")       --> entrambi servono per rimuovere "roma". Se roma non era presente , remove da errore nel programma , discard invece
+                               nun se ne fott
+
+
++ z = x.union(y)    --> restituisce un nuovo set con x e y uniti e lo assegna a z
+
++ x.intersection_update(y) --> modifica x in modo che rimangono solo gli elementi che ha in comune con y 
+  z = x.intersection(y)  --> restituisce un set che contiene solo gli elementi comuni tra x e y e lo assegna a z 
+
++ x.symmetric_difference_update(y) --> elimina da x gli elementi che ha in comune con y e aggiunge a x gli elementi che NON ha in comune con y 
+  z = x.symmetric_difference(y) --> restituisce un set con gli elementi che x e y non hanno in comune e lo restituisce a z
+
++Se stampiamo un set , gli elementi vengono stampati a cazzo 
+
+
++ if "milano" in x :    --> condizione True se milano è presente 
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+      DICTIONARY 
+
+collezioni di dati Ordinate , Modificabili , NON permettono duplicati 
+NOTA: è la chiave che non può essere duplicata . Se abbiamo 2 chiavi diverse con 2 valori uguali , nun ce ne fott
+
+
++ x = {
+     "nome": "luca",               --> creazione
+     "cognome":rossi   }
+  
+ 
++  x["nome"]   --> x sarà Luca          x.get("nome") --> x sarà Luca
+
++ x["nome"] = "marco"   --> per modificare il nome       
+
++ x["eta"] = 30 -->  aggiunta elemento 
+
++ x.pop("nome") --> rimuove la coppia chiave valore       
+
++ x.keys() --> restiruisce lista delle chiavi 
++ x.values() --> restiruisce lista dei valori 
++ x.items() --> restituisce una lista di tuple composte da due valori , ovvero le coppie chiave e valore 
+
++if "nome" in x :   --> da True se nome è una chiave in x 
+
+
++ x["nome"] = "marco"   --> per modificare 
++ x.update({"nome":"nna"})   --> per modificare 
+
++x["colore"] ="blu"   --> aggiunta elemento (se aggiungo quando la chiave già esiste, sovrascrivo il valore associato a quella chiave)
+
++ x.pop("nome") --> rimuove elemento 
++ del x["nome"] --> rimuove elemento 
+
++   for y in x :
+        print(x[y])      --> stampa tutti i valori 
+        print(y)         --> stampa tutte le chiavi
+       
+
++ y = x.copy()   --> copio il dictionary x e lo assegno a y 
+  y = dict(x)    -->copio il dictionary x e lo assegno a y 
+
+
++x["nome"]["codice"]   -->  nel caso la chiave "nome" abbia come valore un altro dictionary e vogliamo il valore con chiave "codice" di sto dictionary annidato
+
+------------------------------------------------------------------------------------------------------------
+
+    FUNZIONI 
+  
+
+es:
+
+  def fai_la_pasta(tipo_pasta) :
+      print("gnam gnam" + tipo_pasta) 
+
+
+  fai_la_pasta("spaghetti") 
+ 
+     
+
++ parametri opzionali 
+
+es:
+
+       def fai_la_pasta(*opzioni):        --->  in questo modo sto dicendo che il numero di parametri è vario , va da 0 a 3480320894
+             print("gnam gnam" + opzioni[0]) --> in tal caso devo usare l'indice per riferirmi al primo parametro immesso 
+             print("ooo" + opzioni[1])       --> per riferirmi al secondo parametro 
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------
+
+FUNZIONI LAMBDA 
+
+Sostanzialmente sono delle funzioni anonime.
+es:
+
+x = lambda a, b, c : a + b + c
+print(x(5, 6, 2))
+
+
+le funzioni lambda sono utili soprattutto quando vengono usate in altre funzioni 
+
+es:
+
+def myfunc(n):
+  return lambda a : a * n
+
+mydoubler = myfunc(2)
+
+print(mydoubler(11))     //stampa 22
+
+
+
+--------------------------------------------------------------------
+
+CLASSI 
+
+le classi sono come in Java , e si definisce il metodo __init__ che sostanzialmente è il costruttore . 
+
+es:       definizione di una classe , istanzazione e inizializzazione di un oggetto 
+
+
+class Person:
+  def __init__(self, name, age):
+    self.name = name
+    self.age = age
+
+  def myfunc(self):
+    print("Hello my name is " + self.name)
+
+p1 = Person("John", 36)
+p1.myfunc()
+
+
+
+IMPORTANTE***********
+
+quando definiamo una classe , ogni metodo di quella classe riceve come primo parametro "self" , attraverso cui ci riferiamo alle variabili di istanza dell'oggetto . 
+
+
+
+
+es:   accedere e modificare 
+
+p1.age = 40
+
+es: eliminare un attributo 
+
+del p1   --> elimino l'oggetto
+
+del p1.age  --> elimino l'attributo età della persona p1
+
+
+
+
+------------------------------------------------------------------
+
+EREDITARIETA' 
+
+Come in Java ereditiamo metodi e variabili di istanza del padre . Cambia solo la sintassi : 
+
+
+es:
+
+class Person:
+  def __init__(self, fname, lname):
+    self.firstname = fname
+    self.lastname = lname
+
+  def printname(self):
+    print(self.firstname, self.lastname)
+
+
+
+class Student(Person):    //Student eredita da Person 
+  pass                                     --> pass serve quando vogliamo creare una classe che 
+                                              ,almeno per adesso, non ha metodi 
+
+
+
+x = Student("Mike", "Olsen")
+x.printname()
+
+
+
+
+************RICORDA SEMPRE 
++self è il primo parametro che viene passato ad ogni metodo della classe e si riferisce all'istanza
+di quella classe . Viene usato di solito per riferirsi ai parametri di istanza della classe
+
+
+
+IMPORTANTE********
+
++ i metodi del padre vengono ereditati automaticamente
+
++se vogliamo sovrascrivere dei metodi , ci basta riscrivere il nome del metodo e semplicemente scrivere l'implementazione che sovrascriverà quella del padre
+
+
+es:
+
+class Person:
+  def __init__(self, fname, lname):
+    self.firstname = fname
+    self.lastname = lname
+
+  def printname(self):
+    print(self.firstname, self.lastname)
+
+class Student(Person):
+
+  def printname(self,aa):         //sovrascriviamo il metodo printname
+    print(self.firstname, aa)
+
+x = Student("Gino", "Fastidio")
+x.printname("aa")                       //stampa "Gino aa"
+
+
+
+
+
+
+
++se vogliamo estendere un metodo , utiliziamo super() per chiamare il metodo del padre e poi scriviamo il resto dell'implementazione per estederne il comportamento 
+
+es:
+
+
+
+class Person:
+  def __init__(self, fname, lname):
+    self.firstname = fname
+    self.lastname = lname
+
+  def printname(self):
+    print(self.firstname, self.lastname)
+
+class Student(Person):
+  def __init__(self, fname, lname, year):
+    super().__init__(fname, lname)
+    self.graduationyear = year
+
+  def welcome(self):
+    super().printname()
+    print(self.graduationyear)
+
+
+
+x = Student("Mike", "Olsen", 2019)
+x.welcome()                                       //stampa Mike Olsen   2019
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+MODULI 
+
+in python è un pò come Node.js per quanto riguarda l'import dei moduli 
+
+
+es:
+
+
+//contenuto FILE   mymodule.py
+
+person1 = {
+  "name": "John",
+  "age": 36,
+  "country": "Norway"
+}
+           
+
+
+//contenuto altro file 
+
+import mymodule
+
+a = mymodule.person1["age"]
+print(a)                       //stampa 36
+                                
+ 
+
++  possiamo creare degli alias "soprannomi" per definirci ad un modulo (solitamente l'alias deve essere di pochi caratteri) 
+
+es:      import mymodule as my
+            a = mymodule.person1["age"]
+
+
+
++posso importare anche solo una parte del modulo. Ad es. vogliamo importare solo un attributo 
+
+es :    from mymodule import person
+          person["nome"]                     --> prendo 
+
+
+
+
++ puoi anche decidere di importare solo una parte del modulo se non ti serve tutto :
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+MODULO MATH 
+
+una libreria per fare operazioni matematiche 
+
+
+***per le seguenti funzioni non serve il modulo math , infatti non ho scritto ad es:  math.min(4,0,5) 
+
++ min(4,0,5)   --> ci restituisce 0 , il minimo valore
++ max(4,0,5)   --> ci restituisce 5, il massimo valore
++ abs(-45)     --> ci da il valore assoluto del numero , 45 in sto caso
++ pow(4,3)  --> equivale/restituisce a 4 elevato a 3 , quindi 64
+
+
+***le seguenti funzioni invece fanno parte del modulo math 
+
++ math.sqrt(64)  --> da la radice quadrata
++ math.ceil(64.80)  --> arrotondo per eccesso . Da 65
++ math.floor(64.80) --> arrotondo per difetto . Da 64
++ math.pi   --> resituisce pGreco
+
+-----------------------------------------------------------------------------------------------------------------
+
+MODULO JSON 
+
+per creare e gestire file json 
+
+es:                                 DA JSON A PYTHON
+    import json 
+
+    x = '{ "nome": "Luca"}'            ----->   questo è già JSON , poichè sappiamo che JSON è un file TESTUALE 
+
+    y = json.loads(x)          --->  fa il casting da json a dictionary 
+
+    print(y["nome"])        --> stampa Luca
+
+
+
+es:                                 DA PYTHON A JSON
+
+           y = json.dump(x)        --> da dict diventa JSON , quindi testo 
+-------------------------------------------------------------------------------------------------------------------------
+
+ECCEZIONI 
+
+
+si usano le parole chiave "try" e "except" rispettivamente per controllare se un blocco di codice dà errori (try) ed eventualmente per lanciarli(except)
+Esattamente analogo a try-catch in Java e in JavaScript 
+
+
+es:
+
+try:
+  print(x)
+except:
+  print("An exception occurred")       //stamp aquesta eccezione poichè x non è stato dichiarato 
+
+
+
++più except in sequenza sono usati per considerare più tipi di eccezioni (alla fine ne viene catturato solo uno) 
+
+
+es:
+
+try:
+  print(x)
+except NameError:
+  print("Variable x is not defined")            //stampa ciò poichè x non è stato dichiarato , è questo il tipo specifico di eccezzione lanciata
+except :
+  print("Something else went wrong")
+
+
+
+
++se nesun errore viene catturato possiamo usare else che esegue codice se nessuna eccezione viene catturata
+
+es: 
+
+try:
+  print("Hello")
+except:
+  print("Something went wrong")
+else:
+  print("Nothing went wrong")        //stampa ciò poichè non c'è nessun errore nel codice 
+
+
+
++indipendentemente se viene lanciata un eccezione o no , il codice presente in "finally" viene eseguito . Solitamente si esegue per liberare risorse 
+
+
+try:
+  print(x)
+except:
+  print("Something went wrong")      //stampa
+finally:
+  print("The 'try except' is finished")    //anche questo viene stampato
+
+
+
++ "raise" è analogo a "throw" in Java . Lancia direttamente un eccezione
+
+es:
+
+x = -1
+
+if x < 0:
+  raise Exception("Sorry, no numbers below zero")
+
+-------------------------------------------------------------------------------------------------------------
+
+PACKAGE MANAGER 
+
+in Python usiamo pip come gestore delle dipendenze e quindi package manager.
+Npm (JavaScript-Node) è package manager ma offre funzionalità per eseguire script utili ad automatizzare build, deploy e test , mentre pip è solo 
+package manager (le altre cose le possiamo fare solo usando librerie di terze parti) 
+
+es:
+              pip install library1   -> per installare
+              pip uninstall library1   -> per disinstallare
+              pip list                 --> per mostrare tutte le dipendenze installate con pip
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+DECORATORI 
+
+
+sono un potente strumento, che permette di modificare il comportamento di funzioni e metodi senza alterarne il codice sorgente. Essenzialmente, un decoratore è una funzione che prende un'altra funzione come argomento e restituisce una nuova funzione, arricchendo o modificando il comportamento della funzione originale.
+
+La sintassi dei decoratori in Python utilizza il simbolo @, posto prima della definizione di una funzione che si intende decorare.
+
+es: 
+
+
+
+def mio_decoratore(func):
+    def wrapper():
+        print("Qualcosa viene eseguito prima della funzione.")
+        func()
+        print("Qualcosa viene eseguito dopo la funzione.")
+    return wrapper
+
+@mio_decoratore
+def saluta():
+    print("Ciao, mondo!")
+
+saluta()
+
+//STAMPA :
+
+Qualcosa viene eseguito prima della funzione.
+Ciao, mondo!
+Qualcosa viene eseguito dopo la funzione.
+
+
+------
+
++I decoratori possono anche essere progettati per accettare argomenti, il che li rende ancora più flessibili:
+
+
+es:
+
+def decoratore_con_argomenti(argomento):
+    def vero_decoratore(func):
+        def wrapper():
+            print(f"Argomento passato al decoratore: {argomento}")
+            func()
+        return wrapper
+    return vero_decoratore
+
+@decoratore_con_argomenti("esempio argomento")
+def mia_funzione():
+    print("La funzione è stata chiamata.")
+
+mia_funzione()
+
+
+
+--------------------------------------
+
+
+
+FILE 
+
+Posso aprire i file in 4 modi : 
+- r lettura , da errore se non esiste
+-a (append) , possiamo aggiungere solo roba in fondo al file (solo in fondo) , crea il file se non esiste
+-w apre il file per scrivere, lo crea se non esiste (il contenuto viene cancellato automaticamente e ci scriviamo)
+-x crea il file , da errore se esiste già
+
+
+es. lettura 
+
+       print(f.read("testo.txt", "a"))    --> stampa tutto il file 
+
+       f.close()     --> ricorda che i file devono essere chiusi 
+
+
+es. scrittura alla fine 
+
+
+Nested List Comprehension
+Le list comprehension possono essere annidate per lavorare con strutture di dati più complesse come liste di liste.
+
+Esempio: Creare una matrice 3x3
+python
+Copia codice
+matrix = [[i + j*3 for i in range(1, 4)] for j in range(3)]
+print(matrix)  # Output: [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+Esempio: Flattening di una lista di liste
+python
+Copia codice
+list_of_lists = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+flattened = [num for sublist in list_of_lists for num in sublist]
+print(flattened)  # Output: [1, 2, 3, 4, 5, 6, 7, 8, 9]

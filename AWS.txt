@@ -1,0 +1,121 @@
+Cloud Service Types  (Iaas , Paas , Servless , Saas) 
+
+Imagine a pyramid :                     --
+                                     --Saas--
+                                   ----Serv----
+                                 ------Paas------
+                               --------Iaas--------
+
+
+lower you are and more responsability you (customer of Azure) will have ,
+instead,
+higher you are more the service that you use is "already done" and complete
+
+-Saas (Software as a Service) : we don't need big knowlegment to use this kind of 
+service, Azure offer you a Software to use; you are not interested about when and 
+how this Software is execute and with which hardware , CPU , memory ecc.....
+Azure will manage this. 
+You only have to use this Software. (for ex: Dropbox , you can do a backup or you 
+can take a photo simply using Dropbox platform) 
+Your responsability are much low in this case 
+
+-Paas (Platform as a Service) : dedicated in particular to developers. 
+(for ex:
+You'll only install the operative system and develop your application on the 
+Virtual Machine that Azure offer to you . Azure manage the hardware , you need 
+only to choose the subscription with particular performance.
+You don't know the type of CPU , the type of RAM  ecc... they manage this , you 
+will have the performance requested and stop , how they do this isn't a your 
+problem, not a your responsability. You want only an environment where develop 
+and execute your application, your responsability is only to choose the right 
+subscription for you.
+
+-Iaas (Infrastructure as a Service) :  Azure offer you a virtual hardware. You 
+can manage this hardware (you can request more CPU or more Memory or a stronger 
+graphics card ecc....), through a special Azure interface. Also the management
+of the hardware , is a your responsability in this case.
+(ovviamente se vuoi per es. più memoria non vai tu personalmente ad aggiungere
+ più memoria hardware ,lo fa il tizio che fatica alla Microsoft)   
+
+-Servless: is between Paas and Saas 
+In Paas your responsability is only to choose the right subscription for you.
+In Servless you will not do this , you develop your program and give it to 
+Azure , they will choose the greatest plane for you and you will pay only what 
+you will consume.(scaleranno le risorse in base a quello che ti serve)
+ (you have not to manage your program , you only develop it 
+and give him to Azure, then Azure will do the rest) 
+
+
+--------------------------------------------------------------------------------------------
+REGIONE e ZONE DI DISPONIBILITA'  AWS
+
+Nell'ambito di AWS (Amazon Web Services), una regione rappresenta un'area geografica specifica in cui AWS localizza le sue infrastrutture di cloud computing. Ogni regione è composta da più data center fisicamente separati e isolati tra loro, noti come Zone di Disponibilità (Availability Zones, AZs). Questa struttura è progettata per offrire ai clienti la flessibilità di posizionare le loro applicazioni e i loro dati in posizioni geografiche specifiche in base a requisiti quali la latenza, la conformità alle leggi e la ridondanza.
+
++IMPORTANTE: non tutte le regioni offrono le stessoe disponibilità , quindi è necessario che il servizio specifico sia disponibile nella regione che si vuole scegliere ("global" significa che il servizio è disponibile in qualsiasi regione) 
+
+Caratteristiche delle Regioni AWS:
+
+Isolamento Geografico: Ogni regione è isolata geograficamente dalle altre, il che significa che sono indipendenti tra loro. Questo aiuta a ridurre l'impatto di eventuali disastri naturali, interruzioni di rete o altri eventi imprevisti, garantendo che un problema in una regione non influenzi le altre.
+
+Controllo Legale e di Conformità: Le regioni permettono ai clienti di soddisfare specifici requisiti legali e di conformità, mantenendo i dati in una giurisdizione geografica particolare. Questo è fondamentale per le organizzazioni che devono aderire a regolamenti nazionali o internazionali riguardanti la privacy e la protezione dei dati.
+
+Prestazioni e Latenza: Posizionando le applicazioni e i dati in una regione vicina agli utenti finali, le organizzazioni possono ridurre la latenza, migliorando così la velocità di risposta delle applicazioni e l'esperienza degli utenti.
+
+Flessibilità e Scalabilità: Le regioni offrono ai clienti la flessibilità di espandere le loro applicazioni su scala globale, selezionando le regioni che meglio si adattano alle loro esigenze di business. Ciò consente di scalare facilmente le applicazioni in base alla domanda degli utenti in diverse aree geografiche.
+
+Zone di Disponibilità:
+Ogni regione è costituita da almeno 3 Zone di Disponibilità (AZs) e max 6, che sono data center separati con alimentazione, raffreddamento e connettività di rete ridondanti, progettati per essere resistenti ai fallimenti.
+Le AZs permettono di implementare applicazioni e database altamente disponibili, distribuendo le risorse tra più zone all'interno della stessa regione.
+
+-----------------------------------------------------------------------------
+
+
+COMPUTE SAVINGS PLAN : userò sta macchina per 3 ani , fam nu scont
+
+
+----------------------------------------------------------------------------------------------------------
+
+ -Public Cloud 
+Cloud services provided over the public Internet to anyone who wants to sign up
+for them. Azure owns the hardware, and you rent it from them.
+
+  -Private Cloud (on-premise cloud)
+Cloud services offered only to select users. This is sometimes called an “internal
+cloud”. Looks and acts like a cloud computing, but uses resources and servers available only to
+your company/organization. You own the hardware or have exclusive use of it.
+
+   -Hybrid Cloud
+A mixture between your own private networks and servers, and using the public
+cloud for some things. Typically used to take advantage of the unlimited, inexpensive growth
+benefits of the public cloud. 
+
+
+----------------------------------------------------------------------------------------------------------------------------
+
+EC2 : Si tratta di un servizio che fornisce capacità computazionale scalabile, permette agli utenti di affittare macchine virtuali (VMs), che si chiamano "istanze"
+
+Ogni VM creata rappresenta un istanza: ci sono vari tipi di istanze di VM già configurate e adatte a specifici compiti , vediamo i 3 tipi : 
+
+1) General purpose : equilibrio tra potenza computazionale , memoria , connettività
+
+2) Compute optimized : per applicazioni pesanti computazionalmente parlando 
+
+3) Memory optimized : lavori intensi gestione della memoria 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
