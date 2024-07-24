@@ -1,0 +1,590 @@
+
+       API (Application Programming Interface) 
+
+Un'API è un insieme di regole, protocolli e strumenti che consente a diversi software di comunicare e interagire tra loro.
+Le API fungono da ponte tra diversi componenti software, facilitando lo scambio di dati e la collaborazione tra programmi e servizi differenti.
+In Java esistono diverse API già implementate messe a disposizione del programmatore per creare nuove componenti e applicazioni.
+
+Principali concetti vantaggiosi : 
+-Astrazione: 
+Le API offrono un livello di astrazione tra il software che utilizza l'API e il software che fornisce le funzionalità. Gli sviluppatori non devono conoscere
+ i dettagli interni del software o servizio a cui si collegano, ma solo come utilizzare le funzioni e i metodi forniti dall'API. 
+Questo rende il processo di sviluppo più semplice e veloce.
+-Tipi di API: 
+Esistono diversi tipi di API, tra cui API locali, API web e API di sistema operativo. Le API locali consentono la comunicazione tra componenti 
+software all'interno di una stessa applicazione o sistema, mentre le API web (o API RESTful) consentono la comunicazione tra applicazioni e servizi 
+attraverso Internet, utilizzando il protocollo HTTP. Le API di sistema operativo, invece, permettono alle applicazioni di interagire con le funzionalità
+ e le risorse di un sistema operativo, come la gestione dei file e delle periferiche.
+
+
+--------------------------------------------------------------------------------------------------
+
+                                          PIATTAFORME JAVA 
+
+Il linguaggio Java è unico ma supporta 4 piattaforme.
+Per eseguire un programma Java serve semplicemente la JVM e le API Java (quindi le librerie).
+Con piattaforme alla fine intendiamo le API .
+Le 4 piattaforme: 
+-Java SE (Standard Edition)  :
+fornisce le API e le librerie fondamentali per lo sviluppo di applicazioni Java, come il core del linguaggio, la gestione delle collezioni, le operazioni
+ di rete e la gestione dei file. È la base su cui si basano tutte le altre piattaforme Java.
+
+-Java EE (Enterprise Edition ora noto come Jakarta EE)
+ estende le funzionalità di Java SE, offrendo API e componenti aggiuntivi per lo sviluppo di applicazioni aziendali e web di larga scala.
+Ciò include, ad esempio, l'accesso ai dati, la gestione delle transazioni, la messaggistica, la sicurezza e la creazione di servizi web.
+
+Java ME(Micro Edition):
+ è una versione ridotta di Java SE, adatta per dispositivi con risorse hardware limitate. 
+Offre un ambiente di esecuzione leggero e un insieme ridotto di API, specifiche per lo sviluppo di applicazioni per dispositivi mobili e sistemi embedded.
+
+-JavaFX :
+è una tecnologia focalizzata sulla creazione di interfacce utente grafiche (GUI) per applicazioni desktop e web. 
+
+
+
+
+
+JDK contiene la JVM e le API per JavaSE , oltre ad altri strumenti per lo sviluppo . 
+Per sviluppare applicazioni basate su Java EE, Java ME e JavaFX, gli sviluppatori possono estendere il JDK standard installando librerie, componenti
+strumenti aggiuntivi specifici per queste piattaforme. (insomma devono estendere scaricando altre API) 
+
+Per Per Java EE (Jakarta EE), gli sviluppatori possono utilizzare un JavaEE Spplication Server compatibile, come GlassFish, WildFly(o JBoss) o TomEE, che include 
+le librerie e le API necessarie per lo sviluppo di applicazioni basate su Java EE.
+
+---------------------------------------------------------------------------------------------
+
+                                                               JAVA EE
+
+JavaEE realizza una piattaforma "standard" per lo sviluppo e gestione delle applicazioni enterprise . (si basa cmq su JavaSE e ne estende i vantaggi)
+
+L'architettura standard delle applicazioni JavaEE sono Multi-tier , precisamente composta da 3 tier: 
+(intendiamo la struttura della comunicazione [ client <-> server <-> database ] , non la struttura del server tipo MVC ]
+
+-CLIENT TIER: si occupa di interfacciarsi con l'utente e di inoltrare e ricevere richieste e risposte
+-MIDDLE TIER: gestisce le richieste comunicando con il Data tier ed inoltra e gestisce (logica di business) i dati ricevuti dal Data tier
+-DATA TIER : si occupa della persistenza dei dati , ovvero è il database o altri tipi di sorgenti dati 
+
+
+
+ CLIENT TIER 
+
+Ce ne sono 2 tipologie : 
+
+1) WEB CLIENT :
+ Browser che esegue richieste HTTP al Web Tier o al Business Tier ( tier che fanno parte del middle tier) 
+
+2) B2B CLIENT (Business-to-Business client) :
+In generale si riferisce a un'applicazione, un'organizzazione o un sistema che interagisce con un'altra azienda o sistema, per avere servizi. 
+Un client B2B può essere un e-commerce che ci permette di fare un pagamento utilizzando un API che lo collega ad un servizio offerto da un azienda esterna
+Questo client si collega direttamente al Business Tier  ( tier che fanno parte del middle tier) (in tal caso deve restituire solo il servizio , i dati che poi 
+il client si gestisce .....inutile approfondire)
+
+
+
+   MIDDLE TIER 
+
+è il nostro server , precisamete il nostro JavaEE Application Server 
+
+1) WEB TIER :  (sarebbe CONTROLLER E VIEW) 
+Gestisce la richiesta ricevuta dal Web Client , comunica e organizza (frontend) la risposta da dare al Web Client ricevendo i dati dal Business Tier e si occupa 
+in generale della logica applicatica , sicurezza, sessioni ecc...
+
+2) BUSINESS TIER : (parte del Model che gestisce la logica di business) 
+gestione della logica di business ,ovvero il modo in cui i dati vengono manipolati e trasformati all'interno dell'applicazione 
+  
+3) DATA ACCESS TIER : (altra parte del Model che si occupa dell'interazione con il database , ovvero con il Data Layer)
+
+
+------------------------------------------------------------------------------------
+
+       WEB SERVER / APPLICATION SERVER    -      WEBC CONTAINER / EJB CONTAINER (Enterprise Java Bean)    
+
+
+WEB SERVER : 
+si occupa principalmente della gestione di richieste e risposte dell'invio di pagine web statiche e di altri contenuti come immagini , CSS e JS .
+Sono fatte per applicazioni più semplici e povere di logica di business.
+
+Riceve la richiesta e nel caso in cui essa chiede una pagina dinamica allora passa la richiesta al Servlet Container; se è di una pagina statica allora restituisce 
+come risposta la risorsa richiesta 
+
+
+
+CONTAINERS : 
+Un container in un'applicazione Java EE funge da interfaccia tra i componenti dell'applicazione e le funzionalità di basso livello fornite dalla piattaforma 
+per supportare quel componente. Il container fornisce servizi, infrastrutture e gestione del ciclo di vita per le componenti dell'applicazione, permettendo 
+agli sviluppatori di concentrarsi sulla logica di business e sulle funzionalità dell'applicazione senza preoccuparsi dei dettagli delle funzionalità di basso livello.
+
+
+
+
+WEB CONTAINER o SERVLET CONTAINER : 
+interfaccia tra le componenti web (ovvero servlet e JSP) e il WEB SERVER . Il Servlet container è un elemento specifico per le applicazioni web Java e si 
+occupa del ciclo di vita di Servlet e JSP , della sessione e di altri servizi specifici delle web application . 
+Tomcat è un Servlet Container (e pure web server) 
+
+***IMPORTANTE 
+in sintesi ...
+un web server è un software che gestisce le richieste HTTP e fornisce contenuti statici o dinamici ai client, mentre un web container è un componente 
+specifico per le applicazioni web basate su Java che gestisce l'esecuzione di componenti web come servlet e JSP. 
+Un web container può essere eseguito all'interno di un web server o di un application server per gestire le componenti web delle applicazioni basate su Java.
+Quindi in parole povere un Web server gestisce in generale richieste/risposte e Un web server non è limitato alle applicazioni Java e può supportare diversi linguaggi
+e tecnologie, mentre il Servlet Container gestisce le richieste e le risposte nell'ambiente Java, specificamente per le applicazioni web basate su Java 
+che utilizzano componenti web come servlet (è una classe Java) , filtri, listener e pagine JSP (JavaServer Pages), JDBC e gestiscono sessioni ,sicurezza ecc...
+
+
+
+
+APPLICATION SERVER :
+è un estensione del web server più avanzata e completa, progettata per ospitare e gestire applicazioni web complesse e di livello enterprise che richiedono
+ funzionalità aggiuntive oltre alla gestione delle richieste HTTP. Gli application server offrono un'ampia gamma di servizi e funzionalità, come la gestione
+ delle transazioni, la persistenza dei dati, la messaggistica, la sicurezza, la gestione delle risorse e l'integrazione con altri sistemi enterprise.
+
+è un estensione poichè è un Web Server ma oltre ad avere la proprietà del Web Container ha anche quella del EJB Container. 
+
+JBOSS è un JavaEE Application Server. 
+
+
+***IMPORTANTE
+Le applicazioni più semplici, quelle cioè che non possiedono una vera e propria logica di business, dovrebbero utilizzare Application Server con solo
+la proprietà di Web-Container (che ha la funzione principale di presentazione dei dati): sono chiamati Web Server e sono consigliati in 
+queste circostanze in quanto, le risorse richieste, sono di molto inferiori.  
+
+
+
+EJB CONTAINER (Enterprise Java Bean)  :
+Interfaccia tra gli Enterprise Java Beans (che implementano la logica di business dell'applicazione  la gestione delle transazioni, la persistenza dei dati,
+ la sicurezza)  e tra l'Application Server. 
+
+
+
+QUINDI
+In sintesi, un application server fornisce un ambiente completo per eseguire e gestire applicazioni enterprise basate su Java EE, mentre un EJB server è una
+ componente di un application server che si concentra specificamente sulla gestione delle componenti EJB. 
+Quindi, mentre i due concetti sono correlati, non sono la stessa cosa. Un EJB server può essere considerato come una parte o un sottoinsieme di un application server.
+(Application server è l'ambiente per JavaEE e EJB Container gestisce specifiactamente i Beans) 
+
+
+
+
+IMPORTANTE : 
+termine "provider" :
+Tremine generale che definisce il framework o libreria o fornitore di servizi che implementa delle specifiche standard (insieme di regola da rispettare) 
+ad esempio 
+Tomcat fornisce un'implementazione delle specifiche Servlet/JSP ( ovvero fornisce un web container, un implementazione del web container) 
+JBoss fornisce un'implementazione delle specifice JavaEE "complete" ( ovvero fornisce web+ejb container , una loro implementazione ) 
+Hibernate fornisce un'implementazione delle specifiche JPA (ovvero il concetto di ORM) 
+
+
+----------------------------------------------------------------------------------------------------------
+ 
+                                                      BASI WEB e RICHIESTA/RISPOSTA HTTP 
+                        
+
+PAGINA WEB DINAMICA: 
+una pagina web statica è un documento HTML fisso che viene memorizzato sul server e inviato al client senza modifiche, mentre una pagina web dinamica è
+una pagina il cui contenuto viene generato o modificato dinamicamente in base a vari fattori, solitamente utilizzando linguaggi di scripting lato server.
+Il server si basa sui parametri inviati dal client per scegliere il tipo di risposta da generare
+
+
+
+TCP/IP : 
+protocollo di rete su cui si basa http 
+
+
+
+HTML : 
+linguaggio di markup facilmente leggibile dal browser usato per rappresentare le risorse.
+
+
+
+WEB SERVICE(o Web Api) :
+web poichè utilizza internet , service è un modo diverso per dire API , quindi è un API che utilizza internet in poche parole .
+Utili in particolar modo allo scambio di dati tra server e client in formato JSON (o XML) tramite protocollo http . I client non devono essere necessariamente 
+dei browser , ma qualunque programma sia in grado di agire secodo l'http.(applicazioni mobile o desktop ad es.) 
+
+
+
+HTTP (hypertext transfer protocol) hypertext: 
+ protocollo di comunicazione . Le regole con cui client e server comunicano usando un formato di messaggi "standard".
+Hypertext poichè http si basa sull'uso di collegamenti testuali per collegare i vari nodi contenenti le varie risorse della rete.
+Un hypertext è un collegamento tra 2 (o più ) file tramite una parola chiave; un link è un collegamento ad un altro file , che si può trovare su un certo server. 
+Cercando una certa parola è come se premessimo sul link di quella parola .(un ipertesto in generale è un collegamento tra più file tramite una parola chiave)
+
+
+
+METODI REQUEST(4 principalmente) :
+-GET:per ottenere informazioni 
+-POST:per creare informazioni 
+-PUT:per modificare informazioni 
+-DELETE:per eliminare informazioni
++Attraverso http si possono inviare vari tipi di dati che fanno parte dei MIME type ; ovvero una raccolta di tipologie di file es. html , css, javascript, 
+e xml,JSON usati soprattutto per inviare dati da Web Service , poi pdf,png, mp3 e vari altri tipi
+
+
+
+STATELESS (http) : 
+nello stato http si intende che tu stai facendo una richiesta e attendi una risposta 
+HTTP è Stateless di default : ogni richiesta http ricevuta dal server è indipendente e non si riferisce a richieste precedenti.Ogni volta che mandi una richiesta 
+al server , anche se è la stessa precedente , per il server sarà la prima volta che la fai . Es. se chiedo al server i 10 animali dalla lista e lui mi da i primi 
+10 e poi voglio i 10 seguenti e per farlo mando un altra richiesta ...lui mi restituisce di nuovo i primi 10 , poichè sta informazione lui non la ricorda(deve 
+essere riferita ad es. come parametro) Invece in un protocollo stateful il server si ricorda che hai già ricevuto i primi 10 e ti manda gli altri 10.
+Quindi il server non mantiene lo stato del client ;in un certo senso è come se per il server ogni richiesta venisse da un client diverso ...di default è cosi nell'http
+,poi ovviamente questa cosa va gestita col codice ed eventualmente con i cookie.... 
+
+
+----------------------------------------------------------------------------------------------------------------------------
+
+                                                           SERVLET e JSP 
+
+
+
+SERVLET :
+è una speciale classe JAVA in grado di invocare metodi utili alla gestione della richiesta dell'utente e di gestire la risposta generando contenuti dinamici . (anche 
+per questo si dice la JSP stessa sia una servlet)  (le servlet più usate sono quelle per gestione di richieste/risposte http , classe HttpServletRequest)
+
+NOTA: 
+le servlet generiche gestiscono richiesta e risposta di qualunque protocollo , servletHttp quelle http.
+
+Le Servlet e JSP prima di essere eseguite vengono impacchettate in WAR e il WAR è messo in esecuzione sul Servlet Container 
+(nel caso di JBoss il Servlet Container coincide con il servizio Apache Tomcat)
+
+
+
+
+CICLO DI VITA SERVLET :
+
+IMPORTANTE: 
+Una servlet è come un "ascoltatore" per una specifica richiesta (quindi per uno specifico URL) . Quando il server viene acceso per la prima volta le varie servlet 
+vengono create e inizializzate con init() , poi quando arrivano le richieste vengono invocati i vari service() (doGet() e doPost()) e in pochissime situazioni 
+vengono invocati i destroy() che sono usati per distruggere una servlet.
+
+1) init () : 
+
+Arrivata la richiesta, il Servlet Container controlla se la specifica servlet che deve gestire la richiesta è stata creata , se non c'è la crea. 
+Poi la inizializza attraverso il metodo init(). Questo metodo non compare ma volendo possiamo fare l'override per configurare l'inizializzazione (guarda codice slide) 
+
+2) service() :
+
+Dopo viene invocato il metodo service() ovvero la servlet gestisce la rihiesta e risposta , service() è per la Servlet generica , nelle Servlet Http ci sta 
+doGet() e doPost() 
+
+Questi prendono come parametri HttpServletRequest e HttpServletResponse
+
+3) destroy():
+La servlet viene deallocata 
+è il Servlet Container che chiama la destroy() non il programmatore
+Viene chiamata quando : -Arresto del server(cioè dell'applicaziione)  -Arresto del Servlet Container -può essere invocato manualmente in modo "forzato" 
+-Timeout inattività: In alcuni casi, il container di servlet può configurare un timeout per le servlet inattive. Se una servlet non riceve richieste per un 
+periodo di tempo specificato, il container può decidere di terminarla per liberare risorse.Questa opzione dipende dalla configurazione del container 
+
+IMPORTANTE: 
+Le Servlet devono essere dichiarate e mappate nel  WEB-INF/web.xml
++ sia init() sia destroy() vengono chiamate solo una volta all'inizio e alla fine del ciclo di vita della servlet 
+
+
+
+
+JSP (Java Server Page) :
+
+Si tratta di file testuali che accanto al codice HTML, presentano codice in linguaggio Java permettendo un utilizzo più dinamico. 
+JSP è stata progettata per semplificare lo sviluppo di applicazioni web e per separare la logica di presentazione (front-end) dalla logica di business (back-end)
+attraverso l'uso di tag personalizzati e scriptlet.
+
+In sostanza, una JSP è un file di testo che contiene due tipi di contenuti: codice statico (HTML, XML, CSS, JavaScript, ecc.) e codice dinamico
+ Java (scriptlet, espressioni, dichiarazioni e tag personalizzati). 
+
+Quando un client richiede una JSP, il Servlet Container (come Apache Tomcat) la elabora, esegue il codice Java incorporato e genera una pagina HTML come 
+risultato, che viene poi inviata al client.
+
+La principale differenza tra una JSP e una servlet è la loro struttura e l'approccio alla creazione di contenuti dinamici. 
+Mentre le servlet sono classi Java che utilizzano il codice per generare contenuti dinamici e egestire richiesta/risposta, le JSP sono principalmente file di testo che utilizzano markup
+ e codice Java incorporato per raggiungere lo stesso obiettivo.
+Tuttavia, è importante notare che, dietro le quinte, le JSP vengono in realtà compilate in Servlet dal Servlet Container.
+Anche perchè possiamo benissimo utilizzare HTML nei metodi di una Servlet normale (es: " out.println("<html>")" ) 
+e costruire la pagina ma è una soluzione di merda . Viene creato quindi un ambiente a parte (la jsp) in cui possiamo usare html e java ammischiati , 
+poi questa jsp viene tradotta e sostanzialmente diventa una servlet , ovvero java con "out.println("<html>")" 
+
+Le JSP sono particolarmente utili quando si desidera creare una presentazione dinamica e interattiva delle informazioni, senza dover scrivere codice Java
+complicato. Alcuni vantaggi delle JSP includono la separazione tra logica di presentazione e logica di business, la facilità di utilizzo e la possibilità 
+di riutilizzare componenti e tag personalizzati.
+
+
+CICLO DI VITA JSP :
+
+è praticamente uguale a quello della servlet (infatti ripetiamo che la jsp è una servlet) 
+
+solo che prima di ciò viene svolta una traduzione da .jsp -a-> .java 
+
+poi come nella servlet il .java --> .class da dare poi in pasto alla JVM 
+quindi: 
+
+1) traduzione .jsp --> .java
+
+2) compilazione  .java --> .class 
+
+3) inizializzazione init()
+
+4) jspService ()
+
+5) jspDestroy ()
+
+
+
+
+JSTL :
+
+è l'acronimo di JavaServer Pages Standard Tag Library, una raccolta di tag personalizzati per JSP che semplifica lo sviluppo di applicazioni web. 
+JSTL fornisce agli sviluppatori un modo più conveniente e potente per incorporare la logica del server nelle pagine JSP.
+
+
+
+
+
+DEPLOYMENT DESCRIPTOR :
+
+sono dei file .xml (come il web.xml) che forniscono informazioni all'application server riguardo alle componenti dell'applicazione, 
+alle risorse utilizzate, ai parametri di configurazione, ai servizi di sicurezza e ad altre informazioni per il corretto funzionamento .
+
+più precisamente sono delle "istruzioni" che servono ai vari Container per capire come vogliamo che gestiscano i vari componenti JavaEE , 
+quindi capire come gestire cose come sicurezza , impacchettamento , persistenza , transazioni ecc.... (ovviamente sti file sono configurabili)
+
+
+
+
+WEB.XML  : 
+
+è un deployment descriptor (descrittore web in italiano) 
+Contiene varie informazioni di configurazione generale dell'intera applicazione come : 
+-Nome e descrizione applicazione 
+-Mappatura Servlet e gli init parameters 
+-Session timeout 
+-Risorse e riferimenti EJB
+-Il file di benvenuto index.html ....................etc.............
+
++Gli "init parameters" (parametri di inizializzazione) sono coppie chiave-valore che vengono utilizzate per passare informazioni di configurazione a una servlet
+ durante la fase di inizializzazione. Gli init parameters permettono di configurare una servlet senza dover modificare il codice sorgente della servlet stessa,
+ rendendo il componente più flessibile e riutilizzabile.
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+                                                                  REDIRECT  -  FORWARD  -  INCLUDE
+
+                          
+REQUEST DISPATCHER :
+è un interfaccia JavaEE usata per inoltrare(forward) o includere(include) risorse, come servlet, file JSP (JavaServer Pages) o file HTML, in una risposta a una richiesta HTTP.
+L’istanza dell’oggetto RequestDispatcher può includere o	inoltrare la coppia (req,resp)
+Si usa per forward e include (non per sendRedirect) 
+
+-response.sendRedirect("url a cui rendirizzare") -> viene mandato un messaggio stato 300 e link di reindirizzamento al browser che farà una nuova richiesta al 
+nuovo indirizzo . I browser moderni fanno questa operazione di reindirizzamento automaticamente , l'utente non se ne accorge manco 
+
+-con il metodo forward(req,res) la servlet1 (su cui facciamo il forward) passa richiesta e controllo alla servlet2 che si occuperà poi di inviare la risposta. 
+Quindi la completa responsabilità di richiesta e risposta passano alla servlet2.
+A differenza di sendRedirect non viene fatta un'altra richiesta dal browser ma la richiesta/resp viene passata alla servlet2 nel server senza che il browser manco 
+lo sappia.
+
+IMPORTANTE : 
+Con sendRedirect e forward si passa la gestione di richiesta e risposta ad altre componenti. 
+Però tutto ciò che viene dopo l'invocazione di forward/sendRedirect VIENE ESEGUITO LO STESSO(dobbiamo usare return subito se vogliamo terminare quella servlet) 
+
+-con include(req,res) la servlet1 (su cui facciamo l'include) passa req e res alla servlet2 e quindi il controllo. Dopo l'esecuzione della servlet2 però il 
+controllo si ripassa alla servlet1 che prenderà i dati aggiornati e consegnerà la risposta .  
+Quando la servlet1 invoca include, essa si ferma completamente e riprende da dopo l'invocazione dell'include quando gli viene restituito il controllo dalla servlet2
+
+
+NOTA : 
+forward è più leggero ed è preferibile se può essere gestita interamente dallo stesso dominio (l'indirizzo specificato nell'url ) . 
+Invece è inevitabile usare sendRedirect se la req/res deve essere gestita da un'altro dominio. (es. utilizzo di servizi esterni nell'applicazione) 
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+                                                                                  EJB ENTERPRISE JAVA BEANS 
+
+
+Un EJB è una speciale classe Java che si trova nel Model usata per implementare e gestire la logica di business (sono i nostri oggetti rappresentativi 
+delle varie entità dell'applicazione che poi vengono anche mappate nel database) , 
+ma grazie alla loro gestione da parte dell' EJB Container è possibile usare gli EJB per gestire le transazioni , la sicurezza e la persistenza dei 
+dati (appoggiandosi ad un JPA), controllo concorrenza , alta compatibilità con 
+richieste di client diversi.
+
+Sono usati per applicazioni dalla logica complessa SCALABILI ; che richiedano transazioni distribuite e cui integrità dei dati è importante e che siano 
+accedute da diversi tipi di client
+
+NOTA: il comportamento degli EJB è determinato da annotazioni e configurazione tramite file .xml ( i descrittori) 
+
+
+                                                              
+Vantaggi : 
+-separazione della logica applicativa dalla parte grafica 
+-lo sviluppatore si può focalizzare sulla logica di business dato che il resto è fatto in automatico dall'EJB Container 
+-gli EJB sono riutilizzabili
+
+
+NOTA : cos'è una TRANSAZIONE 
+
+Una transazione nei sistemi informatici è un'unità di lavoro composta da una o più operazioni che devono essere eseguite in modo atomico, consistente, 
+isolato e duraturo (ACID).
+In altre parole, una transazione è un insieme di operazioni che devono essere eseguite tutte insieme come un'unità, seguendo le proprietà ACID:
+Atomicità:
+Tutte le operazioni all'interno di una transazione devono essere completate con successo. Se una delle operazioni fallisce, l'intera transazione viene
+ annullata (rollback) e il sistema torna allo stato precedente
+all'inizio della transazione.
+Consistenza: 
+e transazioni devono garantire che il sistema passi da uno stato consistente a un altro. Dopo il completamento di una transazione, tutte le regole 
+di integrità dei dati devono essere rispettate.
+Isolamento:
+Le transazioni devono essere isolate l'una dall'altra. Ciò significa che i risultati intermedi di una transazione non dovrebbero essere visibili ad
+ altre transazioni fino a quando la transazione non viene completata.
+Durabilità: 
+Una volta che una transazione è stata completata con successo (commit) , i suoi effetti devono essere permanenti e garantiti anche in caso di guasti 
+di sistema o di interruzioni.
+
+Le transazioni sono importanti per garantire l'integrità dei dati e la correttezza delle operazioni, soprattutto quando si lavora con database e altre risorse esterne. 
+
+Gli EJB, in particolare, offrono una gestione delle transazioni semplificata, in quanto il contenitore EJB gestisce automaticamente le transazioni per i
+ metodi degli EJB. 
+Gli sviluppatori possono specificare il comportamento delle transazioni per i metodi EJB tramite annotazioni o configurazioni XML, senza dover scrivere 
+codice per gestire manualmente il commit e il rollback delle transazioni.
+
+
+
+
+
+
+
+Ci sono tre tipi di EJB:
+
+1) Session Beans: 
+Sono utilizzati per implementare la logica del business e l'accesso avviene tramite i metodi pubblici del Bean .
+Vengono esposti tramite interfacce (quindi solitamente si implementa anche l'interfaccia) per l'astrazione
+Sono suddivisi in due categorie:
+
+A. Stateless Session Beans:
+Non mantengono alcuno stato per il client e ogni richiesta è indipendente dalle altre.
+O meglio lo stato e le informazioni sono mantenute solo all'invocazione del metodo.
+Si usano per "calcoli e operazioni indipendenti" es. invio email e conversione valuta ecc....
+
+Ciclo di vita:
+-all'inizio sono create una serie di istanze e messe in un Pool 
+-ad ogni richieste viene presa un'istanza dal Pool e messa a posto quando finita di usare 
+
+
+B. Stateful Session Beans: 
+Mantengono lo stato del client tra le richieste e vengono distrutti quando il client termina.
+Ci sono solitamente chiamate multiple agli EJB e si usa memoria secondaria.
+Es. carrello della spesa 
+
+Ciclo di vita:
+-viene creato il Bean dal Bean Container tramite il costruttore 
+-viene attivato e usato quando serve se no conservato passivamente nella cache per utilizzi futuri per altre richieste 
+-alla fine della sessione il Bean viene rimosso 
+
+
+2) Message-Driven Beans (MDB): Sono utilizzati per gestire la comunicazione asincrona tra i componenti dell'applicazione attraverso la ricezione 
+di messaggi JMS (Java Message Service). (implementati come listener JMS) 
+Non espongono interfacce e non matengono lo stato con il client tra una richiesta e un'altra 
+
+Ciclo di vita:
+-all'inizio sono create una serie di istanze e messe in un Pool 
+-ad ogni richieste viene presa un'istanza dal Pool e messa a posto quando finita di usare 
+
+
+3)Entity Beans (deprecati in Java EE 6): Erano utilizzati per rappresentare gli oggetti persistenti del database(cioè oggetti che rappresentano tabelle). 
+Sono stati sostituiti da Java Persistence API (JPA) in Java EE 6
+
+
+-----------------------------------------------------------------------------------------------------------------------
+
+                                                          JPA(Java Persistence API) e ORM (Object-Relational Mapping) 
+
+
+JPA :
+è una specifica standard di Java EE per la mappatura oggetto-relazionale e la gestione della persistenza dei dati nelle applicazioni Java.
+Non è una libreria specifica, ma piuttosto un insieme di interfacce, annotazioni e query API basate su JPQL (Java Persistence Query Language) definite nella specifica.
+JPA fornisce un modo standardizzato per gli sviluppatori Java di implementare il concetto di ORM nelle loro applicazioni.
+(in parole povere è l'insieme di regole per implementare un framework ORM con Java) 
+Hibernate è un implementazione di JPA
+
+ORM :
+è un concetto generale che definisce la possibilità di mappare oggetti Java , legati alla logica ad oggetti , come tabelle ed entità appartenenti ai database .
+Quindi di gestire le entità relazionali (tabekke appartenenti al database) utilizzando oggetti Java , ovvero usando metodi e costrutti Java  evitando di 
+gestire le entità e ad esempio fare query usando il linguaggio nativo del database (es. SQL) 
+
+JPQL (Java persistence query language) : è il linguaggio java usato per fare le query con java 
+è supportato da Hibernate (Hibernate lo usa e ti permette di usarlo) 
+
+
+JDBC (Java Database Connectivity) : è un'API standard di Java per la connessione e l'interazione con i database relazionali.
+JDBC è una tecnologia di basso livello per lavorare direttamente con i database relazionali e non fornisce un livello di astrazione orientato agli oggetti 
+come ORM o JPA.
+Sebbene JDBC sia distinto da JPA e ORM, è strettamente correlato a questi concetti, poiché i provider di persistenza JPA e i framework ORM in genere utilizzano 
+JDBC sotto il cofano per interagire con i database relazionali. In altre parole, JDBC è il meccanismo di base che consente ai framework ORM e ai provider di
+persistenza JPA di comunicare con i database.
+
+
+
+VANTAGGI : 
+-Astrazione dal database : lavori con il modello ad oggetti senza fottertene della logica e linguaggio specifico del database
+-Portabilità : poichè stesso linguaggio e codice , ma diversi database relazionali supportati 
+
+-----------------------------------------------------------------------------------------------
+
+                                                                             MULTITHREAD 
+
+
+
+CGI vs SERVLET 
+
+Un CGI è un interfaccia tra il contenuto del server che deve essere inviato al client e il client stesso .
+Lo citiamo giusto per parlare della differenza con le Servlet (e JSP , dat che sono Servlet) e per evidenziare il vantaggio delle servlet su di loro . 
+Semplicemente la differenza è che una Servlet può essere gestita da un singolo thread , mentre una CGI può gestire un singolo processo . 
+Quindi mentre la CGI deve gestire una richiesta usando un intero processo , più richieste possono essere gestiti da più Servlet eseguiti in più thread in 
+un singolo processo . Dato ciò le servlet sono più efficienti .
+
+
+
+    MULTITHREAD 
+
+Un JavaEE server è in generale MULTITHREAD 
+Il Servlet Container gestisce le richieste dei client utilizzando un approccio multi-threading. Ciò significa che più thread (rapresentanti le varie richieste del 
+client) possono essere in esecuzione contemporaneamente e chiamare il metodo service() (o i metodi specifici come doGet() o doPost()) della stessa servlet
+per gestire diverse richieste in parallelo. 
+Questa cosa in particolare è gestita dal Servlet Container. 
+
+Sì, una servlet è generalmente un'istanza unica (singleton) che può gestire più richieste contemporaneamente utilizzando diversi thread.
+
+
+
+Il meccanismo in cui una singola istanza di servlet gestisce più richieste contemporaneamente è il seguente:
+
+-Il server di applicazioni o il contenitore web riceve una richiesta HTTP per la servlet.
+-Il server crea un nuovo thread (o ne riutilizza uno disponibile dal pool di thread) per gestire la richiesta.
+-Il server crea nuovi oggetti HttpServletRequest e HttpServletResponse per rappresentare la richiesta e la risposta correnti.
+-Il thread chiama il metodo service della servlet, passando gli oggetti HttpServletRequest e HttpServletResponse come parametri.
+-Il metodo service determina il tipo di richiesta HTTP (GET, POST, ecc.) e chiama il metodo corrispondente nella servlet, ad esempio doGet o doPost.
+-La servlet elabora la richiesta utilizzando i dati nell'oggetto HttpServletRequest, esegue le azioni necessarie (ad esempio, interagendo con un database) e 
+prepara la risposta utilizzando l'oggetto HttpServletResponse.
+-Una volta completata l'elaborazione della richiesta, il thread termina e la risposta viene inviata al client.
+-Se ci sono altre richieste in arrivo, il server può assegnare un altro thread per gestirle, e lo stesso processo viene ripetuto.
+-Poiché ogni richiesta viene gestita da un thread separato, è importante che la servlet sia state-safe e non utilizzi variabili di istanza per memorizzare 
+dati specifici delle richieste o delle sessioni, altrimenti potrebbero verificarsi problemi di concorrenza e comportamenti inattesi.
+ Invece, si dovrebbe utilizzare gli oggetti HttpServletRequest, HttpServletResponse e HttpSession per gestire e memorizzare i dati specifici delle richieste
+ e delle sessioni.
+
+
+NOTA : in generale potrebbero essere cerate anche più istanze di una servlet , ma queste cose non ci interessano , se ne occupa il Servlet Container
+
+È il Servlet Container che si occupa della gestione dei thread per le richieste in arrivo. 
+La servlet si limita a elaborare le richieste e preparare le risposte, e non è responsabile della creazione, gestione o sincronizzazione dei thread.
+
+
+
+In sintesi, il Servlet Container gestisce la creazione, l'invocazione e la distruzione delle servlet, 
+mentre i programmatori si concentrano sull'implementazione della logica delle servlet e sull'uso di syncronized e l'evitare le var d'istanza per mantere 
+la servlet thread safe .
+
+---------------------------------------------------------------------------------------------------------------
+

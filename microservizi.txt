@@ -1,0 +1,29 @@
+
+
+La programmazione distribuita è un paradigma di programmazione in cui componenti software, chiamati processi o nodi, interagiscono tra loro
+ attraverso una rete per realizzare un obiettivo comune.
+Questi componenti possono essere eseguiti su diverse macchine o su diverse parti di una stessa macchina. 
+La programmazione distribuita è utile per sfruttare le risorse di più computer, migliorare la scalabilità, la disponibilità e la tolleranza ai guasti di un sistema.
+
+
+
+I microservizi sono un'architettura software che suddivide un'applicazione complessa in componenti più piccoli e indipendenti, ognuno dei quali si occupa di
+ una specifica funzionalità o dominio e quindi di offrire un determinato servizio.
+Ogni microservizio è un'applicazione indipendente che può essere sviluppata, testata, implementata e scalata separatamente dagli altri.
+I microservizi comunicano tra loro attraverso protocolli leggeri come HTTP/REST , e solitamente utilizzano formati di messaggi standard come JSON o Protocol Buffers.
+
+L'architettura basata su microservizi offre diversi vantaggi rispetto alle architetture monolitiche tradizionali, tra cui:
+
+-Modularità: I microservizi sono modulari e indipendenti, il che facilita lo sviluppo, il test e la manutenzione delle singole componenti.
+
+-Scalabilità: Poiché ogni microservizio può essere scalato separatamente, l'architettura supporta meglio la scalabilità orizzontale e la distribuzione delle risorse.
+(scalabilità : più risorse hardware per un determinato microservizio) 
+
+-Resistenza ai guasti : In caso di guasto di un microservizio, gli altri possono continuare a funzionare, riducendo l'impatto sulla disponibilità del sistema complessivo.
+ 
+-Agilità: I team di sviluppo possono lavorare in parallelo su diversi microservizi, accelerando il ciclo di sviluppo e rendendo più agevole l'adozione di nuove
+tecnologie o approcci.
+
+
+In sintesi, la programmazione distribuita è un paradigma in cui i componenti software interagiscono tra loro attraverso una rete, mentre i microservizi
+sono un'architettura software che suddivide un'applicazione in componenti indipendenti per migliorare la modularità, la scalabilità e la resilienza.

@@ -1,0 +1,126 @@
+Un web service è un sistema software progettato per supportare la comunicazione e lo scambio di informazioni tra diversi dispositivi su una rete,
+ in particolare attraverso il World Wide Web. Un web service permette a due applicazioni (o più) di interagire tra loro tramite un protocollo di
+ comunicazione comune, come ad esempio HTTP, e un formato di scambio dati, come XML o JSON.
+
+in parole povere :
+un web service è un'applicazione che consente la comunicazione tra diversi sistemi attraverso protocolli e formati standard basati sul web, come REST e SOAP.
+
+I web service sono ampiamente utilizzati nella creazione di sistemi distribuiti, interoperabili e scalabili, in quanto consentono a differenti 
+applicazioni di lavorare insieme, indipendentemente dal linguaggio di programmazione, dalla piattaforma o dall'architettura sottostante.
+
+Ci sono due tipi principali di web service:
+
+SOAP (Simple Object Access Protocol) Web Services:
+
+Questi web service utilizzano il protocollo SOAP, che si basa su XML, per scambiare messaggi strutturati tra client e server.
+ I web service SOAP sono fortemente tipizzati e seguono uno standard rigoroso, il che può renderli più complessi da implementare e gestire rispetto
+ ai web service RESTful.
+
+REST (Representational State Transfer) Web Services:
+
+I web service RESTful sono basati sull'architettura REST, che sfrutta i metodi standard HTTP (GET, POST, PUT, DELETE, ecc.) per operare sulle risorse
+ identificate da URL. I web service RESTful sono più semplici e flessibili rispetto ai web service SOAP e utilizzano in genere JSON come formato
+ di scambio dati, anche se possono utilizzare anche altri formati come XML o YAML.
+
+In sintesi, un web service è un meccanismo che consente la comunicazione tra diverse applicazioni su Internet, facilitando lo scambio di informazioni 
+e l'interoperabilità tra sistemi diversi.
+
+++Web Service(o Web Api) : web poichè utilizza internet , service è un modo diverso per dire API , quindi è un API che utilizza internet in poche parole .
+Utili in particolar modo allo scambio di dati tra server e client in formato JSON (o XML) tramite protocollo http . I client non devono essere necessariamente 
+dei browser , ma qualunque programma sia in grado di agire secodo l'http.(applicazioni mobile o desktop ad es.) 
+----------------------------------------------------------------------
+
+SOAP e REST 
+
+SOAP (Simple Object Access Protocol) e REST (Representational State Transfer) sono due protocolli di comunicazione utilizzati
+nelle applicazioni web per la trasmissione di dati.
+
+In realtà l'approccio REST è un insieme di principi architettonici, mentre l'approccio SOAP è un protocollo ufficiale
+
+
+REST : Trattandosi sostanzialmente di linee guida o raccomandazioni, la loro implementazione è lasciata agli sviluppatori.
+REST si basa principalmente sul protocollo HTTP
+In genere, una richiesta di dati inviata a un'API REST avviene tramite il protocollo HTTP. Una volta ricevuta la richiesta, le API progettate
+per REST (chiamate API o servizi web RESTful) possono restituire i messaggi in numerosi formati: HTML, XML, testo semplice e JSON.
+JSON (JavaScript Object Notation) è il formato di messaggistica più adottato, perché, a dispetto del nome, può essere letto da qualsiasi
+linguaggio di programmazione, dagli utenti e dalle macchine, ed è ottimizzato. In questo modo le API RESTful sono più flessibili e configurabili con facilità.
++REST è Stateless: Ogni richiesta da un client contiene tutte le informazioni necessarie per eseguirla, senza richiedere che il server memorizzi uno stato della sessione.
+
+SOAP : Trattandosi di un protocollo, richiede l'integrazione di regole che ne aumentano la complessità e il carico di gestione sul sistema.
+Oltre alle regole, integra anche standard di conformità che lo rendono idoneo agli ambienti enterprise. Gli standard di conformità integrati
+includono sicurezza, atomicità, coerenza, isolamento e durata (ACID), un insieme di proprietà che garantiscono transazioni di database affidabili.
+Una volta ricevuta la richiesta, i messaggi SOAP di ritorno devono essere restituiti come documenti in formato XML.
+
+DIFFERENZE
+La principale differenza tra SOAP e REST è la complessità. SOAP è più complesso e richiede più risorse rispetto a REST.
+Poiché sono ottimizzate, le API REST sono adatte ai contesti più innovativi come l'Internet of Things (IoT), lo sviluppo di applicazioni mobili e 
+il serverless computing. Grazie all'integrazione della sicurezza e della conformità delle transazioni, i servizi web SOAP rispondono a molte esigenze
+aziendali, ma risultano anche più complessi. Infine, molte API pubbliche, come l'API di Google Maps, seguono i principi REST.
+In sintesi, SOAP è più adatto per le applicazioni enterprise complesse che richiedono una maggiore sicurezza e integrità dei dati,
+ mentre REST è più leggero e facile da utilizzare per le applicazioni web e mobile che richiedono una comunicazione rapida e scalabile.
+
+
+NOTA:
+ sia REST che SOAP sono due approcci per la creazione di API (Application Programming Interface), ovvero delle interfacce che permettono a
+ diverse applicazioni di comunicare tra loro.
+
+In sintesi, l'implementazione di un'API SOAP richiede l'uso di un'infrastruttura specifica per i servizi web SOAP, mentre l'implementazione di un'API REST
+ è più flessibile e può essere realizzata utilizzando una vasta gamma di tecnologie e framework di sviluppo web.
+
+Le API REST e SOAP non sono "già create" come prodotti o servizi preconfezionati, ma sono interfacce che devono essere sviluppate per consentire 
+alle applicazioni di comunicare tra loro in modo standardizzato e sicuro.
+
+-----------------------------------------------------------------------------
+
+JAX-WS ( Java XML - Web services) 
+
+Librerie per la gestione di scambio di messaggi SOAP in XML tramite protocollo HTTP . 
+JAX-WS serve per nascondere la complessità di SOAP allo sviluppatore traducendo le chiamate JAX-WS in mesaggi SOAP . 
+Inoltre consente l'accesso a Web Services in esecuzione su altre piattaforme 
+
+
+
+
+
+Creazione di un Web Service SOAP con JAX-WS:
+
+Lato server (quello che crea il web service) : 
+Lo sviluppatore implementa i metodi remoti serviti dal Web Service verso "l'esterno" 
+Li "serve" tramite un interfaccia 
+Questa interfaccia deve essere arricchita da annotazioni che fanno cose.....
+
+Lato client (quello che si deve fare per usufruire del servizio offerto dal Web Service) :
+Sul codice client creo un "proxy" , ovvero un oggetto Java che rappresenta il servizio remoto servito dal server
+Si invocano i metodi che si vogliono sull'oggetto proxy 
+La libreria JAX-WS penserà a tradurre le chiamate locali in ciamate remote collegate al nostro Web Service SOAP 
+Infine le richieste a cui il nostro Web Service ha risposto con risposte SOAP sono ritradotte come risposte appena arrivano al client 
+
++In JBOSS SOAP è gestito da Apache Axis
+
+NOTA : il nostro client deve "conoscere" il server ed i servizi offerti e come chiederli . Ciò viene fatto tramite certi messaggi xml 
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+API 
+
+
+Un'API (Application Programming Interface) è un insieme di regole, protocolli e strumenti che permette a diverse applicazioni software di comunicare
+ e interagire tra loro in modo efficiente e standardizzato. In sostanza, un'API funge da interfaccia tra due o più applicazioni, consentendo agli 
+sviluppatori di accedere alle funzionalità o ai dati di un'applicazione esterna senza dover conoscere i dettagli dell'implementazione interna di quest'ultima.
+
+
+
+
+
+
+
+Ecco alcuni esempi di API comuni:
+
+API Web: Queste API permettono alle applicazioni di comunicare attraverso il web utilizzando protocolli come HTTP e REST. Ad esempio, un'API Web potrebbe consentire a un'applicazione mobile di accedere ai dati di un servizio di social media, come Twitter o Facebook.
+API di sistema operativo: Le API di sistema operativo forniscono accesso alle funzionalità del sistema operativo sottostante, come la gestione dei file, l'interfaccia utente e la gestione delle risorse hardware.
+API di librerie o framework: Queste API forniscono accesso alle funzionalità di librerie o framework software, come la creazione di interfacce utente in un framework come React o la gestione di operazioni di database in un ORM come Hibernate.
+In sintesi, un'API è un meccanismo che consente agli sviluppatori di sfruttare le funzionalità o i dati di un'applicazione esterna in modo semplice e standardizzato, facilitando la comunicazione e l'interazione tra diverse applicazioni software.
